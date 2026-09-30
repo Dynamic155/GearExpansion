@@ -51,13 +51,22 @@ cd GearExpansion
 ./gradlew build
 ```
 
-The built mod files are placed in `build/libs`.
+The built mod files are placed in `fabric/build/libs` and `neoforge/build/libs`.
 
 To start a development copy of the game with the mod loaded:
 
 ```
-./gradlew runClient
+./gradlew :fabric:runClient
+./gradlew :neoforge:runClient
 ```
+
+## Project layout
+
+The mod uses Architectury to support both loaders from one codebase.
+
+- `common` holds the shared code and assets. Most of the mod lives here.
+- `fabric` holds the Fabric entrypoints and `fabric.mod.json`.
+- `neoforge` holds the NeoForge entrypoint and `neoforge.mods.toml`.
 
 ## License
 

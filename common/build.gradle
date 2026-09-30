@@ -1,0 +1,18 @@
+architectury {
+	common rootProject.enabled_platforms.split(',')
+}
+
+dependencies {
+	// We depend on Fabric Loader here to use the Fabric @Environment annotations,
+	// which get remapped to the correct annotations on each platform.
+	// Do NOT use other classes from Fabric Loader.
+	implementation "net.fabricmc:fabric-loader:$rootProject.fabric_loader_version"
+
+	implementation "dev.architectury:architectury:$rootProject.architectury_api_version"
+
+	compileOnly "com.geckolib:geckolib-common-$rootProject.minecraft_version:$rootProject.geckolib_version"
+
+	// YACL has no common artifact. Compile against the Fabric jar and only use its
+	// `dev.isxander.yacl3.api` classes, which are identical on both platforms.
+	compileOnly("dev.isxander:yet-another-config-lib:$rootProject.yacl_version-fabric") { transitive = false }
+}

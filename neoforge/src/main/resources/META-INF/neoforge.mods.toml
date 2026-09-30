@@ -1,0 +1,49 @@
+modLoader = "javafml"
+loaderVersion = "[1,)"
+issueTrackerURL = "https://github.com/Dynamic155/GearExpansion/issues"
+license = "MIT"
+
+[[mods]]
+modId = "gearexpansion"
+version = "${version}"
+displayName = "Gear Expansion"
+authors = "Daniel"
+description = '''
+Adds new tools, armor, and shields made from new ores, alloys, and fantasy materials.
+'''
+iconFile = "assets/gearexpansion/icon.png"
+
+[[dependencies.gearexpansion]]
+modId = "neoforge"
+type = "required"
+versionRange = "[26.3.0.0-beta,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.gearexpansion]]
+modId = "minecraft"
+type = "required"
+versionRange = "[26.3,26.4)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.gearexpansion]]
+modId = "architectury"
+type = "required"
+versionRange = "[22.0.3,)"
+ordering = "AFTER"
+side = "BOTH"
+
+[[dependencies.gearexpansion]]
+modId = "geckolib"
+type = "required"
+versionRange = "[5.5.7,)"
+ordering = "AFTER"
+side = "BOTH"
+
+[[dependencies.gearexpansion]]
+modId = "yet_another_config_lib_v3"
+type = "required"
+versionRange = "[3.9.7,)"
+ordering = "AFTER"
+side = "BOTH"

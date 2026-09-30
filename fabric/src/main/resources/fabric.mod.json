@@ -1,0 +1,34 @@
+{
+	"schemaVersion": 1,
+	"id": "gearexpansion",
+	"version": "${version}",
+	"name": "Gear Expansion",
+	"description": "Adds new tools, armor, and shields made from new ores, alloys, and fantasy materials.",
+	"authors": [
+		"Daniel"
+	],
+	"contact": {
+		"sources": "https://github.com/Dynamic155/GearExpansion",
+		"issues": "https://github.com/Dynamic155/GearExpansion/issues"
+	},
+	"license": "MIT",
+	"icon": "assets/gearexpansion/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"com.gearexpansion.fabric.GearExpansionFabric"
+		],
+		"client": [
+			"com.gearexpansion.fabric.client.GearExpansionFabricClient"
+		]
+	},
+	"depends": {
+		"fabricloader": ">=0.19.5",
+		"minecraft": "~26.3",
+		"java": ">=25",
+		"fabric-api": "*",
+		"architectury": ">=22.0.3",
+		"geckolib": ">=5.5.7",
+		"yet_another_config_lib_v3": ">=3.9.7"
+	}
+}

@@ -1,13 +1,18 @@
 pluginManagement {
 	repositories {
-		maven {
-			name = 'Fabric'
-			url = 'https://maven.fabricmc.net/'
-		}
-		mavenCentral()
+		maven { url = 'https://maven.fabricmc.net/' }
+		maven { url = 'https://maven.architectury.dev/' }
+		maven { url = 'https://maven.neoforged.net/releases/' }
 		gradlePluginPortal()
 	}
 }
 
-// Should match your modid
+if (!JavaVersion.current().isCompatibleWith(JavaVersion.VERSION_25)) {
+	throw new GradleException("Gear Expansion needs Java 25 to build, but Gradle is running on Java ${JavaVersion.current()}.")
+}
+
 rootProject.name = 'gearexpansion'
+
+include 'common'
+include 'fabric'
+include 'neoforge'
