@@ -394,7 +394,7 @@ One shield per material, each with a small blocking perk:
 
 ## 11. Art pipeline
 
-- **Now:** Placeholder textures and simple GeckoLib models generated for every item, so everything works in game. Made from scratch, not copied from Minecraft textures, so they're safe to publish if needed.
+- **Now:** Textures recolored from vanilla ones by `tools/generate_assets.py` (iron gear and diamond ore for Titanium), plus vanilla-shaped GeckoLib armor and shield models. These look vanilla-consistent but are derived from Mojang's art, so they are not MIT licensed.
 - **Later:** Real art made in Blockbench, one material at a time, following the art-style column in section 5.
 - **Style:** Early/mid sets keep vanilla armor shapes with 16x16 textures and a few 3D details. Endgame sets (Infernium, Tungsten, Echo, Astral, Voidsteel) get bold 3D designs.
 
