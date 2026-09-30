@@ -1,0 +1,13 @@
+{
+	"required": true,
+	"package": "com.gearexpansion.mixin",
+	"compatibilityLevel": "JAVA_25",
+	"minVersion": "0.8",
+	"mixins": [
+		"ItemStackDurabilityMixin"
+	],
+	"client": [],
+	"injectors": {
+		"defaultRequire": 1
+	}
+}

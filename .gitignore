@@ -38,3 +38,8 @@ hs_err_*.log
 replay_*.log
 *.hprof
 *.jfr
+
+# data generation cache
+
+common/src/main/generated/.cache/
+.mixin.out/

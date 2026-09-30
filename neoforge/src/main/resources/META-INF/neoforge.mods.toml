@@ -47,3 +47,6 @@ type = "required"
 versionRange = "[3.9.7,)"
 ordering = "AFTER"
 side = "BOTH"
+
+[[mixins]]
+config = "gearexpansion.mixins.json"

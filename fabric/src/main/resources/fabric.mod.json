@@ -20,7 +20,22 @@
 		],
 		"client": [
 			"com.gearexpansion.fabric.client.GearExpansionFabricClient"
+		],
+		"fabric-datagen": [
+			"com.gearexpansion.fabric.datagen.GearExpansionDataGenerator"
+		],
+		"fabric-client-gametest": [
+			"com.gearexpansion.fabric.test.TitaniumGameTest"
+		],
+		"modmenu": [
+			"com.gearexpansion.fabric.client.GearExpansionModMenu"
 		]
+	},
+	"mixins": [
+		"gearexpansion.mixins.json"
+	],
+	"suggests": {
+		"modmenu": "*"
 	},
 	"depends": {
 		"fabricloader": ">=0.19.5",

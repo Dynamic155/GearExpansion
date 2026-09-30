@@ -26,6 +26,22 @@ A living planning doc. Tags: **[1.0]** = in the first release, **[later]** = a t
 
 ---
 
+## Progress
+
+| Material | Status |
+|---|---|
+| Titanium | Done with placeholder art: ores and world generation, raw ore, ingot, nugget, storage blocks, 6 tools, 3D armor, 3D shield, Unbreakable Will set bonus, config, recipes, loot, tags, tooltips, automated game test |
+
+Titanium stats as built (tunable in `ModMaterials`):
+
+- Tools: diamond mining tier, 3000 durability, speed 8, +3 damage, enchantability 8
+- Armor: diamond defense (3/8/6/3), 2.5 toughness, 0.05 knockback resistance per piece, durability multiplier 45, enchantability 8
+- Shield: 1000 durability, axes disable it for 40% of the normal time. Recipe: a vanilla shield surrounded by 4 titanium ingots.
+- Ore: veins of 5, 4 per chunk, Y -64 to -16, half of any ore touching air is skipped, needs a diamond pickaxe
+- Armor is kept out of vanilla's armor tags for now so it can't be trimmed (trims don't show on the 3D models). Revisit with the trims decision.
+
+---
+
 ## 2. Design pillars
 
 1. **Every material has one clear identity.** If you can't describe a set in three words ("light, fast, fragile"), it isn't done.

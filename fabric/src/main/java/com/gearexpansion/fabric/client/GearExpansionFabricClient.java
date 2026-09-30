@@ -2,9 +2,11 @@ package com.gearexpansion.fabric.client;
 
 import net.fabricmc.api.ClientModInitializer;
 
+import com.gearexpansion.client.GearExpansionClient;
+
 public final class GearExpansionFabricClient implements ClientModInitializer {
 	@Override
 	public void onInitializeClient() {
-		// This entrypoint is suitable for setting up client-specific logic, such as rendering.
+		GearExpansionClient.init();
 	}
 }
