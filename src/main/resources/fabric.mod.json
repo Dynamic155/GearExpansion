@@ -1,0 +1,28 @@
+{
+	"schemaVersion": 1,
+	"id": "gearexpansion",
+	"version": "${version}",
+	"name": "Gear Expansion",
+	"description": "Adds new tools and armor to Minecraft.",
+	"authors": [
+		"Daniel"
+	],
+	"contact": {},
+	"license": "MIT",
+	"icon": "assets/gearexpansion/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"com.gearexpansion.GearExpansion"
+		],
+		"client": [
+			"com.gearexpansion.client.GearExpansionClient"
+		]
+	},
+	"depends": {
+		"fabricloader": ">=0.19.5",
+		"minecraft": "~26.3",
+		"java": ">=25",
+		"fabric-api": "*"
+	}
+}

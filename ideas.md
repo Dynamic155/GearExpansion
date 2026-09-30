@@ -1,0 +1,402 @@
+# Gear Expansion: Ideas and Planning
+
+A living planning doc. Tags: **[1.0]** = in the first release, **[later]** = a themed update, **[decide]** = still open, **[cut]** = dropped.
+
+---
+
+## 1. Decisions
+
+| Area | Decision |
+|---|---|
+| Minecraft | 26.3 (Java 25) |
+| Loaders | **Fabric + NeoForge**, via Architectury (shared `common` code) |
+| Libraries | Architectury API, GeckoLib (3D armor), YACL (config), Modonomicon (guidebook, later) |
+| Optional support | JEI, REI, Jade, Mod Menu (EMI once it updates to 26.3) |
+| Audience | **Vanilla+** players. It should feel like an official update |
+| Power level | Keep the fun ideas, but limit them with **meters, cooldowns, and costs**. Everything tunable in config. |
+| Abilities | **Mostly passive** set bonuses. A few sets get **one keybind ability** (see section 7). |
+| Alloys | A custom **Alloy Forge** block (see section 8) |
+| Extra gear | **Shields** for every material (see section 9). No horse or wolf armor. |
+| Armor trims | **[decide]** later, once the art style is settled |
+| Art | **Placeholders** for now, replaced with real art later. **Style depends on tier:** early/mid sets keep vanilla shapes with small 3D details; endgame sets get bold 3D designs. |
+| License | MIT |
+| Publishing | Modrinth, CurseForge, GitHub |
+| Release plan | **Phased**: 1.0 "Foundations" (9 materials), then themed updates |
+| First build | **Titanium**, built end-to-end first to prove out the whole pipeline |
+
+---
+
+## 2. Design pillars
+
+1. **Every material has one clear identity.** If you can't describe a set in three words ("light, fast, fragile"), it isn't done.
+2. **Sidegrades over straight upgrades.** Most sets trade something away. Only a few endgame sets compete with netherite.
+3. **Effects you can feel, not just read.** Every set bonus has a sound, a particle, or a visual on the 3D model when it triggers.
+4. **Vanilla-native.** Use vanilla mechanics where possible (attributes, enchantability, smithing templates, spears, shields, piglin gold rules).
+5. **Power has limits.** Strong effects come with a meter, cooldown, or cost, and everything is configurable.
+6. **Plays nice with others.** Common `c:` tags, recipe viewer support, and no changes to vanilla items.
+
+---
+
+## 3. Roadmap
+
+| Release | Theme | Materials | Also includes |
+|---|---|---|---|
+| **1.0** | Foundations | Titanium *(built first)*, Zinc, Brass, Aluminum, Rose Gold, Verdigris, Emerald, Amethyst, Infernium | Alloy Forge, shields, set bonus system, keybind abilities, config, JEI/REI/Jade support, advancements |
+| 1.1 | Metals | Silver, Steel, Tungsten, Cobalt | Modonomicon guidebook |
+| 1.2 | Depths & Seas | Obsidian, Prismarine, Echo | New Elder Guardian drop |
+| 1.3 | Elements | Frostite, Fulgurite, Verdantite | Lightning/weather mechanics |
+| 1.4 | Celestial | StarShard, Astral, Sunstone, Moonstone, Voidsteel | Falling stars event, Eclipse synergy |
+
+**Per material:** 6 tools (sword, pickaxe, axe, shovel, hoe, spear) + 4 armor pieces + shield. Plus the ore (stone + deepslate), raw ore, ingot, nugget, and storage blocks where relevant.
+
+---
+
+## 4. Vanilla reference (for balancing)
+
+Verify these against 26.3 code when implementing.
+
+| Tier | Tool durability | Full armor points |
+|---|---|---|
+| Wood / Leather | 59 | 7 |
+| Gold | 32 | 11 |
+| Stone | 131 | - |
+| Copper | 190 | 10 |
+| Chainmail | - | 12 |
+| Iron | 250 | 15 |
+| Diamond | 1561 | 20 (+toughness) |
+| Netherite | 2031 | 20 (+more toughness, knockback resistance) |
+
+---
+
+## 5. Materials at a glance
+
+| Material | Release | Tier | How you get it | Identity | Art style |
+|---|---|---|---|---|---|
+| Zinc | 1.0 | Copper+ | Overworld ore | Galvanized, resists poison | Vanilla |
+| Aluminum | 1.0 | Iron- | Bauxite ore | Featherweight: fast, fragile | Vanilla |
+| Verdigris | 1.0 | Copper to Iron | Copper + coating | Oxidizes over time | Vanilla |
+| Rose Gold | 1.0 | Gold+ | Alloy Forge: gold + copper | Enchanting, piglin-friendly | Vanilla |
+| Brass | 1.0 | Iron | Alloy Forge: copper + zinc | Clockwork wind-up | Vanilla + gears |
+| Emerald | 1.0 | Iron | Emeralds | Trading, luck, anti-illager | Vanilla |
+| Amethyst | 1.0 | Iron | Shards + copper | Crystal shield, resonance | Vanilla + crystals |
+| Titanium | 1.0 | Diamond | Rare deep ore | Near-unbreakable, tough | Vanilla |
+| Infernium | 1.0 | Netherite | Nether ore + template | Heat, lava, fire | **Bold** |
+| Silver | 1.1 | Iron | Overworld ore | Anti-undead | Vanilla |
+| Steel | 1.1 | Iron+ | Alloy Forge: iron + coal | Reliable workhorse | Vanilla |
+| Tungsten | 1.1 | Diamond+ | Very deep ore | The tank: heavy, immovable | **Bold** |
+| Cobalt | 1.1 | Diamond | Nether ore | Mining speed | Vanilla |
+| Obsidian | 1.2 | Diamond- | Alloy Forge: obsidian + iron | Explosion-proof, slow | Vanilla + chunky |
+| Prismarine | 1.2 | Diamond- | Guardian drops | Ocean, swimming | Vanilla + fins |
+| Echo | 1.2 | Diamond | Echo shards | Stealth, silence | **Bold** |
+| Frostite | 1.3 | Diamond- | Ice biome ore | Freezing | Vanilla + icicles |
+| Fulgurite | 1.3 | Diamond- | Lightning strikes sand | Storm, chain lightning | Vanilla + arcs |
+| Verdantite | 1.3 | Iron | Lush caves ore | Nature utility | Vanilla + leaves |
+| StarShard | 1.4 | Diamond | Falling stars | Starlight, night power | Vanilla + glow |
+| Astral | 1.4 | Netherite | StarShard + End upgrade | Gravity, mobility | **Bold** |
+| Sunstone | 1.4 | Diamond- | Desert/badlands ore | Day power | Vanilla + rays |
+| Moonstone | 1.4 | Diamond- | Mountain peak ore | Moon-phase power | Vanilla + glow |
+| Voidsteel | 1.4 | Netherite | End outer islands | Blink, teleport | **Bold** |
+
+---
+
+## 6. Material details
+
+Each entry lists: **Obtain, Tools, Armor, Set bonus, Look**. Shields are in section 9, and keybind abilities in section 7.
+
+### 1.0: Foundations
+
+#### Titanium (built first)
+- **Obtain:** Rare deep ore, Y -64 to -16, deepslate only. Small veins. Needs a diamond pickaxe. Raw titanium smelts into an ingot.
+- **Tools:** Diamond-tier speed with ~2x diamond durability, low enchantability.
+- **Armor:** Diamond-level defense, extra toughness, and a little knockback resistance.
+- **Set bonus (Unbreakable Will):** Gear loses durability 50% slower. Below 30% health, you get Resistance I for 5s (60s cooldown).
+- **Look:** Brushed metal, clean angular plates.
+- **Notes:** The reliable workhorse. Not fireproof (netherite keeps that advantage).
+
+#### Zinc
+- **Obtain:** Common Overworld ore, Y 0 to 64 (stone + deepslate). Raw zinc smelts into an ingot.
+- **Role:** An early tier, and the base for **Brass**.
+- **Tools:** Copper-tier stats with better durability. No durability loss when used underwater (galvanized).
+- **Armor:** Low defense.
+- **Set bonus (Galvanized):** Poison, Hunger, and Nausea last 50% shorter.
+- **Look:** Matte grey-blue with a crystalline "spangle" pattern.
+
+#### Aluminum
+- **Obtain:** **Bauxite Ore** (reddish; badlands/savanna surface pockets + underground Y 32 to 96). Raw bauxite smelts into an aluminum ingot.
+- **Tools:** Very fast mining and attack speed, low durability.
+- **Armor:** +Movement speed, lower defense than iron.
+- **Set bonus (Featherweight):** 50% less fall damage, longer sprint-jumps, no swim speed penalty.
+- **Look:** Sleek riveted panels, like aircraft aluminum.
+
+#### Verdigris (copper twist)
+Vanilla already has copper gear, so ours **oxidizes like copper blocks**.
+- **Obtain:** Copper ingots + **Verdigris Coating** (copper + honeycomb + green dye).
+- **Stages:** Fresh, Exposed, Weathered, then Oxidized, advancing slowly while worn.
+  - Fresh: fastest mining and attack speed, weakest defense.
+  - Oxidized: slower, but tough armor and bonus durability.
+  - **Honeycomb** waxes the item to lock its stage. An **axe** scrapes it back one stage.
+- **Set bonus (Conductive):** Lightning within 16 blocks is drawn to you. You take no lightning damage and gain Speed + Strength for 10s (120s cooldown).
+- **Look:** Four texture stages, from shiny orange to teal with patina streaks.
+
+#### Rose Gold
+- **Obtain:** **Alloy Forge:** 3 gold + 1 copper makes 2 rose gold.
+- **Tools:** Gold's speed and enchantability, with durability between stone and iron.
+- **Armor:** Counts as gold for **piglins** (they stay neutral).
+- **Set bonus (Lucky Charm):** +25% XP from mobs and ores. Slightly better enchanting table offers.
+- **Look:** Pink-gold filigree.
+
+#### Brass
+- **Obtain:** **Alloy Forge:** 3 copper + 1 zinc makes 4 brass.
+- **Tools:** Iron-tier. Attack speed ramps up during combos.
+- **Armor:** Iron-tier defense.
+- **Set bonus (Clockwork):** Walking and fighting wind up a **spring meter**. It powers the Spring Release ability (section 7). A full meter also gives slight Haste.
+- **Look:** Steampunk plating with **spinning gears** that speed up as the meter fills (the GeckoLib showcase).
+
+#### Emerald
+- **Obtain:** Emeralds (existing ore + trading). Expensive on purpose.
+- **Tools:**
+  - Sword/spear: +50% damage to illagers.
+  - Pickaxe: small chance of bonus XP when mining ores.
+- **Armor:** +Luck per piece.
+- **Set bonus (Merchant's Favor):** *Hero of the Village I* while worn (level I only, so raid rewards still matter). Villagers occasionally toss you small gifts (limited to once per villager per day).
+- **Look:** Faceted gem plates, gold trim, villager-style tassels.
+
+#### Amethyst
+- **Obtain:** **Resonant Crystal** = 4 amethyst shards + 1 copper ingot.
+- **Tools:**
+  - Pickaxe (**Resonance**): breaking an ore plays a chime that's louder the more of that ore is nearby (a hot/cold hint, not x-ray).
+  - Sword: crits shatter crystal for small splash damage.
+- **Armor:** Moderate defense, soft chimes when hit.
+- **Set bonus (Shatterguard):** A crystal shell fully absorbs one hit, visibly shatters, and regrows over 45s.
+- **Look:** Crystal clusters on the shoulders and helmet. The shell regrows with an animation.
+
+#### Infernium
+- **Obtain:** Nether ore near lava (basalt deltas + lava-sea edges, Y 10 to 40). Mining it without Fire Resistance briefly sets you on fire. Raw Infernium is smelted into an ingot in a **Blast Furnace only**. Gear needs an **Infernium Upgrade Smithing Template** found in Bastion/Fortress chests.
+- **Tools:**
+  - Pickaxe: **auto-smelts** drops.
+  - Sword/spear: sets targets on fire, and deals extra damage to burning targets.
+  - Fireproof items (don't burn in lava).
+- **Armor:** Fire damage reduction.
+- **Set bonus (Heat Core):** Walk and swim in lava for up to **10s**, shown by a **heat gauge**. It cools outside lava. Attackers catch fire. Heat also fuels the Eruption ability (section 7).
+- **Look (bold):** Dark plates with pulsing lava cracks, ember particles, and horned helmet.
+
+### 1.1: Metals
+
+#### Silver
+- **Obtain:** Overworld ore, Y -16 to 48.
+- **Tools:** Iron tier. +Damage to undead (stacks with Smite, but less than Smite V).
+- **Armor:** Undead deal less damage to you.
+- **Set bonus (Blessed):** Wither lasts 50% shorter. Undead within 8 blocks glow faintly.
+- **Look:** Polished silver with engraved holy symbols.
+
+#### Steel
+- **Obtain:** **Alloy Forge:** iron + coal makes steel.
+- **Tools / Armor:** A plain, reliable step between iron and diamond, with high durability.
+- **Set bonus (Hardened):** Small armor toughness bonus. No gimmick; it's the dependable choice.
+- **Look:** Dark grey, practical knight-style plate.
+
+#### Tungsten
+- **Obtain:** Very deep, very rare ore (Y -64 to -48). Needs a diamond pickaxe.
+- **Tools:** Slow but hard-hitting. Axes and spears get extra knockback.
+- **Armor:** The highest knockback resistance in the mod, plus a movement speed penalty.
+- **Set bonus (Immovable):** Immune to knockback while sneaking. Explosions deal 40% less damage. Powers the Ground Slam ability (section 7).
+- **Look (bold):** Massive, bulky plates, like a walking fortress.
+
+#### Cobalt
+- **Obtain:** Nether ore (soul sand valleys + netherrack, Y 0 to 128).
+- **Tools:** The fastest pickaxe and shovel in the mod.
+- **Armor:** Moderate.
+- **Set bonus (Momentum):** Mining blocks quickly in a row gives stacking Haste (up to Haste II).
+- **Look:** Deep blue metal with a brushed finish.
+
+### 1.2: Depths & Seas
+
+#### Obsidian
+- **Obtain:** **Alloy Forge:** obsidian + iron makes Reinforced Obsidian Plate.
+- **Tools:** Slow and very durable.
+- **Armor:** High defense, slower movement.
+- **Set bonus (Blastproof):** Explosions deal 60% less damage, and creepers barely scratch you.
+- **Look:** Chunky volcanic-glass plates with a purple sheen.
+
+#### Prismarine
+- **Obtain:** Prismarine shards + crystals. Upgrading needs a **Tidal Core**, a new Elder Guardian drop.
+- **Tools:** Full speed underwater (no mining penalty). Tridents get a synergy bonus.
+- **Armor:** +Swim speed, Water Breathing (helmet).
+- **Set bonus (Tidebound):** Conduit Power while in water or rain.
+- **Look:** Sea-green scales with fin crests.
+
+#### Echo
+- **Obtain:** Echo shards (Ancient City loot) + sculk.
+- **Tools:** Mining makes no vibrations (sculk sensors ignore you).
+- **Armor:** Silent footsteps.
+- **Set bonus (Silence):** You don't trigger sculk sensors or shriekers while sneaking. Hostile mobs notice you from half the usual distance.
+- **Look (bold):** Dark teal, Warden-like ribbing with pulsing soul-light.
+
+### 1.3: Elements
+
+#### Frostite
+- **Obtain:** Ore inside packed/blue ice in Frozen Peaks + Ice Spikes.
+- **Tools:** Sword/spear hits slow and gradually freeze targets (powder-snow style).
+- **Armor:** Walk on powder snow; immune to freezing.
+- **Set bonus (Permafrost):** Attackers are slowed. Water freezes briefly under your feet while sprinting (weaker Frost Walker).
+- **Look:** Pale blue with icicle fringes and frost particles.
+
+#### Fulgurite
+- **Obtain:** Forms when **lightning strikes sand**. Renewable using lightning rods + Channeling tridents in storms.
+- **Tools:** During thunderstorms, crits chain lightning to up to 2 nearby mobs.
+- **Armor:** Lightning resistance.
+- **Set bonus (Stormcaller):** In storms, gain Speed I and charged attacks. Gives a small bonus when worn with Verdigris.
+- **Look:** Glassy tan with branching crackle lines and spark arcs.
+
+#### Verdantite
+- **Obtain:** Lush cave ore (moss/clay areas).
+- **Tools:** The axe replants saplings when chopping the bottom log. The hoe tills 3x3. The shovel makes paths 3 wide.
+- **Armor:** Moderate. Bees and foxes are friendlier.
+- **Set bonus (Overgrowth):** Slow Regeneration while standing on grass or moss. Crops near you grow slightly faster.
+- **Look:** Bark and leaf plates with flowering vines.
+
+### 1.4: Celestial
+
+#### StarShard
+- **Obtain:** **Falling stars.** On clear nights, a shooting star may land nearby, leaving a small crater with a glowing StarShard cluster. It fades at sunrise if not collected. Rare End city loot as a backup.
+- **Tools:** Stronger at night (+damage, +mining speed).
+- **Armor:** Night Vision at night (helmet). A faint glow.
+- **Set bonus (Starfall):** Falls over 5 blocks turn fall damage into a knockback shockwave (a 10s cooldown keeps it from overlapping with the mace).
+- **Look:** Navy plates with twinkling stars and constellation lines.
+
+#### Astral
+- **Obtain:** Upgrade StarShard gear with **Astral Alloy** (Alloy Forge: StarShard + chorus fruit + shulker shell) at a smithing table.
+- **Tools:** Dropped items float up out of the void instead of being lost. Spear/sword hits give 1s Levitation.
+- **Armor:** Slow falling while sneaking in mid-air.
+- **Set bonus (Zero-G):** **One** extra jump in the air (costs hunger). **Void rescue:** falling into the void returns you to your last safe spot, but costs 25% durability and has a 20-minute cooldown. Powers Astral Dash (section 7).
+- **Look (bold):** Floating armor pieces with gaps, orbiting particles, and a halo on the helmet.
+
+#### Sunstone
+- **Obtain:** Desert/badlands ore, Y 64+.
+- **Tools:** Stronger in daylight.
+- **Armor:** Regeneration in direct sunlight (slow).
+- **Set bonus (Radiance):** Undead near you in daylight burn faster. Attackers are briefly blinded (cooldown).
+- **Look:** Gold-orange plates with ray motifs and a warm glow.
+
+#### Moonstone
+- **Obtain:** Mountain peak ore, Y 128+. Drops extra on full moon nights.
+- **Tools:** Power scales with the **moon phase** (strongest at full moon, weakest at new moon).
+- **Armor:** Night Vision at night.
+- **Set bonus (Lunar Tide):** Bonus scaling with the moon phase: jump boost, attack damage, and luck.
+- **Look:** Pearly white-blue with crescent motifs.
+
+#### Eclipse (mixed-set synergy)
+- Wear **2 Sunstone + 2 Moonstone** pieces for **Eclipse:** both sets' day/night bonuses work at all times, at 50% strength.
+
+#### Voidsteel
+- **Obtain:** Rare ore in End stone on the outer End islands.
+- **Tools:** Hits have a chance to teleport targets a few blocks away (like an enderman).
+- **Armor:** Endermen stay neutral (like a carved pumpkin, but without blocking your view).
+- **Set bonus (Void Walker):** Projectiles have a chance to pass through you. Powers Blink (section 7).
+- **Look (bold):** Black-purple plates with void-rift cracks and floating particles.
+
+---
+
+## 7. Keybind abilities
+
+One shared **"Set Ability"** key (default key TBD, avoiding vanilla and common mod conflicts). Only works while wearing the full set.
+
+| Set | Ability | Effect | Limit |
+|---|---|---|---|
+| Brass | **Spring Release** | Release the wound spring: burst of speed + a knockback punch | Needs a full spring meter |
+| Infernium | **Eruption** | Vent stored heat as a ring of fire that ignites nearby mobs | Uses the heat gauge; 30s cooldown |
+| Tungsten | **Ground Slam** | Stomp to knock back and slow nearby mobs | 20s cooldown |
+| Astral | **Astral Dash** | Short dash in the direction you're looking, even mid-air | 8s cooldown, costs hunger |
+| Voidsteel | **Blink** | Teleport up to 8 blocks forward | 30s cooldown |
+
+All other sets are passive. Cooldowns show as a small HUD icon.
+
+---
+
+## 8. Alloy Forge
+
+A custom workstation for alloys, so they feel different from normal crafting.
+
+- **Crafting:** Bricks + blast furnace + copper blocks (exact recipe TBD).
+- **Screen:** Up to 3 input slots, a fuel slot, and an output slot with a progress bar. Glows and crackles while working.
+- **Fuel:** Normal furnace fuels. **Blaze powder** or **lava buckets** speed it up.
+- **Recipes (data-driven, so they show in JEI/REI):**
+  - 3 copper + 1 zinc makes 4 **brass**
+  - 3 gold + 1 copper makes 2 **rose gold**
+  - iron + coal makes **steel** (1.1)
+  - obsidian + iron makes **reinforced obsidian plate** (1.2)
+  - StarShard + chorus fruit + shulker shell makes **astral alloy** (1.4)
+- **Automation:** Hoppers work with it (inputs from the top, fuel from the side, output from the bottom), like a furnace.
+
+---
+
+## 9. Shields
+
+One shield per material, each with a small blocking perk:
+
+| Shield | Blocking perk |
+|---|---|
+| Titanium | Axe hits disable it for 2s instead of 5s |
+| Zinc | Blocked projectiles have a chance not to use durability |
+| Aluminum | No movement slowdown while blocking |
+| Verdigris | Stats follow the oxidation stage |
+| Rose Gold | Highest enchantability |
+| Brass | Blocking hits adds to the spring meter |
+| Emerald | Blocking an illager knocks it back hard |
+| Amethyst | A **perfect block** (right as you raise it) releases a knockback chime |
+| Infernium | Blocking melee sets the attacker on fire |
+| Silver | Blocking undead knocks them back hard |
+| Steel | Very high durability |
+| Tungsten | Fully blocks explosions; very slow to raise |
+| Cobalt | Raises instantly (no delay) |
+| Obsidian | Explosion-proof |
+| Prismarine | Attackers take a little damage back |
+| Echo | Blocking is silent (no vibrations) |
+| Frostite | Slows the attacker |
+| Fulgurite | Shocks the attacker during storms |
+| Verdantite | Blocking slowly repairs the shield |
+| StarShard | Stronger at night |
+| Astral | Blocked projectiles float away |
+| Sunstone | Blinds the attacker briefly in daylight |
+| Moonstone | Strength scales with the moon phase |
+| Voidsteel | Blocked projectiles are teleported back at the shooter |
+
+---
+
+## 10. Shared systems
+
+- **Set bonus framework:** One system handles all sets. Tooltips show set progress, like *"Titanium Set (3/4)"*, with the bonus greyed out until complete.
+- **Mixed-set synergies:** Eclipse (Sun + Moon), and small ones like Fulgurite + Verdigris. Keep them rare so they feel like discoveries.
+- **HUD:** Heat gauge (Infernium), spring meter (Brass), shield regrow (Amethyst), ability cooldowns. Small and unobtrusive.
+- **Sounds & particles:** A unique equip sound per set, and a sound + particle whenever a bonus triggers.
+- **Advancements:** One per material ("Catch a Falling Star", "Galvanized", "Forged in Fire", and so on).
+- **Config (YACL):** Per-set enable/disable, effect strengths, cooldowns, ore rarity, falling-star frequency. Synced from server to clients.
+- **Guidebook (Modonomicon, 1.1):** A page per material: where to find it, recipes, bonuses.
+- **Tags:** Common `c:` tags (`c:ores/titanium`, `c:ingots/titanium`, and so on) for cross-mod compatibility.
+
+---
+
+## 11. Art pipeline
+
+- **Now:** Placeholder textures and simple GeckoLib models generated for every item, so everything works in game. Made from scratch, not copied from Minecraft textures, so they're safe to publish if needed.
+- **Later:** Real art made in Blockbench, one material at a time, following the art-style column in section 5.
+- **Style:** Early/mid sets keep vanilla armor shapes with 16x16 textures and a few 3D details. Endgame sets (Infernium, Tungsten, Echo, Astral, Voidsteel) get bold 3D designs.
+
+---
+
+## 12. Scope & risks
+
+- **Size:** About 24 materials, each with 6 tools, 4 armor pieces, a shield, and ores/ingots/blocks, comes to **400+ items**, and ~96 armor models. Phased releases keep this manageable.
+- **Art is the bottleneck,** not code. Placeholders let us build and test everything first.
+- **Armor trims + GeckoLib:** Vanilla trims won't appear on 3D armor automatically. [decide] later.
+- **Two loaders:** Everything must be tested on both Fabric and NeoForge before each release.
+- **Balance:** Only Infernium, Astral, and Voidsteel compete with netherite. Tungsten and Titanium sit near diamond.
+
+---
+
+## 13. Open questions
+
+- [ ] Default key for the Set Ability keybind
+- [ ] Exact Alloy Forge crafting recipe
+- [ ] Armor trim support
+- [ ] Mod icon and branding
