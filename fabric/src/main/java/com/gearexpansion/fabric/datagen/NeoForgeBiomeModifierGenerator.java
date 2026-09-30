@@ -12,11 +12,12 @@ import net.minecraft.data.PackOutput;
 
 import com.gearexpansion.GearExpansion;
 import com.gearexpansion.material.MaterialSet;
+import com.gearexpansion.material.MaterialSet.OreGeneration;
 import com.gearexpansion.material.ModMaterials;
 import com.gearexpansion.worldgen.ModOres;
 
 /**
- * Writes NeoForge biome modifiers that add each ore to Overworld biomes.
+ * Writes NeoForge biome modifiers that add each ore vein to its biomes.
  * Fabric ignores these files and adds the ores in code instead.
  */
 final class NeoForgeBiomeModifierGenerator implements DataProvider {
@@ -30,12 +31,14 @@ final class NeoForgeBiomeModifierGenerator implements DataProvider {
 	public CompletableFuture<?> run(CachedOutput output) {
 		List<CompletableFuture<?>> writes = new ArrayList<>();
 		for (MaterialSet set : ModMaterials.ALL) {
-			JsonObject json = new JsonObject();
-			json.addProperty("type", "neoforge:add_features");
-			json.addProperty("biomes", "#minecraft:is_overworld");
-			json.addProperty("features", ModOres.placedKey(set).identifier().toString());
-			json.addProperty("step", "underground_ores");
-			writes.add(DataProvider.saveStable(output, json, paths.json(GearExpansion.id("ore_" + set.name))));
+			for (OreGeneration ore : set.oreGeneration) {
+				JsonObject json = new JsonObject();
+				json.addProperty("type", "neoforge:add_features");
+				json.addProperty("biomes", "#" + ore.biomes().location());
+				json.addProperty("features", ModOres.placedKey(set, ore).identifier().toString());
+				json.addProperty("step", "underground_ores");
+				writes.add(DataProvider.saveStable(output, json, paths.json(GearExpansion.id(ModOres.name(set, ore)))));
+			}
 		}
 		return CompletableFuture.allOf(writes.toArray(CompletableFuture[]::new));
 	}

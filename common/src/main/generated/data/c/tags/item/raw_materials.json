@@ -1,5 +1,8 @@
 {
   "values": [
+    "#c:raw_materials/zinc",
+    "#c:raw_materials/bauxite",
+    "#c:raw_materials/aluminum",
     "#c:raw_materials/titanium"
   ]
 }

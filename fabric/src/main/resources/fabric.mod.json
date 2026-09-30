@@ -25,7 +25,7 @@
 			"com.gearexpansion.fabric.datagen.GearExpansionDataGenerator"
 		],
 		"fabric-client-gametest": [
-			"com.gearexpansion.fabric.test.TitaniumGameTest"
+			"com.gearexpansion.fabric.test.GearGameTest"
 		],
 		"modmenu": [
 			"com.gearexpansion.fabric.client.GearExpansionModMenu"

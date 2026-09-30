@@ -1,5 +1,7 @@
 {
   "values": [
+    "gearexpansion:zinc_block",
+    "gearexpansion:aluminum_block",
     "gearexpansion:titanium_block"
   ]
 }

@@ -1,5 +1,7 @@
 {
   "values": [
+    "gearexpansion:zinc_shield",
+    "gearexpansion:aluminum_shield",
     "gearexpansion:titanium_shield"
   ]
 }

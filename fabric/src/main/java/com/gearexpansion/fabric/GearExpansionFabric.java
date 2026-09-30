@@ -7,6 +7,7 @@ import net.minecraft.world.level.levelgen.GenerationStep;
 
 import com.gearexpansion.GearExpansion;
 import com.gearexpansion.material.MaterialSet;
+import com.gearexpansion.material.MaterialSet.OreGeneration;
 import com.gearexpansion.material.ModMaterials;
 import com.gearexpansion.worldgen.ModOres;
 
@@ -17,7 +18,9 @@ public final class GearExpansionFabric implements ModInitializer {
 
 		// NeoForge adds ores through generated biome modifier files; Fabric does it here.
 		for (MaterialSet set : ModMaterials.ALL) {
-			BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(), GenerationStep.Decoration.UNDERGROUND_ORES, ModOres.placedKey(set));
+			for (OreGeneration ore : set.oreGeneration) {
+				BiomeModifications.addFeature(BiomeSelectors.tag(ore.biomes()), GenerationStep.Decoration.UNDERGROUND_ORES, ModOres.placedKey(set, ore));
+			}
 		}
 	}
 }

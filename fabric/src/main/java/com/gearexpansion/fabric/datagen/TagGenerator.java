@@ -66,15 +66,17 @@ final class TagGenerator {
 				builder(set.requiredToolTag).add(ore, deepslateOre, block, rawBlock);
 				builder(BlockTags.BEACON_BASE_BLOCKS).add(block);
 
-				BlockItemTagId ores = common("ores/" + set.name);
-				builder(ores.block()).add(ore, deepslateOre);
-				builder(ConventionalBlockItemTags.ORES.block()).addTag(ores.block());
+				for (String oreTag : set.oreTagNames()) {
+					BlockItemTagId ores = common("ores/" + oreTag);
+					builder(ores.block()).add(ore, deepslateOre);
+					builder(ConventionalBlockItemTags.ORES.block()).addTag(ores.block());
+				}
 				builder(ConventionalBlockItemTags.ORES_IN_GROUND_STONE.block()).add(ore);
 				builder(ConventionalBlockItemTags.ORES_IN_GROUND_DEEPSLATE.block()).add(deepslateOre);
 				builder(ConventionalBlockItemTags.ORE_RATES_SINGULAR.block()).add(ore, deepslateOre);
 
 				BlockItemTagId storage = common("storage_blocks/" + set.name);
-				BlockItemTagId rawStorage = common("storage_blocks/raw_" + set.name);
+				BlockItemTagId rawStorage = common("storage_blocks/raw_" + set.oreName);
 				builder(storage.block()).add(block);
 				builder(rawStorage.block()).add(rawBlock);
 				builder(ConventionalBlockItemTags.STORAGE_BLOCKS.block()).addTag(storage.block()).addTag(rawStorage.block());
@@ -96,9 +98,9 @@ final class TagGenerator {
 			copy(ConventionalBlockItemTags.STORAGE_BLOCKS);
 
 			for (MaterialSet set : ModMaterials.ALL) {
-				copy(common("ores/" + set.name));
+				set.oreTagNames().forEach(oreTag -> copy(common("ores/" + oreTag)));
 				copy(common("storage_blocks/" + set.name));
-				copy(common("storage_blocks/raw_" + set.name));
+				copy(common("storage_blocks/raw_" + set.oreName));
 
 				var ingot = itemKey(set.ingot);
 				builder(set.repairMaterials).add(ingot);
@@ -106,13 +108,15 @@ final class TagGenerator {
 
 				TagKey<Item> ingots = commonItem("ingots/" + set.name);
 				TagKey<Item> nuggets = commonItem("nuggets/" + set.name);
-				TagKey<Item> raw = commonItem("raw_materials/" + set.name);
 				builder(ingots).add(ingot);
 				builder(nuggets).add(itemKey(set.nugget));
-				builder(raw).add(itemKey(set.rawItem));
 				builder(ConventionalItemTags.INGOTS).addTag(ingots);
 				builder(ConventionalItemTags.NUGGETS).addTag(nuggets);
-				builder(ConventionalItemTags.RAW_MATERIALS).addTag(raw);
+				for (String oreTag : set.oreTagNames()) {
+					TagKey<Item> raw = commonItem("raw_materials/" + oreTag);
+					builder(raw).add(itemKey(set.rawItem));
+					builder(ConventionalItemTags.RAW_MATERIALS).addTag(raw);
+				}
 
 				builder(ItemTags.SWORDS).add(itemKey(set.sword));
 				builder(ItemTags.PICKAXES).add(itemKey(set.pickaxe));

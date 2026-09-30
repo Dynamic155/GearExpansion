@@ -1,5 +1,9 @@
 {
   "values": [
+    "gearexpansion:zinc_ore",
+    "gearexpansion:deepslate_zinc_ore",
+    "gearexpansion:bauxite_ore",
+    "gearexpansion:deepslate_bauxite_ore",
     "gearexpansion:titanium_ore",
     "gearexpansion:deepslate_titanium_ore"
   ]

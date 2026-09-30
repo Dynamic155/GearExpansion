@@ -27,18 +27,28 @@ import com.gearexpansion.material.ModMaterials;
 
 /**
  * Ore veins for every material, built the same way as vanilla's iron and diamond ores.
- * Data generation turns these into JSON; each loader then adds the placed feature to Overworld biomes.
+ * Data generation turns these into JSON; each loader then adds each placed feature to its biomes.
  */
 public final class ModOres {
 	private ModOres() {
 	}
 
-	public static ResourceKey<Feature> featureKey(MaterialSet set) {
-		return ResourceKey.create(Registries.FEATURE, GearExpansion.id("ore_" + set.name));
+	/** e.g. {@code ore_aluminum} for the main vein, {@code ore_aluminum_badlands} for an extra one. */
+	public static String name(MaterialSet set, OreGeneration ore) {
+		return "ore_" + set.name + (ore.id().isEmpty() ? "" : "_" + ore.id());
 	}
 
+	public static ResourceKey<Feature> featureKey(MaterialSet set, OreGeneration ore) {
+		return ResourceKey.create(Registries.FEATURE, GearExpansion.id(name(set, ore)));
+	}
+
+	public static ResourceKey<PlacedFeature> placedKey(MaterialSet set, OreGeneration ore) {
+		return ResourceKey.create(Registries.PLACED_FEATURE, GearExpansion.id(name(set, ore)));
+	}
+
+	/** The material's main, Overworld-wide ore vein. */
 	public static ResourceKey<PlacedFeature> placedKey(MaterialSet set) {
-		return ResourceKey.create(Registries.PLACED_FEATURE, GearExpansion.id("ore_" + set.name));
+		return placedKey(set, set.oreGeneration.getFirst());
 	}
 
 	public static void bootstrapFeatures(BootstrapContext<Feature> context) {
@@ -47,25 +57,27 @@ public final class ModOres {
 		RuleTest deepslate = RuleTest.either(new TagMatchTest(BlockTags.HEIGHT_SPECIFIC_ORE_REPLACEABLES), HeightMatchTest.max(8), new TagMatchTest(BlockTags.DEEPSLATE_ORE_REPLACEABLES));
 
 		for (MaterialSet set : ModMaterials.ALL) {
-			OreGeneration ore = set.oreGeneration;
-			context.register(featureKey(set), new OreFeature(List.of(
-				BlockReplacement.replace(stone, set.ore.get().defaultBlockState()),
-				BlockReplacement.replace(deepslate, set.deepslateOre.get().defaultBlockState())
-			), ore.veinSize(), ore.airExposureDiscard()));
+			for (OreGeneration ore : set.oreGeneration) {
+				context.register(featureKey(set, ore), new OreFeature(List.of(
+					BlockReplacement.replace(stone, set.ore.get().defaultBlockState()),
+					BlockReplacement.replace(deepslate, set.deepslateOre.get().defaultBlockState())
+				), ore.veinSize(), ore.airExposureDiscard()));
+			}
 		}
 	}
 
 	public static void bootstrapPlacedFeatures(BootstrapContext<PlacedFeature> context) {
 		var features = context.lookup(Registries.FEATURE);
 		for (MaterialSet set : ModMaterials.ALL) {
-			OreGeneration ore = set.oreGeneration;
-			Holder<Feature> feature = features.getOrThrow(featureKey(set));
-			context.register(placedKey(set), new PlacedFeature(feature, List.of(
-				CountPlacement.of(ore.veinsPerChunk()),
-				InSquarePlacement.spread(),
-				HeightRangePlacement.uniform(VerticalAnchor.absolute(ore.minY()), VerticalAnchor.absolute(ore.maxY())),
-				BiomeFilter.biome()
-			)));
+			for (OreGeneration ore : set.oreGeneration) {
+				Holder<Feature> feature = features.getOrThrow(featureKey(set, ore));
+				context.register(placedKey(set, ore), new PlacedFeature(feature, List.of(
+					CountPlacement.of(ore.veinsPerChunk()),
+					InSquarePlacement.spread(),
+					HeightRangePlacement.uniform(VerticalAnchor.absolute(ore.minY()), VerticalAnchor.absolute(ore.maxY())),
+					BiomeFilter.biome()
+				)));
+			}
 		}
 	}
 }

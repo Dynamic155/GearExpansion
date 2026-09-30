@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "zinc_ingot",
+  "key": {
+    "#": "gearexpansion:zinc_nugget"
+  },
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "result": {
+    "id": "gearexpansion:zinc_ingot"
+  }
+}

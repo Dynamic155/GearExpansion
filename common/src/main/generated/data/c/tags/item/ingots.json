@@ -1,5 +1,7 @@
 {
   "values": [
+    "#c:ingots/zinc",
+    "#c:ingots/aluminum",
     "#c:ingots/titanium"
   ]
 }

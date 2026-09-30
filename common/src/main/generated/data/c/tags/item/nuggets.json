@@ -1,5 +1,7 @@
 {
   "values": [
+    "#c:nuggets/zinc",
+    "#c:nuggets/aluminum",
     "#c:nuggets/titanium"
   ]
 }

@@ -23,6 +23,47 @@ public final class GearExpansionConfig {
 			.build())
 		.build();
 
+	// Zinc
+
+	@AutoGen(category = "zinc", group = "gear")
+	@TickBox
+	@SerialEntry(comment = "Whether zinc gear is corrosion-proof: it loses no durability while its user is in water.")
+	public boolean zincCorrosionProof = true;
+
+	@AutoGen(category = "zinc", group = "set_bonus")
+	@TickBox
+	@SerialEntry(comment = "Whether the full Zinc set grants its Galvanized bonus.")
+	public boolean zincSetBonus = true;
+
+	@AutoGen(category = "zinc", group = "set_bonus")
+	@IntSlider(min = 0, max = 100, step = 5, format = "%d%%")
+	@SerialEntry(comment = "Percent shorter that Poison, Hunger, and Nausea last while wearing the full set.")
+	public int zincEffectReduction = 50;
+
+	// Aluminum
+
+	@AutoGen(category = "aluminum", group = "set_bonus")
+	@TickBox
+	@SerialEntry(comment = "Whether the full Aluminum set grants its Featherweight bonus.")
+	public boolean aluminumSetBonus = true;
+
+	@AutoGen(category = "aluminum", group = "set_bonus")
+	@IntSlider(min = 0, max = 100, step = 5, format = "%d%%")
+	@SerialEntry(comment = "Percent less fall damage taken while wearing the full set.")
+	public int aluminumFallDamageReduction = 50;
+
+	@AutoGen(category = "aluminum", group = "set_bonus")
+	@IntSlider(min = 0, max = 20, step = 1, format = "%d%%")
+	@SerialEntry(comment = "Percent stronger jumps while wearing the full set. 10% or more lets players jump over fences.")
+	public int aluminumJumpBoost = 5;
+
+	@AutoGen(category = "aluminum", group = "set_bonus")
+	@IntSlider(min = 0, max = 100, step = 1, format = "%d%%")
+	@SerialEntry(comment = "Extra movement speed in water while wearing the full set. Depth Strider I is 33%.")
+	public int aluminumWaterSpeed = 33;
+
+	// Titanium
+
 	@AutoGen(category = "titanium", group = "set_bonus")
 	@TickBox
 	@SerialEntry(comment = "Whether the full Titanium set grants its Unbreakable Will bonus.")

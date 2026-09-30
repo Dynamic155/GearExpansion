@@ -30,9 +30,30 @@ A living planning doc. Tags: **[1.0]** = in the first release, **[later]** = a t
 
 | Material | Status |
 |---|---|
-| Titanium | Done with placeholder art: ores and world generation, raw ore, ingot, nugget, storage blocks, 6 tools, 3D armor, 3D shield, Unbreakable Will set bonus, config, recipes, loot, tags, tooltips, automated game test |
+| Zinc | Done: ores, raw ore, ingot, nugget, storage blocks, 6 tools, 3D armor, 3D shield, corrosion-proof gear, Galvanized set bonus, config, recipes, loot, tags, tooltips, game test |
+| Aluminum | Done: Bauxite ores (with richer badlands and savanna veins), raw bauxite, ingot, nugget, storage blocks, 6 tools, 3D armor, 3D shield, Featherweight set bonus, config, recipes, loot, tags, tooltips, game test |
+| Titanium | Done: ores and world generation, raw ore, ingot, nugget, storage blocks, 6 tools, 3D armor, 3D shield, Unbreakable Will set bonus, config, recipes, loot, tags, tooltips, game test |
 
-Titanium stats as built (tunable in `ModMaterials`):
+All textures are recolored vanilla textures (see section 11). Stats as built are below and can be tuned in `ModMaterials`.
+
+Zinc stats as built:
+
+- Tools: copper mining tier (can't mine diamond or gold ore), 260 durability, speed 5, +1 damage, enchantability 13
+- Armor: 11 total defense (2/5/3/1), durability multiplier 13, enchantability 10
+- Shield: 400 durability
+- Corrosion-proof: all zinc gear, including the shield, loses no durability while its user is in water (replaces the earlier shield idea of projectiles sometimes not using durability)
+- Set bonus (Galvanized): Poison, Hunger, and Nausea last 50% shorter
+- Ore: veins of 9, 10 per chunk, Y 0 to 64, needs a stone pickaxe. Textures from iron tools, chainmail armor, and iron ore.
+
+Aluminum stats as built:
+
+- Tools: iron mining tier, 180 durability, speed 9, +1.5 damage, +0.3 attack speed, enchantability 16
+- Armor: 12 total defense (2/5/4/1), +3% movement speed per piece, durability multiplier 12, enchantability 14
+- Shield: 300 durability, no slowdown while blocking (but no sprinting)
+- Set bonus (Featherweight): 50% less fall damage, 5% stronger jumps, 33% faster in water (like Depth Strider I; replaces "no swim penalty", since armor doesn't slow swimming in vanilla)
+- Ore: Bauxite. Veins of 8, 5 per chunk, Y 32 to 96 everywhere, plus veins of 12 (10 per chunk) in badlands and veins of 10 (6 per chunk) in savannas at Y 48 to 128. Needs a stone pickaxe. Textures from diamond tools and armor, raw copper, and copper ore.
+
+Titanium stats as built:
 
 - Tools: diamond mining tier, 3000 durability, speed 8, +3 damage, enchantability 8
 - Armor: diamond defense (3/8/6/3), 2.5 toughness, 0.05 knockback resistance per piece, durability multiplier 45, enchantability 8
@@ -353,7 +374,7 @@ One shield per material, each with a small blocking perk:
 | Shield | Blocking perk |
 |---|---|
 | Titanium | Axe hits disable it for 2s instead of 5s |
-| Zinc | Blocked projectiles have a chance not to use durability |
+| Zinc | Corrosion-proof: no durability loss in water, like all zinc gear |
 | Aluminum | No movement slowdown while blocking |
 | Verdigris | Stats follow the oxidation stage |
 | Rose Gold | Highest enchantability |

@@ -22,14 +22,33 @@ from zipfile import ZipFile
 ROOT = Path(__file__).resolve().parent.parent
 ASSETS = ROOT / "common" / "src" / "main" / "resources" / "assets" / "gearexpansion"
 
+# Each material names the vanilla textures to start from and color gradients (dark to light):
+#   tools / armor   vanilla prefix for the six tools / armor icons and worn armor (e.g. "iron", "chainmail")
+#   raw / ore       vanilla prefix for the raw item and raw block / the ore blocks (e.g. "iron", "copper")
+#   ore_name        name of our ore and raw item, if different from the material (Aluminum uses "bauxite")
+#   metal           gradient for tools, armor, ingot, nugget, block, and shield rim
+#   raw_colors      gradient for the raw item and raw block
+#   ore_colors      gradient for the mineral in the ore blocks (defaults to metal)
 MATERIALS = {
+    "zinc": {
+        "tools": "iron", "armor": "chainmail", "raw": "iron", "ore": "iron",
+        # Matte blue-green grey, lower contrast than iron.
+        "metal": ["#1E2A2A", "#394B4B", "#5A7170", "#7E9794", "#A6BCB8", "#CEDFDA"],
+        "raw_colors": ["#25272A", "#40454A", "#5E666B", "#7F898D", "#A3ACAE", "#C7CDCD"],
+    },
+    "aluminum": {
+        "tools": "diamond", "armor": "diamond", "raw": "copper", "ore": "copper", "ore_name": "bauxite",
+        # Bright, clean silver-white.
+        "metal": ["#3A3F46", "#646B74", "#8F97A1", "#B8C0C8", "#DCE2E8", "#FAFCFD"],
+        # Bauxite: reddish-brown clay rock.
+        "raw_colors": ["#2E1610", "#5A2A1C", "#83412A", "#A85C3C", "#C98059", "#E3A77F"],
+        "ore_colors": ["#2E1610", "#5A2A1C", "#83412A", "#A85C3C", "#C98059", "#E3A77F"],
+    },
     "titanium": {
-        # Vanilla textures to start from: iron gear, diamond ore.
-        "gear": "iron",
-        "ore": "diamond",
-        # Dark to light. Cool blue-grey steel, so it reads differently from iron.
+        "tools": "iron", "armor": "iron", "raw": "iron", "ore": "diamond",
+        # Cool blue-grey steel, so it reads differently from iron.
         "metal": ["#1C2630", "#34465A", "#557089", "#7E9AB2", "#A9C0D2", "#D3E1EC"],
-        "raw": ["#221F27", "#3E3A47", "#5F5A6B", "#857F92", "#ADA7B8", "#D2CDDA"],
+        "raw_colors": ["#221F27", "#3E3A47", "#5F5A6B", "#857F92", "#ADA7B8", "#D2CDDA"],
     },
 }
 
@@ -163,9 +182,27 @@ def everything(px):
     return True
 
 
+def hue(px):
+    r, g, b = (c / 255 for c in px[:3])
+    high, low = max(r, g, b), min(r, g, b)
+    if high == low:
+        return 0.0
+    if high == r:
+        return (60 * (g - b) / (high - low)) % 360
+    if high == g:
+        return 60 * (b - r) / (high - low) + 120
+    return 60 * (r - g) / (high - low) + 240
+
+
 def grey_metal(px):
-    """Metal parts of tools and shields; leaves wooden handles and planks alone."""
+    """Grey metal only, e.g. a shield's iron rim; leaves its wooden planks alone."""
     return saturation(px) < 0.2
+
+
+def tool_head(px):
+    """Everything but wooden handles and bindings (browns and oranges), so any vanilla tool works as a base."""
+    wooden = 10 <= hue(px) <= 50 and saturation(px) > 0.25 and luminance(px) < 0.8
+    return not wooden
 
 
 def ore_gems(px):
@@ -308,8 +345,10 @@ def write_json(path, data):
 
 
 def generate(vanilla, name, spec):
-    gear, ore = spec["gear"], spec["ore"]
-    metal, raw = spec["metal"], spec["raw"]
+    tools, armor, raw_source, ore = spec["tools"], spec["armor"], spec["raw"], spec["ore"]
+    ore_name = spec.get("ore_name", name)
+    metal, raw = spec["metal"], spec["raw_colors"]
+    ore_colors = spec.get("ore_colors", metal)
     item = ASSETS / "textures" / "item"
     block = ASSETS / "textures" / "block"
 
@@ -317,22 +356,22 @@ def generate(vanilla, name, spec):
         write_png(target, recolor(vanilla.texture(source), gradient, selector, stretch))
 
     for tool in ("sword", "pickaxe", "axe", "shovel", "hoe", "spear", "spear_in_hand"):
-        make(item / f"{name}_{tool}.png", f"item/{gear}_{tool}", metal, grey_metal)
+        make(item / f"{name}_{tool}.png", f"item/{tools}_{tool}", metal, tool_head)
     for piece in ("helmet", "chestplate", "leggings", "boots"):
-        make(item / f"{name}_{piece}.png", f"item/{gear}_{piece}", metal)
-    make(item / f"{name}_ingot.png", f"item/{gear}_ingot", metal)
-    make(item / f"{name}_nugget.png", f"item/{gear}_nugget", metal)
-    make(item / f"raw_{name}.png", f"item/raw_{gear}", raw)
+        make(item / f"{name}_{piece}.png", f"item/{armor}_{piece}", metal)
+    make(item / f"{name}_ingot.png", "item/iron_ingot", metal)
+    make(item / f"{name}_nugget.png", "item/iron_nugget", metal)
+    make(item / f"raw_{ore_name}.png", f"item/raw_{raw_source}", raw)
 
-    make(block / f"{name}_block.png", f"block/{gear}_block", metal)
-    make(block / f"raw_{name}_block.png", f"block/raw_{gear}_block", raw)
-    make(block / f"{name}_ore.png", f"block/{ore}_ore", metal, ore_gems, stretch=(0.35, 1.0))
-    make(block / f"deepslate_{name}_ore.png", f"block/deepslate_{ore}_ore", metal, ore_gems, stretch=(0.35, 1.0))
+    make(block / f"{name}_block.png", "block/iron_block", metal)
+    make(block / f"raw_{ore_name}_block.png", f"block/raw_{raw_source}_block", raw)
+    make(block / f"{ore_name}_ore.png", f"block/{ore}_ore", ore_colors, ore_gems, stretch=(0.35, 1.0))
+    make(block / f"deepslate_{ore_name}_ore.png", f"block/deepslate_{ore}_ore", ore_colors, ore_gems, stretch=(0.35, 1.0))
 
     # 3D models. The shield keeps vanilla's wooden planks and gets a recolored metal rim.
     geo = ASSETS / "geckolib" / "models" / "item"
     write_json(geo / "armor" / f"{name}_armor.geo.json", armor_geo(name))
-    write_png(item / "armor" / f"{name}_armor.png", recolor(armor_texture(vanilla, gear), metal, everything))
+    write_png(item / "armor" / f"{name}_armor.png", recolor(armor_texture(vanilla, armor), metal, everything))
     write_json(geo / f"{name}_shield.geo.json", shield_geo(name))
     make(item / f"{name}_shield.png", "entity/shield/shield_base_nopattern", metal, grey_metal)
     print(f"generated assets for {name}")

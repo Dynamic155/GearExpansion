@@ -1,0 +1,6 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "#minecraft:is_savanna",
+  "features": "gearexpansion:ore_aluminum_savanna",
+  "step": "underground_ores"
+}

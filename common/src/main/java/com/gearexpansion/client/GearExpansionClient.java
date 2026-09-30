@@ -10,7 +10,7 @@ public final class GearExpansionClient {
 	}
 
 	public static void init() {
-		SetBonusTooltips.init();
+		GearTooltips.init();
 	}
 
 	/** The settings screen, opened from Mod Menu on Fabric or the Mods list on NeoForge. */

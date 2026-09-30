@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    "gearexpansion:aluminum_ingot"
+  ],
+  "result": {
+    "count": 9,
+    "id": "gearexpansion:aluminum_nugget"
+  }
+}

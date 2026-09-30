@@ -1,30 +1,40 @@
 package com.gearexpansion.material;
 
+import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.function.Function;
 
 import dev.architectury.registry.registries.RegistrySupplier;
+import net.minecraft.core.Holder;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
-import net.minecraft.core.Holder;
+import net.minecraft.tags.BiomeTags;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.util.valueproviders.ConstantInt;
 import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.EquipmentSlotGroup;
+import net.minecraft.world.entity.ai.attributes.Attribute;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ToolMaterial;
 import net.minecraft.world.item.component.BlocksAttacks;
+import net.minecraft.world.item.component.ItemAttributeModifiers;
+import net.minecraft.world.item.component.UseEffects;
 import net.minecraft.world.item.equipment.ArmorMaterial;
 import net.minecraft.world.item.equipment.ArmorType;
 import net.minecraft.world.item.equipment.EquipmentAsset;
 import net.minecraft.world.item.equipment.EquipmentAssets;
+import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.DropExperienceBlock;
 import net.minecraft.world.level.block.SoundType;
@@ -44,12 +54,20 @@ import com.gearexpansion.registry.ModItems;
  * {@link Builder}; registration, data generation, and world generation all read from it.
  */
 public final class MaterialSet {
+	/** Vanilla shields slow the player to 20% speed while blocking. */
+	public static final float VANILLA_BLOCKING_SPEED = 0.2F;
+
 	public final String name;
+	/** Name used for the ore, raw item, and raw block. Usually the material name; Aluminum uses "bauxite". */
+	public final String oreName;
 	public final ToolMaterial toolMaterial;
 	public final ArmorMaterial armorMaterial;
 	public final TagKey<Block> requiredToolTag;
-	public final OreGeneration oreGeneration;
+	public final List<OreGeneration> oreGeneration;
 	public final TagKey<Item> repairMaterials;
+	/** Galvanized gear doesn't lose durability while its user is in water (see {@code GearDurability}). */
+	public final boolean galvanized;
+	public final float blockingSpeed;
 
 	public final RegistrySupplier<Block> ore;
 	public final RegistrySupplier<Block> deepslateOre;
@@ -76,19 +94,22 @@ public final class MaterialSet {
 
 	private MaterialSet(Builder b) {
 		this.name = b.name;
+		this.oreName = b.oreName;
 		this.repairMaterials = b.repairMaterials;
 		this.toolMaterial = b.toolMaterial;
 		this.armorMaterial = b.armorMaterial;
 		this.requiredToolTag = b.requiredToolTag;
-		this.oreGeneration = b.oreGeneration;
+		this.oreGeneration = List.copyOf(b.oreGeneration);
+		this.galvanized = b.galvanized;
+		this.blockingSpeed = b.blockingSpeed;
 
-		this.ore = ModBlocks.register(name + "_ore", p -> new DropExperienceBlock(ConstantInt.of(0), p), BlockBehaviour.Properties.of()
+		this.ore = ModBlocks.register(oreName + "_ore", p -> new DropExperienceBlock(ConstantInt.of(0), p), BlockBehaviour.Properties.of()
 			.mapColor(MapColor.STONE).instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops().strength(3.0F, 3.0F));
-		this.deepslateOre = ModBlocks.register("deepslate_" + name + "_ore", p -> new DropExperienceBlock(ConstantInt.of(0), p), BlockBehaviour.Properties.of()
+		this.deepslateOre = ModBlocks.register("deepslate_" + oreName + "_ore", p -> new DropExperienceBlock(ConstantInt.of(0), p), BlockBehaviour.Properties.of()
 			.mapColor(MapColor.DEEPSLATE).instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops().strength(4.5F, 3.0F).sound(SoundType.DEEPSLATE));
 		this.storageBlock = ModBlocks.register(name + "_block", Block::new, BlockBehaviour.Properties.of()
 			.mapColor(b.metalColor).instrument(NoteBlockInstrument.IRON_XYLOPHONE).requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.IRON));
-		this.rawStorageBlock = ModBlocks.register("raw_" + name + "_block", Block::new, BlockBehaviour.Properties.of()
+		this.rawStorageBlock = ModBlocks.register("raw_" + oreName + "_block", Block::new, BlockBehaviour.Properties.of()
 			.mapColor(b.rawColor).instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops().strength(5.0F, 6.0F));
 
 		blockItem(ore);
@@ -96,20 +117,24 @@ public final class MaterialSet {
 		blockItem(rawStorageBlock);
 		blockItem(storageBlock);
 
-		this.rawItem = ModItems.register("raw_" + name, Item::new, p -> p);
+		this.rawItem = ModItems.register("raw_" + oreName, Item::new, p -> p);
 		this.ingot = ModItems.register(name + "_ingot", Item::new, p -> p);
 		this.nugget = ModItems.register(name + "_nugget", Item::new, p -> p);
 
-		// Attack damage and speed baselines match vanilla diamond tools; the tool material adds its damage bonus on top.
+		// Attack damage and speed baselines follow the vanilla tier; the tool material adds its damage bonus on top.
 		ToolMaterial tools = b.toolMaterial;
-		this.sword = ModItems.register(name + "_sword", Item::new, p -> p.sword(tools, 3.0F, -2.4F));
-		this.shovel = ModItems.register(name + "_shovel", Item::new, p -> p.shovel(tools, 1.5F, -3.0F));
-		this.pickaxe = ModItems.register(name + "_pickaxe", Item::new, p -> p.pickaxe(tools, 1.0F, -2.8F));
-		this.axe = ModItems.register(name + "_axe", Item::new, p -> p.axe(tools, 5.0F, -3.0F));
-		this.hoe = ModItems.register(name + "_hoe", Item::new, p -> p.hoe(tools, -3.0F, 0.0F));
-		// Spear timings match the vanilla diamond spear; damage scales with the tool material.
+		ToolTier tier = b.toolTier;
+		float speed = b.attackSpeedBonus;
+		this.sword = ModItems.register(name + "_sword", Item::new, p -> p.sword(tools, 3.0F, -2.4F + speed));
+		this.shovel = ModItems.register(name + "_shovel", Item::new, p -> p.shovel(tools, 1.5F, -3.0F + speed));
+		this.pickaxe = ModItems.register(name + "_pickaxe", Item::new, p -> p.pickaxe(tools, 1.0F, -2.8F + speed));
+		this.axe = ModItems.register(name + "_axe", Item::new, p -> p.axe(tools, tier.axeDamage, tier.axeSpeed + speed));
+		this.hoe = ModItems.register(name + "_hoe", Item::new, p -> p.hoe(tools, tier.hoeDamage, tier.hoeSpeed + speed));
+		float[] s = tier.spear;
+		// A spear's attack speed is 1 / attackDuration - 4, so shorten the duration to add the same bonus.
+		float spearDuration = 1.0F / (1.0F / s[0] + speed);
 		this.spear = ModItems.register(name + "_spear", Item::new,
-			p -> p.spear(tools, 1.05F, 1.075F, 0.5F, 3.0F, 10.0F, 6.5F, 5.1F, 10.0F, 4.6F));
+			p -> p.spear(tools, spearDuration, s[1], s[2], s[3], s[4], s[5], s[6], s[7], s[8]));
 
 		this.helmet = armor(b, ArmorType.HELMET);
 		this.chestplate = armor(b, ArmorType.CHESTPLATE);
@@ -117,21 +142,26 @@ public final class MaterialSet {
 		this.boots = armor(b, ArmorType.BOOTS);
 
 		ShieldStats shieldStats = b.shieldStats;
-		this.shield = ModItems.register(name + "_shield", b.shieldFactory, p -> p
-			.durability(shieldStats.durability())
-			.repairable(b.repairMaterials)
-			.equippableUnswappable(EquipmentSlot.OFFHAND)
-			.delayedComponent(DataComponents.BLOCKS_ATTACKS, context -> new BlocksAttacks(
-				0.25F,
-				shieldStats.disableCooldownScale(),
-				List.of(new BlocksAttacks.DamageReduction(90.0F, Optional.empty(), 0.0F, 1.0F)),
-				new BlocksAttacks.ItemDamageFunction(3.0F, 1.0F, 1.0F),
-				Optional.of(context.getOrThrow(DamageTypeTags.BYPASSES_SHIELD)),
-				Optional.of(SoundEvents.SHIELD_BLOCK),
-				Optional.of(SoundEvents.SHIELD_BREAK)
-			))
-			.component(DataComponents.BREAK_SOUND, SoundEvents.SHIELD_BREAK)
-			.enchantable(b.toolMaterial.enchantmentValue()));
+		this.shield = ModItems.register(name + "_shield", b.shieldFactory, p -> {
+			p.durability(shieldStats.durability())
+				.repairable(b.repairMaterials)
+				.equippableUnswappable(EquipmentSlot.OFFHAND)
+				.delayedComponent(DataComponents.BLOCKS_ATTACKS, context -> new BlocksAttacks(
+					0.25F,
+					shieldStats.disableCooldownScale(),
+					List.of(new BlocksAttacks.DamageReduction(90.0F, Optional.empty(), 0.0F, 1.0F)),
+					new BlocksAttacks.ItemDamageFunction(3.0F, 1.0F, 1.0F),
+					Optional.of(context.getOrThrow(DamageTypeTags.BYPASSES_SHIELD)),
+					Optional.of(SoundEvents.SHIELD_BLOCK),
+					Optional.of(SoundEvents.SHIELD_BREAK)
+				))
+				.component(DataComponents.BREAK_SOUND, SoundEvents.SHIELD_BREAK)
+				.enchantable(b.toolMaterial.enchantmentValue());
+			if (b.blockingSpeed != VANILLA_BLOCKING_SPEED) {
+				p.component(DataComponents.USE_EFFECTS, new UseEffects(false, true, b.blockingSpeed));
+			}
+			return p;
+		});
 	}
 
 	private RegistrySupplier<Item> armor(Builder b, ArmorType type) {
@@ -142,7 +172,19 @@ public final class MaterialSet {
 			case BOOTS -> "boots";
 			case BODY -> throw new IllegalArgumentException("Body armor is not part of a material set");
 		};
-		return ModItems.register(name + "_" + piece, b.armorFactory, p -> p.humanoidArmor(b.armorMaterial, type));
+		return ModItems.register(name + "_" + piece, b.armorFactory, p -> {
+			p.humanoidArmor(b.armorMaterial, type);
+			if (!b.armorBonuses.isEmpty()) {
+				ItemAttributeModifiers attributes = b.armorMaterial.createAttributes(type);
+				EquipmentSlotGroup slot = EquipmentSlotGroup.bySlot(type.getSlot());
+				for (ArmorBonus bonus : b.armorBonuses) {
+					var id = GearExpansion.id("armor." + piece + "." + bonus.key());
+					attributes = attributes.withModifierAdded(bonus.attribute(), new AttributeModifier(id, bonus.amount(), bonus.operation()), slot);
+				}
+				p.attributes(attributes);
+			}
+			return p;
+		});
 	}
 
 	private static void blockItem(RegistrySupplier<Block> block) {
@@ -161,6 +203,23 @@ public final class MaterialSet {
 		return List.of(ore, deepslateOre, rawStorageBlock, storageBlock);
 	}
 
+	/** Tools, armor, and the shield: every item that has durability. */
+	public List<RegistrySupplier<Item>> gear() {
+		List<RegistrySupplier<Item>> gear = new ArrayList<>(tools());
+		gear.addAll(armorPieces());
+		gear.add(shield);
+		return gear;
+	}
+
+	public boolean isGear(ItemStack stack) {
+		return gear().stream().anyMatch(item -> stack.is(item.get()));
+	}
+
+	/** Names for common {@code c:} ore and raw material tags, e.g. both "bauxite" and "aluminum". */
+	public List<String> oreTagNames() {
+		return List.copyOf(new LinkedHashSet<>(List.of(oreName, name)));
+	}
+
 	/** The item for each armor slot, used to check whether someone is wearing the full set. */
 	public Map<EquipmentSlot, RegistrySupplier<Item>> armorBySlot() {
 		return Map.of(EquipmentSlot.HEAD, helmet, EquipmentSlot.CHEST, chestplate, EquipmentSlot.LEGS, leggings, EquipmentSlot.FEET, boots);
@@ -175,20 +234,31 @@ public final class MaterialSet {
 	}
 
 	/**
-	 * Where the ore generates. Veins use vanilla's ore feature; {@code airExposureDiscard}
-	 * is the chance an ore block touching air is skipped, which makes ores mostly buried.
+	 * One kind of ore vein. {@code airExposureDiscard} is the chance an ore block touching air
+	 * is skipped, which makes ores mostly buried. {@code id} tells apart several placements for
+	 * one material (empty for the main one).
 	 */
-	public record OreGeneration(int veinSize, int veinsPerChunk, int minY, int maxY, float airExposureDiscard) {
+	public record OreGeneration(String id, TagKey<Biome> biomes, int veinSize, int veinsPerChunk, int minY, int maxY, float airExposureDiscard) {
+	}
+
+	/** An extra attribute each armor piece gives, e.g. movement speed. */
+	public record ArmorBonus(String key, Holder<Attribute> attribute, double amount, AttributeModifier.Operation operation) {
 	}
 
 	public static final class Builder {
 		private final String name;
 		private final TagKey<Item> repairMaterials;
+		private String oreName;
+		private ToolTier toolTier;
 		private ToolMaterial toolMaterial;
+		private float attackSpeedBonus;
 		private ArmorMaterial armorMaterial;
+		private final List<ArmorBonus> armorBonuses = new ArrayList<>();
 		private ShieldStats shieldStats = new ShieldStats(336, 1.0F);
+		private float blockingSpeed = VANILLA_BLOCKING_SPEED;
 		private TagKey<Block> requiredToolTag = BlockTags.NEEDS_IRON_TOOL;
-		private OreGeneration oreGeneration;
+		private final List<OreGeneration> oreGeneration = new ArrayList<>();
+		private boolean galvanized;
 		private MapColor metalColor = MapColor.METAL;
 		private MapColor rawColor = MapColor.RAW_IRON;
 		private Function<Item.Properties, Item> armorFactory;
@@ -196,18 +266,26 @@ public final class MaterialSet {
 
 		private Builder(String name) {
 			this.name = name;
+			this.oreName = name;
 			this.repairMaterials = TagKey.create(Registries.ITEM, GearExpansion.id(name + "_repair_materials"));
 			this.armorFactory = properties -> new GearArmorItem(properties, name);
 			this.shieldFactory = properties -> new GearShieldItem(properties, name);
 		}
 
-		/** Tool stats. {@code incorrectBlocksForDrops} sets the mining tier, e.g. {@code BlockTags.INCORRECT_FOR_DIAMOND_TOOL}. */
-		public Builder tools(TagKey<Block> incorrectBlocksForDrops, int durability, float miningSpeed, float attackDamageBonus, int enchantability) {
-			this.toolMaterial = new ToolMaterial(incorrectBlocksForDrops, durability, miningSpeed, attackDamageBonus, enchantability, repairMaterials);
+		/** Tool stats. The tier sets what the tools can mine and vanilla's per-tool damage and speed baselines. */
+		public Builder tools(ToolTier tier, int durability, float miningSpeed, float attackDamageBonus, int enchantability) {
+			this.toolTier = tier;
+			this.toolMaterial = new ToolMaterial(tier.incorrectBlocksForDrops, durability, miningSpeed, attackDamageBonus, enchantability, repairMaterials);
 			return this;
 		}
 
-		/** Armor stats. Durability is multiplied per piece like vanilla (diamond is 33, netherite 37). */
+		/** Added to every tool's attack speed (vanilla swords have -2.4, so +0.3 attacks about 19% faster). */
+		public Builder attackSpeedBonus(float bonus) {
+			this.attackSpeedBonus = bonus;
+			return this;
+		}
+
+		/** Armor stats. Durability is multiplied per piece like vanilla (iron is 15, diamond 33, netherite 37). */
 		public Builder armor(int durabilityMultiplier, int helmet, int chestplate, int leggings, int boots,
 				int enchantability, Holder<SoundEvent> equipSound, float toughness, float knockbackResistance) {
 			ResourceKey<EquipmentAsset> asset = ResourceKey.create(EquipmentAssets.ROOT_ID, GearExpansion.id(name));
@@ -217,8 +295,20 @@ public final class MaterialSet {
 			return this;
 		}
 
+		/** An attribute every armor piece adds on top of its defense, e.g. movement speed. */
+		public Builder armorBonus(String key, Holder<Attribute> attribute, double perPiece, AttributeModifier.Operation operation) {
+			this.armorBonuses.add(new ArmorBonus(key, attribute, perPiece, operation));
+			return this;
+		}
+
 		public Builder shield(int durability, float disableCooldownScale) {
 			this.shieldStats = new ShieldStats(durability, disableCooldownScale);
+			return this;
+		}
+
+		/** Movement speed while blocking, as a fraction of normal speed. Vanilla shields use 0.2. */
+		public Builder blockingSpeed(float speed) {
+			this.blockingSpeed = speed;
 			return this;
 		}
 
@@ -228,8 +318,26 @@ public final class MaterialSet {
 			return this;
 		}
 
+		/** Names the ore, raw item, and raw block differently from the metal, e.g. Bauxite for Aluminum. */
+		public Builder oreName(String oreName) {
+			this.oreName = oreName;
+			return this;
+		}
+
+		/** The main ore vein, generated in every Overworld biome. */
 		public Builder ore(int veinSize, int veinsPerChunk, int minY, int maxY, float airExposureDiscard) {
-			this.oreGeneration = new OreGeneration(veinSize, veinsPerChunk, minY, maxY, airExposureDiscard);
+			return ore("", BiomeTags.IS_OVERWORLD, veinSize, veinsPerChunk, minY, maxY, airExposureDiscard);
+		}
+
+		/** An extra ore vein limited to some biomes, e.g. richer surface deposits in badlands. */
+		public Builder ore(String id, TagKey<Biome> biomes, int veinSize, int veinsPerChunk, int minY, int maxY, float airExposureDiscard) {
+			this.oreGeneration.add(new OreGeneration(id, biomes, veinSize, veinsPerChunk, minY, maxY, airExposureDiscard));
+			return this;
+		}
+
+		/** Gear doesn't lose durability while its user is in water. */
+		public Builder galvanized() {
+			this.galvanized = true;
 			return this;
 		}
 
@@ -252,7 +360,7 @@ public final class MaterialSet {
 		}
 
 		public MaterialSet build() {
-			if (toolMaterial == null || armorMaterial == null || oreGeneration == null) {
+			if (toolMaterial == null || armorMaterial == null || oreGeneration.isEmpty()) {
 				throw new IllegalStateException("Material " + name + " needs tools, armor, and ore settings");
 			}
 			MaterialSet set = new MaterialSet(this);

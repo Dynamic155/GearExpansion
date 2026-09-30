@@ -9,10 +9,10 @@ import net.minecraft.world.item.ItemStack;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
-import com.gearexpansion.setbonus.SetBonuses;
+import com.gearexpansion.item.GearDurability;
 
 /**
- * Lets set bonuses reduce durability loss. Runs right after vanilla applies Unbreaking.
+ * Lets material traits and set bonuses change durability loss. Runs right after vanilla applies Unbreaking.
  *
  * <p>Vanilla and Fabric call Unbreaking from the {@code ServerPlayer} overload of
  * {@code processDurabilityChange}; NeoForge moves that call into a new {@code LivingEntity}
@@ -29,7 +29,7 @@ public abstract class ItemStackDurabilityMixin {
 		require = 0
 	)
 	private int gearexpansion$modifyDurabilityLoss(int amount, @Local(argsOnly = true) ServerLevel level, @Local(argsOnly = true) ServerPlayer player) {
-		return SetBonuses.modifyDurabilityLoss(amount, player, level);
+		return GearDurability.modify((ItemStack) (Object) this, amount, player, level);
 	}
 
 	@ModifyExpressionValue(
@@ -38,6 +38,6 @@ public abstract class ItemStackDurabilityMixin {
 		require = 0
 	)
 	private int gearexpansion$modifyDurabilityLossNeoForge(int amount, @Local(argsOnly = true) ServerLevel level, @Local(argsOnly = true) LivingEntity entity) {
-		return SetBonuses.modifyDurabilityLoss(amount, entity, level);
+		return GearDurability.modify((ItemStack) (Object) this, amount, entity, level);
 	}
 }

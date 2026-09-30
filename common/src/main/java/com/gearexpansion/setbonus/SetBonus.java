@@ -2,10 +2,15 @@ package com.gearexpansion.setbonus;
 
 import java.util.List;
 
+import net.minecraft.core.Holder;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.Identifier;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.attributes.Attribute;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.item.ItemStack;
 
 import com.gearexpansion.material.MaterialSet;
@@ -38,6 +43,16 @@ public abstract class SetBonus {
 		return amount;
 	}
 
+	/** Lets the bonus change a potion effect as it is applied to the wearer. Called only while the full set is worn. */
+	public MobEffectInstance modifyNewEffect(MobEffectInstance effect, LivingEntity wearer) {
+		return effect;
+	}
+
+	/** Attribute modifiers applied to players while the full set is worn, and removed when it isn't. */
+	public List<AttributeBonus> attributeBonuses() {
+		return List.of();
+	}
+
 	public Component name() {
 		return Component.translatable("set_bonus.gearexpansion." + material.name);
 	}
@@ -54,6 +69,13 @@ public abstract class SetBonus {
 
 	public boolean isActive(LivingEntity entity) {
 		return enabled() && piecesWorn(entity) == PIECES;
+	}
+
+	/** An attribute modifier granted by a set bonus. The id must stay the same so it can be removed later. */
+	public record AttributeBonus(Identifier id, Holder<Attribute> attribute, double amount, AttributeModifier.Operation operation) {
+		public AttributeModifier modifier() {
+			return new AttributeModifier(id, amount, operation);
+		}
 	}
 
 	/** Whether the item is one of this set's armor pieces. */
