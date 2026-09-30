@@ -1,15 +1,22 @@
 package com.gearexpansion.fabric.test;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import dev.architectury.registry.registries.RegistrySupplier;
+
+import net.fabricmc.fabric.api.client.creativetab.v1.FabricCreativeModeInventoryScreen;
 import net.fabricmc.fabric.api.client.gametest.v1.FabricClientGameTest;
 import net.fabricmc.fabric.api.client.gametest.v1.context.ClientGameTestContext;
 import net.fabricmc.fabric.api.client.gametest.v1.context.TestServerContext;
 import net.fabricmc.fabric.api.client.gametest.v1.context.TestSingleplayerContext;
 import net.minecraft.client.CameraType;
+import net.minecraft.client.gui.screens.inventory.CreativeModeInventoryScreen;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.component.DataComponents;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.MinecraftServer;
@@ -19,6 +26,7 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -34,11 +42,12 @@ import com.gearexpansion.client.GearExpansionClient;
 import com.gearexpansion.material.MaterialSet;
 import com.gearexpansion.material.MaterialSet.OreGeneration;
 import com.gearexpansion.material.ModMaterials;
+import com.gearexpansion.registry.ModTabs;
 import com.gearexpansion.worldgen.ModOres;
 
 /**
  * End-to-end checks for every material in a real game: recipes, mining tiers, ore generation,
- * material traits, set bonuses, tooltips, and screenshots of the gear.
+ * material traits, set bonuses, tooltips, creative tabs, and screenshots of the gear.
  *
  * <p>Run with {@code ./gradlew :fabric:runGameTest}. Screenshots are saved to
  * {@code fabric/build/gametest/screenshots}. Failures are collected and reported together.
@@ -360,11 +369,60 @@ public final class GearGameTest implements FabricClientGameTest {
 			server.runCommand("gamemode creative @p");
 		}
 
+		creativeTabs(ctx, server);
+
 		ctx.setScreen(() -> GearExpansionClient.configScreen(null));
 		ctx.waitTicks(10);
 		ctx.takeScreenshot("config_screen");
 		ctx.setScreen(() -> null);
 		ctx.waitTicks(5);
+	}
+
+	/** Opens the creative inventory on each of our tabs, and checks every item is in exactly one of them. */
+	private void creativeTabs(ClientGameTestContext ctx, TestServerContext server) {
+		server.runCommand("clear @p");
+		server.runCommand("gamemode creative @p");
+		ctx.waitTicks(10);
+		ctx.getInput().pressKey(options -> options.keyInventory);
+		ctx.waitForScreen(CreativeModeInventoryScreen.class);
+		ctx.waitTicks(5);
+
+		List<RegistrySupplier<CreativeModeTab>> tabs = List.of(ModTabs.BLOCKS, ModTabs.TOOLS, ModTabs.COMBAT, ModTabs.INGREDIENTS);
+		Map<Item, Integer> appearances = new HashMap<>();
+		for (RegistrySupplier<CreativeModeTab> tab : tabs) {
+			ctx.runOnClient(mc -> {
+				// Modded tabs are on later pages, so switch to the tab's page before selecting it.
+				FabricCreativeModeInventoryScreen screen = (FabricCreativeModeInventoryScreen) mc.gui.screen();
+				screen.switchToPage(screen.getPage(tab.get()));
+				screen.setSelectedTab(tab.get());
+			});
+			ctx.waitTicks(5);
+			ctx.takeScreenshot("creative_tab_" + tab.getId().getPath());
+			tab.get().getDisplayItems().forEach(stack -> appearances.merge(stack.getItem(), 1, Integer::sum));
+		}
+		ctx.setScreen(() -> null);
+
+		List<Item> ours = BuiltInRegistries.ITEM.stream()
+			.filter(item -> BuiltInRegistries.ITEM.getKey(item).getNamespace().equals(GearExpansion.MOD_ID))
+			.toList();
+		check(ours.stream().allMatch(item -> appearances.getOrDefault(item, 0) == 1),
+			"every Gear Expansion item appears in exactly one creative tab");
+		check(tabs.stream().allMatch(tab -> tab.get().getDisplayItems().size() == ModMaterials.ALL.size() * expectedPerMaterial(tab)),
+			"each creative tab holds the expected items for every material");
+		check(ModTabs.COMBAT.get().getDisplayItems().stream().anyMatch(stack -> stack.is(ModMaterials.ZINC.shield.get()))
+			&& ModTabs.TOOLS.get().getDisplayItems().stream().anyMatch(stack -> stack.is(ModMaterials.ALUMINUM.pickaxe.get())),
+			"tools and combat gear are sorted into the right tabs");
+	}
+
+	private static int expectedPerMaterial(RegistrySupplier<CreativeModeTab> tab) {
+		if (tab == ModTabs.BLOCKS) {
+			return 4;
+		} else if (tab == ModTabs.TOOLS) {
+			return 4;
+		} else if (tab == ModTabs.COMBAT) {
+			return 7;
+		}
+		return 3;
 	}
 
 	// Helpers -------------------------------------------------------------------------

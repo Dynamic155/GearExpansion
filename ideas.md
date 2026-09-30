@@ -402,6 +402,7 @@ One shield per material, each with a small blocking perk:
 
 ## 10. Shared systems
 
+- **Creative tabs:** Four tabs, like vanilla's: Blocks (ores and storage blocks), Tools, Combat (weapons, armor, and shields), and Ingredients (raw ore, nuggets, and ingots). Each is grouped by material in progression order.
 - **Set bonus framework:** One system handles all sets. Tooltips show set progress, like *"Titanium Set (3/4)"*, with the bonus greyed out until complete.
 - **Mixed-set synergies:** Eclipse (Sun + Moon), and small ones like Fulgurite + Verdigris. Keep them rare so they feel like discoveries.
 - **HUD:** Heat gauge (Infernium), spring meter (Brass), shield regrow (Amethyst), ability cooldowns. Small and unobtrusive.

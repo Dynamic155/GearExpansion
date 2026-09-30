@@ -19,7 +19,10 @@ final class LanguageGenerator extends FabricLanguageProvider {
 
 	@Override
 	public void generateTranslations(HolderLookup.Provider registries, TranslationBuilder t) {
-		t.add("itemGroup.gearexpansion", "Gear Expansion");
+		t.add("itemGroup.gearexpansion.blocks", "Gear Expansion: Blocks");
+		t.add("itemGroup.gearexpansion.tools", "Gear Expansion: Tools");
+		t.add("itemGroup.gearexpansion.combat", "Gear Expansion: Combat");
+		t.add("itemGroup.gearexpansion.ingredients", "Gear Expansion: Ingredients");
 		t.add("tooltip.gearexpansion.set", "%s Set (%s/%s)");
 		t.add("trait.gearexpansion.corrosion_proof", "Corrosion-proof: no durability loss in water");
 		t.add("trait.gearexpansion.lightweight_shield", "Lightweight: no slowdown while blocking");
