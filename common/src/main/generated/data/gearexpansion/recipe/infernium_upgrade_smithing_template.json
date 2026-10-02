@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "#": "gearexpansion:titanium_ingot",
+    "C": "minecraft:netherrack",
+    "S": "gearexpansion:infernium_upgrade_smithing_template"
+  },
+  "pattern": [
+    "#S#",
+    "#C#",
+    "###"
+  ],
+  "result": {
+    "count": 2,
+    "id": "gearexpansion:infernium_upgrade_smithing_template"
+  }
+}

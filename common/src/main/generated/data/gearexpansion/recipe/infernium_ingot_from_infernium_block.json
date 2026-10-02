@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "infernium_ingot",
+  "ingredients": [
+    "gearexpansion:infernium_block"
+  ],
+  "result": {
+    "count": 9,
+    "id": "gearexpansion:infernium_ingot"
+  }
+}

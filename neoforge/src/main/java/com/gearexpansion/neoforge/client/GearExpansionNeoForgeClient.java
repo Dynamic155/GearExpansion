@@ -12,7 +12,9 @@ public final class GearExpansionNeoForgeClient {
 
 	public static void init(ModContainer container) {
 		GearExpansionClient.init();
-		// Adds a "Config" button to Gear Expansion in the Mods list.
-		container.registerExtensionPoint(IConfigScreenFactory.class, (mod, parent) -> GearExpansionClient.configScreen(parent));
+		// Adds a "Config" button to Gear Expansion in the Mods list, when YACL is there to build it.
+		if (GearExpansionClient.hasConfigScreen()) {
+			container.registerExtensionPoint(IConfigScreenFactory.class, (mod, parent) -> GearExpansionClient.configScreen(parent));
+		}
 	}
 }

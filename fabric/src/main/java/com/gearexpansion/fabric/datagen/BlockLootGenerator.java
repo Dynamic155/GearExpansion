@@ -8,6 +8,7 @@ import net.minecraft.core.HolderLookup;
 
 import com.gearexpansion.material.MaterialSet;
 import com.gearexpansion.material.ModMaterials;
+import com.gearexpansion.registry.ModBlocks;
 
 final class BlockLootGenerator extends FabricBlockLootSubProvider {
 	BlockLootGenerator(FabricPackOutput output, CompletableFuture<HolderLookup.Provider> registries) {
@@ -16,12 +17,20 @@ final class BlockLootGenerator extends FabricBlockLootSubProvider {
 
 	@Override
 	public void generate() {
+		dropSelf(ModBlocks.ALLOY_FORGE.get());
+
 		for (MaterialSet set : ModMaterials.ALL) {
-			// Ores drop raw material, affected by Fortune; Silk Touch drops the ore itself. Same as vanilla iron.
-			add(set.ore.get(), block -> createOreDrop(block, set.rawItem.get()));
-			add(set.deepslateOre.get(), block -> createOreDrop(block, set.rawItem.get()));
-			dropSelf(set.storageBlock.get());
-			dropSelf(set.rawStorageBlock.get());
+			if (set.storageBlock != null) {
+				dropSelf(set.storageBlock.get());
+			}
+			if (set.hasOre) {
+				// Ores drop raw material, affected by Fortune; Silk Touch drops the ore itself. Same as vanilla iron.
+				add(set.ore.get(), block -> createOreDrop(block, set.rawItem.get()));
+				if (set.deepslateOre != null) {
+					add(set.deepslateOre.get(), block -> createOreDrop(block, set.rawItem.get()));
+				}
+				dropSelf(set.rawStorageBlock.get());
+			}
 		}
 	}
 }

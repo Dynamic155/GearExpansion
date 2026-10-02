@@ -1,0 +1,88 @@
+{
+  "criteria": {
+    "raw_or_crafted_material": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gearexpansion:raw_zinc"
+          },
+          {
+            "items": "gearexpansion:zinc_nugget"
+          },
+          {
+            "items": "gearexpansion:zinc_ingot"
+          },
+          {
+            "items": "gearexpansion:verdigris_plate"
+          },
+          {
+            "items": "gearexpansion:rose_gold_nugget"
+          },
+          {
+            "items": "gearexpansion:rose_gold_ingot"
+          },
+          {
+            "items": "gearexpansion:raw_bauxite"
+          },
+          {
+            "items": "gearexpansion:aluminum_nugget"
+          },
+          {
+            "items": "gearexpansion:aluminum_ingot"
+          },
+          {
+            "items": "gearexpansion:brass_nugget"
+          },
+          {
+            "items": "gearexpansion:brass_ingot"
+          },
+          {
+            "items": "gearexpansion:resonant_crystal"
+          },
+          {
+            "items": "gearexpansion:raw_titanium"
+          },
+          {
+            "items": "gearexpansion:titanium_nugget"
+          },
+          {
+            "items": "gearexpansion:titanium_ingot"
+          },
+          {
+            "items": "gearexpansion:raw_infernium"
+          },
+          {
+            "items": "gearexpansion:infernium_nugget"
+          },
+          {
+            "items": "gearexpansion:infernium_ingot"
+          },
+          {
+            "items": "gearexpansion:infernium_upgrade_smithing_template"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "background": "minecraft:gui/advancements/backgrounds/stone",
+    "description": {
+      "translate": "advancements.gearexpansion.root.description"
+    },
+    "icon": {
+      "id": "gearexpansion:titanium_chestplate"
+    },
+    "show_toast": false,
+    "title": {
+      "translate": "advancements.gearexpansion.root.title"
+    }
+  },
+  "requirements": [
+    [
+      "raw_or_crafted_material"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

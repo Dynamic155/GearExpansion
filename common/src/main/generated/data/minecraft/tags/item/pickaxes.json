@@ -1,7 +1,13 @@
 {
   "values": [
     "gearexpansion:zinc_pickaxe",
+    "gearexpansion:verdigris_pickaxe",
+    "gearexpansion:rose_gold_pickaxe",
     "gearexpansion:aluminum_pickaxe",
-    "gearexpansion:titanium_pickaxe"
+    "gearexpansion:brass_pickaxe",
+    "gearexpansion:emerald_pickaxe",
+    "gearexpansion:amethyst_pickaxe",
+    "gearexpansion:titanium_pickaxe",
+    "gearexpansion:infernium_pickaxe"
   ]
 }

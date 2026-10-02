@@ -1,7 +1,13 @@
 {
   "values": [
     "gearexpansion:zinc_helmet",
+    "gearexpansion:verdigris_helmet",
+    "gearexpansion:rose_gold_helmet",
     "gearexpansion:aluminum_helmet",
-    "gearexpansion:titanium_helmet"
+    "gearexpansion:brass_helmet",
+    "gearexpansion:emerald_helmet",
+    "gearexpansion:amethyst_helmet",
+    "gearexpansion:titanium_helmet",
+    "gearexpansion:infernium_helmet"
   ]
 }

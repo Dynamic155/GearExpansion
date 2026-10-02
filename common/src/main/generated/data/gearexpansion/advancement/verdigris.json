@@ -1,0 +1,32 @@
+{
+  "parent": "gearexpansion:root",
+  "criteria": {
+    "has_verdigris_plate": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gearexpansion:verdigris_plate"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.gearexpansion.verdigris.description"
+    },
+    "icon": {
+      "id": "gearexpansion:verdigris_plate"
+    },
+    "title": {
+      "translate": "advancements.gearexpansion.verdigris.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_verdigris_plate"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

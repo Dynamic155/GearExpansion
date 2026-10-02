@@ -1,12 +1,14 @@
 {
   "values": [
+    "gearexpansion:zinc_block",
     "gearexpansion:zinc_ore",
     "gearexpansion:deepslate_zinc_ore",
-    "gearexpansion:zinc_block",
     "gearexpansion:raw_zinc_block",
+    "gearexpansion:rose_gold_block",
+    "gearexpansion:aluminum_block",
     "gearexpansion:bauxite_ore",
     "gearexpansion:deepslate_bauxite_ore",
-    "gearexpansion:aluminum_block",
-    "gearexpansion:raw_bauxite_block"
+    "gearexpansion:raw_bauxite_block",
+    "gearexpansion:brass_block"
   ]
 }

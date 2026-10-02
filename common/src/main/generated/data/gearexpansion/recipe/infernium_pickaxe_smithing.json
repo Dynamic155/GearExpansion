@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": "gearexpansion:infernium_ingot",
+  "base": "gearexpansion:titanium_pickaxe",
+  "result": {
+    "id": "gearexpansion:infernium_pickaxe"
+  },
+  "template": "gearexpansion:infernium_upgrade_smithing_template"
+}

@@ -1,0 +1,32 @@
+{
+  "parent": "gearexpansion:alloy_forge",
+  "criteria": {
+    "has_rose_gold_ingot": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gearexpansion:rose_gold_ingot"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.gearexpansion.rose_gold.description"
+    },
+    "icon": {
+      "id": "gearexpansion:rose_gold_ingot"
+    },
+    "title": {
+      "translate": "advancements.gearexpansion.rose_gold.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_rose_gold_ingot"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

@@ -1,0 +1,32 @@
+{
+  "parent": "gearexpansion:root",
+  "criteria": {
+    "has_resonant_crystal": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gearexpansion:resonant_crystal"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.gearexpansion.amethyst.description"
+    },
+    "icon": {
+      "id": "gearexpansion:resonant_crystal"
+    },
+    "title": {
+      "translate": "advancements.gearexpansion.amethyst.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_resonant_crystal"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

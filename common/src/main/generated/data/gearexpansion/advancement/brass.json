@@ -1,0 +1,32 @@
+{
+  "parent": "gearexpansion:alloy_forge",
+  "criteria": {
+    "has_brass_ingot": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gearexpansion:brass_ingot"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.gearexpansion.brass.description"
+    },
+    "icon": {
+      "id": "gearexpansion:brass_ingot"
+    },
+    "title": {
+      "translate": "advancements.gearexpansion.brass.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_brass_ingot"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

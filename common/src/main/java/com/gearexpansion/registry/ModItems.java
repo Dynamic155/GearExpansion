@@ -7,12 +7,15 @@ import dev.architectury.registry.registries.DeferredRegister;
 import dev.architectury.registry.registries.RegistrySupplier;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 
 import com.gearexpansion.GearExpansion;
 
 public final class ModItems {
 	public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(GearExpansion.MOD_ID, Registries.ITEM);
+
+	public static final RegistrySupplier<BlockItem> ALLOY_FORGE = register("alloy_forge", p -> new BlockItem(ModBlocks.ALLOY_FORGE.get(), p), Item.Properties::useBlockDescriptionPrefix);
 
 	private ModItems() {
 	}

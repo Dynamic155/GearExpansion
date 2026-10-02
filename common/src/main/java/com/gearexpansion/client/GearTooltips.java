@@ -35,9 +35,12 @@ public final class GearTooltips {
 		if (GearExpansionConfig.get().zincCorrosionProof && GearDurability.isGalvanized(stack)) {
 			lines.add(Component.translatable("trait.gearexpansion.corrosion_proof").withStyle(ChatFormatting.DARK_AQUA));
 		}
-		ModMaterials.ofGear(stack)
-			.filter(set -> stack.is(set.shield.get()) && set.blockingSpeed > MaterialSet.VANILLA_BLOCKING_SPEED)
-			.ifPresent(set -> lines.add(Component.translatable("trait.gearexpansion.lightweight_shield").withStyle(ChatFormatting.DARK_AQUA)));
+		ModMaterials.ofGear(stack).ifPresent(set -> {
+			if (stack.is(set.shield.get()) && set.blockingSpeed > MaterialSet.VANILLA_BLOCKING_SPEED) {
+				lines.add(Component.translatable("trait.gearexpansion.lightweight_shield").withStyle(ChatFormatting.DARK_AQUA));
+			}
+			set.behavior.appendTooltip(set, stack, lines);
+		});
 	}
 
 	private static void setBonus(SetBonus bonus, List<Component> lines) {

@@ -1,0 +1,18 @@
+{
+  "type": "gearexpansion:alloying",
+  "cookingtime": 200,
+  "experience": 0.7,
+  "ingredients": [
+    {
+      "count": 3,
+      "ingredient": "#c:ingots/copper"
+    },
+    {
+      "ingredient": "#c:ingots/zinc"
+    }
+  ],
+  "result": {
+    "count": 4,
+    "id": "gearexpansion:brass_ingot"
+  }
+}

@@ -1,8 +1,11 @@
 {
   "values": [
+    "gearexpansion:titanium_block",
     "gearexpansion:titanium_ore",
     "gearexpansion:deepslate_titanium_ore",
-    "gearexpansion:titanium_block",
-    "gearexpansion:raw_titanium_block"
+    "gearexpansion:raw_titanium_block",
+    "gearexpansion:infernium_block",
+    "gearexpansion:infernium_ore",
+    "gearexpansion:raw_infernium_block"
   ]
 }

@@ -1,7 +1,13 @@
 {
   "values": [
     "gearexpansion:zinc_axe",
+    "gearexpansion:verdigris_axe",
+    "gearexpansion:rose_gold_axe",
     "gearexpansion:aluminum_axe",
-    "gearexpansion:titanium_axe"
+    "gearexpansion:brass_axe",
+    "gearexpansion:emerald_axe",
+    "gearexpansion:amethyst_axe",
+    "gearexpansion:titanium_axe",
+    "gearexpansion:infernium_axe"
   ]
 }

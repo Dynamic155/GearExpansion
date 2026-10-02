@@ -14,7 +14,9 @@ public enum ToolTier {
 	IRON(BlockTags.INCORRECT_FOR_IRON_TOOL, 6.0F, -3.1F, -2.0F, -1.0F,
 		new float[] {0.95F, 0.95F, 0.6F, 2.5F, 11.0F, 6.75F, 5.1F, 11.25F, 4.6F}),
 	DIAMOND(BlockTags.INCORRECT_FOR_DIAMOND_TOOL, 5.0F, -3.0F, -3.0F, 0.0F,
-		new float[] {1.05F, 1.075F, 0.5F, 3.0F, 10.0F, 6.5F, 5.1F, 10.0F, 4.6F});
+		new float[] {1.05F, 1.075F, 0.5F, 3.0F, 10.0F, 6.5F, 5.1F, 10.0F, 4.6F}),
+	NETHERITE(BlockTags.INCORRECT_FOR_NETHERITE_TOOL, 5.0F, -3.0F, -4.0F, 0.0F,
+		new float[] {1.15F, 1.2F, 0.4F, 2.5F, 9.0F, 5.5F, 5.1F, 8.75F, 4.6F});
 
 	public final TagKey<Block> incorrectBlocksForDrops;
 	final float axeDamage;

@@ -1,0 +1,142 @@
+{
+  "parent": "gearexpansion:root",
+  "criteria": {
+    "has_emerald_axe": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gearexpansion:emerald_axe"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_emerald_boots": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gearexpansion:emerald_boots"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_emerald_chestplate": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gearexpansion:emerald_chestplate"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_emerald_helmet": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gearexpansion:emerald_helmet"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_emerald_hoe": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gearexpansion:emerald_hoe"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_emerald_leggings": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gearexpansion:emerald_leggings"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_emerald_pickaxe": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gearexpansion:emerald_pickaxe"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_emerald_shield": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gearexpansion:emerald_shield"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_emerald_shovel": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gearexpansion:emerald_shovel"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_emerald_spear": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gearexpansion:emerald_spear"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_emerald_sword": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gearexpansion:emerald_sword"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.gearexpansion.emerald.description"
+    },
+    "icon": {
+      "id": "gearexpansion:emerald_chestplate"
+    },
+    "title": {
+      "translate": "advancements.gearexpansion.emerald.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_emerald_sword",
+      "has_emerald_pickaxe",
+      "has_emerald_axe",
+      "has_emerald_shovel",
+      "has_emerald_hoe",
+      "has_emerald_spear",
+      "has_emerald_helmet",
+      "has_emerald_chestplate",
+      "has_emerald_leggings",
+      "has_emerald_boots",
+      "has_emerald_shield"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

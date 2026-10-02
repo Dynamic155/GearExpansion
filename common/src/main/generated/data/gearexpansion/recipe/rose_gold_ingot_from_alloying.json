@@ -1,0 +1,18 @@
+{
+  "type": "gearexpansion:alloying",
+  "cookingtime": 200,
+  "experience": 0.7,
+  "ingredients": [
+    {
+      "count": 3,
+      "ingredient": "#c:ingots/gold"
+    },
+    {
+      "ingredient": "#c:ingots/copper"
+    }
+  ],
+  "result": {
+    "count": 2,
+    "id": "gearexpansion:rose_gold_ingot"
+  }
+}

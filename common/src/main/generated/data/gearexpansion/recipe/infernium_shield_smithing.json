@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": "gearexpansion:infernium_ingot",
+  "base": "gearexpansion:titanium_shield",
+  "result": {
+    "id": "gearexpansion:infernium_shield"
+  },
+  "template": "gearexpansion:infernium_upgrade_smithing_template"
+}

@@ -1,0 +1,32 @@
+{
+  "parent": "gearexpansion:root",
+  "criteria": {
+    "has_zinc_ingot": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gearexpansion:zinc_ingot"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.gearexpansion.zinc.description"
+    },
+    "icon": {
+      "id": "gearexpansion:zinc_ingot"
+    },
+    "title": {
+      "translate": "advancements.gearexpansion.zinc.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_zinc_ingot"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

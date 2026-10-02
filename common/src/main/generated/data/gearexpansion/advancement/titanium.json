@@ -1,0 +1,32 @@
+{
+  "parent": "gearexpansion:root",
+  "criteria": {
+    "has_titanium_ingot": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gearexpansion:titanium_ingot"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.gearexpansion.titanium.description"
+    },
+    "icon": {
+      "id": "gearexpansion:titanium_ingot"
+    },
+    "title": {
+      "translate": "advancements.gearexpansion.titanium.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_titanium_ingot"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_raw_infernium": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gearexpansion:raw_infernium"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipes": "gearexpansion:infernium_ingot_from_blasting_raw_infernium"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_raw_infernium"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "gearexpansion:infernium_ingot_from_blasting_raw_infernium"
+    ]
+  }
+}

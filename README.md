@@ -1,45 +1,49 @@
 # Gear Expansion
 
-A Minecraft mod that adds new tools, armor, and shields crafted from new ores, alloys, and fantasy materials. Each material has its own identity, and wearing a full armor set grants a set bonus.
+A Minecraft mod that adds nine new materials, each with a full set of tools, 3D armor, and a shield. Every material plays differently, and wearing a full armor set grants a set bonus.
 
-The mod aims for a Vanilla+ feel: new content that fits naturally alongside vanilla progression.
+The mod aims for a Vanilla+ feel: new content that fits naturally alongside vanilla progression, with strong effects kept in check by meters, cooldowns, and costs. Nearly every number can be changed in the settings.
 
-## Status
+## Materials
 
-Early development. Nothing is playable yet.
+| Material | Tier | How to get it | Set bonus |
+|---|---|---|---|
+| Zinc | Copper | Common ore, Y 0 to 64 | Galvanized: Poison, Hunger, and Nausea last half as long. Zinc gear loses no durability in water. |
+| Verdigris | Copper | Verdigris Plates (copper, honeycomb, green dye) | Conductive: lightning is drawn to you, harmlessly, and charges you with Speed and Strength. The gear oxidizes as you use it, getting slower but tougher. |
+| Rose Gold | Copper | Alloy Forge: gold and copper | Lucky Charm: more experience and better enchanting offers. Piglins treat it as gold. |
+| Aluminum | Iron | Smelted from Bauxite ore, richest in badlands and savannas | Featherweight: less fall damage, stronger jumps, faster in water. Fast attacks, speedy armor, and a shield that doesn't slow you. |
+| Brass | Iron | Alloy Forge: copper and zinc | Clockwork: moving and fighting wind a spring. Wound, it gives Haste, and Spring Release dashes and knocks back mobs. |
+| Emerald | Iron | Emeralds | Merchant's Favor: Hero of the Village. Weapons hit illagers harder; armor adds Luck. |
+| Amethyst | Iron | Resonant Crystals (amethyst shards and copper) | Shatterguard: a crystal shell absorbs a hit, then regrows. Critical hits shatter over nearby mobs. |
+| Titanium | Diamond | Rare deep ore, Y -64 to -16 | Unbreakable Will: gear wears out half as fast, and low health grants Resistance. |
+| Infernium | Netherite | Nether ore, plus an upgrade template from Bastion and Fortress chests, applied to titanium gear | Heat Core: swim in lava until the heat gauge fills. Eruption sets nearby mobs alight. Fireproof; the pickaxe smelts what it mines. |
 
-## Planned for 1.0
+Each material has a sword, pickaxe, axe, shovel, hoe, spear, helmet, chestplate, leggings, boots, and shield.
 
-Materials:
+## Features
 
-- Titanium
-- Zinc
-- Brass
-- Aluminum
-- Rose Gold
-- Verdigris (oxidizing copper)
-- Emerald
-- Amethyst
-- Infernium
-
-Features:
-
-- A full tool set (sword, pickaxe, axe, shovel, hoe, spear), armor set, and shield for each material
-- Full set bonuses, plus keybind abilities for some sets
-- New ores generated in the world
-- An Alloy Forge block for making alloys such as Brass and Rose Gold
-- 3D armor models
-- In-game configuration
-
-Later updates will add more materials, grouped into themed releases.
+- **Alloy Forge**: a workstation for alloys. It burns normal furnace fuel, runs twice as fast on blaze powder or lava, and works with hoppers.
+- **Set abilities**: Brass and Infernium have an ability on the Set Ability key (R by default). Meters above the hotbar show the spring, heat gauge, crystal shell, and ability cooldown.
+- **Tooltips** show each item's special traits and how many pieces of its set you're wearing.
+- **Advancements** for every material, in their own tab.
+- **Creative tabs**: Blocks, Tools, Combat, and Ingredients.
+- **Compatibility**: ores, ingots, and storage blocks use the common `c:` tags, so other mods' machines and recipes recognize them.
 
 ## Requirements
 
 - Minecraft 26.3
-- Fabric Loader or NeoForge
+- Fabric Loader and Fabric API, or NeoForge
 - Architectury API
 - GeckoLib
-- Fabric API (Fabric only)
+
+Optional:
+
+- YetAnotherConfigLib (YACL) for the in-game settings screen. Without it, settings can still be changed in `config/gearexpansion.json5`.
+- Mod Menu (Fabric) to open the settings screen from the mods list.
+
+## Settings
+
+Settings are saved in `config/gearexpansion.json5`, with an explanation above each one. With YACL installed, they can also be changed in game from Mod Menu (Fabric) or the Mods list (NeoForge).
 
 ## Building from source
 
@@ -70,7 +74,7 @@ Generated data (models, recipes, loot tables, tags, translations, and world gene
 
 The output goes to `common/src/main/generated` and is committed with the code.
 
-Automated in-game checks start a test world, verify recipes, mining tiers, ore generation, set bonuses, and tooltips, and save screenshots to `fabric/build/gametest/screenshots`:
+Automated in-game checks start a test world, verify recipes, mining tiers, ore generation, the Alloy Forge, set bonuses, abilities, and tooltips, and save screenshots to `fabric/build/gametest/screenshots`:
 
 ```
 ./gradlew :fabric:runGameTest

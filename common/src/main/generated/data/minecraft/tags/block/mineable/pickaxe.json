@@ -1,16 +1,22 @@
 {
   "values": [
+    "gearexpansion:alloy_forge",
+    "gearexpansion:zinc_block",
     "gearexpansion:zinc_ore",
     "gearexpansion:deepslate_zinc_ore",
-    "gearexpansion:zinc_block",
     "gearexpansion:raw_zinc_block",
+    "gearexpansion:rose_gold_block",
+    "gearexpansion:aluminum_block",
     "gearexpansion:bauxite_ore",
     "gearexpansion:deepslate_bauxite_ore",
-    "gearexpansion:aluminum_block",
     "gearexpansion:raw_bauxite_block",
+    "gearexpansion:brass_block",
+    "gearexpansion:titanium_block",
     "gearexpansion:titanium_ore",
     "gearexpansion:deepslate_titanium_ore",
-    "gearexpansion:titanium_block",
-    "gearexpansion:raw_titanium_block"
+    "gearexpansion:raw_titanium_block",
+    "gearexpansion:infernium_block",
+    "gearexpansion:infernium_ore",
+    "gearexpansion:raw_infernium_block"
   ]
 }

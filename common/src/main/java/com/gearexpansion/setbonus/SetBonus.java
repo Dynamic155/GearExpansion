@@ -7,13 +7,16 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 
 import com.gearexpansion.material.MaterialSet;
+import com.gearexpansion.network.GearHudPayload;
 
 /**
  * A bonus granted for wearing all four armor pieces of one material.
@@ -46,6 +49,50 @@ public abstract class SetBonus {
 	/** Lets the bonus change a potion effect as it is applied to the wearer. Called only while the full set is worn. */
 	public MobEffectInstance modifyNewEffect(MobEffectInstance effect, LivingEntity wearer) {
 		return effect;
+	}
+
+	/**
+	 * Whether the bonus stops a hit entirely, e.g. Amethyst's crystal shell. Called only while the
+	 * full set is worn, before the damage is applied. Damage that bypasses invulnerability is never offered.
+	 */
+	public boolean cancelsDamage(LivingEntity wearer, ServerLevel level, DamageSource source, float damage) {
+		return false;
+	}
+
+	/** Changes damage the wearer takes, before armor. Called only while the full set is worn. */
+	public float modifyIncomingDamage(LivingEntity wearer, DamageSource source, float damage) {
+		return damage;
+	}
+
+	/** When the wearer hurts {@code target}. Called only while the full set is worn. */
+	public void onAttack(LivingEntity wearer, LivingEntity target, DamageSource source, float damage) {
+	}
+
+	/** Whether this set has an ability for the Set Ability key. */
+	public boolean hasAbility() {
+		return false;
+	}
+
+	/** The Set Ability key was pressed while wearing the full set. */
+	public void useAbility(ServerPlayer player) {
+	}
+
+	/** Adds this set's meters to the HUD. Called only while the full set is worn. */
+	public void fillHud(ServerPlayer player, GearHudPayload.Builder hud) {
+	}
+
+	/** When the wearer blocks an attack with any shield. Called only while the full set is worn. */
+	public void onShieldBlock(LivingEntity wearer, LivingEntity attacker, DamageSource source, float damage) {
+	}
+
+	/** Lets the bonus change how much experience an orb gives the wearer. Called only while the full set is worn. */
+	public int modifyExperience(int amount, Player wearer) {
+		return amount;
+	}
+
+	/** Extra bookshelves an enchanting table counts for the wearer (vanilla caps the useful total at 15). */
+	public int extraEnchantingBookshelves(Player wearer) {
+		return 0;
 	}
 
 	/** Attribute modifiers applied to players while the full set is worn, and removed when it isn't. */

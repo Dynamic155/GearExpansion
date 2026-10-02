@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "B": "minecraft:bricks",
+    "C": "#c:storage_blocks/copper",
+    "F": "minecraft:blast_furnace"
+  },
+  "pattern": [
+    "BCB",
+    "BFB",
+    "BBB"
+  ],
+  "result": {
+    "id": "gearexpansion:alloy_forge"
+  }
+}

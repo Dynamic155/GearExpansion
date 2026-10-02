@@ -1,7 +1,13 @@
 {
   "values": [
     "gearexpansion:zinc_boots",
+    "gearexpansion:verdigris_boots",
+    "gearexpansion:rose_gold_boots",
     "gearexpansion:aluminum_boots",
-    "gearexpansion:titanium_boots"
+    "gearexpansion:brass_boots",
+    "gearexpansion:emerald_boots",
+    "gearexpansion:amethyst_boots",
+    "gearexpansion:titanium_boots",
+    "gearexpansion:infernium_boots"
   ]
 }

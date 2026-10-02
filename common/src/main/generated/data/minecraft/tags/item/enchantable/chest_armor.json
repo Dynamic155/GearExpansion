@@ -1,7 +1,13 @@
 {
   "values": [
     "gearexpansion:zinc_chestplate",
+    "gearexpansion:verdigris_chestplate",
+    "gearexpansion:rose_gold_chestplate",
     "gearexpansion:aluminum_chestplate",
-    "gearexpansion:titanium_chestplate"
+    "gearexpansion:brass_chestplate",
+    "gearexpansion:emerald_chestplate",
+    "gearexpansion:amethyst_chestplate",
+    "gearexpansion:titanium_chestplate",
+    "gearexpansion:infernium_chestplate"
   ]
 }

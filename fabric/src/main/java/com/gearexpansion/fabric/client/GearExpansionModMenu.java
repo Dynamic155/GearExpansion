@@ -9,6 +9,7 @@ import com.gearexpansion.client.GearExpansionClient;
 public final class GearExpansionModMenu implements ModMenuApi {
 	@Override
 	public ConfigScreenFactory<?> getModConfigScreenFactory() {
-		return GearExpansionClient::configScreen;
+		// Without YACL there's no settings screen, so Mod Menu shows no settings button.
+		return GearExpansionClient.hasConfigScreen() ? GearExpansionClient::configScreen : parent -> null;
 	}
 }

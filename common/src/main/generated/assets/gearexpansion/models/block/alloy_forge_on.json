@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/orientable",
+  "textures": {
+    "front": "gearexpansion:block/alloy_forge_front_on",
+    "side": "gearexpansion:block/alloy_forge_side",
+    "top": "gearexpansion:block/alloy_forge_top"
+  }
+}

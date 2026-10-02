@@ -1,7 +1,10 @@
 {
   "values": [
     "#c:ingots/zinc",
+    "#c:ingots/rose_gold",
     "#c:ingots/aluminum",
-    "#c:ingots/titanium"
+    "#c:ingots/brass",
+    "#c:ingots/titanium",
+    "#c:ingots/infernium"
   ]
 }

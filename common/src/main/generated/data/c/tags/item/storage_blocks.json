@@ -2,9 +2,13 @@
   "values": [
     "#c:storage_blocks/zinc",
     "#c:storage_blocks/raw_zinc",
+    "#c:storage_blocks/rose_gold",
     "#c:storage_blocks/aluminum",
     "#c:storage_blocks/raw_bauxite",
+    "#c:storage_blocks/brass",
     "#c:storage_blocks/titanium",
-    "#c:storage_blocks/raw_titanium"
+    "#c:storage_blocks/raw_titanium",
+    "#c:storage_blocks/infernium",
+    "#c:storage_blocks/raw_infernium"
   ]
 }

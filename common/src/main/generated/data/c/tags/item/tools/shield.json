@@ -1,7 +1,13 @@
 {
   "values": [
     "gearexpansion:zinc_shield",
+    "gearexpansion:verdigris_shield",
+    "gearexpansion:rose_gold_shield",
     "gearexpansion:aluminum_shield",
-    "gearexpansion:titanium_shield"
+    "gearexpansion:brass_shield",
+    "gearexpansion:emerald_shield",
+    "gearexpansion:amethyst_shield",
+    "gearexpansion:titanium_shield",
+    "gearexpansion:infernium_shield"
   ]
 }

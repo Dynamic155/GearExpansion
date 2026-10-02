@@ -1,7 +1,13 @@
 {
   "values": [
     "gearexpansion:zinc_spear",
+    "gearexpansion:verdigris_spear",
+    "gearexpansion:rose_gold_spear",
     "gearexpansion:aluminum_spear",
-    "gearexpansion:titanium_spear"
+    "gearexpansion:brass_spear",
+    "gearexpansion:emerald_spear",
+    "gearexpansion:amethyst_spear",
+    "gearexpansion:titanium_spear",
+    "gearexpansion:infernium_spear"
   ]
 }

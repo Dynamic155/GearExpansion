@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "rose_gold_ingot",
+  "key": {
+    "#": "gearexpansion:rose_gold_nugget"
+  },
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "result": {
+    "id": "gearexpansion:rose_gold_ingot"
+  }
+}

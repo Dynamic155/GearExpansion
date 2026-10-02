@@ -5,9 +5,11 @@ import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
 import net.minecraft.client.data.models.BlockModelGenerators;
 import net.minecraft.client.data.models.ItemModelGenerators;
 import net.minecraft.client.data.models.model.ModelTemplates;
+import net.minecraft.client.data.models.model.TexturedModel;
 
 import com.gearexpansion.material.MaterialSet;
 import com.gearexpansion.material.ModMaterials;
+import com.gearexpansion.registry.ModBlocks;
 
 /**
  * Block and item models. Shields use GeckoLib models instead, written by {@link GeckoLibItemModelGenerator}.
@@ -19,6 +21,9 @@ final class ModelGenerator extends FabricModelProvider {
 
 	@Override
 	public void generateBlockStateModels(BlockModelGenerators generators) {
+		// Same models as the blast furnace: front, side, and top textures, with a lit front.
+		generators.createFurnace(ModBlocks.ALLOY_FORGE.get(), TexturedModel.ORIENTABLE_ONLY_TOP);
+
 		for (MaterialSet set : ModMaterials.ALL) {
 			set.blocks().forEach(block -> generators.createTrivialCube(block.get()));
 		}
@@ -27,9 +32,11 @@ final class ModelGenerator extends FabricModelProvider {
 	@Override
 	public void generateItemModels(ItemModelGenerators generators) {
 		for (MaterialSet set : ModMaterials.ALL) {
-			generators.generateFlatItem(set.rawItem.get(), ModelTemplates.FLAT_ITEM);
-			generators.generateFlatItem(set.ingot.get(), ModelTemplates.FLAT_ITEM);
-			generators.generateFlatItem(set.nugget.get(), ModelTemplates.FLAT_ITEM);
+			set.ingredients().forEach(item -> generators.generateFlatItem(item.get(), ModelTemplates.FLAT_ITEM));
+			if (set == ModMaterials.VERDIGRIS) {
+				// Verdigris gear has a model per oxidation stage; see VerdigrisModelGenerator.
+				continue;
+			}
 
 			generators.generateFlatItem(set.sword.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
 			generators.generateFlatItem(set.pickaxe.get(), ModelTemplates.FLAT_HANDHELD_ITEM);

@@ -1,7 +1,13 @@
 {
   "values": [
     "gearexpansion:zinc_shovel",
+    "gearexpansion:verdigris_shovel",
+    "gearexpansion:rose_gold_shovel",
     "gearexpansion:aluminum_shovel",
-    "gearexpansion:titanium_shovel"
+    "gearexpansion:brass_shovel",
+    "gearexpansion:emerald_shovel",
+    "gearexpansion:amethyst_shovel",
+    "gearexpansion:titanium_shovel",
+    "gearexpansion:infernium_shovel"
   ]
 }

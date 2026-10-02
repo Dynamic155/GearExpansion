@@ -1,0 +1,143 @@
+{
+  "parent": "gearexpansion:infernium_template",
+  "criteria": {
+    "has_infernium_axe": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gearexpansion:infernium_axe"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_infernium_boots": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gearexpansion:infernium_boots"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_infernium_chestplate": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gearexpansion:infernium_chestplate"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_infernium_helmet": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gearexpansion:infernium_helmet"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_infernium_hoe": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gearexpansion:infernium_hoe"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_infernium_leggings": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gearexpansion:infernium_leggings"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_infernium_pickaxe": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gearexpansion:infernium_pickaxe"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_infernium_shield": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gearexpansion:infernium_shield"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_infernium_shovel": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gearexpansion:infernium_shovel"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_infernium_spear": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gearexpansion:infernium_spear"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_infernium_sword": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gearexpansion:infernium_sword"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.gearexpansion.infernium.description"
+    },
+    "frame": "goal",
+    "icon": {
+      "id": "gearexpansion:infernium_chestplate"
+    },
+    "title": {
+      "translate": "advancements.gearexpansion.infernium.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_infernium_sword",
+      "has_infernium_pickaxe",
+      "has_infernium_axe",
+      "has_infernium_shovel",
+      "has_infernium_hoe",
+      "has_infernium_spear",
+      "has_infernium_helmet",
+      "has_infernium_chestplate",
+      "has_infernium_leggings",
+      "has_infernium_boots",
+      "has_infernium_shield"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

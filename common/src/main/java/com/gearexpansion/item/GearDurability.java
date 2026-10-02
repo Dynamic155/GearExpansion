@@ -22,7 +22,9 @@ public final class GearDurability {
 		if (user.isInWater() && GearExpansionConfig.get().zincCorrosionProof && isGalvanized(stack)) {
 			return 0;
 		}
-		return SetBonuses.modifyDurabilityLoss(amount, user, level);
+		amount = SetBonuses.modifyDurabilityLoss(amount, user, level);
+		int loss = amount;
+		return ModMaterials.ofGear(stack).map(set -> set.behavior.modifyDurabilityLoss(set, stack, loss, user, level)).orElse(amount);
 	}
 
 	public static boolean isGalvanized(ItemStack stack) {

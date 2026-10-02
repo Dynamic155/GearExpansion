@@ -1,7 +1,10 @@
 {
   "values": [
     "gearexpansion:zinc_ingot",
+    "gearexpansion:rose_gold_ingot",
     "gearexpansion:aluminum_ingot",
-    "gearexpansion:titanium_ingot"
+    "gearexpansion:brass_ingot",
+    "gearexpansion:titanium_ingot",
+    "gearexpansion:infernium_ingot"
   ]
 }

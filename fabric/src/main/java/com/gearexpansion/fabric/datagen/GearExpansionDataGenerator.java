@@ -17,9 +17,11 @@ public final class GearExpansionDataGenerator implements DataGeneratorEntrypoint
 		FabricDataGenerator.Pack pack = generator.createPack();
 		pack.addProvider(ModelGenerator::new);
 		pack.addProvider(GeckoLibItemModelGenerator::new);
+		pack.addProvider(VerdigrisModelGenerator::new);
 		pack.addProvider(RecipeGenerator::new);
 		pack.addProvider(BlockLootGenerator::new);
 		pack.addProvider(LanguageGenerator::new);
+		pack.addProvider(AdvancementGenerator::new);
 		pack.addProvider(WorldgenGenerator::new);
 		pack.addProvider(NeoForgeBiomeModifierGenerator::new);
 		TagGenerator.Blocks blockTags = pack.addProvider(TagGenerator.Blocks::new);

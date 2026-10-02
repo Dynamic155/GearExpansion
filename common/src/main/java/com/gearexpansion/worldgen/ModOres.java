@@ -56,12 +56,18 @@ public final class ModOres {
 		RuleTest stone = RuleTest.either(new TagMatchTest(BlockTags.HEIGHT_SPECIFIC_ORE_REPLACEABLES), HeightMatchTest.min(0), new TagMatchTest(BlockTags.STONE_ORE_REPLACEABLES));
 		RuleTest deepslate = RuleTest.either(new TagMatchTest(BlockTags.HEIGHT_SPECIFIC_ORE_REPLACEABLES), HeightMatchTest.max(8), new TagMatchTest(BlockTags.DEEPSLATE_ORE_REPLACEABLES));
 
+		RuleTest netherrack = new TagMatchTest(BlockTags.BASE_STONE_NETHER);
+
 		for (MaterialSet set : ModMaterials.ALL) {
-			for (OreGeneration ore : set.oreGeneration) {
-				context.register(featureKey(set, ore), new OreFeature(List.of(
+			List<BlockReplacement> replacements = switch (set.oreKind) {
+				case OVERWORLD -> List.of(
 					BlockReplacement.replace(stone, set.ore.get().defaultBlockState()),
-					BlockReplacement.replace(deepslate, set.deepslateOre.get().defaultBlockState())
-				), ore.veinSize(), ore.airExposureDiscard()));
+					BlockReplacement.replace(deepslate, set.deepslateOre.get().defaultBlockState()));
+				case NETHER -> List.of(BlockReplacement.replace(netherrack, set.ore.get().defaultBlockState()));
+				case NONE -> List.of();
+			};
+			for (OreGeneration ore : set.oreGeneration) {
+				context.register(featureKey(set, ore), new OreFeature(replacements, ore.veinSize(), ore.airExposureDiscard()));
 			}
 		}
 	}

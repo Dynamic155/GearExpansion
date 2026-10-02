@@ -22,9 +22,27 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.tags.ItemTags;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.ExperienceOrb;
+import dev.architectury.networking.NetworkManager;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.EntitySpawnReason;
+import net.minecraft.world.entity.EntityTypes;
 import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.monster.zombie.Zombie;
+import net.minecraft.world.entity.monster.illager.Pillager;
+import net.minecraft.world.level.block.AbstractFurnaceBlock;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.entity.HopperBlockEntity;
+import net.minecraft.world.level.storage.loot.BuiltInLootTables;
+import net.minecraft.world.level.storage.loot.LootParams;
+import net.minecraft.world.level.storage.loot.LootTable;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
@@ -32,17 +50,29 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.component.UseEffects;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.GenerationStep;
 
 import com.gearexpansion.GearExpansion;
+import com.gearexpansion.block.entity.AlloyForgeBlockEntity;
+import com.gearexpansion.client.ClientGearState;
+import com.gearexpansion.client.screen.AlloyForgeScreen;
+import com.gearexpansion.material.behavior.VerdigrisBehavior;
+import com.gearexpansion.menu.AlloyForgeMenu;
+import com.gearexpansion.network.UseAbilityPayload;
+import com.gearexpansion.registry.ModBlocks;
+import com.gearexpansion.registry.ModItems;
+import com.gearexpansion.setbonus.BrassSetBonus;
+import com.gearexpansion.setbonus.SetBonuses;
 import com.gearexpansion.client.GearExpansionClient;
 import com.gearexpansion.material.MaterialSet;
 import com.gearexpansion.material.MaterialSet.OreGeneration;
 import com.gearexpansion.material.ModMaterials;
 import com.gearexpansion.registry.ModTabs;
+import com.gearexpansion.setbonus.EnchantingBonus;
 import com.gearexpansion.worldgen.ModOres;
 
 /**
@@ -73,10 +103,17 @@ public final class GearGameTest implements FabricClientGameTest {
 			server.runOnServer(this::checkMiningTiers);
 
 			checkZinc(ctx, server);
+			checkRoseGold(ctx, server);
 			checkAluminum(ctx, server);
 			server.runOnServer(this::checkTitaniumDurability);
 			checkTitaniumResistance(ctx, server);
 			checkTooltips(ctx, server);
+			checkAlloyForge(ctx, server);
+			checkBrass(ctx, server);
+			checkEmerald(ctx, server);
+			checkAmethyst(ctx, server);
+			checkVerdigris(ctx, server);
+			checkInfernium(ctx, server);
 
 			screenshots(ctx, server);
 		}
@@ -100,8 +137,18 @@ public final class GearGameTest implements FabricClientGameTest {
 	// Every material ------------------------------------------------------------------
 
 	private void checkRecipes(MinecraftServer server, MaterialSet set) {
-		for (String recipe : List.of(set.name + "_sword", set.name + "_pickaxe", set.name + "_spear", set.name + "_chestplate",
-				set.name + "_shield", set.name + "_ingot_from_blasting_raw_" + set.oreName, set.name + "_block")) {
+		String suffix = set.upgradedFrom != null ? "_smithing" : "";
+		List<String> recipes = new ArrayList<>();
+		for (String gear : List.of("sword", "pickaxe", "spear", "chestplate", "shield")) {
+			recipes.add(set.name + "_" + gear + suffix);
+		}
+		if (set.storageBlock != null) {
+			recipes.add(set.name + "_block");
+		}
+		if (set.hasOre) {
+			recipes.add(set.ingotName + "_from_blasting_raw_" + set.oreName);
+		}
+		for (String recipe : recipes) {
 			var key = ResourceKey.create(Registries.RECIPE, GearExpansion.id(recipe));
 			check(server.getRecipeManager().byKey(key).isPresent(), "recipe exists: " + recipe);
 		}
@@ -126,9 +173,12 @@ public final class GearGameTest implements FabricClientGameTest {
 	private void checkOreFeaturesPlace(ClientGameTestContext ctx, TestServerContext server) {
 		int x = 100;
 		for (MaterialSet set : ModMaterials.ALL) {
+			if (!set.hasOre) {
+				continue;
+			}
 			boolean deep = set.oreGeneration.getFirst().maxY() <= 0;
 			int y = deep ? -40 : 20;
-			String stone = deep ? "minecraft:deepslate" : "minecraft:stone";
+			String stone = set.oreKind == MaterialSet.OreKind.NETHER ? "minecraft:netherrack" : deep ? "minecraft:deepslate" : "minecraft:stone";
 			server.runCommand("forceload add " + x + " 100");
 			ctx.waitTicks(20);
 			server.runCommand("fill " + x + " " + y + " 100 " + (x + 15) + " " + (y + 15) + " 115 " + stone);
@@ -143,7 +193,7 @@ public final class GearGameTest implements FabricClientGameTest {
 				int count = 0;
 				for (BlockPos pos : BlockPos.betweenClosed(minX, y, 100, minX + 15, y + 15, 115)) {
 					BlockState state = level.getBlockState(pos);
-					if (state.is(set.ore.get()) || state.is(set.deepslateOre.get())) {
+					if (state.is(set.ore.get()) || (set.deepslateOre != null && state.is(set.deepslateOre.get()))) {
 						count++;
 					}
 				}
@@ -171,6 +221,10 @@ public final class GearGameTest implements FabricClientGameTest {
 		check(canMine(aluminum.pickaxe.get(), Blocks.DIAMOND_ORE.defaultBlockState()), "an aluminum pickaxe mines diamond ore (iron tier)");
 		check(!canMine(aluminum.pickaxe.get(), Blocks.OBSIDIAN.defaultBlockState()), "an aluminum pickaxe can't mine obsidian");
 		check(canMine(titanium.pickaxe.get(), Blocks.OBSIDIAN.defaultBlockState()), "a titanium pickaxe mines obsidian (diamond tier)");
+		check(!canMine(Items.IRON_PICKAXE, ModMaterials.INFERNIUM.ore.get().defaultBlockState()), "an iron pickaxe can't mine infernium ore");
+		check(canMine(titanium.pickaxe.get(), ModMaterials.INFERNIUM.ore.get().defaultBlockState()), "a titanium pickaxe mines infernium ore");
+		check(canMine(Items.WOODEN_PICKAXE, ModBlocks.ALLOY_FORGE.get().defaultBlockState()), "a pickaxe mines the alloy forge");
+		check(!canMine(Items.STICK, ModBlocks.ALLOY_FORGE.get().defaultBlockState()), "the alloy forge needs a pickaxe to drop");
 	}
 
 	private static boolean canMine(Item pickaxe, BlockState state) {
@@ -210,6 +264,41 @@ public final class GearGameTest implements FabricClientGameTest {
 			GearExpansion.LOGGER.info("[GameTest] Poison for 200 ticks lasts {} without the zinc set and {} with it", without, with);
 			check(without == 200 && with == 100, "the full zinc set halves Poison");
 		});
+	}
+
+	// Rose Gold -----------------------------------------------------------------------
+
+	private void checkRoseGold(ClientGameTestContext ctx, TestServerContext server) {
+		MaterialSet roseGold = ModMaterials.ROSE_GOLD;
+		int without = experienceFromOrb(ctx, server, 100);
+		server.runOnServer(s -> equip(player(s), roseGold));
+		int with = experienceFromOrb(ctx, server, 100);
+		GearExpansion.LOGGER.info("[GameTest] an orb worth 100 gives {} experience without the rose gold set and {} with it", without, with);
+		check(without == 100 && with == 125, "the full rose gold set gives 25% more experience");
+
+		server.runOnServer(s -> {
+			ServerPlayer player = player(s);
+			ItemStack book = new ItemStack(Items.BOOK);
+			int plain = EnchantmentHelper.getEnchantmentCost(RandomSource.create(7), 2, 0, book);
+			EnchantingBonus.begin(player);
+			int boosted = EnchantmentHelper.getEnchantmentCost(RandomSource.create(7), 2, 0, book);
+			EnchantingBonus.end();
+			GearExpansion.LOGGER.info("[GameTest] top enchanting offer with no bookshelves: {} normally, {} with the rose gold set", plain, boosted);
+			check(boosted > plain && boosted >= 6, "the full rose gold set counts as extra bookshelves for enchanting");
+			unequip(player);
+		});
+		check(new ItemStack(roseGold.chestplate.get()).is(ItemTags.PIGLIN_SAFE_ARMOR), "piglins treat rose gold armor like gold");
+	}
+
+	/** Drops an experience orb on the player and returns how much experience they gained from it. */
+	private static int experienceFromOrb(ClientGameTestContext ctx, TestServerContext server, int value) {
+		int before = server.computeOnServer(s -> player(s).totalExperience);
+		server.runOnServer(s -> {
+			ServerPlayer player = player(s);
+			player.level().addFreshEntity(new ExperienceOrb(player.level(), player.getX(), player.getY(), player.getZ(), value));
+		});
+		ctx.waitTicks(20);
+		return server.computeOnServer(s -> player(s).totalExperience) - before;
 	}
 
 	// Aluminum ------------------------------------------------------------------------
@@ -351,9 +440,7 @@ public final class GearGameTest implements FabricClientGameTest {
 			List<String> items = new ArrayList<>();
 			set.tools().forEach(item -> items.add(item.getId().toString()));
 			items.add(set.shield.getId().toString());
-			items.add(set.ingot.getId().toString());
-			items.add(set.rawItem.getId().toString());
-			items.add(set.nugget.getId().toString());
+			set.ingredients().forEach(item -> items.add(item.getId().toString()));
 			set.armorPieces().forEach(item -> items.add(item.getId().toString()));
 			set.blocks().forEach(block -> items.add(block.getId().toString()));
 			for (int i = 0; i < items.size(); i++) {
@@ -407,22 +494,374 @@ public final class GearGameTest implements FabricClientGameTest {
 			.toList();
 		check(ours.stream().allMatch(item -> appearances.getOrDefault(item, 0) == 1),
 			"every Gear Expansion item appears in exactly one creative tab");
-		check(tabs.stream().allMatch(tab -> tab.get().getDisplayItems().size() == ModMaterials.ALL.size() * expectedPerMaterial(tab)),
+		check(tabs.stream().allMatch(tab -> tab.get().getDisplayItems().size() == expectedCount(tab)),
 			"each creative tab holds the expected items for every material");
+		check(ModTabs.BLOCKS.get().getDisplayItems().iterator().next().is(ModItems.ALLOY_FORGE.get()), "the alloy forge comes first in the blocks tab");
 		check(ModTabs.COMBAT.get().getDisplayItems().stream().anyMatch(stack -> stack.is(ModMaterials.ZINC.shield.get()))
 			&& ModTabs.TOOLS.get().getDisplayItems().stream().anyMatch(stack -> stack.is(ModMaterials.ALUMINUM.pickaxe.get())),
 			"tools and combat gear are sorted into the right tabs");
 	}
 
-	private static int expectedPerMaterial(RegistrySupplier<CreativeModeTab> tab) {
-		if (tab == ModTabs.BLOCKS) {
-			return 4;
-		} else if (tab == ModTabs.TOOLS) {
-			return 4;
-		} else if (tab == ModTabs.COMBAT) {
-			return 7;
+	private static int expectedCount(RegistrySupplier<CreativeModeTab> tab) {
+		int count = tab == ModTabs.BLOCKS ? 1 : 0;
+		for (MaterialSet set : ModMaterials.ALL) {
+			if (tab == ModTabs.BLOCKS) {
+				count += set.blocks().size();
+			} else if (tab == ModTabs.TOOLS) {
+				count += 4;
+			} else if (tab == ModTabs.COMBAT) {
+				count += 7;
+			} else {
+				count += set.ingredients().size();
+			}
 		}
-		return 3;
+		return count;
+	}
+
+	// Alloy Forge -----------------------------------------------------------------------
+
+	// Forges in a row in front of the player at 0 -60 0, facing them.
+	private static final BlockPos COAL_FORGE = new BlockPos(-2, -60, 3);
+	private static final BlockPos BOOSTED_FORGE = new BlockPos(0, -60, 3);
+	private static final BlockPos LAVA_FORGE = new BlockPos(2, -60, 3);
+	private static final BlockPos SHORT_FORGE = new BlockPos(-4, -60, 3);
+	private static final BlockPos SHIFT_CLICK_FORGE = new BlockPos(10, -60, 3);
+	// Raised by one so a hopper fits underneath.
+	private static final BlockPos HOPPER_FORGE = new BlockPos(6, -59, 3);
+	private static final List<BlockPos> FORGES = List.of(COAL_FORGE, BOOSTED_FORGE, LAVA_FORGE, SHORT_FORGE, SHIFT_CLICK_FORGE, HOPPER_FORGE);
+
+	private void checkAlloyForge(ClientGameTestContext ctx, TestServerContext server) {
+		server.runOnServer(s -> {
+			for (String recipe : List.of("alloy_forge", "brass_ingot_from_alloying", "rose_gold_ingot_from_alloying")) {
+				check(s.getRecipeManager().byKey(ResourceKey.create(Registries.RECIPE, GearExpansion.id(recipe))).isPresent(), "recipe exists: " + recipe);
+			}
+		});
+		server.runCommand("gamemode creative @p");
+		server.runCommand("tp @p 0 -60 0 0 25");
+		for (BlockPos pos : FORGES) {
+			server.runCommand("setblock " + pos.getX() + " " + pos.getY() + " " + pos.getZ() + " gearexpansion:alloy_forge[facing=north]");
+		}
+		ctx.waitTicks(2);
+
+		server.runOnServer(s -> {
+			// 5 copper and 1 zinc make one batch of brass and leave 2 copper.
+			fill(s, COAL_FORGE, new ItemStack(Items.COPPER_INGOT, 5), new ItemStack(ModMaterials.ZINC.ingot.get()), new ItemStack(Items.COAL));
+			// Blaze powder doubles the speed: three batches of rose gold in 300 ticks instead of 600.
+			fill(s, BOOSTED_FORGE, new ItemStack(Items.GOLD_INGOT, 9), new ItemStack(Items.COPPER_INGOT, 3), new ItemStack(Items.BLAZE_POWDER, 2));
+			fill(s, LAVA_FORGE, new ItemStack(Items.COPPER_INGOT, 3), new ItemStack(ModMaterials.ZINC.ingot.get()), new ItemStack(Items.LAVA_BUCKET));
+			// One copper short of a batch.
+			fill(s, SHORT_FORGE, new ItemStack(Items.COPPER_INGOT, 2), new ItemStack(ModMaterials.ZINC.ingot.get()), new ItemStack(Items.COAL));
+		});
+		ctx.waitTicks(5);
+		server.runOnServer(s -> {
+			check(isLit(s, COAL_FORGE), "the alloy forge lights with coal and a matching recipe");
+			check(forge(s, LAVA_FORGE).getItem(AlloyForgeBlockEntity.FUEL_SLOT).is(Items.BUCKET), "a lava bucket leaves an empty bucket in the fuel slot");
+			check(forge(s, LAVA_FORGE).isBoosted() && forge(s, BOOSTED_FORGE).isBoosted(), "lava and blaze powder are boost fuels");
+			check(!forge(s, COAL_FORGE).isBoosted(), "coal is not a boost fuel");
+			check(!isLit(s, SHORT_FORGE), "the alloy forge doesn't light without enough ingredients");
+		});
+
+		checkForgeHoppers(ctx, server);
+		checkForgeShiftClick(server);
+
+		// Screenshots while the forges are lit: the blocks in the world, then the screen mid-alloy.
+		ctx.waitTicks(60);
+		ctx.takeScreenshot("alloy_forge_lit");
+		server.runOnServer(s -> player(s).openMenu(forge(s, BOOSTED_FORGE)));
+		ctx.waitForScreen(AlloyForgeScreen.class);
+		ctx.waitTicks(20);
+		ctx.takeScreenshot("alloy_forge_screen");
+		ctx.setScreen(() -> null);
+
+		ctx.waitTicks(200);
+		server.runOnServer(s -> {
+			AlloyForgeBlockEntity coal = forge(s, COAL_FORGE);
+			GearExpansion.LOGGER.info("[GameTest] coal forge holds {}", contents(coal));
+			ItemStack brass = coal.getItem(AlloyForgeBlockEntity.RESULT_SLOT);
+			check(brass.is(ModMaterials.BRASS.ingot.get()) && brass.getCount() == 4, "3 copper and 1 zinc make 4 brass ingots");
+			check(inputCount(coal, Items.COPPER_INGOT) == 2 && inputCount(coal, ModMaterials.ZINC.ingot.get()) == 0, "alloying uses exactly 3 copper and 1 zinc");
+			check(coal.getItem(AlloyForgeBlockEntity.FUEL_SLOT).isEmpty(), "the coal was burned");
+
+			AlloyForgeBlockEntity boosted = forge(s, BOOSTED_FORGE);
+			GearExpansion.LOGGER.info("[GameTest] boosted forge holds {}", contents(boosted));
+			ItemStack roseGold = boosted.getItem(AlloyForgeBlockEntity.RESULT_SLOT);
+			check(roseGold.is(ModMaterials.ROSE_GOLD.ingot.get()) && roseGold.getCount() == 6, "blaze powder alloys 3 batches of rose gold in the time coal does 1.5");
+			check(forge(s, SHORT_FORGE).getItem(AlloyForgeBlockEntity.RESULT_SLOT).isEmpty(), "too few ingredients make nothing");
+
+			// Taking the output with a shift-click gives the stored experience: 3 batches at 0.7 each.
+			ServerPlayer player = player(s);
+			player.getInventory().clearContent();
+			player.openMenu(boosted);
+			AlloyForgeMenu menu = (AlloyForgeMenu) player.containerMenu;
+			menu.quickMoveStack(player, AlloyForgeMenu.RESULT_SLOT);
+			int xp = s.overworld().getEntitiesOfClass(ExperienceOrb.class, new AABB(player.blockPosition()).inflate(3)).stream()
+				.mapToInt(ExperienceOrb::getValue)
+				.sum();
+			GearExpansion.LOGGER.info("[GameTest] taking 3 batches of rose gold dropped {} experience", xp);
+			check(xp >= 2 && xp <= 3, "taking alloys from the forge gives their experience");
+			check(player.getInventory().countItem(ModMaterials.ROSE_GOLD.ingot.get()) == 6, "shift-clicking the output moves it to the player");
+			player.closeContainer();
+		});
+
+		// Clean up, so the forges don't show in later screenshots.
+		server.runOnServer(s -> FORGES.forEach(pos -> forge(s, pos).clearContent()));
+		server.runCommand("fill -5 -60 3 11 -58 4 minecraft:air");
+		server.runCommand("clear @p");
+		ctx.waitTicks(2);
+		server.runCommand("kill @e[type=item]");
+		server.runCommand("kill @e[type=experience_orb]");
+		server.runCommand("gamemode survival @p");
+	}
+
+	/** A hopper on top feeds the inputs, one on the side feeds fuel, and one below takes the output. */
+	private void checkForgeHoppers(ClientGameTestContext ctx, TestServerContext server) {
+		BlockPos pos = HOPPER_FORGE;
+		String top = pos.getX() + " " + (pos.getY() + 1) + " " + pos.getZ();
+		String side = (pos.getX() + 1) + " " + pos.getY() + " " + pos.getZ();
+		String below = pos.getX() + " " + (pos.getY() - 1) + " " + pos.getZ();
+		server.runCommand("setblock " + top + " minecraft:hopper[facing=down]");
+		server.runCommand("setblock " + side + " minecraft:hopper[facing=west]");
+		server.runCommand("setblock " + below + " minecraft:hopper[facing=down]");
+		server.runCommand("item replace block " + top + " container.0 with minecraft:copper_ingot 4");
+		server.runCommand("item replace block " + top + " container.1 with gearexpansion:zinc_ingot 1");
+		server.runCommand("item replace block " + top + " container.2 with minecraft:dirt 1");
+		server.runCommand("item replace block " + side + " container.0 with minecraft:coal 1");
+		server.runOnServer(s -> forge(s, pos).setItem(AlloyForgeBlockEntity.RESULT_SLOT, new ItemStack(ModMaterials.BRASS.ingot.get(), 2)));
+		ctx.waitTicks(80);
+		server.runOnServer(s -> {
+			AlloyForgeBlockEntity forge = forge(s, pos);
+			GearExpansion.LOGGER.info("[GameTest] hopper-fed forge holds {}", contents(forge));
+			check(forge.getItem(0).is(Items.COPPER_INGOT) && forge.getItem(0).getCount() == 4, "a hopper on top puts copper in the first input");
+			check(forge.getItem(1).is(ModMaterials.ZINC.ingot.get()) && forge.getItem(2).isEmpty(), "a hopper on top puts zinc in its own input slot");
+			HopperBlockEntity topHopper = (HopperBlockEntity) s.overworld().getBlockEntity(pos.above());
+			check(topHopper.getItem(2).is(Items.DIRT), "hoppers can't put non-ingredients in the inputs");
+			check(isLit(s, pos), "a hopper on the side fuels the forge");
+			HopperBlockEntity bottomHopper = (HopperBlockEntity) s.overworld().getBlockEntity(pos.below());
+			check(forge.getItem(AlloyForgeBlockEntity.RESULT_SLOT).isEmpty() && bottomHopper.getItem(0).is(ModMaterials.BRASS.ingot.get()),
+				"a hopper below takes the output");
+		});
+	}
+
+	/** Shift-clicking from the player's inventory sends ingredients to the inputs and fuel to the fuel slot. */
+	private void checkForgeShiftClick(TestServerContext server) {
+		server.runOnServer(s -> {
+			ServerPlayer player = player(s);
+			player.getInventory().clearContent();
+			player.getInventory().setItem(9, new ItemStack(Items.GOLD_INGOT, 3));
+			player.getInventory().setItem(10, new ItemStack(Items.COAL, 2));
+			player.getInventory().setItem(11, new ItemStack(Items.DIRT));
+			player.openMenu(forge(s, SHIFT_CLICK_FORGE));
+			AlloyForgeMenu menu = (AlloyForgeMenu) player.containerMenu;
+			// Menu slots 5 to 31 are the main inventory (inventory slots 9 to 35).
+			menu.quickMoveStack(player, 5);
+			menu.quickMoveStack(player, 6);
+			menu.quickMoveStack(player, 7);
+			AlloyForgeBlockEntity forge = forge(s, SHIFT_CLICK_FORGE);
+			check(forge.getItem(0).is(Items.GOLD_INGOT) && forge.getItem(0).getCount() == 3, "shift-clicking an ingredient moves it to the inputs");
+			check(forge.getItem(AlloyForgeBlockEntity.FUEL_SLOT).is(Items.COAL), "shift-clicking fuel moves it to the fuel slot");
+			check(player.getInventory().getItem(0).is(Items.DIRT), "shift-clicking anything else moves it to the hotbar");
+			player.closeContainer();
+			player.getInventory().clearContent();
+		});
+	}
+
+	private static AlloyForgeBlockEntity forge(MinecraftServer server, BlockPos pos) {
+		return (AlloyForgeBlockEntity) server.overworld().getBlockEntity(pos);
+	}
+
+	private static boolean isLit(MinecraftServer server, BlockPos pos) {
+		return server.overworld().getBlockState(pos).getValue(AbstractFurnaceBlock.LIT);
+	}
+
+	private static void fill(MinecraftServer server, BlockPos pos, ItemStack first, ItemStack second, ItemStack fuel) {
+		AlloyForgeBlockEntity forge = forge(server, pos);
+		forge.setItem(0, first);
+		forge.setItem(1, second);
+		forge.setItem(AlloyForgeBlockEntity.FUEL_SLOT, fuel);
+	}
+
+	private static int inputCount(AlloyForgeBlockEntity forge, Item item) {
+		int count = 0;
+		for (int slot = 0; slot < AlloyForgeBlockEntity.INPUT_SLOTS; slot++) {
+			if (forge.getItem(slot).is(item)) {
+				count += forge.getItem(slot).getCount();
+			}
+		}
+		return count;
+	}
+
+	private static String contents(AlloyForgeBlockEntity forge) {
+		List<String> slots = new ArrayList<>();
+		for (int slot = 0; slot < forge.getContainerSize(); slot++) {
+			slots.add(forge.getItem(slot).toString());
+		}
+		return String.join(", ", slots);
+	}
+
+	// Brass ---------------------------------------------------------------------------
+
+	/** Winds the spring by blocking, then lets it go with the Set Ability key sent from the client. */
+	private void checkBrass(ClientGameTestContext ctx, TestServerContext server) {
+		BrassSetBonus brass = (BrassSetBonus) SetBonuses.BRASS;
+		server.runCommand("tp @p 0 -60 0 0 0");
+		server.runCommand("summon minecraft:zombie 0 -60 2 {NoAI:1b}");
+		server.runOnServer(s -> {
+			ServerPlayer player = player(s);
+			equip(player, ModMaterials.BRASS);
+			for (int i = 0; i < 7; i++) {
+				brass.onShieldBlock(player, player, s.overworld().damageSources().generic(), 1.0F);
+			}
+			check(brass.spring(player) >= BrassSetBonus.FULL, "blocking winds the brass spring");
+		});
+		ctx.waitTicks(25);
+		check(ctx.computeOnClient(mc -> ClientGearState.hud.springMax() == BrassSetBonus.FULL && ClientGearState.hud.spring() >= BrassSetBonus.FULL),
+			"the client HUD shows the wound spring");
+		check(server.computeOnServer(s -> player(s).hasEffect(MobEffects.HASTE)), "a wound spring gives Haste");
+		float zombieHealth = server.computeOnServer(s -> zombie(s).getHealth());
+		// Press the ability key the way the client does: send the packet.
+		ctx.runOnClient(mc -> NetworkManager.sendToServer(UseAbilityPayload.INSTANCE));
+		ctx.waitTicks(5);
+		server.runOnServer(s -> {
+			// The release's own hit winds the spring a little, so it isn't exactly empty.
+			check(brass.spring(player(s)) < BrassSetBonus.FULL / 2, "Spring Release lets the spring go");
+			check(zombie(s).getHealth() < zombieHealth, "Spring Release hits mobs in front");
+			unequip(player(s));
+			player(s).removeAllEffects();
+		});
+		server.runCommand("kill @e[type=zombie]");
+	}
+
+	private static Zombie zombie(MinecraftServer server) {
+		return server.overworld().getEntitiesOfClass(Zombie.class, new AABB(-20, -64, -20, 20, -40, 20)).getFirst();
+	}
+
+	// Emerald -------------------------------------------------------------------------
+
+	private void checkEmerald(ClientGameTestContext ctx, TestServerContext server) {
+		MaterialSet emerald = ModMaterials.EMERALD;
+		server.runOnServer(s -> {
+			ServerPlayer player = player(s);
+			ServerLevel level = s.overworld();
+			Pillager pillager = EntityTypes.PILLAGER.create(level, EntitySpawnReason.COMMAND);
+			Zombie zombie = EntityTypes.ZOMBIE.create(level, EntitySpawnReason.COMMAND);
+			player.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(emerald.sword.get()));
+			DamageSource source = level.damageSources().playerAttack(player);
+			Item sword = emerald.sword.get();
+			check(sword.getAttackDamageBonus(pillager, 10.0F, source) == 5.0F, "emerald weapons deal 50% more damage to illagers");
+			check(sword.getAttackDamageBonus(zombie, 10.0F, source) == 0.0F, "emerald weapons deal normal damage to other mobs");
+			player.setItemSlot(EquipmentSlot.MAINHAND, ItemStack.EMPTY);
+			check(player.getAttributeValue(Attributes.LUCK) == 0, "luck starts at zero");
+			equip(player, emerald);
+		});
+		ctx.waitTicks(25);
+		server.runOnServer(s -> {
+			ServerPlayer player = player(s);
+			check(player.getAttributeValue(Attributes.LUCK) == 4, "each emerald armor piece adds 1 Luck");
+			check(player.hasEffect(MobEffects.HERO_OF_THE_VILLAGE), "the full emerald set grants Hero of the Village");
+			unequip(player);
+			player.removeAllEffects();
+		});
+	}
+
+	// Amethyst ------------------------------------------------------------------------
+
+	private void checkAmethyst(ClientGameTestContext ctx, TestServerContext server) {
+		server.runOnServer(s -> {
+			ServerPlayer player = player(s);
+			equip(player, ModMaterials.AMETHYST);
+			player.setHealth(player.getMaxHealth());
+			boolean hurt = player.hurtServer(s.overworld(), s.overworld().damageSources().generic(), 4.0F);
+			check(!hurt && player.getHealth() == player.getMaxHealth(), "the amethyst crystal shell absorbs the first hit");
+		});
+		ctx.waitTicks(25);
+		server.runOnServer(s -> {
+			ServerPlayer player = player(s);
+			player.hurtServer(s.overworld(), s.overworld().damageSources().generic(), 4.0F);
+			check(player.getHealth() < player.getMaxHealth(), "once shattered, the shell lets hits through until it regrows");
+			player.setHealth(player.getMaxHealth());
+			unequip(player);
+		});
+	}
+
+	// Verdigris -----------------------------------------------------------------------
+
+	private void checkVerdigris(ClientGameTestContext ctx, TestServerContext server) {
+		MaterialSet verdigris = ModMaterials.VERDIGRIS;
+		server.runOnServer(s -> {
+			ServerPlayer player = player(s);
+			ItemStack pickaxe = new ItemStack(verdigris.pickaxe.get());
+			float freshSpeed = pickaxe.getDestroySpeed(Blocks.STONE.defaultBlockState());
+			VerdigrisBehavior.setStage(pickaxe, VerdigrisBehavior.OXIDIZED);
+			check(pickaxe.getDestroySpeed(Blocks.STONE.defaultBlockState()) < freshSpeed, "oxidized verdigris tools mine slower");
+			check(attackSpeed(pickaxe) < attackSpeed(new ItemStack(verdigris.pickaxe.get())), "oxidized verdigris tools attack slower");
+
+			ItemStack chestplate = new ItemStack(verdigris.chestplate.get());
+			double freshArmor = armor(chestplate);
+			VerdigrisBehavior.setStage(chestplate, VerdigrisBehavior.OXIDIZED);
+			check(armor(chestplate) > freshArmor, "oxidized verdigris armor protects more");
+
+			ItemStack honeycomb = new ItemStack(Items.HONEYCOMB, 2);
+			check(verdigris.behavior.onStackedOn(verdigris, pickaxe, honeycomb, player) && VerdigrisBehavior.waxed(pickaxe) && honeycomb.getCount() == 1,
+				"honeycomb waxes verdigris gear");
+			ItemStack axe = new ItemStack(Items.IRON_AXE);
+			verdigris.behavior.onStackedOn(verdigris, pickaxe, axe, player);
+			check(!VerdigrisBehavior.waxed(pickaxe) && VerdigrisBehavior.stage(pickaxe) == VerdigrisBehavior.OXIDIZED, "an axe scrapes the wax off first");
+			verdigris.behavior.onStackedOn(verdigris, pickaxe, axe, player);
+			check(VerdigrisBehavior.stage(pickaxe) == VerdigrisBehavior.OXIDIZED - 1, "then an axe scrapes back one oxidation stage");
+
+			equip(player, verdigris);
+			BlockPos nearby = player.blockPosition().offset(5, 0, 5);
+			check(SetBonuses.VERDIGRIS.redirectLightning(s.overworld(), nearby).equals(player.blockPosition()), "lightning nearby is drawn to the full verdigris set");
+			boolean hurt = player.hurtServer(s.overworld(), s.overworld().damageSources().lightningBolt(), 5.0F);
+			check(!hurt && player.hasEffect(MobEffects.SPEED) && player.hasEffect(MobEffects.STRENGTH), "lightning charges the verdigris wearer instead of hurting them");
+			unequip(player);
+			player.removeAllEffects();
+		});
+	}
+
+	private static double armor(ItemStack stack) {
+		var modifiers = stack.get(DataComponents.ATTRIBUTE_MODIFIERS);
+		return modifiers == null ? 0 : modifiers.modifiers().stream()
+			.filter(entry -> entry.attribute().is(Attributes.ARMOR) || entry.attribute().is(Attributes.ARMOR_TOUGHNESS))
+			.mapToDouble(entry -> entry.modifier().amount())
+			.sum();
+	}
+
+	// Infernium -----------------------------------------------------------------------
+
+	private void checkInfernium(ClientGameTestContext ctx, TestServerContext server) {
+		MaterialSet infernium = ModMaterials.INFERNIUM;
+		server.runOnServer(s -> {
+			ServerPlayer player = player(s);
+			ServerLevel level = s.overworld();
+
+			var drops = Block.getDrops(Blocks.IRON_ORE.defaultBlockState(), level, player.blockPosition(), null, player, new ItemStack(infernium.pickaxe.get()));
+			check(drops.stream().anyMatch(stack -> stack.is(Items.IRON_INGOT)), "infernium pickaxes smelt what they mine");
+			check(new ItemStack(infernium.sword.get()).has(DataComponents.DAMAGE_RESISTANT), "infernium gear doesn't burn");
+
+			// Templates turn up in bastion treasure chests about half the time.
+			LootTable treasure = s.reloadableRegistries().getLootTable(BuiltInLootTables.BASTION_TREASURE);
+			LootParams params = new LootParams.Builder(level).withParameter(LootContextParams.ORIGIN, player.position()).create(LootContextParamSets.CHEST);
+			int found = 0;
+			for (int i = 0; i < 40; i++) {
+				found += treasure.getRandomItems(params).stream().filter(stack -> stack.is(infernium.upgradeTemplate.get())).count() > 0 ? 1 : 0;
+			}
+			GearExpansion.LOGGER.info("[GameTest] infernium templates in {} of 40 bastion treasure chests", found);
+			check(found > 5 && found < 35, "infernium upgrade templates appear in bastion treasure chests");
+
+			equip(player, infernium);
+			boolean burned = player.hurtServer(level, level.damageSources().lava(), 4.0F);
+			check(!burned, "the full infernium set protects from lava while the heat gauge isn't full");
+		});
+		server.runCommand("tp @p 0 -60 0 0 0");
+		server.runCommand("summon minecraft:zombie 2 -60 0 {NoAI:1b}");
+		ctx.waitTicks(5);
+		server.runOnServer(s -> {
+			SetBonuses.useAbility(player(s));
+			check(zombie(s).isOnFire(), "Eruption sets nearby mobs alight");
+			unequip(player(s));
+		});
+		server.runCommand("kill @e[type=zombie]");
 	}
 
 	// Helpers -------------------------------------------------------------------------

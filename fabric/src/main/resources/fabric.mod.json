@@ -35,7 +35,8 @@
 		"gearexpansion.mixins.json"
 	],
 	"suggests": {
-		"modmenu": "*"
+		"modmenu": "*",
+		"yet_another_config_lib_v3": ">=3.9.7"
 	},
 	"depends": {
 		"fabricloader": ">=0.19.5",
@@ -43,7 +44,6 @@
 		"java": ">=25",
 		"fabric-api": "*",
 		"architectury": ">=22.0.3",
-		"geckolib": ">=5.5.7",
-		"yet_another_config_lib_v3": ">=3.9.7"
+		"geckolib": ">=5.5.7"
 	}
 }

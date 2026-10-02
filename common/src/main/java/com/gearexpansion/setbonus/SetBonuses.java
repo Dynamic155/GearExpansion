@@ -1,7 +1,14 @@
 package com.gearexpansion.setbonus;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+import java.util.UUID;
+import java.util.WeakHashMap;
+
+import dev.architectury.networking.NetworkManager;
+import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.Component;
 
 import dev.architectury.event.events.common.TickEvent;
 import net.minecraft.server.level.ServerLevel;
@@ -10,15 +17,27 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+
+import com.gearexpansion.network.GearHudPayload;
 
 /** The set bonus for every material, plus the hooks that drive them. */
 public final class SetBonuses {
 	public static final SetBonus ZINC = new ZincSetBonus();
+	public static final VerdigrisSetBonus VERDIGRIS = new VerdigrisSetBonus();
+	public static final SetBonus ROSE_GOLD = new RoseGoldSetBonus();
 	public static final SetBonus ALUMINUM = new AluminumSetBonus();
+	public static final SetBonus BRASS = new BrassSetBonus();
+	public static final SetBonus EMERALD = new EmeraldSetBonus();
+	public static final SetBonus AMETHYST = new AmethystSetBonus();
 	public static final SetBonus TITANIUM = new TitaniumSetBonus();
+	public static final SetBonus INFERNIUM = new InferniumSetBonus();
 
-	public static final List<SetBonus> ALL = List.of(ZINC, ALUMINUM, TITANIUM);
+	public static final List<SetBonus> ALL = List.of(ZINC, VERDIGRIS, ROSE_GOLD, ALUMINUM, BRASS, EMERALD, AMETHYST, TITANIUM, INFERNIUM);
+
+	/** The HUD meters last sent to each player, so unchanged values aren't resent. */
+	private static final Map<UUID, GearHudPayload> SENT_HUD = new WeakHashMap<>();
 
 	private SetBonuses() {
 	}
@@ -26,15 +45,36 @@ public final class SetBonuses {
 	public static void init() {
 		TickEvent.PLAYER_POST.register(player -> {
 			if (player instanceof ServerPlayer serverPlayer) {
+				GearHudPayload.Builder hud = new GearHudPayload.Builder();
 				for (SetBonus bonus : ALL) {
 					boolean active = bonus.isActive(serverPlayer);
 					if (active) {
 						bonus.tick(serverPlayer);
+						bonus.fillHud(serverPlayer, hud);
 					}
 					syncAttributes(serverPlayer, bonus, active);
 				}
+				sendHud(serverPlayer, hud.build());
 			}
 		});
+	}
+
+	/** The Set Ability key was pressed: use the ability of whichever full set the player wears. */
+	public static void useAbility(ServerPlayer player) {
+		for (SetBonus bonus : ALL) {
+			if (bonus.hasAbility() && bonus.isActive(player)) {
+				bonus.useAbility(player);
+				return;
+			}
+		}
+		player.sendSystemMessage(Component.translatable("ability.gearexpansion.none").withStyle(ChatFormatting.GRAY), true);
+	}
+
+	private static void sendHud(ServerPlayer player, GearHudPayload hud) {
+		if (!hud.equals(SENT_HUD.get(player.getUUID())) && NetworkManager.canPlayerReceive(player, GearHudPayload.TYPE)) {
+			SENT_HUD.put(player.getUUID(), hud);
+			NetworkManager.sendToPlayer(player, hud);
+		}
 	}
 
 	/** Called from the durability mixin whenever an item held or worn by {@code wearer} is about to lose durability. */
@@ -58,6 +98,27 @@ public final class SetBonuses {
 			}
 		}
 		return effect;
+	}
+
+	/** Called from the experience orb mixin when {@code player} picks up an orb worth {@code amount}. */
+	public static int modifyExperience(int amount, Player player) {
+		for (SetBonus bonus : ALL) {
+			if (bonus.isActive(player)) {
+				amount = bonus.modifyExperience(amount, player);
+			}
+		}
+		return amount;
+	}
+
+	/** Extra bookshelves an enchanting table counts for {@code player}, from their set bonuses. */
+	public static int extraEnchantingBookshelves(Player player) {
+		int extra = 0;
+		for (SetBonus bonus : ALL) {
+			if (bonus.isActive(player)) {
+				extra += bonus.extraEnchantingBookshelves(player);
+			}
+		}
+		return extra;
 	}
 
 	/** Adds a bonus's attribute modifiers while it's active and removes them once it isn't. */

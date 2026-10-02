@@ -1,7 +1,13 @@
 {
   "values": [
     "gearexpansion:zinc_hoe",
+    "gearexpansion:verdigris_hoe",
+    "gearexpansion:rose_gold_hoe",
     "gearexpansion:aluminum_hoe",
-    "gearexpansion:titanium_hoe"
+    "gearexpansion:brass_hoe",
+    "gearexpansion:emerald_hoe",
+    "gearexpansion:amethyst_hoe",
+    "gearexpansion:titanium_hoe",
+    "gearexpansion:infernium_hoe"
   ]
 }

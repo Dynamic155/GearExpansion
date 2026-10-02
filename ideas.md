@@ -33,6 +33,16 @@ A living planning doc. Tags: **[1.0]** = in the first release, **[later]** = a t
 | Zinc | Done: ores, raw ore, ingot, nugget, storage blocks, 6 tools, 3D armor, 3D shield, corrosion-proof gear, Galvanized set bonus, config, recipes, loot, tags, tooltips, game test |
 | Aluminum | Done: Bauxite ores (with richer badlands and savanna veins), raw bauxite, ingot, nugget, storage blocks, 6 tools, 3D armor, 3D shield, Featherweight set bonus, config, recipes, loot, tags, tooltips, game test |
 | Titanium | Done: ores and world generation, raw ore, ingot, nugget, storage blocks, 6 tools, 3D armor, 3D shield, Unbreakable Will set bonus, config, recipes, loot, tags, tooltips, game test |
+| Verdigris | Done: Verdigris Plate, oxidation stages with per-stage stats and textures, honeycomb waxing and axe scraping, Conductive set bonus (lightning rod, charge) |
+| Rose Gold | Done: Alloy Forge alloy, piglin-safe armor, Lucky Charm set bonus (more experience, extra enchanting bookshelves) |
+| Brass | Done: Alloy Forge alloy, combo attack speed, Clockwork set bonus (spring, Haste), Spring Release ability |
+| Emerald | Done: crafted from emeralds, Illager's Bane weapons, Prospector pickaxe, Luck armor, raider-knockback shield, Merchant's Favor set bonus |
+| Amethyst | Done: Resonant Crystal, Shatter sword, Resonance pickaxe, perfect-block shield, chiming armor, Shatterguard set bonus |
+| Infernium | Done: Nether ore (blast furnace only), upgrade template in Bastion and Fortress loot, smithing upgrade from titanium, fireproof gear, burning weapons, auto-smelting pickaxe, fire-resistant armor, Heat Core set bonus, Eruption ability, glowing 3D armor |
+| Alloy Forge | Done: block, screen, fuel and boost fuels, hopper automation, experience, alloying recipe type |
+| Shared | Done: set abilities on a key (R), HUD meters, advancements, creative tabs, optional YACL settings screen (settings file always works) |
+
+Version 1.0.0 is complete.
 
 All textures are recolored vanilla textures (see section 11). Stats as built are below and can be tuned in `ModMaterials`.
 
