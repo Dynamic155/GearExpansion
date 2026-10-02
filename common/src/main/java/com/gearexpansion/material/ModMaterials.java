@@ -16,6 +16,7 @@ import com.gearexpansion.material.behavior.AmethystBehavior;
 import com.gearexpansion.material.behavior.BrassBehavior;
 import com.gearexpansion.material.behavior.EmeraldBehavior;
 import com.gearexpansion.material.behavior.InferniumBehavior;
+import com.gearexpansion.material.behavior.SilverBehavior;
 import com.gearexpansion.material.behavior.VerdigrisBehavior;
 import com.gearexpansion.registry.ModSounds;
 
@@ -95,6 +96,20 @@ public final class ModMaterials {
 		.requiresTool(BlockTags.NEEDS_STONE_TOOL)
 		.behavior(new BrassBehavior())
 		.colors(MapColor.GOLD, MapColor.GOLD)
+		.build();
+
+	/**
+	 * Silver: an iron-tier metal against the undead. Weapons hit undead harder, armor softens
+	 * their attacks, and the shield throws them back. Found at middle depths.
+	 */
+	public static final MaterialSet SILVER = MaterialSet.builder("silver")
+		.tools(ToolTier.IRON, 280, 6.5F, 2.0F, 18)
+		.armor(15, 2, 6, 5, 2, 18, ModSounds.armorEquip("silver"), 0.0F, 0.0F)
+		.shield(350, 1.0F)
+		.requiresTool(BlockTags.NEEDS_IRON_TOOL)
+		.ore(8, 6, -16, 48, 0.0F)
+		.behavior(new SilverBehavior())
+		.colors(MapColor.METAL, MapColor.STONE)
 		.build();
 
 	/**

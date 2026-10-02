@@ -83,6 +83,7 @@ final class LanguageGenerator extends FabricLanguageProvider {
 		roseGold(t);
 		aluminum(t);
 		brass(t);
+		silver(t);
 		emerald(t);
 		amethyst(t);
 		titanium(t);
@@ -106,6 +107,9 @@ final class LanguageGenerator extends FabricLanguageProvider {
 		t.add(CONFIG + ".category.brass", "Brass");
 		t.add(CONFIG + ".category.brass.group.gear", "Gear");
 		t.add(CONFIG + ".category.brass.group.set_bonus", "Set Bonus: Clockwork");
+		t.add(CONFIG + ".category.silver", "Silver");
+		t.add(CONFIG + ".category.silver.group.gear", "Gear");
+		t.add(CONFIG + ".category.silver.group.set_bonus", "Set Bonus: Blessed");
 		t.add(CONFIG + ".category.emerald", "Emerald");
 		t.add(CONFIG + ".category.emerald.group.gear", "Gear");
 		t.add(CONFIG + ".category.emerald.group.set_bonus", "Set Bonus: Merchant's Favor");
@@ -146,6 +150,21 @@ final class LanguageGenerator extends FabricLanguageProvider {
 		option(t, "brassWindUpSeconds", "Wind-up Time", "Seconds of walking to fully wind the spring.");
 		option(t, "brassReleaseDamage", "Release Damage", "Damage Spring Release deals to each mob it hits.");
 		option(t, "brassCombo", "Combo Attack Speed", "Whether consecutive hits with brass weapons attack faster.");
+	}
+
+	private static void silver(TranslationBuilder t) {
+		t.add("set_bonus.gearexpansion.silver", "Silver");
+		t.add("set_bonus.gearexpansion.silver.wither", "Blessed: Wither lasts %s%% shorter");
+		t.add("set_bonus.gearexpansion.silver.sense", "Undead within %s blocks glow");
+		t.add("trait.gearexpansion.hallowed", "Hallowed: +%s damage to undead");
+		t.add("trait.gearexpansion.warding", "Warding: %s%% less damage from undead per piece");
+		t.add("trait.gearexpansion.undead_knockback", "Blocking undead knocks them back hard");
+
+		option(t, "silverUndeadDamageBonus", "Undead Damage Bonus", "Extra damage silver weapons deal to undead.");
+		option(t, "silverUndeadProtection", "Undead Protection", "Less damage taken from undead for each silver armor piece worn.");
+		option(t, "silverSetBonus", "Enable Set Bonus", "Whether wearing the full Silver set grants Blessed.");
+		option(t, "silverWitherReduction", "Wither Reduction", "How much shorter Wither lasts while wearing the full set.");
+		option(t, "silverUndeadSenseRange", "Undead Sense Range", "Blocks within which undead glow. 0 turns it off.");
 	}
 
 	private static void emerald(TranslationBuilder t) {
@@ -196,6 +215,7 @@ final class LanguageGenerator extends FabricLanguageProvider {
 		advancement(t, "rose_gold", "Rose-Tinted", "Alloy gold and copper into rose gold");
 		advancement(t, "aluminum", "Lighter Than Air", "Smelt aluminum from bauxite");
 		advancement(t, "brass", "Wound Up", "Alloy copper and zinc into brass");
+		advancement(t, "silver", "Silver Lining", "Smelt a silver ingot");
 		advancement(t, "emerald", "Merchant's Arsenal", "Craft any emerald gear");
 		advancement(t, "amethyst", "Good Vibrations", "Craft a Resonant Crystal");
 		advancement(t, "titanium", "Unbreakable", "Smelt a titanium ingot");

@@ -150,6 +150,35 @@
       }
     ]
   },
+  "item.armor.equip_silver": {
+    "subtitle": "subtitles.item.armor.equip",
+    "sounds": [
+      {
+        "name": "minecraft:item/armor/equip_iron1",
+        "pitch": 1.15
+      },
+      {
+        "name": "minecraft:item/armor/equip_iron2",
+        "pitch": 1.15
+      },
+      {
+        "name": "minecraft:item/armor/equip_iron3",
+        "pitch": 1.15
+      },
+      {
+        "name": "minecraft:item/armor/equip_iron4",
+        "pitch": 1.15
+      },
+      {
+        "name": "minecraft:item/armor/equip_iron5",
+        "pitch": 1.15
+      },
+      {
+        "name": "minecraft:item/armor/equip_iron6",
+        "pitch": 1.15
+      }
+    ]
+  },
   "item.armor.equip_emerald": {
     "subtitle": "subtitles.item.armor.equip",
     "sounds": [

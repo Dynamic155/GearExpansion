@@ -1,0 +1,32 @@
+{
+  "parent": "gearexpansion:root",
+  "criteria": {
+    "has_silver_ingot": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gearexpansion:silver_ingot"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.gearexpansion.silver.description"
+    },
+    "icon": {
+      "id": "gearexpansion:silver_ingot"
+    },
+    "title": {
+      "translate": "advancements.gearexpansion.silver.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_silver_ingot"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

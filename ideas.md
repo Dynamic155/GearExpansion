@@ -45,6 +45,16 @@ A living planning doc. Tags: **[1.0]** = in the first release, **[later]** = a t
 
 Version 1.0.0 is complete, and 1.0.1 finishes the remaining 1.0 promises.
 
+1.1 Metals, built one metal at a time (Silver, Steel, Cobalt, Tungsten, then the guidebook):
+
+| Material | Status |
+|---|---|
+| Silver | Done: ore (Y -16 to 48, iron pickaxe), Hallowed weapons (+4 vs undead), Warding armor (6% less undead damage per piece), undead-knockback shield, Blessed set bonus (Wither 50% shorter, undead within 8 blocks glow), config, textures, sound, advancement, game test |
+| Steel | Next |
+| Cobalt | Planned. Set bonus renamed to Overdrive (Brass already has a Momentum trait). |
+| Tungsten | Planned |
+| Guidebook | Planned: Modonomicon, optional dependency (26.3 builds exist for Fabric and NeoForge) |
+
 All textures are recolored vanilla textures (see section 11). Stats as built are below and can be tuned in `ModMaterials`.
 
 Zinc stats as built:

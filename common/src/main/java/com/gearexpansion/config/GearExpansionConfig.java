@@ -154,6 +154,38 @@ public final class GearExpansionConfig {
 	@Comment("Whether consecutive hits with brass weapons attack faster (up to 3 stacks).")
 	public boolean brassCombo = true;
 
+	// Silver
+
+	@AutoGen(category = "silver", group = "gear")
+	@IntSlider(min = 0, max = 20, step = 1)
+	@SerialEntry
+	@Comment("Extra damage silver weapons deal to undead.")
+	public int silverUndeadDamageBonus = 4;
+
+	@AutoGen(category = "silver", group = "gear")
+	@IntSlider(min = 0, max = 25, step = 1, format = "%d%%")
+	@SerialEntry
+	@Comment("Less damage taken from undead for each silver armor piece worn.")
+	public int silverUndeadProtection = 6;
+
+	@AutoGen(category = "silver", group = "set_bonus")
+	@TickBox
+	@SerialEntry
+	@Comment("Whether the full Silver set grants its Blessed bonus.")
+	public boolean silverSetBonus = true;
+
+	@AutoGen(category = "silver", group = "set_bonus")
+	@IntSlider(min = 0, max = 100, step = 5, format = "%d%%")
+	@SerialEntry
+	@Comment("How much shorter Wither lasts while wearing the full set.")
+	public int silverWitherReduction = 50;
+
+	@AutoGen(category = "silver", group = "set_bonus")
+	@IntSlider(min = 0, max = 32, step = 1)
+	@SerialEntry
+	@Comment("Blocks within which undead glow while wearing the full set. 0 turns it off.")
+	public int silverUndeadSenseRange = 8;
+
 	// Emerald
 
 	@AutoGen(category = "emerald", group = "gear")

@@ -29,12 +29,13 @@ public final class SetBonuses {
 	public static final SetBonus ROSE_GOLD = new RoseGoldSetBonus();
 	public static final SetBonus ALUMINUM = new AluminumSetBonus();
 	public static final SetBonus BRASS = new BrassSetBonus();
+	public static final SetBonus SILVER = new SilverSetBonus();
 	public static final SetBonus EMERALD = new EmeraldSetBonus();
 	public static final SetBonus AMETHYST = new AmethystSetBonus();
 	public static final SetBonus TITANIUM = new TitaniumSetBonus();
 	public static final SetBonus INFERNIUM = new InferniumSetBonus();
 
-	public static final List<SetBonus> ALL = List.of(ZINC, VERDIGRIS, ROSE_GOLD, ALUMINUM, BRASS, EMERALD, AMETHYST, TITANIUM, INFERNIUM);
+	public static final List<SetBonus> ALL = List.of(ZINC, VERDIGRIS, ROSE_GOLD, ALUMINUM, BRASS, SILVER, EMERALD, AMETHYST, TITANIUM, INFERNIUM);
 
 	/** The HUD meters last sent to each player, so unchanged values aren't resent. */
 	private static final Map<UUID, GearHudPayload> SENT_HUD = new WeakHashMap<>();

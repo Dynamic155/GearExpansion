@@ -6,6 +6,8 @@
     "#c:storage_blocks/aluminum",
     "#c:storage_blocks/raw_bauxite",
     "#c:storage_blocks/brass",
+    "#c:storage_blocks/silver",
+    "#c:storage_blocks/raw_silver",
     "#c:storage_blocks/titanium",
     "#c:storage_blocks/raw_titanium",
     "#c:storage_blocks/infernium",

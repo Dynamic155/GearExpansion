@@ -78,6 +78,12 @@ MATERIALS = {
             ("_oxidized", ["#0E2A24", "#1D4A40", "#2F6E5F", "#4A9580", "#74BBA2", "#A8DCC6"]),
         ],
     },
+    "silver": {
+        "tools": "iron", "armor": "iron", "raw": "iron", "ore": "iron",
+        # Polished silver with a cool lavender sheen, so it reads differently from aluminum's flat white.
+        "metal": ["#211D2C", "#423C58", "#6A6386", "#958FB2", "#C4BFDA", "#F1EEFA"],
+        "raw_colors": ["#2A2A2D", "#47474D", "#6A6B72", "#90919A", "#B9BBC3", "#E0E2E8"],
+    },
     "emerald": {
         "tools": "diamond", "armor": "diamond", "base_item": True,
         # Rich emerald green.

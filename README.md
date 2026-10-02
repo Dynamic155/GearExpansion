@@ -1,6 +1,6 @@
 # Gear Expansion
 
-A Minecraft mod that adds nine new materials, each with a full set of tools, 3D armor, and a shield. Every material plays differently: weapons with special effects, tools with useful tricks, and a set bonus for wearing all four armor pieces.
+A Minecraft mod that adds new materials, each with a full set of tools, 3D armor, and a shield. Every material plays differently: weapons with special effects, tools with useful tricks, and a set bonus for wearing all four armor pieces.
 
 The mod aims for a Vanilla+ feel: new content that fits naturally alongside vanilla progression, with strong effects kept in check by meters, cooldowns, and costs. Nearly every number can be changed in the settings.
 
@@ -67,6 +67,7 @@ From weakest to strongest. Tier is what the pickaxe can mine, using vanilla's ti
 | Rose Gold | Copper | 180 | 4.5 | 11 | Alloy Forge | Lucky Charm |
 | Aluminum | Iron | 180 | 5.5 | 12 | Bauxite ore | Featherweight |
 | Brass | Iron | 300 | 6 | 15 | Alloy Forge | Clockwork |
+| Silver | Iron | 280 | 6 | 15 | Ore | Blessed |
 | Emerald | Iron | 500 | 6 | 15 | Emeralds | Merchant's Favor |
 | Amethyst | Iron | 220 | 6 | 15 | Resonant Crystals | Shatterguard |
 | Titanium | Diamond | 3000 | 7 | 20 | Rare deep ore | Unbreakable Will |
@@ -146,6 +147,16 @@ A steampunk alloy of copper and zinc.
 - **Momentum:** each hit in a quick combo with a brass weapon attacks faster, up to 3 stacks. The combo ends 3 seconds after the last hit.
 - **Set bonus, Clockwork:** walking, hitting, and blocking wind up a **spring** (shown above the hotbar). About 30 seconds of walking winds it fully; hits and blocks wind it faster. A fully wound spring gives Haste.
 - **Ability, Spring Release (R):** with a fully wound spring, dash forward and hit every mob in front of you for 6 damage, knocking them back. This lets the spring go.
+
+### Silver
+
+A precious metal for fighting the undead.
+
+- **Getting it:** Silver Ore is found between Y -16 and Y 48, in stone and deepslate. Mine it with an iron pickaxe or better, then smelt or blast the raw silver.
+- **Hallowed:** silver swords, spears, and axes deal 4 extra damage to undead (zombies, skeletons, phantoms, the wither, and so on). It stacks with Smite.
+- **Warding:** each armor piece takes 6% less damage from undead, including arrows from skeletons (24% for the full set).
+- **Shield:** blocking an undead mob knocks it back hard.
+- **Set bonus, Blessed:** Wither lasts half as long, and undead within 8 blocks glow, so you can see them through walls.
 
 ### Emerald
 

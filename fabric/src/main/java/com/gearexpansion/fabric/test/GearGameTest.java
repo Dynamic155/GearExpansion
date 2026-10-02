@@ -66,6 +66,7 @@ import com.gearexpansion.network.ConfigSyncPayload;
 import com.gearexpansion.block.entity.AlloyForgeBlockEntity;
 import com.gearexpansion.client.ClientGearState;
 import com.gearexpansion.client.screen.AlloyForgeScreen;
+import com.gearexpansion.item.GearCombat;
 import com.gearexpansion.material.behavior.VerdigrisBehavior;
 import com.gearexpansion.menu.AlloyForgeMenu;
 import com.gearexpansion.network.UseAbilityPayload;
@@ -120,6 +121,7 @@ public final class GearGameTest implements FabricClientGameTest {
 			checkEquipSounds(ctx);
 			checkAlloyForge(ctx, server);
 			checkBrass(ctx, server);
+			checkSilver(ctx, server);
 			checkEmerald(ctx, server);
 			checkAmethyst(ctx, server);
 			checkVerdigris(ctx, server);
@@ -235,6 +237,9 @@ public final class GearGameTest implements FabricClientGameTest {
 		check(canMine(titanium.pickaxe.get(), Blocks.OBSIDIAN.defaultBlockState()), "a titanium pickaxe mines obsidian (diamond tier)");
 		check(!canMine(Items.IRON_PICKAXE, ModMaterials.INFERNIUM.ore.get().defaultBlockState()), "an iron pickaxe can't mine infernium ore");
 		check(canMine(titanium.pickaxe.get(), ModMaterials.INFERNIUM.ore.get().defaultBlockState()), "a titanium pickaxe mines infernium ore");
+		check(!canMine(Items.STONE_PICKAXE, ModMaterials.SILVER.ore.get().defaultBlockState()), "a stone pickaxe can't mine silver ore");
+		check(canMine(Items.IRON_PICKAXE, ModMaterials.SILVER.deepslateOre.get().defaultBlockState()), "an iron pickaxe mines silver ore");
+		check(canMine(ModMaterials.SILVER.pickaxe.get(), Blocks.DIAMOND_ORE.defaultBlockState()), "a silver pickaxe mines diamond ore (iron tier)");
 		check(canMine(Items.WOODEN_PICKAXE, ModBlocks.ALLOY_FORGE.get().defaultBlockState()), "a pickaxe mines the alloy forge");
 		check(!canMine(Items.STICK, ModBlocks.ALLOY_FORGE.get().defaultBlockState()), "the alloy forge needs a pickaxe to drop");
 	}
@@ -804,6 +809,58 @@ public final class GearGameTest implements FabricClientGameTest {
 	}
 
 	// Emerald -------------------------------------------------------------------------
+
+	private void checkSilver(ClientGameTestContext ctx, TestServerContext server) {
+		MaterialSet silver = ModMaterials.SILVER;
+		server.runCommand("tp @p 0 -60 0 0 0");
+		server.runOnServer(s -> {
+			ServerPlayer player = player(s);
+			ServerLevel level = s.overworld();
+			Zombie zombie = EntityTypes.ZOMBIE.create(level, EntitySpawnReason.COMMAND);
+			Pillager pillager = EntityTypes.PILLAGER.create(level, EntitySpawnReason.COMMAND);
+			// The bonus reads the weapon from the attacker's hand.
+			player.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(silver.sword.get()));
+			DamageSource source = level.damageSources().playerAttack(player);
+			check(silver.sword.get().getAttackDamageBonus(zombie, 10.0F, source) == 4.0F, "silver weapons deal 4 extra damage to undead");
+			check(silver.sword.get().getAttackDamageBonus(pillager, 10.0F, source) == 0.0F, "silver weapons deal normal damage to the living");
+			player.setItemSlot(EquipmentSlot.MAINHAND, ItemStack.EMPTY);
+
+			// Armor: 6% less damage from undead per piece, so 24% for the full set.
+			equip(player, silver);
+			float fromZombie = GearCombat.modifyIncomingDamage(player, level.damageSources().mobAttack(zombie), 10.0F);
+			float fromPillager = GearCombat.modifyIncomingDamage(player, level.damageSources().mobAttack(pillager), 10.0F);
+			check(Math.abs(fromZombie - 7.6F) < 0.01F, "the full silver set takes 24% less damage from undead (took " + fromZombie + ")");
+			check(fromPillager == 10.0F, "silver armor doesn't protect against the living");
+
+			// Undead glow nearby: one zombie 5 blocks away, one 14 blocks away.
+			for (int distance : new int[] {5, 14}) {
+				Zombie target = EntityTypes.ZOMBIE.create(level, EntitySpawnReason.COMMAND);
+				target.setNoAi(true);
+				target.setPos(player.getX() + distance, player.getY(), player.getZ());
+				target.addTag("silver_test_" + distance);
+				level.addFreshEntity(target);
+			}
+			player.addEffect(new MobEffectInstance(MobEffects.WITHER, 200));
+			check(player.getEffect(MobEffects.WITHER).getDuration() == 100, "the full silver set halves Wither");
+		});
+		ctx.waitTicks(25);
+		server.runOnServer(s -> {
+			ServerLevel level = s.overworld();
+			boolean nearGlows = level.getEntitiesOfClass(Zombie.class, player(s).getBoundingBox().inflate(20), z -> z.entityTags().contains("silver_test_5")).stream()
+				.anyMatch(z -> z.hasEffect(MobEffects.GLOWING));
+			boolean farGlows = level.getEntitiesOfClass(Zombie.class, player(s).getBoundingBox().inflate(20), z -> z.entityTags().contains("silver_test_14")).stream()
+				.anyMatch(z -> z.hasEffect(MobEffects.GLOWING));
+			check(nearGlows, "undead within 8 blocks glow while wearing the full silver set");
+			check(!farGlows, "undead farther away don't glow");
+		});
+		check(tooltip(ctx, silver.sword.get()).contains("Hallowed"), "silver weapon tooltip shows Hallowed");
+		check(tooltip(ctx, silver.chestplate.get()).contains("Blessed"), "silver armor tooltip shows its set bonus");
+		server.runCommand("kill @e[type=zombie]");
+		server.runOnServer(s -> {
+			unequip(player(s));
+			player(s).removeAllEffects();
+		});
+	}
 
 	private void checkEmerald(ClientGameTestContext ctx, TestServerContext server) {
 		MaterialSet emerald = ModMaterials.EMERALD;
