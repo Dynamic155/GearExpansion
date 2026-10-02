@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.tags.BiomeTags;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
@@ -18,6 +17,7 @@ import com.gearexpansion.material.behavior.BrassBehavior;
 import com.gearexpansion.material.behavior.EmeraldBehavior;
 import com.gearexpansion.material.behavior.InferniumBehavior;
 import com.gearexpansion.material.behavior.VerdigrisBehavior;
+import com.gearexpansion.registry.ModSounds;
 
 /** All gear materials. Stats and ore placement follow ideas.md. */
 public final class ModMaterials {
@@ -29,7 +29,7 @@ public final class ModMaterials {
 	 */
 	public static final MaterialSet ZINC = MaterialSet.builder("zinc")
 		.tools(ToolTier.COPPER, 260, 5.0F, 1.0F, 13)
-		.armor(13, 2, 5, 3, 1, 10, SoundEvents.ARMOR_EQUIP_COPPER, 0.0F, 0.0F)
+		.armor(13, 2, 5, 3, 1, 10, ModSounds.armorEquip("zinc"), 0.0F, 0.0F)
 		.shield(400, 1.0F)
 		.requiresTool(BlockTags.NEEDS_STONE_TOOL)
 		.ore(9, 10, 0, 64, 0.0F)
@@ -44,7 +44,7 @@ public final class ModMaterials {
 	public static final MaterialSet VERDIGRIS = MaterialSet.builder("verdigris")
 		.craftedMaterial("verdigris_plate")
 		.tools(ToolTier.COPPER, 240, 6.5F, 1.0F, 14)
-		.armor(14, 2, 5, 4, 1, 12, SoundEvents.ARMOR_EQUIP_COPPER, 0.0F, 0.0F)
+		.armor(14, 2, 5, 4, 1, 12, ModSounds.armorEquip("verdigris"), 0.0F, 0.0F)
 		.shield(350, 1.0F)
 		.behavior(new VerdigrisBehavior())
 		.build();
@@ -56,7 +56,7 @@ public final class ModMaterials {
 	public static final MaterialSet ROSE_GOLD = MaterialSet.builder("rose_gold")
 		.alloy()
 		.tools(ToolTier.COPPER, 180, 11.0F, 0.5F, 22)
-		.armor(12, 2, 5, 3, 1, 25, SoundEvents.ARMOR_EQUIP_GOLD, 0.0F, 0.0F)
+		.armor(12, 2, 5, 3, 1, 25, ModSounds.armorEquip("rose_gold"), 0.0F, 0.0F)
 		.shield(336, 1.0F)
 		.requiresTool(BlockTags.NEEDS_STONE_TOOL)
 		.piglinSafe()
@@ -72,7 +72,7 @@ public final class ModMaterials {
 		.oreName("bauxite")
 		.tools(ToolTier.IRON, 180, 9.0F, 1.5F, 16)
 		.attackSpeedBonus(0.3F)
-		.armor(12, 2, 5, 4, 1, 14, SoundEvents.ARMOR_EQUIP_IRON, 0.0F, 0.0F)
+		.armor(12, 2, 5, 4, 1, 14, ModSounds.armorEquip("aluminum"), 0.0F, 0.0F)
 		.armorBonus("speed", Attributes.MOVEMENT_SPEED, 0.03, AttributeModifier.Operation.ADD_MULTIPLIED_BASE)
 		.shield(300, 1.0F)
 		.blockingSpeed(1.0F)
@@ -90,7 +90,7 @@ public final class ModMaterials {
 	public static final MaterialSet BRASS = MaterialSet.builder("brass")
 		.alloy()
 		.tools(ToolTier.IRON, 300, 6.5F, 2.0F, 12)
-		.armor(16, 2, 6, 5, 2, 11, SoundEvents.ARMOR_EQUIP_IRON, 0.5F, 0.0F)
+		.armor(16, 2, 6, 5, 2, 11, ModSounds.armorEquip("brass"), 0.5F, 0.0F)
 		.shield(450, 1.0F)
 		.requiresTool(BlockTags.NEEDS_STONE_TOOL)
 		.behavior(new BrassBehavior())
@@ -104,7 +104,7 @@ public final class ModMaterials {
 	public static final MaterialSet EMERALD = MaterialSet.builder("emerald")
 		.baseItem(() -> Items.EMERALD)
 		.tools(ToolTier.IRON, 500, 7.0F, 2.0F, 18)
-		.armor(18, 2, 6, 5, 2, 20, SoundEvents.ARMOR_EQUIP_DIAMOND, 0.0F, 0.0F)
+		.armor(18, 2, 6, 5, 2, 20, ModSounds.armorEquip("emerald"), 0.0F, 0.0F)
 		.armorBonus("luck", Attributes.LUCK, 1.0, AttributeModifier.Operation.ADD_VALUE)
 		.shield(400, 1.0F)
 		.behavior(new EmeraldBehavior())
@@ -117,7 +117,7 @@ public final class ModMaterials {
 	public static final MaterialSet AMETHYST = MaterialSet.builder("amethyst")
 		.craftedMaterial("resonant_crystal")
 		.tools(ToolTier.IRON, 220, 7.0F, 2.0F, 22)
-		.armor(13, 2, 6, 5, 2, 22, SoundEvents.ARMOR_EQUIP_DIAMOND, 0.0F, 0.0F)
+		.armor(13, 2, 6, 5, 2, 22, ModSounds.armorEquip("amethyst"), 0.0F, 0.0F)
 		.shield(300, 1.0F)
 		.behavior(new AmethystBehavior())
 		.build();
@@ -128,7 +128,7 @@ public final class ModMaterials {
 	 */
 	public static final MaterialSet TITANIUM = MaterialSet.builder("titanium")
 		.tools(ToolTier.DIAMOND, 3000, 8.0F, 3.0F, 8)
-		.armor(45, 3, 8, 6, 3, 8, SoundEvents.ARMOR_EQUIP_IRON, 2.5F, 0.05F)
+		.armor(45, 3, 8, 6, 3, 8, ModSounds.armorEquip("titanium"), 2.5F, 0.05F)
 		.shield(1000, 0.4F)
 		.requiresTool(BlockTags.NEEDS_DIAMOND_TOOL)
 		.ore(5, 4, -64, -16, 0.5F)
@@ -141,7 +141,7 @@ public final class ModMaterials {
 	 */
 	public static final MaterialSet INFERNIUM = MaterialSet.builder("infernium")
 		.tools(ToolTier.NETHERITE, 2200, 9.0F, 4.0F, 15)
-		.armor(40, 3, 8, 6, 3, 15, SoundEvents.ARMOR_EQUIP_NETHERITE, 3.0F, 0.1F)
+		.armor(40, 3, 8, 6, 3, 15, ModSounds.armorEquip("infernium"), 3.0F, 0.1F)
 		.shield(900, 0.8F)
 		.requiresTool(BlockTags.NEEDS_DIAMOND_TOOL)
 		.netherOre(4, 4, 10, 40, 0.0F)

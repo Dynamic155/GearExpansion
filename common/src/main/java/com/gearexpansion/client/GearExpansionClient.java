@@ -13,6 +13,7 @@ public final class GearExpansionClient {
 	}
 
 	public static void init() {
+		ClientGearState.init();
 		GearTooltips.init();
 		GearKeys.init();
 		GearHudOverlay.init();

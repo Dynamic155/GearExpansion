@@ -5,6 +5,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+
 import dev.architectury.registry.registries.RegistrySupplier;
 
 import net.fabricmc.fabric.api.client.creativetab.v1.FabricCreativeModeInventoryScreen;
@@ -18,6 +21,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
@@ -57,6 +61,8 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.GenerationStep;
 
 import com.gearexpansion.GearExpansion;
+import com.gearexpansion.config.GearExpansionConfig;
+import com.gearexpansion.network.ConfigSyncPayload;
 import com.gearexpansion.block.entity.AlloyForgeBlockEntity;
 import com.gearexpansion.client.ClientGearState;
 import com.gearexpansion.client.screen.AlloyForgeScreen;
@@ -77,10 +83,12 @@ import com.gearexpansion.worldgen.ModOres;
 
 /**
  * End-to-end checks for every material in a real game: recipes, mining tiers, ore generation,
- * material traits, set bonuses, tooltips, creative tabs, and screenshots of the gear.
+ * material traits, set bonuses, tooltips, creative tabs, screenshots of the gear, and the
+ * Alloy Forge category in JEI or REI (see {@link RecipeViewerChecks}).
  *
- * <p>Run with {@code ./gradlew :fabric:runGameTest}. Screenshots are saved to
- * {@code fabric/build/gametest/screenshots}. Failures are collected and reported together.
+ * <p>Run with {@code ./gradlew :fabric:runGameTest}, which loads JEI; add {@code -Precipe_viewer=rei}
+ * to check REI instead. Screenshots are saved to {@code fabric/build/gametest/screenshots}.
+ * Failures are collected and reported together.
  */
 public final class GearGameTest implements FabricClientGameTest {
 	private final List<String> failures = new ArrayList<>();
@@ -108,6 +116,8 @@ public final class GearGameTest implements FabricClientGameTest {
 			server.runOnServer(this::checkTitaniumDurability);
 			checkTitaniumResistance(ctx, server);
 			checkTooltips(ctx, server);
+			checkSettingsSync(ctx);
+			checkEquipSounds(ctx);
 			checkAlloyForge(ctx, server);
 			checkBrass(ctx, server);
 			checkEmerald(ctx, server);
@@ -116,6 +126,8 @@ public final class GearGameTest implements FabricClientGameTest {
 			checkInfernium(ctx, server);
 
 			screenshots(ctx, server);
+			RecipeViewerChecks.run(ctx, this::check);
+			JadeChecks.run(ctx, server, this::check);
 		}
 
 		if (failures.isEmpty()) {
@@ -385,6 +397,32 @@ public final class GearGameTest implements FabricClientGameTest {
 		check(tooltip(ctx, ModMaterials.ALUMINUM.shield.get()).contains("Lightweight"), "aluminum shield tooltip shows it's lightweight");
 		check(tooltip(ctx, ModMaterials.ALUMINUM.boots.get()).contains("Featherweight"), "aluminum armor tooltip shows its set bonus");
 		server.runOnServer(s -> unequip(player(s)));
+	}
+
+	/** A server's settings take over while connected to it, and this game's come back after leaving. */
+	private void checkSettingsSync(ClientGameTestContext ctx) {
+		JsonObject serverSettings = JsonParser.parseString(GearExpansionConfig.toSyncJson()).getAsJsonObject();
+		serverSettings.addProperty("zincEffectReduction", 75);
+		String json = serverSettings.toString();
+
+		// In singleplayer this game is the server, so a settings packet changes nothing.
+		ctx.runOnClient(mc -> ClientGearState.receiveServerSettings(new ConfigSyncPayload(json)));
+		check(GearExpansionConfig.get().zincEffectReduction == 50, "singleplayer keeps its own settings");
+
+		ctx.runOnClient(mc -> GearExpansionConfig.useServerSettings(json));
+		check(GearExpansionConfig.get().zincEffectReduction == 75, "a server's settings are used while connected");
+		check(tooltip(ctx, ModMaterials.ZINC.helmet.get()).contains("75% shorter"), "tooltips show the server's settings");
+		ctx.runOnClient(mc -> GearExpansionConfig.clearServerSettings());
+		check(GearExpansionConfig.get().zincEffectReduction == 50, "this game's settings come back after leaving a server");
+	}
+
+	/** Every armor set has its own equip sound, and the client knows how to play it. */
+	private void checkEquipSounds(ClientGameTestContext ctx) {
+		for (MaterialSet set : ModMaterials.ALL) {
+			Identifier sound = new ItemStack(set.helmet.get()).get(DataComponents.EQUIPPABLE).equipSound().value().location();
+			check(sound.equals(GearExpansion.id("item.armor.equip_" + set.name)), set.name + " armor has its own equip sound");
+			check(ctx.computeOnClient(mc -> mc.getSoundManager().getSoundEvent(sound) != null), set.name + " equip sound is defined in sounds.json");
+		}
 	}
 
 	private static String tooltip(ClientGameTestContext ctx, Item item) {

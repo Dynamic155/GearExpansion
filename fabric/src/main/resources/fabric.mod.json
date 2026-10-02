@@ -29,6 +29,18 @@
 		],
 		"modmenu": [
 			"com.gearexpansion.fabric.client.GearExpansionModMenu"
+		],
+		"jei_mod_plugin": [
+			"com.gearexpansion.compat.jei.GearJeiPlugin"
+		],
+		"rei_common": [
+			"com.gearexpansion.compat.rei.GearReiCommonPlugin"
+		],
+		"rei_client": [
+			"com.gearexpansion.compat.rei.GearReiClientPlugin"
+		],
+		"jade": [
+			"com.gearexpansion.compat.jade.GearJadePlugin"
 		]
 	},
 	"mixins": [
@@ -36,7 +48,10 @@
 	],
 	"suggests": {
 		"modmenu": "*",
-		"yet_another_config_lib_v3": ">=3.9.7"
+		"yet_another_config_lib_v3": ">=3.9.7",
+		"jei": ">=31.8",
+		"roughlyenoughitems": ">=26.3",
+		"jade": ">=26.3.3"
 	},
 	"depends": {
 		"fabricloader": ">=0.19.5",

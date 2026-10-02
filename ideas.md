@@ -41,8 +41,9 @@ A living planning doc. Tags: **[1.0]** = in the first release, **[later]** = a t
 | Infernium | Done: Nether ore (blast furnace only), upgrade template in Bastion and Fortress loot, smithing upgrade from titanium, fireproof gear, burning weapons, auto-smelting pickaxe, fire-resistant armor, Heat Core set bonus, Eruption ability, glowing 3D armor |
 | Alloy Forge | Done: block, screen, fuel and boost fuels, hopper automation, experience, alloying recipe type |
 | Shared | Done: set abilities on a key (R), HUD meters, advancements, creative tabs, optional YACL settings screen (settings file always works) |
+| Compatibility (1.0.1) | Done: JEI and REI Alloy Forge category, Jade Alloy Forge overlay, server settings synced to clients, a unique equip sound per set, tested on a dedicated server |
 
-Version 1.0.0 is complete.
+Version 1.0.0 is complete, and 1.0.1 finishes the remaining 1.0 promises.
 
 All textures are recolored vanilla textures (see section 11). Stats as built are below and can be tuned in `ModMaterials`.
 
@@ -444,7 +445,7 @@ One shield per material, each with a small blocking perk:
 
 ## 13. Open questions
 
-- [ ] Default key for the Set Ability keybind
-- [ ] Exact Alloy Forge crafting recipe
+- [x] Default key for the Set Ability keybind: R
+- [x] Exact Alloy Forge crafting recipe: bricks around a blast furnace, with a block of copper on top
 - [ ] Armor trim support
 - [ ] Mod icon and branding

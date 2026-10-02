@@ -4,7 +4,7 @@ A Minecraft mod that adds nine new materials, each with a full set of tools, 3D 
 
 The mod aims for a Vanilla+ feel: new content that fits naturally alongside vanilla progression, with strong effects kept in check by meters, cooldowns, and costs. Nearly every number can be changed in the settings.
 
-**Version 1.0.0** for **Minecraft 26.3**, on **Fabric** and **NeoForge**.
+**Version 1.0.1** for **Minecraft 26.3**, on **Fabric** and **NeoForge**.
 
 ## Contents
 
@@ -32,6 +32,9 @@ Install the mod loader for Minecraft 26.3, then put Gear Expansion and its requi
 | [GeckoLib](https://modrinth.com/mod/geckolib) | 5.5.7 or newer | Required |
 | [YetAnotherConfigLib (YACL)](https://modrinth.com/mod/yacl) | 3.9.7+26.3 or newer | Optional: adds the in-game settings screen |
 | [Mod Menu](https://modrinth.com/mod/modmenu) | 21.0.0 or newer | Optional: opens the settings screen from the mods list |
+| [JEI](https://modrinth.com/mod/jei) | 31.8 or newer | Optional: shows Alloy Forge recipes |
+| [REI](https://modrinth.com/mod/rei) | 26.3.823 or newer | Optional: shows Alloy Forge recipes |
+| [Jade](https://modrinth.com/mod/jade) | 26.3.3 or newer | Optional: shows what an Alloy Forge is doing when you look at it |
 
 ### NeoForge
 
@@ -41,8 +44,17 @@ Install the mod loader for Minecraft 26.3, then put Gear Expansion and its requi
 | [Architectury API](https://modrinth.com/mod/architectury-api) | 22.0.3 or newer | Required |
 | [GeckoLib](https://modrinth.com/mod/geckolib) | 5.5.7 or newer | Required |
 | [YetAnotherConfigLib (YACL)](https://modrinth.com/mod/yacl) | 3.9.7+26.3 or newer | Optional: adds the in-game settings screen |
+| [JEI](https://modrinth.com/mod/jei) | 31.8 or newer | Optional: shows Alloy Forge recipes |
+| [REI](https://modrinth.com/mod/rei) | 26.3.823 or newer | Optional: shows Alloy Forge recipes |
+| [Jade](https://modrinth.com/mod/jade) | 26.3.1 or newer | Optional: shows what an Alloy Forge is doing when you look at it |
 
-Download the Gear Expansion file for your loader from the [Releases](../../releases) page: `gearexpansion-fabric-1.0.0.jar` or `gearexpansion-neoforge-1.0.0.jar`. Make sure every library is the Minecraft 26.3 version for your loader.
+Notes on the optional mods:
+
+- REI needs to be installed on the server as well for the recipes to show in multiplayer. JEI only needs to be on your game.
+- REI 26.3.823 on NeoForge can crash shortly after joining a world, inside REI itself. JEI works on both loaders.
+- Jade 26.3.4 crashes on startup by itself, on both loaders. Until it is fixed, use Jade 26.3.3 on Fabric or 26.3.1 on NeoForge.
+
+Download the Gear Expansion file for your loader from the [Releases](../../releases) page: `gearexpansion-fabric-1.0.1.jar` or `gearexpansion-neoforge-1.0.1.jar`. Make sure every library is the Minecraft 26.3 version for your loader.
 
 ## Every material at a glance
 
@@ -214,6 +226,7 @@ A workstation for making alloys.
 - **Experience:** taking the results gives experience, like a furnace.
 - **Automation:** hoppers on top fill the inputs, hoppers on the side add fuel, and hoppers underneath take the results.
 - **Compatibility:** recipes use the common ingot tags, so copper, zinc, and gold from other mods work too.
+- **Recipe viewers:** with JEI or REI installed, the Alloy Forge has its own recipe category. With Jade installed, looking at a forge shows its inputs, fuel, progress, and result.
 
 ## Set abilities and the HUD
 
@@ -230,11 +243,14 @@ With **YACL** installed, you can also change them in game:
 - **Fabric:** open Mod Menu, select Gear Expansion, and click the settings button.
 - **NeoForge:** open Mods from the title screen, select Gear Expansion, and click Config.
 
+**On a server**, the server's settings are what count. When you join, your game uses the server's settings until you leave, so tooltips match what actually happens. Your own settings file isn't changed.
+
 ## Other features
 
 - **Creative tabs:** four tabs, Blocks, Tools, Combat, and Ingredients, grouped by material.
 - **Advancements:** a Gear Expansion tab with an advancement for each material, the Alloy Forge, and the Infernium upgrade.
 - **Compatibility:** ores, raw materials, ingots, nuggets, and storage blocks use the common `c:` tags (for example `c:ingots/titanium`), so other mods' machines and recipes recognize them.
+- **Equip sounds:** each armor set has its own sound when you put it on.
 - **Armor trims** aren't supported yet; the 3D armor has its own look.
 
 ## Building from source
@@ -271,6 +287,10 @@ Automated in-game checks start a test world, verify recipes, mining tiers, ore g
 ```
 ./gradlew :fabric:runGameTest
 ```
+
+JEI and REI are optional. Development runs (`runClient`, `runGameTest`) load JEI; pick another with `-Precipe_viewer=rei`, `jei,rei`, or `none`, for example `./gradlew :fabric:runGameTest -Precipe_viewer=rei`. Jade is always loaded in development runs.
+
+To test on a dedicated server, run `./gradlew :fabric:runServer` or `./gradlew :neoforge:runServer`. The server uses `run/server` in that module, with its own world and settings file.
 
 A passing run logs `All Gear Expansion checks passed`. The task can still report a failure afterwards because a development-only Architectury tool keeps the game from closing within 15 seconds; this does not affect the built mod.
 

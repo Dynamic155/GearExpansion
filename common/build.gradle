@@ -21,4 +21,11 @@ dependencies {
 	// YACL has no common artifact. Compile against the Fabric jar and only use its
 	// `dev.isxander.yacl3.api` classes, which are identical on both platforms.
 	compileOnly("dev.isxander:yet-another-config-lib:$rootProject.yacl_version-fabric") { transitive = false }
+
+	// Optional recipe viewers. Only their loader-independent APIs are used here.
+	compileOnly("mezz.jei:jei-$rootProject.minecraft_version-common-api:$rootProject.jei_version") { transitive = false }
+	compileOnly("me.shedaniel:RoughlyEnoughItems-api:$rootProject.rei_version") { transitive = false }
+	// Jade has no separate API jar; its classes are the same on both loaders, so compile against Fabric's.
+	compileOnly("maven.modrinth:jade:$rootProject.jade_fabric_version") { transitive = false }
+	compileOnly "me.shedaniel.cloth:basic-math:$rootProject.cloth_basic_math_version"
 }

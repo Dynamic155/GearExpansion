@@ -3,10 +3,13 @@ package com.gearexpansion.client;
 import dev.isxander.yacl3.api.YetAnotherConfigLib;
 import dev.isxander.yacl3.config.v2.api.ConfigClassHandler;
 import dev.isxander.yacl3.config.v2.api.serializer.GsonConfigSerializerBuilder;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.server.MinecraftServer;
 
 import com.gearexpansion.GearExpansion;
 import com.gearexpansion.config.GearExpansionConfig;
+import com.gearexpansion.network.ModNetwork;
 
 /**
  * The in-game settings screen, built by YACL from the annotations on {@link GearExpansionConfig}.
@@ -33,6 +36,11 @@ final class YaclConfigScreen {
 				generated.saveFunction().run();
 				// Pick up YACL's changes, and rewrite the file with comments.
 				GearExpansionConfig.load();
+				// When hosting a LAN world, players who joined keep up with the new settings.
+				MinecraftServer server = Minecraft.getInstance().getSingleplayerServer();
+				if (server != null) {
+					server.execute(() -> server.getPlayerList().getPlayers().forEach(ModNetwork::sendSettings));
+				}
 			})
 			.build()
 			.generateScreen(parent);

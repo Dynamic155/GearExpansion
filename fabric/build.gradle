@@ -30,6 +30,8 @@ repositories {
 	}
 }
 
+def recipeViewers = rootProject.recipe_viewer.split(',')*.trim()
+
 dependencies {
 	implementation "net.fabricmc:fabric-loader:$rootProject.fabric_loader_version"
 	implementation "net.fabricmc.fabric-api:fabric-api:$rootProject.fabric_api_version"
@@ -42,12 +44,32 @@ dependencies {
 	compileOnly("com.terraformersmc:modmenu:$rootProject.modmenu_version") { transitive = false }
 	localRuntime "com.terraformersmc:modmenu:$rootProject.modmenu_version"
 
+	// Optional recipe viewers. The plugins live in common; the game test also uses their APIs.
+	compileOnly("mezz.jei:jei-$rootProject.minecraft_version-common-api:$rootProject.jei_version") { transitive = false }
+	compileOnly("me.shedaniel:RoughlyEnoughItems-api-fabric:$rootProject.rei_version") { transitive = false }
+	// Pick the one the development runs load with -Precipe_viewer=jei|rei|none.
+	if (recipeViewers.contains('jei')) {
+		// The JEI jar already contains its common code, so only its other dependencies are needed.
+		localRuntime("mezz.jei:jei-$rootProject.minecraft_version-fabric:$rootProject.jei_version") { exclude group: 'mezz.jei' }
+	}
+	if (recipeViewers.contains('rei')) {
+		localRuntime "me.shedaniel:RoughlyEnoughItems-fabric:$rootProject.rei_version"
+	}
+
+	// Optional block info overlay. The plugin lives in common.
+	compileOnly("maven.modrinth:jade:$rootProject.jade_fabric_version") { transitive = false }
+	localRuntime "maven.modrinth:jade:$rootProject.jade_fabric_version"
+
 	common(project(path: ':common')) { transitive = false }
 	shadowBundle project(path: ':common', configuration: 'transformProductionFabric')
 }
 
 loom {
 	runs {
+		// A dedicated server in its own folder, so it has its own world and settings file.
+		server {
+			runDir 'run/server'
+		}
 		// Automated in-game checks: ./gradlew :fabric:runGameTest
 		gameTest {
 			inherit client

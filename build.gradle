@@ -40,6 +40,43 @@ subprojects {
 			name = 'Xander Maven'
 			url = 'https://maven.isxander.dev/releases'
 		}
+		exclusiveContent {
+			forRepository {
+				maven {
+					name = 'BlameJared'
+					url = 'https://maven.blamejared.com/'
+				}
+			}
+			filter {
+				// JEI and its config library.
+				includeGroup('mezz.jei')
+				includeGroup('net.mezzdev.config')
+			}
+		}
+		exclusiveContent {
+			forRepository {
+				maven {
+					name = 'Shedaniel'
+					url = 'https://maven.shedaniel.me/'
+				}
+			}
+			filter {
+				// REI and Cloth Config.
+				includeGroupAndSubgroups('me.shedaniel')
+			}
+		}
+		exclusiveContent {
+			forRepository {
+				maven {
+					name = 'Modrinth'
+					url = 'https://api.modrinth.com/maven'
+				}
+			}
+			filter {
+				// Jade.
+				includeGroup('maven.modrinth')
+			}
+		}
 	}
 
 	dependencies {

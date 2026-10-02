@@ -269,6 +269,16 @@ public final class AlloyForgeBlockEntity extends BaseContainerBlockEntity implem
 		return litTimeRemaining > 0 && speedMultiplier > 1.0F;
 	}
 
+	/** Ticks the current alloy has cooked for, for Jade. */
+	public int cookingTimer() {
+		return cookingTimer;
+	}
+
+	/** Ticks the current alloy takes in total, for Jade. Zero when nothing is cooking. */
+	public int cookingTotalTime() {
+		return cookingTotalTime;
+	}
+
 	// Experience -------------------------------------------------------------------------
 
 	/** Gives the player the experience stored by finished alloys. Called when they take the output. */

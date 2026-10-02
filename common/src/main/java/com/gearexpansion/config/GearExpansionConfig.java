@@ -33,6 +33,8 @@ public final class GearExpansionConfig {
 	public static final String FILE_NAME = "gearexpansion.json5";
 	private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
 	private static volatile GearExpansionConfig instance = new GearExpansionConfig();
+	// The server's settings while connected to one, so gameplay and tooltips match it. Never saved.
+	private static volatile GearExpansionConfig serverOverride;
 
 	// Zinc
 
@@ -250,8 +252,38 @@ public final class GearExpansionConfig {
 	@Comment("Seconds before Eruption can be used again.")
 	public int inferniumEruptionCooldown = 30;
 
+	/** The settings in effect: the server's while connected to a remote server, otherwise this game's file. */
 	public static GearExpansionConfig get() {
-		return instance;
+		GearExpansionConfig override = serverOverride;
+		return override != null ? override : instance;
+	}
+
+	/** This game's settings, as a JSON object, to send to connecting players. */
+	public static String toSyncJson() {
+		JsonObject object = new JsonObject();
+		for (Field field : fields()) {
+			try {
+				object.add(field.getName(), GSON.toJsonTree(field.get(instance)));
+			} catch (IllegalAccessException e) {
+				throw new IllegalStateException(e);
+			}
+		}
+		return GSON.toJson(object);
+	}
+
+	/** Uses the settings a server sent until {@link #clearServerSettings()}. The settings file is left alone. */
+	public static void useServerSettings(String json) {
+		try {
+			serverOverride = read(GSON.fromJson(json, JsonObject.class));
+			GearExpansion.LOGGER.info("Using the server's Gear Expansion settings");
+		} catch (RuntimeException | IllegalAccessException e) {
+			GearExpansion.LOGGER.error("Couldn't read the server's Gear Expansion settings; using this game's", e);
+		}
+	}
+
+	/** Goes back to this game's own settings, after leaving a server. */
+	public static void clearServerSettings() {
+		serverOverride = null;
 	}
 
 	public static Path path() {
@@ -267,19 +299,25 @@ public final class GearExpansionConfig {
 				// Lenient reading accepts the // comments the file is written with.
 				JsonReader json = new JsonReader(reader);
 				json.setStrictness(Strictness.LENIENT);
-				JsonObject object = GSON.fromJson(json, JsonObject.class);
-				for (Field field : fields()) {
-					JsonElement value = object == null ? null : object.get(field.getName());
-					if (value != null) {
-						field.set(loaded, GSON.fromJson(value, field.getType()));
-					}
-				}
+				loaded = read(GSON.fromJson(json, JsonObject.class));
 			} catch (IOException | RuntimeException | IllegalAccessException e) {
 				GearExpansion.LOGGER.error("Couldn't read {}; using default settings", path, e);
 			}
 		}
 		instance = loaded;
 		save();
+	}
+
+	/** Settings from a JSON object, keeping defaults for anything missing. */
+	private static GearExpansionConfig read(JsonObject object) throws IllegalAccessException {
+		GearExpansionConfig config = new GearExpansionConfig();
+		for (Field field : fields()) {
+			JsonElement value = object == null ? null : object.get(field.getName());
+			if (value != null) {
+				field.set(config, GSON.fromJson(value, field.getType()));
+			}
+		}
+		return config;
 	}
 
 	/** Writes the current settings, with a comment above each one explaining it. */

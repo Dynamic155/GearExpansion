@@ -48,5 +48,28 @@ versionRange = "[3.9.7,)"
 ordering = "AFTER"
 side = "BOTH"
 
+# Optional recipe viewers: Gear Expansion adds an Alloy Forge category when one is installed.
+[[dependencies.gearexpansion]]
+modId = "jei"
+type = "optional"
+versionRange = "[31.8,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.gearexpansion]]
+modId = "roughlyenoughitems"
+type = "optional"
+versionRange = "[26.3,)"
+ordering = "NONE"
+side = "BOTH"
+
+# Optional block info overlay: shows what the Alloy Forge is doing.
+[[dependencies.gearexpansion]]
+modId = "jade"
+type = "optional"
+versionRange = "[26.3.1,)"
+ordering = "NONE"
+side = "BOTH"
+
 [[mixins]]
 config = "gearexpansion.mixins.json"

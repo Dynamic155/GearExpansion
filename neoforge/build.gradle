@@ -30,12 +30,30 @@ repositories {
 	}
 }
 
+def recipeViewers = rootProject.recipe_viewer.split(',')*.trim()
+
 dependencies {
 	neoForge "net.neoforged:neoforge:$rootProject.neoforge_version"
 	implementation "dev.architectury:architectury-neoforge:$rootProject.architectury_api_version"
 
 	implementation "com.geckolib:geckolib-neoforge-$rootProject.minecraft_version:$rootProject.geckolib_version"
 	implementation "dev.isxander:yet-another-config-lib:$rootProject.yacl_version-neoforge"
+
+	// Optional recipe viewers. The plugins live in common; this module only adds NeoForge's plugin annotations.
+	compileOnly("mezz.jei:jei-$rootProject.minecraft_version-common-api:$rootProject.jei_version") { transitive = false }
+	compileOnly("me.shedaniel:RoughlyEnoughItems-api-neoforge:$rootProject.rei_version") { transitive = false }
+	// Pick the one the development runs load with -Precipe_viewer=jei|rei|none.
+	if (recipeViewers.contains('jei')) {
+		// The JEI jar already contains its common code, so only its other dependencies are needed.
+		localRuntime("mezz.jei:jei-$rootProject.minecraft_version-neoforge:$rootProject.jei_version") { exclude group: 'mezz.jei' }
+	}
+	if (recipeViewers.contains('rei')) {
+		localRuntime "me.shedaniel:RoughlyEnoughItems-neoforge:$rootProject.rei_version"
+	}
+
+	// Optional block info overlay. The plugin lives in common.
+	compileOnly("maven.modrinth:jade:$rootProject.jade_neoforge_version") { transitive = false }
+	localRuntime "maven.modrinth:jade:$rootProject.jade_neoforge_version"
 
 	common(project(path: ':common')) { transitive = false }
 	shadowBundle project(path: ':common', configuration: 'transformProductionNeoForge')
@@ -70,5 +88,14 @@ configurations {
 	runtimeElements {
 		outgoing.artifacts.clear()
 		outgoing.artifact(shadowJar)
+	}
+}
+
+loom {
+	runs {
+		// A dedicated server in its own folder, so it has its own world and settings file.
+		server {
+			runDir 'run/server'
+		}
 	}
 }

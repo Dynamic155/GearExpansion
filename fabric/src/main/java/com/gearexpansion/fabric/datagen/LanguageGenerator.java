@@ -30,6 +30,13 @@ final class LanguageGenerator extends FabricLanguageProvider {
 
 		t.add(ModBlocks.ALLOY_FORGE.get(), "Alloy Forge");
 		t.add("container.gearexpansion.alloy_forge", "Alloy Forge");
+		// Alloy Forge recipes in JEI and REI.
+		t.add("gui.gearexpansion.alloying.cooking_time", "%ss");
+		t.add("gui.gearexpansion.alloying.boosted_time", "%ss with a boost fuel such as blaze powder or lava");
+		t.add("gui.gearexpansion.alloying.experience", "%s XP");
+		// Looking at the Alloy Forge with Jade.
+		t.add("config.jade.plugin_gearexpansion.alloy_forge", "Alloy Forge Contents");
+		t.add("jade.gearexpansion.alloy_forge.boosted", "Boosted: alloying twice as fast");
 
 		for (MaterialSet set : ModMaterials.ALL) {
 			String name = title(set.name);

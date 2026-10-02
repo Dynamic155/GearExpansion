@@ -1,5 +1,19 @@
 # Changelog
 
+## 1.0.1 - Compatibility
+
+Finishes what 1.0 set out to do.
+
+- **JEI and REI**: an Alloy Forge category lists every alloying recipe, with the cooking time, the faster time with a boost fuel, and the experience. REI needs to be installed on the server too for the recipes to show in multiplayer; JEI only needs to be on the client.
+- **Jade**: looking at an Alloy Forge shows its inputs, fuel, progress, and result, and whether a boost fuel is burning.
+- **Settings sync**: when you join a server, your game uses the server's settings while you're connected, so tooltips match what actually happens. Your own settings file is never changed, and your settings come back when you leave.
+- **Equip sounds**: every armor set has its own equip sound.
+
+### Known issues
+
+- REI 26.3.823 on NeoForge can crash shortly after joining a world, inside REI's own code. JEI works on both loaders.
+- Jade 26.3.4 crashes on startup by itself, with or without Gear Expansion, on both loaders. Jade 26.3.3 (Fabric) and 26.3.1 (NeoForge) work.
+
 ## 1.0.0 - Foundations
 
 The first release, for Minecraft 26.3 on Fabric and NeoForge.
