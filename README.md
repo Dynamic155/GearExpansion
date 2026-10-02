@@ -70,7 +70,10 @@ From weakest to strongest. Tier is what the pickaxe can mine, using vanilla's ti
 | Silver | Iron | 280 | 6 | 15 | Ore | Blessed |
 | Emerald | Iron | 500 | 6 | 15 | Emeralds | Merchant's Favor |
 | Amethyst | Iron | 220 | 6 | 15 | Resonant Crystals | Shatterguard |
+| Steel | Iron | 750 | 6.5 | 16 | Alloy Forge | Hardened |
 | Titanium | Diamond | 3000 | 7 | 20 | Rare deep ore | Unbreakable Will |
+| Cobalt | Diamond | 1100 | 6.5 | 15 | Nether ore | Overdrive |
+| Tungsten | Diamond | 2400 | 8 | 20 | Very rare, very deep ore | Immovable |
 | Infernium | Netherite | 2200 | 8 | 20 | Nether ore and a template | Heat Core |
 
 Every material has a **sword, pickaxe, axe, shovel, hoe, spear, helmet, chestplate, leggings, boots, and shield**.
@@ -150,6 +153,8 @@ A steampunk alloy of copper and zinc.
 
 ### Silver
 
+![Silver gear](docs/images/silver.png)
+
 A precious metal for fighting the undead.
 
 - **Getting it:** Silver Ore is found between Y -16 and Y 48, in stone and deepslate. Mine it with an iron pickaxe or better, then smelt or blast the raw silver.
@@ -184,6 +189,17 @@ Crystal gear: fragile, but highly enchantable and full of tricks.
 - **Chiming armor:** the armor chimes softly when you're hit.
 - **Set bonus, Shatterguard:** a crystal shell completely absorbs one hit, shatters, and regrows over 45 seconds (shown above the hotbar).
 
+### Steel
+
+![Steel gear](docs/images/steel.png)
+
+Plain, dependable, and tough. No gimmicks.
+
+- **Getting it:** in the **Alloy Forge**, 1 iron ingot and 2 coal (or charcoal) make 1 Steel Ingot.
+- **Gear:** iron tier, with about three times iron's durability (750) and a little more damage. The armor has 1 toughness per piece.
+- **Shield, Reinforced:** 1200 durability, far more than a normal shield.
+- **Set bonus, Hardened:** +2 armor toughness.
+
 ### Titanium
 
 ![Titanium gear](docs/images/titanium.png)
@@ -196,6 +212,31 @@ The reliable workhorse: diamond-level gear that almost never breaks.
 - **Shield:** 1000 durability, and axes disable it for less than half the usual time.
 - **Set bonus, Unbreakable Will:** everything you use loses 50% less durability. Dropping below 30% health gives Resistance I for 5 seconds (once a minute).
 - **Notes:** titanium gear is the base for Infernium.
+
+### Cobalt
+
+![Cobalt gear](docs/images/cobalt.png)
+
+A deep blue Nether metal for fast mining.
+
+- **Getting it:** Cobalt Ore is found throughout the Nether, from Y 0 to Y 128, in netherrack. Mine it with an iron pickaxe or better, then smelt or blast the raw cobalt.
+- **Swift:** cobalt tools are the fastest in the mod, faster than gold. Diamond tier.
+- **Shield, Quick Guard:** blocks the moment you raise it, with no delay.
+- **Set bonus, Overdrive:** every 6 blocks you mine in a row (with at most 2 seconds between them) adds a level of Haste, up to Haste II. Stop mining and it fades.
+
+### Tungsten
+
+![Tungsten gear](docs/images/tungsten.png)
+
+The tank: heavy, slow, and immovable.
+
+- **Getting it:** Tungsten Ore is very rare, at the very bottom of the world (Y -64 to Y -48), in small, mostly buried veins. Mine it with a diamond pickaxe or better, then smelt or blast the raw tungsten.
+- **Weapons:** slow but hard-hitting (a tungsten sword hits as hard as netherite). **Crushing:** tungsten axes and spears knock targets back further.
+- **Tools:** diamond tier with 2400 durability, but they mine slowly.
+- **Armor, Heavy:** diamond-level protection, 3 toughness, and the most knockback resistance in the mod (0.15 per piece), but each piece makes you 4% slower.
+- **Shield, Bulwark:** slow to raise (twice as long as a normal shield), but 1500 durability, and axes disable it for less than a third of the usual time.
+- **Set bonus, Immovable:** no knockback at all while sneaking, and explosions deal 40% less damage.
+- **Ability, Ground Slam (R):** stomp the ground to hurt (4 damage), knock back, and slow every mob within 5 blocks. 20 second cooldown.
 
 ### Infernium
 
@@ -233,7 +274,8 @@ A workstation for making alloys.
 - **Use:** put the ingredients in any of the three input slots and fuel in the bottom slot. Recipes:
   - 3 copper ingots + 1 zinc ingot = 4 Brass Ingots
   - 3 gold ingots + 1 copper ingot = 2 Rose Gold Ingots
-- **Fuel:** any normal furnace fuel. **Blaze powder** and **lava buckets** make it work twice as fast.
+  - 1 iron ingot + 2 coal or charcoal = 1 Steel Ingot (takes a little longer)
+- **Fuel:** any normal furnace fuel. **Blaze powder** and **lava buckets** make it work twice as fast. Shift-clicking fuel puts it in the fuel slot; once that is full, extra coal goes to the inputs for steel.
 - **Experience:** taking the results gives experience, like a furnace.
 - **Automation:** hoppers on top fill the inputs, hoppers on the side add fuel, and hoppers underneath take the results.
 - **Compatibility:** recipes use the common ingot tags, so copper, zinc, and gold from other mods work too.
@@ -241,7 +283,7 @@ A workstation for making alloys.
 
 ## Set abilities and the HUD
 
-- **Set Ability key:** **R** by default. Change it under Controls, in the Gear Expansion category. It uses the ability of the full set you're wearing: **Spring Release** (Brass) or **Eruption** (Infernium).
+- **Set Ability key:** **R** by default. Change it under Controls, in the Gear Expansion category. It uses the ability of the full set you're wearing: **Spring Release** (Brass), **Ground Slam** (Tungsten), or **Eruption** (Infernium).
 - **HUD meters** appear above the hotbar only when they matter: Brass's spring, Infernium's heat gauge, Amethyst's crystal shell, and the ability cooldown.
 - **Tooltips** show each item's special traits, the set bonus, and how many pieces of the set you're wearing, like "Titanium Set (3/4)". The bonus is greyed out until you wear all four.
 

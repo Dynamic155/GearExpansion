@@ -2,6 +2,7 @@ package com.gearexpansion.setbonus;
 
 import java.util.List;
 
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
@@ -14,6 +15,7 @@ import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.block.state.BlockState;
 
 import com.gearexpansion.material.MaterialSet;
 import com.gearexpansion.network.GearHudPayload;
@@ -98,6 +100,18 @@ public abstract class SetBonus {
 	/** Attribute modifiers applied to players while the full set is worn, and removed when it isn't. */
 	public List<AttributeBonus> attributeBonuses() {
 		return List.of();
+	}
+
+	/**
+	 * The attribute modifiers for one player right now, for bonuses that depend on what the player
+	 * is doing. Return the same ids every time; an amount of 0 removes that modifier.
+	 */
+	public List<AttributeBonus> attributeBonuses(ServerPlayer player) {
+		return attributeBonuses();
+	}
+
+	/** After the wearer breaks a block with anything. Called only while the full set is worn. */
+	public void onBlockBroken(ServerPlayer player, BlockState state, BlockPos pos) {
 	}
 
 	public Component name() {

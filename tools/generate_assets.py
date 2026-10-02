@@ -107,6 +107,30 @@ MATERIALS = {
         "stretch": True,
         "glowmask": True,
     },
+    "steel": {
+        "tools": "iron", "armor": "iron",
+        "ingot": "iron_ingot", "nugget": "iron_nugget", "block": "iron_block",
+        # Dark, practical blue-grey steel, clearly darker than iron.
+        "metal": ["#121418", "#24282E", "#3A4048", "#555D67", "#788290", "#A2ACB7"],
+    },
+    "cobalt": {
+        "tools": "diamond", "armor": "diamond",
+        "raw": "iron", "ore": "nether_gold", "ore_base": "netherrack",
+        # Deep, saturated cobalt blue.
+        "metal": ["#070E2E", "#10215E", "#1C3A92", "#2F5BC4", "#5A88E6", "#9DBEF8"],
+        "raw_colors": ["#0B1230", "#17255A", "#253C86", "#3A58AE", "#5F80D0", "#94AEEA"],
+        "ore_colors": ["#0B1A4A", "#14307E", "#2050B4", "#3A78E0", "#6AA2F4", "#B2D0FF"],
+    },
+    "tungsten": {
+        "tools": "netherite", "armor": "netherite", "raw": "iron", "ore": "iron",
+        "ingot": "netherite_ingot", "nugget": "iron_nugget", "block": "netherite_block",
+        # Dark gunmetal grey with a faint warm tint. Netherite is dark, so stretch it.
+        "metal": ["#111110", "#252422", "#3D3B38", "#5B5853", "#817C75", "#ACA69D"],
+        "raw_colors": ["#1A1918", "#302E2C", "#4A4744", "#69655F", "#8D8880", "#B5AFA6"],
+        # Warm tan specks (like scheelite), so the ore stands out on deepslate.
+        "ore_colors": ["#2A2118", "#4E3D2A", "#76603F", "#9F8659", "#C6AE7D", "#E8D6A8"],
+        "stretch": True,
+    },
     "titanium": {
         "tools": "iron", "armor": "iron", "raw": "iron", "ore": "diamond",
         # Cool blue-grey steel, so it reads differently from iron.

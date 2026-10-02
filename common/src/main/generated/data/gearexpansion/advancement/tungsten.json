@@ -1,0 +1,32 @@
+{
+  "parent": "gearexpansion:root",
+  "criteria": {
+    "has_tungsten_ingot": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gearexpansion:tungsten_ingot"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.gearexpansion.tungsten.description"
+    },
+    "icon": {
+      "id": "gearexpansion:tungsten_ingot"
+    },
+    "title": {
+      "translate": "advancements.gearexpansion.tungsten.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_tungsten_ingot"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

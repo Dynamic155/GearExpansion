@@ -226,6 +226,20 @@ public final class GearExpansionConfig {
 	@Comment("Seconds for the crystal shell to regrow after it absorbs a hit.")
 	public int amethystShellRegrowSeconds = 45;
 
+	// Steel
+
+	@AutoGen(category = "steel", group = "set_bonus")
+	@TickBox
+	@SerialEntry
+	@Comment("Whether the full Steel set grants its Hardened bonus.")
+	public boolean steelSetBonus = true;
+
+	@AutoGen(category = "steel", group = "set_bonus")
+	@IntSlider(min = 0, max = 8, step = 1)
+	@SerialEntry
+	@Comment("Extra armor toughness while wearing the full set.")
+	public int steelToughnessBonus = 2;
+
 	// Titanium
 
 	@AutoGen(category = "titanium", group = "set_bonus")
@@ -257,6 +271,58 @@ public final class GearExpansionConfig {
 	@SerialEntry
 	@Comment("Seconds before the Resistance bonus can trigger again.")
 	public int titaniumResistanceCooldown = 60;
+
+	// Cobalt
+
+	@AutoGen(category = "cobalt", group = "set_bonus")
+	@TickBox
+	@SerialEntry
+	@Comment("Whether the full Cobalt set grants its Overdrive bonus.")
+	public boolean cobaltSetBonus = true;
+
+	@AutoGen(category = "cobalt", group = "set_bonus")
+	@IntSlider(min = 1, max = 32, step = 1)
+	@SerialEntry
+	@Comment("Blocks broken in a row for each level of Haste (up to Haste II).")
+	public int cobaltOverdriveBlocks = 6;
+
+	@AutoGen(category = "cobalt", group = "set_bonus")
+	@IntSlider(min = 1, max = 10, step = 1, format = "%ds")
+	@SerialEntry
+	@Comment("Most seconds between blocks before the chain breaks. Haste also lasts this long.")
+	public int cobaltOverdriveWindow = 2;
+
+	// Tungsten
+
+	@AutoGen(category = "tungsten", group = "gear")
+	@IntSlider(min = 0, max = 20, step = 1)
+	@SerialEntry
+	@Comment("Extra knockback from tungsten axes and spears, in tenths (6 = 0.6, like Knockback I is 0.5).")
+	public int tungstenKnockback = 6;
+
+	@AutoGen(category = "tungsten", group = "set_bonus")
+	@TickBox
+	@SerialEntry
+	@Comment("Whether the full Tungsten set grants its Immovable bonus and Ground Slam ability.")
+	public boolean tungstenSetBonus = true;
+
+	@AutoGen(category = "tungsten", group = "set_bonus")
+	@IntSlider(min = 0, max = 100, step = 5, format = "%d%%")
+	@SerialEntry
+	@Comment("Less damage from explosions while wearing the full set.")
+	public int tungstenExplosionReduction = 40;
+
+	@AutoGen(category = "tungsten", group = "set_bonus")
+	@IntSlider(min = 1, max = 20, step = 1)
+	@SerialEntry
+	@Comment("Damage Ground Slam deals to each mob nearby.")
+	public int tungstenSlamDamage = 4;
+
+	@AutoGen(category = "tungsten", group = "set_bonus")
+	@IntSlider(min = 5, max = 120, step = 5, format = "%ds")
+	@SerialEntry
+	@Comment("Seconds before Ground Slam can be used again.")
+	public int tungstenSlamCooldown = 20;
 
 	// Infernium
 

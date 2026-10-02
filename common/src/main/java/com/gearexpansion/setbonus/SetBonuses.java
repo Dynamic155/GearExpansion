@@ -6,11 +6,11 @@ import java.util.Optional;
 import java.util.UUID;
 import java.util.WeakHashMap;
 
+import dev.architectury.event.events.common.TickEvent;
 import dev.architectury.networking.NetworkManager;
 import net.minecraft.ChatFormatting;
+import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
-
-import dev.architectury.event.events.common.TickEvent;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -19,6 +19,7 @@ import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.block.state.BlockState;
 
 import com.gearexpansion.network.GearHudPayload;
 
@@ -32,10 +33,14 @@ public final class SetBonuses {
 	public static final SetBonus SILVER = new SilverSetBonus();
 	public static final SetBonus EMERALD = new EmeraldSetBonus();
 	public static final SetBonus AMETHYST = new AmethystSetBonus();
+	public static final SetBonus STEEL = new SteelSetBonus();
 	public static final SetBonus TITANIUM = new TitaniumSetBonus();
+	public static final CobaltSetBonus COBALT = new CobaltSetBonus();
+	public static final SetBonus TUNGSTEN = new TungstenSetBonus();
 	public static final SetBonus INFERNIUM = new InferniumSetBonus();
 
-	public static final List<SetBonus> ALL = List.of(ZINC, VERDIGRIS, ROSE_GOLD, ALUMINUM, BRASS, SILVER, EMERALD, AMETHYST, TITANIUM, INFERNIUM);
+	public static final List<SetBonus> ALL = List.of(ZINC, VERDIGRIS, ROSE_GOLD, ALUMINUM, BRASS, SILVER, EMERALD, AMETHYST, STEEL,
+		TITANIUM, COBALT, TUNGSTEN, INFERNIUM);
 
 	/** The HUD meters last sent to each player, so unchanged values aren't resent. */
 	private static final Map<UUID, GearHudPayload> SENT_HUD = new WeakHashMap<>();
@@ -75,6 +80,15 @@ public final class SetBonuses {
 		if (!hud.equals(SENT_HUD.get(player.getUUID())) && NetworkManager.canPlayerReceive(player, GearHudPayload.TYPE)) {
 			SENT_HUD.put(player.getUUID(), hud);
 			NetworkManager.sendToPlayer(player, hud);
+		}
+	}
+
+	/** After {@code player} breaks a block, for set bonuses that react to mining. */
+	public static void onBlockBroken(ServerPlayer player, BlockState state, BlockPos pos) {
+		for (SetBonus bonus : ALL) {
+			if (bonus.isActive(player)) {
+				bonus.onBlockBroken(player, state, pos);
+			}
 		}
 	}
 
@@ -124,7 +138,7 @@ public final class SetBonuses {
 
 	/** Adds a bonus's attribute modifiers while it's active and removes them once it isn't. */
 	private static void syncAttributes(ServerPlayer player, SetBonus bonus, boolean active) {
-		for (SetBonus.AttributeBonus attribute : bonus.attributeBonuses()) {
+		for (SetBonus.AttributeBonus attribute : bonus.attributeBonuses(player)) {
 			AttributeInstance instance = player.getAttribute(attribute.attribute());
 			if (instance == null) {
 				continue;

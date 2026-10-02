@@ -5,6 +5,8 @@
     "#c:ores/aluminum",
     "#c:ores/silver",
     "#c:ores/titanium",
+    "#c:ores/cobalt",
+    "#c:ores/tungsten",
     "#c:ores/infernium"
   ]
 }

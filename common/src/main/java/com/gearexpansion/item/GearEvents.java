@@ -16,6 +16,7 @@ import net.minecraft.world.level.storage.loot.predicates.LootItemRandomChanceCon
 import net.minecraft.world.level.storage.loot.providers.number.ints.ContextIntProviders;
 
 import com.gearexpansion.material.ModMaterials;
+import com.gearexpansion.setbonus.SetBonuses;
 
 /** Event listeners for gear that don't belong to a single item class. */
 public final class GearEvents {
@@ -26,6 +27,7 @@ public final class GearEvents {
 		BlockEvent.BREAK.register((level, pos, state, player) -> {
 			ItemStack tool = player.getMainHandItem();
 			ModMaterials.ofGear(tool).ifPresent(set -> set.behavior.onBlockBroken(set, player, tool, state, pos));
+			SetBonuses.onBlockBroken(player, state, pos);
 
 			// Infernium ore is hot: mining it without Fire Resistance sets you alight briefly.
 			var infernium = ModMaterials.INFERNIUM;

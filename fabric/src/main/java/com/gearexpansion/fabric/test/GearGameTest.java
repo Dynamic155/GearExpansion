@@ -70,6 +70,8 @@ import com.gearexpansion.item.GearCombat;
 import com.gearexpansion.material.behavior.VerdigrisBehavior;
 import com.gearexpansion.menu.AlloyForgeMenu;
 import com.gearexpansion.network.UseAbilityPayload;
+import com.gearexpansion.recipe.AlloyingRecipeInput;
+import com.gearexpansion.recipe.ModRecipes;
 import com.gearexpansion.registry.ModBlocks;
 import com.gearexpansion.registry.ModItems;
 import com.gearexpansion.setbonus.BrassSetBonus;
@@ -125,6 +127,9 @@ public final class GearGameTest implements FabricClientGameTest {
 			checkEmerald(ctx, server);
 			checkAmethyst(ctx, server);
 			checkVerdigris(ctx, server);
+			checkSteel(ctx, server);
+			checkCobalt(ctx, server);
+			checkTungsten(ctx, server);
 			checkInfernium(ctx, server);
 
 			screenshots(ctx, server);
@@ -240,6 +245,11 @@ public final class GearGameTest implements FabricClientGameTest {
 		check(!canMine(Items.STONE_PICKAXE, ModMaterials.SILVER.ore.get().defaultBlockState()), "a stone pickaxe can't mine silver ore");
 		check(canMine(Items.IRON_PICKAXE, ModMaterials.SILVER.deepslateOre.get().defaultBlockState()), "an iron pickaxe mines silver ore");
 		check(canMine(ModMaterials.SILVER.pickaxe.get(), Blocks.DIAMOND_ORE.defaultBlockState()), "a silver pickaxe mines diamond ore (iron tier)");
+		check(!canMine(Items.STONE_PICKAXE, ModMaterials.COBALT.ore.get().defaultBlockState()), "a stone pickaxe can't mine cobalt ore");
+		check(canMine(Items.IRON_PICKAXE, ModMaterials.COBALT.ore.get().defaultBlockState()), "an iron pickaxe mines cobalt ore");
+		check(canMine(ModMaterials.COBALT.pickaxe.get(), Blocks.OBSIDIAN.defaultBlockState()), "a cobalt pickaxe mines obsidian (diamond tier)");
+		check(!canMine(Items.IRON_PICKAXE, ModMaterials.TUNGSTEN.deepslateOre.get().defaultBlockState()), "an iron pickaxe can't mine tungsten ore");
+		check(canMine(Items.DIAMOND_PICKAXE, ModMaterials.TUNGSTEN.deepslateOre.get().defaultBlockState()), "a diamond pickaxe mines tungsten ore");
 		check(canMine(Items.WOODEN_PICKAXE, ModBlocks.ALLOY_FORGE.get().defaultBlockState()), "a pickaxe mines the alloy forge");
 		check(!canMine(Items.STICK, ModBlocks.ALLOY_FORGE.get().defaultBlockState()), "the alloy forge needs a pickaxe to drop");
 	}
@@ -805,7 +815,8 @@ public final class GearGameTest implements FabricClientGameTest {
 	}
 
 	private static Zombie zombie(MinecraftServer server) {
-		return server.overworld().getEntitiesOfClass(Zombie.class, new AABB(-20, -64, -20, 20, -40, 20)).getFirst();
+		// Skip zombies still playing their death animation from an earlier check.
+		return server.overworld().getEntitiesOfClass(Zombie.class, new AABB(-20, -64, -20, 20, -40, 20), Zombie::isAlive).getFirst();
 	}
 
 	// Emerald -------------------------------------------------------------------------
@@ -855,6 +866,110 @@ public final class GearGameTest implements FabricClientGameTest {
 		});
 		check(tooltip(ctx, silver.sword.get()).contains("Hallowed"), "silver weapon tooltip shows Hallowed");
 		check(tooltip(ctx, silver.chestplate.get()).contains("Blessed"), "silver armor tooltip shows its set bonus");
+		server.runCommand("kill @e[type=zombie]");
+		server.runOnServer(s -> {
+			unequip(player(s));
+			player(s).removeAllEffects();
+		});
+	}
+
+	// Steel, Cobalt, Tungsten ----------------------------------------------------------
+
+	private void checkSteel(ClientGameTestContext ctx, TestServerContext server) {
+		MaterialSet steel = ModMaterials.STEEL;
+		server.runOnServer(s -> {
+			// One iron ingot and two coal (or charcoal) make a steel ingot.
+			AlloyingRecipeInput input = new AlloyingRecipeInput(List.of(new ItemStack(Items.IRON_INGOT), new ItemStack(Items.CHARCOAL, 2), ItemStack.EMPTY));
+			var recipe = s.getRecipeManager().getRecipeFor(ModRecipes.ALLOYING.get(), input, s.overworld());
+			check(recipe.isPresent() && recipe.get().value().result().item().value() == steel.ingot.get(), "iron and charcoal alloy into steel");
+			AlloyingRecipeInput tooLittleCoal = new AlloyingRecipeInput(List.of(new ItemStack(Items.IRON_INGOT), new ItemStack(Items.COAL), ItemStack.EMPTY));
+			check(s.getRecipeManager().getRecipeFor(ModRecipes.ALLOYING.get(), tooLittleCoal, s.overworld()).isEmpty(), "steel needs two coal");
+			equip(player(s), steel);
+		});
+		ctx.waitTicks(5);
+		server.runOnServer(s -> {
+			ServerPlayer player = player(s);
+			double toughness = player.getAttributeValue(Attributes.ARMOR_TOUGHNESS);
+			check(toughness == 6.0, "steel armor gives 1 toughness per piece, plus 2 from Hardened (got " + toughness + ")");
+			unequip(player);
+		});
+		check(tooltip(ctx, steel.shield.get()).contains("Reinforced"), "steel shield tooltip shows Reinforced");
+	}
+
+	private void checkCobalt(ClientGameTestContext ctx, TestServerContext server) {
+		MaterialSet cobalt = ModMaterials.COBALT;
+		server.runOnServer(s -> {
+			ServerPlayer player = player(s);
+			check(new ItemStack(cobalt.shield.get()).get(DataComponents.BLOCKS_ATTACKS).blockDelaySeconds() == 0.0F, "the cobalt shield blocks the moment it's raised");
+			Item cobaltPickaxe = cobalt.pickaxe.get();
+			Item roseGoldPickaxe = ModMaterials.ROSE_GOLD.pickaxe.get();
+			check(cobaltPickaxe.getDestroySpeed(new ItemStack(cobaltPickaxe), Blocks.STONE.defaultBlockState())
+				> roseGoldPickaxe.getDestroySpeed(new ItemStack(roseGoldPickaxe), Blocks.STONE.defaultBlockState()),
+				"the cobalt pickaxe is the fastest in the mod");
+			equip(player, cobalt);
+			player.removeAllEffects();
+			// Overdrive: 6 blocks in a row for Haste I, 12 for Haste II.
+			for (int i = 0; i < 6; i++) {
+				SetBonuses.onBlockBroken(player, Blocks.STONE.defaultBlockState(), player.blockPosition());
+			}
+			MobEffectInstance haste = player.getEffect(MobEffects.HASTE);
+			check(haste != null && haste.getAmplifier() == 0, "6 blocks in a row give Haste I with the full cobalt set");
+			for (int i = 0; i < 6; i++) {
+				SetBonuses.onBlockBroken(player, Blocks.STONE.defaultBlockState(), player.blockPosition());
+			}
+			haste = player.getEffect(MobEffects.HASTE);
+			check(haste != null && haste.getAmplifier() == 1, "12 blocks in a row give Haste II");
+		});
+		ctx.waitTicks(50);
+		server.runOnServer(s -> {
+			ServerPlayer player = player(s);
+			SetBonuses.onBlockBroken(player, Blocks.STONE.defaultBlockState(), player.blockPosition());
+			check(SetBonuses.COBALT.chainLength(player) == 1, "the Overdrive chain breaks after 2 seconds without mining");
+			unequip(player);
+			player.removeAllEffects();
+		});
+		check(tooltip(ctx, cobalt.pickaxe.get()).contains("Swift"), "cobalt tool tooltip shows Swift");
+	}
+
+	private void checkTungsten(ClientGameTestContext ctx, TestServerContext server) {
+		MaterialSet tungsten = ModMaterials.TUNGSTEN;
+		server.runCommand("tp @p 0 -60 0 0 0");
+		server.runOnServer(s -> {
+			ServerPlayer player = player(s);
+			check(new ItemStack(tungsten.shield.get()).get(DataComponents.BLOCKS_ATTACKS).blockDelaySeconds() == 0.5F, "the tungsten shield is slow to raise");
+			equip(player, tungsten);
+		});
+		ctx.waitTicks(5);
+		server.runOnServer(s -> {
+			ServerPlayer player = player(s);
+			double knockback = player.getAttributeValue(Attributes.KNOCKBACK_RESISTANCE);
+			check(Math.abs(knockback - 0.6) < 0.001, "tungsten armor gives 0.15 knockback resistance per piece (got " + knockback + ")");
+			double speed = player.getAttributeValue(Attributes.MOVEMENT_SPEED) / player.getAttributeBaseValue(Attributes.MOVEMENT_SPEED);
+			check(Math.abs(speed - 0.84) < 0.001, "tungsten armor makes the wearer 4% slower per piece (speed x" + speed + ")");
+			float explosion = GearCombat.modifyIncomingDamage(player, s.overworld().damageSources().explosion(null, null), 10.0F);
+			check(Math.abs(explosion - 6.0F) < 0.01F, "the full tungsten set takes 40% less explosion damage (took " + explosion + ")");
+			player.setShiftKeyDown(true);
+		});
+		ctx.waitTicks(2);
+		server.runOnServer(s -> {
+			ServerPlayer player = player(s);
+			check(player.getAttributeValue(Attributes.KNOCKBACK_RESISTANCE) >= 1.0, "sneaking in the full tungsten set stops all knockback");
+			player.setShiftKeyDown(false);
+
+			// Ground Slam hurts, knocks back, and slows mobs nearby.
+			ServerLevel level = s.overworld();
+			Zombie zombie = EntityTypes.ZOMBIE.create(level, EntitySpawnReason.COMMAND);
+			zombie.setNoAi(true);
+			zombie.setPos(player.getX() + 3, player.getY(), player.getZ());
+			level.addFreshEntity(zombie);
+			SetBonuses.useAbility(player);
+			check(zombie.getHealth() < zombie.getMaxHealth(), "Ground Slam hurts nearby mobs");
+			check(zombie.hasEffect(MobEffects.SLOWNESS), "Ground Slam slows nearby mobs");
+		});
+		ctx.waitTicks(2);
+		server.runOnServer(s -> check(player(s).getAttributeValue(Attributes.KNOCKBACK_RESISTANCE) < 1.0, "knockback resistance goes back to normal after sneaking"));
+		check(tooltip(ctx, tungsten.axe.get()).contains("Crushing"), "tungsten axe tooltip shows Crushing");
+		check(tooltip(ctx, tungsten.chestplate.get()).contains("Immovable"), "tungsten armor tooltip shows its set bonus");
 		server.runCommand("kill @e[type=zombie]");
 		server.runOnServer(s -> {
 			unequip(player(s));

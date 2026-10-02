@@ -50,9 +50,9 @@ Version 1.0.0 is complete, and 1.0.1 finishes the remaining 1.0 promises.
 | Material | Status |
 |---|---|
 | Silver | Done: ore (Y -16 to 48, iron pickaxe), Hallowed weapons (+4 vs undead), Warding armor (6% less undead damage per piece), undead-knockback shield, Blessed set bonus (Wither 50% shorter, undead within 8 blocks glow), config, textures, sound, advancement, game test |
-| Steel | Next |
-| Cobalt | Planned. Set bonus renamed to Overdrive (Brass already has a Momentum trait). |
-| Tungsten | Planned |
+| Steel | Done: Alloy Forge alloy (1 iron + 2 coal or charcoal), 750 durability, Reinforced shield (1200), Hardened set bonus (+2 toughness), config, textures, sound, advancement, game test |
+| Cobalt | Done: Nether ore (Y 0 to 128, iron pickaxe), fastest tools in the mod (speed 13), instant-block shield, Overdrive set bonus (6 blocks in a row per Haste level, up to Haste II; renamed from Momentum since Brass has a Momentum trait), config, textures, sound, advancement, game test |
+| Tungsten | Done: very rare ore (Y -64 to -48, diamond pickaxe), slow hard-hitting weapons, Crushing axes and spears, Heavy armor (0.15 knockback resistance and -4% speed per piece), slow sturdy shield, Immovable set bonus (no knockback while sneaking, 40% less explosion damage), Ground Slam ability, config, textures, sound, advancement, game test |
 | Guidebook | Planned: Modonomicon, optional dependency (26.3 builds exist for Fabric and NeoForge) |
 
 All textures are recolored vanilla textures (see section 11). Stats as built are below and can be tuned in `ModMaterials`.

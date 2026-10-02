@@ -32,7 +32,8 @@ import com.gearexpansion.registry.ModItems;
 final class RecipeViewerChecks {
 	private static final List<Identifier> ALLOYING_RECIPES = List.of(
 		GearExpansion.id("brass_ingot_from_alloying"),
-		GearExpansion.id("rose_gold_ingot_from_alloying"));
+		GearExpansion.id("rose_gold_ingot_from_alloying"),
+		GearExpansion.id("steel_ingot_from_alloying"));
 	// Recipe viewers load in the background after joining a world.
 	private static final int LOAD_TIMEOUT_TICKS = 400;
 
@@ -68,7 +69,7 @@ final class RecipeViewerChecks {
 				.sorted()
 				.toList());
 			GearExpansion.LOGGER.info("[GameTest] JEI alloying recipes: {}", recipes);
-			checker.check(recipes.equals(ALLOYING_RECIPES), "JEI's Alloy Forge category lists the brass and rose gold recipes");
+			checker.check(recipes.equals(ALLOYING_RECIPES), "JEI's Alloy Forge category lists every alloying recipe");
 			boolean catalyst = ctx.computeOnClient(mc -> GearJeiPlugin.runtime().getRecipeManager()
 				.createCraftingStationLookup(GearJeiPlugin.ALLOYING)
 				.getItemStack()
@@ -110,7 +111,7 @@ final class RecipeViewerChecks {
 				.sorted()
 				.toList());
 			GearExpansion.LOGGER.info("[GameTest] REI alloying displays: {}", recipes);
-			checker.check(synced && recipes.equals(ALLOYING_RECIPES), "REI's Alloy Forge category lists the brass and rose gold recipes");
+			checker.check(synced && recipes.equals(ALLOYING_RECIPES), "REI's Alloy Forge category lists every alloying recipe");
 			boolean workstation = ctx.computeOnClient(mc -> CategoryRegistry.getInstance().get(AlloyingDisplay.CATEGORY).getWorkstations().stream()
 				.flatMap(EntryIngredient::stream)
 				.anyMatch(stack -> stack.getValue() instanceof ItemStack item && item.is(ModItems.ALLOY_FORGE.get())));

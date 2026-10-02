@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "steel_ingot",
+  "ingredients": [
+    "gearexpansion:steel_block"
+  ],
+  "result": {
+    "count": 9,
+    "id": "gearexpansion:steel_ingot"
+  }
+}

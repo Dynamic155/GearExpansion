@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "cobalt_ingot",
+  "ingredients": [
+    "gearexpansion:cobalt_block"
+  ],
+  "result": {
+    "count": 9,
+    "id": "gearexpansion:cobalt_ingot"
+  }
+}

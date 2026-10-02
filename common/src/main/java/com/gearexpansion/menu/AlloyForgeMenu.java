@@ -82,12 +82,16 @@ public final class AlloyForgeMenu extends AbstractContainerMenu {
 			boolean ingredient = isAlloyIngredient(stack);
 			boolean fuel = AlloyForgeBlockEntity.isFuel(stack);
 			if (ingredient || fuel) {
-				// Ingredients go to the inputs first, so an item that is both (like coal) is alloyed rather than burned.
-				boolean moved = ingredient && moveItemStackTo(stack, 0, AlloyForgeBlockEntity.INPUT_SLOTS, false);
-				if (!moved && fuel) {
-					moved = moveItemStackTo(stack, FUEL_SLOT, FUEL_SLOT + 1, false);
+				// Fuel goes to the fuel slot first. Anything left of an item that is also an ingredient
+				// (coal, for steel) then goes to the inputs.
+				int before = stack.getCount();
+				if (fuel) {
+					moveItemStackTo(stack, FUEL_SLOT, FUEL_SLOT + 1, false);
 				}
-				if (!moved) {
+				if (ingredient && !stack.isEmpty()) {
+					moveItemStackTo(stack, 0, AlloyForgeBlockEntity.INPUT_SLOTS, false);
+				}
+				if (stack.getCount() == before) {
 					return ItemStack.EMPTY;
 				}
 			} else if (slotIndex < INV_SLOT_END) {

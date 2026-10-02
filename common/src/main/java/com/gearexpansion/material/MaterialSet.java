@@ -65,6 +65,7 @@ import com.gearexpansion.registry.ModItems;
 public final class MaterialSet {
 	/** Vanilla shields slow the player to 20% speed while blocking. */
 	public static final float VANILLA_BLOCKING_SPEED = 0.2F;
+	public static final float VANILLA_SHIELD_RAISE_SECONDS = 0.25F;
 
 	/** Where a material's ore generates. */
 	public enum OreKind {
@@ -89,6 +90,7 @@ public final class MaterialSet {
 	/** Galvanized gear doesn't lose durability while its user is in water (see {@code GearDurability}). */
 	public final boolean galvanized;
 	public final float blockingSpeed;
+	public final float shieldRaiseSeconds;
 	/** Piglins stay neutral toward players wearing this armor, like gold. */
 	public final boolean piglinSafe;
 	/** Items don't burn in fire or lava, like netherite. */
@@ -148,6 +150,7 @@ public final class MaterialSet {
 		this.behavior = b.behavior;
 		this.galvanized = b.galvanized;
 		this.blockingSpeed = b.blockingSpeed;
+		this.shieldRaiseSeconds = b.shieldRaiseSeconds;
 		this.piglinSafe = b.piglinSafe;
 		this.fireResistant = b.fireResistant;
 		this.glowing = b.glowing;
@@ -212,7 +215,7 @@ public final class MaterialSet {
 				.repairable(b.repairMaterials)
 				.equippableUnswappable(EquipmentSlot.OFFHAND)
 				.delayedComponent(DataComponents.BLOCKS_ATTACKS, context -> new BlocksAttacks(
-					0.25F,
+					b.shieldRaiseSeconds,
 					shieldStats.disableCooldownScale(),
 					List.of(new BlocksAttacks.DamageReduction(90.0F, Optional.empty(), 0.0F, 1.0F)),
 					new BlocksAttacks.ItemDamageFunction(3.0F, 1.0F, 1.0F),
@@ -373,6 +376,7 @@ public final class MaterialSet {
 		private final List<ArmorBonus> armorBonuses = new ArrayList<>();
 		private ShieldStats shieldStats = new ShieldStats(336, 1.0F);
 		private float blockingSpeed = VANILLA_BLOCKING_SPEED;
+		private float shieldRaiseSeconds = VANILLA_SHIELD_RAISE_SECONDS;
 		private TagKey<Block> requiredToolTag = BlockTags.NEEDS_IRON_TOOL;
 		private final List<OreGeneration> oreGeneration = new ArrayList<>();
 		private GearBehavior behavior = GearBehavior.NONE;
@@ -431,6 +435,12 @@ public final class MaterialSet {
 		/** Movement speed while blocking, as a fraction of normal speed. Vanilla shields use 0.2. */
 		public Builder blockingSpeed(float speed) {
 			this.blockingSpeed = speed;
+			return this;
+		}
+
+		/** Seconds after raising the shield before it blocks. Vanilla shields use 0.25; 0 blocks instantly. */
+		public Builder shieldRaiseTime(float seconds) {
+			this.shieldRaiseSeconds = seconds;
 			return this;
 		}
 

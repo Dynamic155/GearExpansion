@@ -5,6 +5,13 @@
 ### Materials
 
 - **Silver**: an iron-tier ore metal against the undead. Weapons deal extra damage to undead, armor takes less damage from them, and the shield knocks them back. Set bonus Blessed: Wither lasts half as long, and nearby undead glow.
+- **Steel**: an Alloy Forge alloy of iron and coal. Plain and dependable, with about three times iron's durability and a very durable shield. Set bonus Hardened: extra armor toughness.
+- **Cobalt**: a Nether ore with the fastest tools in the mod and a shield that blocks instantly. Set bonus Overdrive: mining blocks in quick succession builds up Haste, up to Haste II.
+- **Tungsten**: a very rare ore at the bottom of the world. Slow, hard-hitting weapons; axes and spears knock targets back further; heavy armor with the most knockback resistance in the mod; a slow but sturdy shield. Set bonus Immovable: no knockback while sneaking and less explosion damage, plus the Ground Slam ability.
+
+### Changes
+
+- Shift-clicking fuel into the Alloy Forge now fills the fuel slot first, since coal is also a steel ingredient.
 
 ## 1.0.1 - Compatibility
 

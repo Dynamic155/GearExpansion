@@ -13,10 +13,13 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.material.MapColor;
 
 import com.gearexpansion.material.behavior.AmethystBehavior;
+import com.gearexpansion.material.behavior.CobaltBehavior;
 import com.gearexpansion.material.behavior.BrassBehavior;
 import com.gearexpansion.material.behavior.EmeraldBehavior;
 import com.gearexpansion.material.behavior.InferniumBehavior;
 import com.gearexpansion.material.behavior.SilverBehavior;
+import com.gearexpansion.material.behavior.SteelBehavior;
+import com.gearexpansion.material.behavior.TungstenBehavior;
 import com.gearexpansion.material.behavior.VerdigrisBehavior;
 import com.gearexpansion.registry.ModSounds;
 
@@ -138,6 +141,19 @@ public final class ModMaterials {
 		.build();
 
 	/**
+	 * Steel: iron tempered with coal in the Alloy Forge. No gimmicks, just a sturdy step between
+	 * iron and diamond: about three times iron's durability, a little toughness, and a very durable shield.
+	 */
+	public static final MaterialSet STEEL = MaterialSet.builder("steel")
+		.alloy()
+		.tools(ToolTier.IRON, 750, 6.5F, 2.5F, 10)
+		.armor(25, 2, 6, 6, 2, 9, ModSounds.armorEquip("steel"), 1.0F, 0.0F)
+		.shield(1200, 1.0F)
+		.behavior(new SteelBehavior())
+		.colors(MapColor.COLOR_GRAY, MapColor.COLOR_GRAY)
+		.build();
+
+	/**
 	 * Titanium: diamond-tier speed with about twice diamond's durability, but hard to enchant.
 	 * Found only deep underground in small, mostly buried veins.
 	 */
@@ -148,6 +164,39 @@ public final class ModMaterials {
 		.requiresTool(BlockTags.NEEDS_DIAMOND_TOOL)
 		.ore(5, 4, -64, -16, 0.5F)
 		.colors(MapColor.COLOR_LIGHT_GRAY, MapColor.TERRACOTTA_LIGHT_GRAY)
+		.build();
+
+	/**
+	 * Cobalt: a deep blue Nether metal with the fastest tools in the mod and a shield that blocks
+	 * the moment it's raised. Found throughout the Nether's netherrack.
+	 */
+	public static final MaterialSet COBALT = MaterialSet.builder("cobalt")
+		.tools(ToolTier.DIAMOND, 1100, 13.0F, 2.5F, 14)
+		.armor(25, 2, 6, 5, 2, 14, ModSounds.armorEquip("cobalt"), 1.0F, 0.0F)
+		.shield(600, 1.0F)
+		.shieldRaiseTime(0.0F)
+		.requiresTool(BlockTags.NEEDS_IRON_TOOL)
+		.netherOre(6, 8, 0, 128, 0.0F)
+		.behavior(new CobaltBehavior())
+		.colors(MapColor.COLOR_BLUE, MapColor.NETHER)
+		.build();
+
+	/**
+	 * Tungsten: the tank. Very rare and very deep. Slow, hard-hitting weapons that knock targets
+	 * back, armor with the most knockback resistance in the mod at the cost of some speed, and a
+	 * heavy shield that is slow to raise.
+	 */
+	public static final MaterialSet TUNGSTEN = MaterialSet.builder("tungsten")
+		.tools(ToolTier.DIAMOND, 2400, 5.0F, 4.0F, 8)
+		.attackSpeedBonus(-0.2F)
+		.armor(40, 3, 8, 6, 3, 8, ModSounds.armorEquip("tungsten"), 3.0F, 0.15F)
+		.armorBonus("weight", Attributes.MOVEMENT_SPEED, -0.04, AttributeModifier.Operation.ADD_MULTIPLIED_BASE)
+		.shield(1500, 0.3F)
+		.shieldRaiseTime(0.5F)
+		.requiresTool(BlockTags.NEEDS_DIAMOND_TOOL)
+		.ore(4, 3, -64, -48, 0.6F)
+		.behavior(new TungstenBehavior())
+		.colors(MapColor.COLOR_BLACK, MapColor.DEEPSLATE)
 		.build();
 
 	/**

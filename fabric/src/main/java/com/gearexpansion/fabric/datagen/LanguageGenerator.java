@@ -86,7 +86,10 @@ final class LanguageGenerator extends FabricLanguageProvider {
 		silver(t);
 		emerald(t);
 		amethyst(t);
+		steel(t);
 		titanium(t);
+		cobalt(t);
+		tungsten(t);
 		infernium(t);
 		abilities(t);
 		advancements(t);
@@ -116,6 +119,13 @@ final class LanguageGenerator extends FabricLanguageProvider {
 		t.add(CONFIG + ".category.amethyst", "Amethyst");
 		t.add(CONFIG + ".category.amethyst.group.gear", "Gear");
 		t.add(CONFIG + ".category.amethyst.group.set_bonus", "Set Bonus: Shatterguard");
+		t.add(CONFIG + ".category.steel", "Steel");
+		t.add(CONFIG + ".category.steel.group.set_bonus", "Set Bonus: Hardened");
+		t.add(CONFIG + ".category.cobalt", "Cobalt");
+		t.add(CONFIG + ".category.cobalt.group.set_bonus", "Set Bonus: Overdrive");
+		t.add(CONFIG + ".category.tungsten", "Tungsten");
+		t.add(CONFIG + ".category.tungsten.group.gear", "Gear");
+		t.add(CONFIG + ".category.tungsten.group.set_bonus", "Set Bonus: Immovable");
 		t.add(CONFIG + ".category.infernium", "Infernium");
 		t.add(CONFIG + ".category.infernium.group.gear", "Gear");
 		t.add(CONFIG + ".category.infernium.group.set_bonus", "Set Bonus: Heat Core");
@@ -191,6 +201,42 @@ final class LanguageGenerator extends FabricLanguageProvider {
 		option(t, "amethystShellRegrowSeconds", "Shell Regrow Time", "Seconds for the crystal shell to regrow.");
 	}
 
+	private static void steel(TranslationBuilder t) {
+		t.add("set_bonus.gearexpansion.steel", "Steel");
+		t.add("set_bonus.gearexpansion.steel.toughness", "Hardened: +%s armor toughness");
+		t.add("trait.gearexpansion.reinforced", "Reinforced: lasts far longer than a normal shield");
+
+		option(t, "steelSetBonus", "Enable Set Bonus", "Whether wearing the full Steel set grants Hardened.");
+		option(t, "steelToughnessBonus", "Toughness Bonus", "Extra armor toughness while wearing the full set.");
+	}
+
+	private static void cobalt(TranslationBuilder t) {
+		t.add("set_bonus.gearexpansion.cobalt", "Cobalt");
+		t.add("set_bonus.gearexpansion.cobalt.overdrive", "Overdrive: every %s blocks mined in a row (at most %ss apart) adds a level of Haste, up to Haste II");
+		t.add("trait.gearexpansion.swift", "Swift: the fastest tools in the mod");
+		t.add("trait.gearexpansion.quick_guard", "Quick Guard: blocks the moment you raise it");
+
+		option(t, "cobaltSetBonus", "Enable Set Bonus", "Whether wearing the full Cobalt set grants Overdrive.");
+		option(t, "cobaltOverdriveBlocks", "Blocks per Level", "Blocks broken in a row for each level of Haste.");
+		option(t, "cobaltOverdriveWindow", "Chain Window", "Most seconds between blocks before the chain breaks.");
+	}
+
+	private static void tungsten(TranslationBuilder t) {
+		t.add("set_bonus.gearexpansion.tungsten", "Tungsten");
+		t.add("set_bonus.gearexpansion.tungsten.immovable", "Immovable: no knockback while sneaking");
+		t.add("set_bonus.gearexpansion.tungsten.explosions", "Explosions deal %s%% less damage");
+		t.add("set_bonus.gearexpansion.tungsten.slam", "Press %s: Ground Slam hurts, knocks back, and slows nearby mobs (%ss cooldown)");
+		t.add("trait.gearexpansion.crushing", "Crushing: knocks targets back further");
+		t.add("trait.gearexpansion.heavy", "Heavy: the most knockback resistance, but slower");
+		t.add("trait.gearexpansion.bulwark", "Bulwark: slow to raise, but very durable and hard to disable");
+
+		option(t, "tungstenKnockback", "Axe and Spear Knockback", "Extra knockback from tungsten axes and spears, in tenths.");
+		option(t, "tungstenSetBonus", "Enable Set Bonus", "Whether wearing the full Tungsten set grants Immovable and Ground Slam.");
+		option(t, "tungstenExplosionReduction", "Explosion Reduction", "Less damage from explosions while wearing the full set.");
+		option(t, "tungstenSlamDamage", "Ground Slam Damage", "Damage Ground Slam deals to each mob nearby.");
+		option(t, "tungstenSlamCooldown", "Ground Slam Cooldown", "Seconds before Ground Slam can be used again.");
+	}
+
 	private static void infernium(TranslationBuilder t) {
 		t.add("set_bonus.gearexpansion.infernium", "Infernium");
 		t.add("set_bonus.gearexpansion.infernium.lava", "Heat Core: walk and swim in lava for %ss before the heat gauge fills");
@@ -218,7 +264,10 @@ final class LanguageGenerator extends FabricLanguageProvider {
 		advancement(t, "silver", "Silver Lining", "Smelt a silver ingot");
 		advancement(t, "emerald", "Merchant's Arsenal", "Craft any emerald gear");
 		advancement(t, "amethyst", "Good Vibrations", "Craft a Resonant Crystal");
+		advancement(t, "steel", "Tempered", "Alloy iron and coal into steel");
 		advancement(t, "titanium", "Unbreakable", "Smelt a titanium ingot");
+		advancement(t, "cobalt", "Feeling Blue", "Smelt a cobalt ingot");
+		advancement(t, "tungsten", "Heavy Metal", "Smelt a tungsten ingot");
 		advancement(t, "infernium_template", "Hot Off the Press", "Find an Infernium Upgrade template in the Nether");
 		advancement(t, "infernium", "Forged in Fire", "Upgrade titanium gear to infernium");
 	}
@@ -231,7 +280,7 @@ final class LanguageGenerator extends FabricLanguageProvider {
 	private static void abilities(TranslationBuilder t) {
 		t.add("key.gearexpansion.set_ability", "Set Ability");
 		t.add("key.category.gearexpansion.main", "Gear Expansion");
-		t.add("ability.gearexpansion.none", "No set ability: wear a full Brass or Infernium set");
+		t.add("ability.gearexpansion.none", "No set ability: wear a full Brass, Tungsten, or Infernium set");
 		t.add("ability.gearexpansion.cooldown", "Ready in %ss");
 		t.add("ability.gearexpansion.brass.not_wound", "The spring isn't fully wound yet");
 		t.add("hud.gearexpansion.spring", "Spring");

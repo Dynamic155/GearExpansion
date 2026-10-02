@@ -3,6 +3,10 @@
     "gearexpansion:silver_block",
     "gearexpansion:silver_ore",
     "gearexpansion:deepslate_silver_ore",
-    "gearexpansion:raw_silver_block"
+    "gearexpansion:raw_silver_block",
+    "gearexpansion:steel_block",
+    "gearexpansion:cobalt_block",
+    "gearexpansion:cobalt_ore",
+    "gearexpansion:raw_cobalt_block"
   ]
 }

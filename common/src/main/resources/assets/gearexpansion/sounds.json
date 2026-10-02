@@ -229,6 +229,35 @@
       }
     ]
   },
+  "item.armor.equip_steel": {
+    "subtitle": "subtitles.item.armor.equip",
+    "sounds": [
+      {
+        "name": "minecraft:item/armor/equip_iron1",
+        "pitch": 0.95
+      },
+      {
+        "name": "minecraft:item/armor/equip_iron2",
+        "pitch": 0.95
+      },
+      {
+        "name": "minecraft:item/armor/equip_iron3",
+        "pitch": 0.95
+      },
+      {
+        "name": "minecraft:item/armor/equip_iron4",
+        "pitch": 0.95
+      },
+      {
+        "name": "minecraft:item/armor/equip_iron5",
+        "pitch": 0.95
+      },
+      {
+        "name": "minecraft:item/armor/equip_iron6",
+        "pitch": 0.95
+      }
+    ]
+  },
   "item.armor.equip_titanium": {
     "subtitle": "subtitles.item.armor.equip",
     "sounds": [
@@ -255,6 +284,56 @@
       {
         "name": "minecraft:item/armor/equip_iron6",
         "pitch": 0.8
+      }
+    ]
+  },
+  "item.armor.equip_cobalt": {
+    "subtitle": "subtitles.item.armor.equip",
+    "sounds": [
+      {
+        "name": "minecraft:item/armor/equip_diamond1",
+        "pitch": 0.9
+      },
+      {
+        "name": "minecraft:item/armor/equip_diamond2",
+        "pitch": 0.9
+      },
+      {
+        "name": "minecraft:item/armor/equip_diamond3",
+        "pitch": 0.9
+      },
+      {
+        "name": "minecraft:item/armor/equip_diamond4",
+        "pitch": 0.9
+      },
+      {
+        "name": "minecraft:item/armor/equip_diamond5",
+        "pitch": 0.9
+      },
+      {
+        "name": "minecraft:item/armor/equip_diamond6",
+        "pitch": 0.9
+      }
+    ]
+  },
+  "item.armor.equip_tungsten": {
+    "subtitle": "subtitles.item.armor.equip",
+    "sounds": [
+      {
+        "name": "minecraft:item/armor/equip_netherite1",
+        "pitch": 0.65
+      },
+      {
+        "name": "minecraft:item/armor/equip_netherite2",
+        "pitch": 0.65
+      },
+      {
+        "name": "minecraft:item/armor/equip_netherite3",
+        "pitch": 0.65
+      },
+      {
+        "name": "minecraft:item/armor/equip_netherite4",
+        "pitch": 0.65
       }
     ]
   },

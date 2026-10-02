@@ -1,0 +1,32 @@
+{
+  "parent": "gearexpansion:alloy_forge",
+  "criteria": {
+    "has_steel_ingot": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gearexpansion:steel_ingot"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.gearexpansion.steel.description"
+    },
+    "icon": {
+      "id": "gearexpansion:steel_ingot"
+    },
+    "title": {
+      "translate": "advancements.gearexpansion.steel.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_steel_ingot"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

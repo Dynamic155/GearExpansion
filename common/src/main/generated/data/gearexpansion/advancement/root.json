@@ -49,6 +49,12 @@
             "items": "gearexpansion:resonant_crystal"
           },
           {
+            "items": "gearexpansion:steel_nugget"
+          },
+          {
+            "items": "gearexpansion:steel_ingot"
+          },
+          {
             "items": "gearexpansion:raw_titanium"
           },
           {
@@ -56,6 +62,24 @@
           },
           {
             "items": "gearexpansion:titanium_ingot"
+          },
+          {
+            "items": "gearexpansion:raw_cobalt"
+          },
+          {
+            "items": "gearexpansion:cobalt_nugget"
+          },
+          {
+            "items": "gearexpansion:cobalt_ingot"
+          },
+          {
+            "items": "gearexpansion:raw_tungsten"
+          },
+          {
+            "items": "gearexpansion:tungsten_nugget"
+          },
+          {
+            "items": "gearexpansion:tungsten_ingot"
           },
           {
             "items": "gearexpansion:raw_infernium"

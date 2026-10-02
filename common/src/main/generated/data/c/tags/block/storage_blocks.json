@@ -8,8 +8,13 @@
     "#c:storage_blocks/brass",
     "#c:storage_blocks/silver",
     "#c:storage_blocks/raw_silver",
+    "#c:storage_blocks/steel",
     "#c:storage_blocks/titanium",
     "#c:storage_blocks/raw_titanium",
+    "#c:storage_blocks/cobalt",
+    "#c:storage_blocks/raw_cobalt",
+    "#c:storage_blocks/tungsten",
+    "#c:storage_blocks/raw_tungsten",
     "#c:storage_blocks/infernium",
     "#c:storage_blocks/raw_infernium"
   ]

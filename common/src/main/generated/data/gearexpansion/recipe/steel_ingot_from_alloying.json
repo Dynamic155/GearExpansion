@@ -1,0 +1,17 @@
+{
+  "type": "gearexpansion:alloying",
+  "cookingtime": 300,
+  "experience": 1.0,
+  "ingredients": [
+    {
+      "ingredient": "#c:ingots/iron"
+    },
+    {
+      "count": 2,
+      "ingredient": "#minecraft:coals"
+    }
+  ],
+  "result": {
+    "id": "gearexpansion:steel_ingot"
+  }
+}

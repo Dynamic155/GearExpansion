@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "tungsten_ingot",
+  "ingredients": [
+    "gearexpansion:tungsten_block"
+  ],
+  "result": {
+    "count": 9,
+    "id": "gearexpansion:tungsten_ingot"
+  }
+}

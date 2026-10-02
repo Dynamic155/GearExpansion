@@ -5,7 +5,10 @@
     "#c:nuggets/aluminum",
     "#c:nuggets/brass",
     "#c:nuggets/silver",
+    "#c:nuggets/steel",
     "#c:nuggets/titanium",
+    "#c:nuggets/cobalt",
+    "#c:nuggets/tungsten",
     "#c:nuggets/infernium"
   ]
 }
