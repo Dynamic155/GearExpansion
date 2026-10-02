@@ -457,12 +457,42 @@ public final class GearGameTest implements FabricClientGameTest {
 		}
 
 		creativeTabs(ctx, server);
+		showcase(ctx, server);
 
 		ctx.setScreen(() -> GearExpansionClient.configScreen(null));
 		ctx.waitTicks(10);
 		ctx.takeScreenshot("config_screen");
 		ctx.setScreen(() -> null);
 		ctx.waitTicks(5);
+	}
+
+	/** Clean pictures of each set, with the HUD hidden, for the README (docs/images). */
+	private void showcase(ClientGameTestContext ctx, TestServerContext server) {
+		server.runCommand("gamemode creative @p");
+		server.runCommand("clear @p");
+		ctx.runOnClient(mc -> {
+			if (!mc.gui.hud.isHidden()) {
+				mc.gui.hud.toggle();
+			}
+			mc.options.setCameraType(CameraType.THIRD_PERSON_FRONT);
+		});
+		for (MaterialSet set : ModMaterials.ALL) {
+			server.runOnServer(s -> {
+				ServerPlayer player = player(s);
+				equip(player, set);
+				player.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(set.sword.get()));
+				player.setItemSlot(EquipmentSlot.OFFHAND, new ItemStack(set.shield.get()));
+			});
+			server.runCommand("tp @p 0 -60 0 20 10");
+			ctx.waitTicks(15);
+			ctx.takeScreenshot("showcase_" + set.name);
+		}
+		ctx.runOnClient(mc -> {
+			mc.gui.hud.toggle();
+			mc.options.setCameraType(CameraType.FIRST_PERSON);
+		});
+		server.runOnServer(s -> unequip(player(s)));
+		server.runCommand("clear @p");
 	}
 
 	/** Opens the creative inventory on each of our tabs, and checks every item is in exactly one of them. */
