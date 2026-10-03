@@ -33,13 +33,14 @@ public final class SetBonuses {
 	public static final SetBonus SILVER = new SilverSetBonus();
 	public static final SetBonus EMERALD = new EmeraldSetBonus();
 	public static final SetBonus AMETHYST = new AmethystSetBonus();
+	public static final SetBonus SAKURA = new SakuraSetBonus();
 	public static final SetBonus STEEL = new SteelSetBonus();
 	public static final SetBonus TITANIUM = new TitaniumSetBonus();
 	public static final CobaltSetBonus COBALT = new CobaltSetBonus();
 	public static final SetBonus TUNGSTEN = new TungstenSetBonus();
 	public static final SetBonus INFERNIUM = new InferniumSetBonus();
 
-	public static final List<SetBonus> ALL = List.of(ZINC, VERDIGRIS, ROSE_GOLD, ALUMINUM, BRASS, SILVER, EMERALD, AMETHYST, STEEL,
+	public static final List<SetBonus> ALL = List.of(ZINC, VERDIGRIS, ROSE_GOLD, ALUMINUM, BRASS, SILVER, EMERALD, AMETHYST, SAKURA, STEEL,
 		TITANIUM, COBALT, TUNGSTEN, INFERNIUM);
 
 	/** The HUD meters last sent to each player, so unchanged values aren't resent. */

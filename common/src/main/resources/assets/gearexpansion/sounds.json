@@ -229,6 +229,31 @@
       }
     ]
   },
+  "item.armor.equip_sakura": {
+    "subtitle": "subtitles.item.armor.equip",
+    "sounds": [
+      {
+        "name": "minecraft:block/cherry_leaves/break1",
+        "pitch": 1.2
+      },
+      {
+        "name": "minecraft:block/cherry_leaves/break2",
+        "pitch": 1.2
+      },
+      {
+        "name": "minecraft:block/cherry_leaves/break3",
+        "pitch": 1.2
+      },
+      {
+        "name": "minecraft:block/cherry_leaves/break4",
+        "pitch": 1.2
+      },
+      {
+        "name": "minecraft:block/cherry_leaves/break5",
+        "pitch": 1.2
+      }
+    ]
+  },
   "item.armor.equip_steel": {
     "subtitle": "subtitles.item.armor.equip",
     "sounds": [

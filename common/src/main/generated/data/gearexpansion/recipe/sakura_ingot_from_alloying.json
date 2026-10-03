@@ -1,0 +1,17 @@
+{
+  "type": "gearexpansion:alloying",
+  "cookingtime": 200,
+  "experience": 0.7,
+  "ingredients": [
+    {
+      "ingredient": "#c:ingots/iron"
+    },
+    {
+      "count": 4,
+      "ingredient": "minecraft:pink_petals"
+    }
+  ],
+  "result": {
+    "id": "gearexpansion:sakura_ingot"
+  }
+}

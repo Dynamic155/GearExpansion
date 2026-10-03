@@ -57,6 +57,7 @@ final class AdvancementGenerator extends FabricAdvancementProvider {
 		task(output, root, "silver", ModMaterials.SILVER.ingot.get(), AdvancementType.TASK, List.of(ModMaterials.SILVER.ingot.get()));
 		task(output, root, "emerald", ModMaterials.EMERALD.chestplate.get(), AdvancementType.TASK, gear(ModMaterials.EMERALD));
 		task(output, root, "amethyst", ModMaterials.AMETHYST.ingot.get(), AdvancementType.TASK, List.of(ModMaterials.AMETHYST.ingot.get()));
+		task(output, forge, "sakura", ModMaterials.SAKURA.ingot.get(), AdvancementType.TASK, List.of(ModMaterials.SAKURA.ingot.get()));
 		task(output, forge, "steel", ModMaterials.STEEL.ingot.get(), AdvancementType.TASK, List.of(ModMaterials.STEEL.ingot.get()));
 		AdvancementHolder titanium = task(output, root, "titanium", ModMaterials.TITANIUM.ingot.get(), AdvancementType.TASK,
 			List.of(ModMaterials.TITANIUM.ingot.get()));

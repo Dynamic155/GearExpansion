@@ -73,6 +73,7 @@ From weakest to strongest. Tier is what the pickaxe can mine, using vanilla's ti
 | Silver | Iron | 280 | 6 | 15 | Ore | Blessed |
 | Emerald | Iron | 500 | 6 | 15 | Emeralds | Merchant's Favor |
 | Amethyst | Iron | 220 | 6 | 15 | Resonant Crystals | Shatterguard |
+| Sakura | Iron | 300 | 6 | 15 | Alloy Forge | Hanami |
 | Steel | Iron | 750 | 6.5 | 16 | Alloy Forge | Hardened |
 | Titanium | Diamond | 3000 | 7 | 20 | Rare deep ore | Unbreakable Will |
 | Cobalt | Diamond | 1100 | 6.5 | 15 | Nether ore | Overdrive |
@@ -192,6 +193,18 @@ Crystal gear: fragile, but highly enchantable and full of tricks.
 - **Chiming armor:** the armor chimes softly when you're hit.
 - **Set bonus, Shatterguard:** a crystal shell completely absorbs one hit, shatters, and regrows over 45 seconds (shown above the hotbar).
 
+### Sakura
+
+![Sakura gear](docs/images/sakura.png)
+
+A pretty, gentle set made from cherry blossoms.
+
+- **Getting it:** in the **Alloy Forge**, 1 iron ingot and 4 pink petals make 1 Sakura Ingot. Pink petals carpet the ground in cherry groves.
+- **Gear:** about iron's strength, with very high enchantability (22 for tools and armor).
+- **Blossoming:** finishing off a mob with a sakura sword, spear, or axe heals one heart, in a burst of petals.
+- **Petal Guard:** blocking with the sakura shield heals half a heart, at most once a second.
+- **Set bonus, Hanami:** Regeneration while within 3 blocks of flowers, cherry leaves, or pink petals, and you leave a trail of falling cherry petals as you walk. The trail can be turned off in the settings.
+
 ### Steel
 
 ![Steel gear](docs/images/steel.png)
@@ -277,6 +290,7 @@ A workstation for making alloys.
 - **Use:** put the ingredients in any of the three input slots and fuel in the bottom slot. Recipes:
   - 3 copper ingots + 1 zinc ingot = 4 Brass Ingots
   - 3 gold ingots + 1 copper ingot = 2 Rose Gold Ingots
+  - 1 iron ingot + 4 pink petals = 1 Sakura Ingot
   - 1 iron ingot + 2 coal or charcoal = 1 Steel Ingot (takes a little longer)
 - **Fuel:** any normal furnace fuel. **Blaze powder** and **lava buckets** make it work twice as fast. Shift-clicking fuel puts it in the fuel slot; once that is full, extra coal goes to the inputs for steel.
 - **Experience:** taking the results gives experience, like a furnace.

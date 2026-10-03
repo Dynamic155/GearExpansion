@@ -226,6 +226,38 @@ public final class GearExpansionConfig {
 	@Comment("Seconds for the crystal shell to regrow after it absorbs a hit.")
 	public int amethystShellRegrowSeconds = 45;
 
+	// Sakura
+
+	@AutoGen(category = "sakura", group = "gear")
+	@IntSlider(min = 0, max = 10, step = 1)
+	@SerialEntry
+	@Comment("Health (in half hearts) a sakura weapon restores when it finishes off a mob.")
+	public int sakuraKillHeal = 2;
+
+	@AutoGen(category = "sakura", group = "gear")
+	@IntSlider(min = 0, max = 10, step = 1)
+	@SerialEntry
+	@Comment("Health (in half hearts) the sakura shield restores when it blocks, at most once a second.")
+	public int sakuraBlockHeal = 1;
+
+	@AutoGen(category = "sakura", group = "set_bonus")
+	@TickBox
+	@SerialEntry
+	@Comment("Whether the full Sakura set grants its Hanami bonus.")
+	public boolean sakuraSetBonus = true;
+
+	@AutoGen(category = "sakura", group = "set_bonus")
+	@IntSlider(min = 0, max = 8, step = 1)
+	@SerialEntry
+	@Comment("Blocks within which flowers, cherry leaves, or pink petals give Regeneration. 0 turns it off.")
+	public int sakuraFlowerRange = 3;
+
+	@AutoGen(category = "sakura", group = "set_bonus")
+	@TickBox
+	@SerialEntry
+	@Comment("Whether the full Sakura set leaves a trail of falling cherry petals as you walk.")
+	public boolean sakuraPetalTrail = true;
+
 	// Steel
 
 	@AutoGen(category = "steel", group = "set_bonus")

@@ -72,6 +72,7 @@ final class RecipeGenerator extends FabricRecipeProvider {
 			private void alloys() {
 				alloy(ModMaterials.BRASS.ingot.get(), 4, 200, 0.7F, metal("copper", 3), metal("zinc", 1));
 				alloy(ModMaterials.ROSE_GOLD.ingot.get(), 2, 200, 0.7F, metal("gold", 3), metal("copper", 1));
+				alloy(ModMaterials.SAKURA.ingot.get(), 1, 200, 0.7F, metal("iron", 1), new CountedIngredient(Ingredient.of(Items.PINK_PETALS), 4));
 				// Steel takes longer: iron tempered with coal or charcoal.
 				alloy(ModMaterials.STEEL.ingot.get(), 1, 300, 1.0F, metal("iron", 1), new CountedIngredient(tag(ItemTags.COALS), 2));
 			}

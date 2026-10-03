@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_sakura_ingot": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gearexpansion:sakura_ingot"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipes": "gearexpansion:sakura_block"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_sakura_ingot"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "gearexpansion:sakura_block"
+    ]
+  }
+}

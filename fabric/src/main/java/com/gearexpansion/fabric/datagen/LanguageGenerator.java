@@ -86,6 +86,7 @@ final class LanguageGenerator extends FabricLanguageProvider {
 		silver(t);
 		emerald(t);
 		amethyst(t);
+		sakura(t);
 		steel(t);
 		titanium(t);
 		cobalt(t);
@@ -119,6 +120,9 @@ final class LanguageGenerator extends FabricLanguageProvider {
 		t.add(CONFIG + ".category.amethyst", "Amethyst");
 		t.add(CONFIG + ".category.amethyst.group.gear", "Gear");
 		t.add(CONFIG + ".category.amethyst.group.set_bonus", "Set Bonus: Shatterguard");
+		t.add(CONFIG + ".category.sakura", "Sakura");
+		t.add(CONFIG + ".category.sakura.group.gear", "Gear");
+		t.add(CONFIG + ".category.sakura.group.set_bonus", "Set Bonus: Hanami");
 		t.add(CONFIG + ".category.steel", "Steel");
 		t.add(CONFIG + ".category.steel.group.set_bonus", "Set Bonus: Hardened");
 		t.add(CONFIG + ".category.cobalt", "Cobalt");
@@ -201,6 +205,20 @@ final class LanguageGenerator extends FabricLanguageProvider {
 		option(t, "amethystShellRegrowSeconds", "Shell Regrow Time", "Seconds for the crystal shell to regrow.");
 	}
 
+	private static void sakura(TranslationBuilder t) {
+		t.add("set_bonus.gearexpansion.sakura", "Sakura");
+		t.add("set_bonus.gearexpansion.sakura.hanami", "Hanami: Regeneration while within %s blocks of flowers, cherry leaves, or pink petals");
+		t.add("set_bonus.gearexpansion.sakura.trail", "You leave a trail of falling cherry petals");
+		t.add("trait.gearexpansion.blossoming", "Blossoming: finishing off a mob heals %s hearts");
+		t.add("trait.gearexpansion.petal_guard", "Petal Guard: blocking heals %s hearts (once a second)");
+
+		option(t, "sakuraKillHeal", "Kill Heal", "Health (in half hearts) a sakura weapon restores when it finishes off a mob.");
+		option(t, "sakuraBlockHeal", "Block Heal", "Health (in half hearts) the sakura shield restores when it blocks.");
+		option(t, "sakuraSetBonus", "Enable Set Bonus", "Whether wearing the full Sakura set grants Hanami.");
+		option(t, "sakuraFlowerRange", "Flower Range", "Blocks within which flowers give Regeneration. 0 turns it off.");
+		option(t, "sakuraPetalTrail", "Petal Trail", "Whether the full set leaves a trail of falling cherry petals.");
+	}
+
 	private static void steel(TranslationBuilder t) {
 		t.add("set_bonus.gearexpansion.steel", "Steel");
 		t.add("set_bonus.gearexpansion.steel.toughness", "Hardened: +%s armor toughness");
@@ -264,6 +282,7 @@ final class LanguageGenerator extends FabricLanguageProvider {
 		advancement(t, "silver", "Silver Lining", "Smelt a silver ingot");
 		advancement(t, "emerald", "Merchant's Arsenal", "Craft any emerald gear");
 		advancement(t, "amethyst", "Good Vibrations", "Craft a Resonant Crystal");
+		advancement(t, "sakura", "In Full Bloom", "Alloy iron and pink petals into sakura");
 		advancement(t, "steel", "Tempered", "Alloy iron and coal into steel");
 		advancement(t, "titanium", "Unbreakable", "Smelt a titanium ingot");
 		advancement(t, "cobalt", "Feeling Blue", "Smelt a cobalt ingot");

@@ -1,0 +1,32 @@
+{
+  "parent": "gearexpansion:alloy_forge",
+  "criteria": {
+    "has_sakura_ingot": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gearexpansion:sakura_ingot"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.gearexpansion.sakura.description"
+    },
+    "icon": {
+      "id": "gearexpansion:sakura_ingot"
+    },
+    "title": {
+      "translate": "advancements.gearexpansion.sakura.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_sakura_ingot"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

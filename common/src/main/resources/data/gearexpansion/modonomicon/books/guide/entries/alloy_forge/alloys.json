@@ -3,7 +3,7 @@
   "id": "gearexpansion:alloy_forge/alloys",
   "category": "gearexpansion:alloy_forge",
   "name": "Alloys",
-  "description": "Brass, Rose Gold, and Steel",
+  "description": "Brass, Rose Gold, Sakura, and Steel",
   "icon": "gearexpansion:brass_ingot",
   "background": {
     "sprite": "modonomicon:modonomicon/themes/default/node/entry_backgrounds/square_gold",
@@ -25,7 +25,7 @@
     {
       "type": "modonomicon:text",
       "title": "Alloys",
-      "text": "The Alloy Forge makes three alloys, shown on the next pages.\n\nRecipes use the common ingot tags, so copper, zinc, gold, and iron from other mods work too.",
+      "text": "The Alloy Forge makes four alloys, shown on the next pages.\n\nRecipes use the common ingot tags, so copper, zinc, gold, and iron from other mods work too.",
       "show_title_separator": true,
       "id": "page1"
     },
@@ -50,11 +50,20 @@
     {
       "type": "modonomicon:spotlight",
       "item": {
+        "id": "gearexpansion:sakura_ingot"
+      },
+      "title": "Sakura",
+      "text": "**1 iron ingot** and **4 pink petals** make 1 Sakura Ingot. Pink petals carpet the ground in cherry groves.\n\nSee [Sakura](entry://materials/sakura) for its gear.",
+      "id": "page4"
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "item": {
         "id": "gearexpansion:steel_ingot"
       },
       "title": "Steel",
       "text": "**1 iron ingot** and **2 coal or charcoal** make 1 Steel Ingot. It takes a little longer than the other alloys.\n\nSee [Steel](entry://materials/steel) for its gear.",
-      "id": "page4"
+      "id": "page5"
     }
   ]
 }

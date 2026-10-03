@@ -33,6 +33,7 @@ final class RecipeViewerChecks {
 	private static final List<Identifier> ALLOYING_RECIPES = List.of(
 		GearExpansion.id("brass_ingot_from_alloying"),
 		GearExpansion.id("rose_gold_ingot_from_alloying"),
+		GearExpansion.id("sakura_ingot_from_alloying"),
 		GearExpansion.id("steel_ingot_from_alloying"));
 	// Recipe viewers load in the background after joining a world.
 	private static final int LOAD_TIMEOUT_TICKS = 400;

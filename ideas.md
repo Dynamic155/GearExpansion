@@ -57,6 +57,12 @@ Version 1.0.0 is complete, and 1.0.1 finishes the remaining 1.0 promises.
 
 Version 1.1.0 is complete.
 
+Added after 1.1.0, before 1.2:
+
+| Material | Status |
+|---|---|
+| Sakura | Done: Alloy Forge alloy (1 iron + 4 pink petals), iron tier with enchantability 22, Blossoming weapons (kills heal one heart), Petal Guard shield (blocks heal half a heart, once a second), Hanami set bonus (Regeneration near flowers, cherry petal trail), config, textures, cherry-leaf equip sound, advancement, guidebook entry, game test |
+
 All textures are recolored vanilla textures (see section 11). Stats as built are below and can be tuned in `ModMaterials`.
 
 Zinc stats as built:
@@ -142,6 +148,7 @@ Verify these against 26.3 code when implementing.
 | Titanium | 1.0 | Diamond | Rare deep ore | Near-unbreakable, tough | Vanilla |
 | Infernium | 1.0 | Netherite | Nether ore + template | Heat, lava, fire | **Bold** |
 | Silver | 1.1 | Iron | Overworld ore | Anti-undead | Vanilla |
+| Sakura | 1.1+ | Iron | Alloy Forge: iron + pink petals | Cute, healing among flowers | Vanilla |
 | Steel | 1.1 | Iron+ | Alloy Forge: iron + coal | Reliable workhorse | Vanilla |
 | Tungsten | 1.1 | Diamond+ | Very deep ore | The tank: heavy, immovable | **Bold** |
 | Cobalt | 1.1 | Diamond | Nether ore | Mining speed | Vanilla |

@@ -127,6 +127,7 @@ public final class GearGameTest implements FabricClientGameTest {
 			checkEmerald(ctx, server);
 			checkAmethyst(ctx, server);
 			checkVerdigris(ctx, server);
+			checkSakura(ctx, server);
 			checkSteel(ctx, server);
 			checkCobalt(ctx, server);
 			checkTungsten(ctx, server);
@@ -875,6 +876,48 @@ public final class GearGameTest implements FabricClientGameTest {
 	}
 
 	// Steel, Cobalt, Tungsten ----------------------------------------------------------
+
+	private void checkSakura(ClientGameTestContext ctx, TestServerContext server) {
+		MaterialSet sakura = ModMaterials.SAKURA;
+		server.runCommand("tp @p 0 -60 0 0 0");
+		server.runOnServer(s -> {
+			ServerPlayer player = player(s);
+			ServerLevel level = s.overworld();
+			// One iron ingot and four pink petals make a sakura ingot.
+			AlloyingRecipeInput input = new AlloyingRecipeInput(List.of(new ItemStack(Items.IRON_INGOT), new ItemStack(Items.PINK_PETALS, 4), ItemStack.EMPTY));
+			var recipe = s.getRecipeManager().getRecipeFor(ModRecipes.ALLOYING.get(), input, level);
+			check(recipe.isPresent() && recipe.get().value().result().item().value() == sakura.ingot.get(), "iron and pink petals alloy into sakura");
+
+			// Blossoming: finishing off a mob heals 2 health (one heart).
+			Zombie zombie = EntityTypes.ZOMBIE.create(level, EntitySpawnReason.COMMAND);
+			zombie.setHealth(0.0F);
+			player.setHealth(10.0F);
+			sakura.behavior.onHurtEnemy(sakura, new ItemStack(sakura.sword.get()), zombie, player);
+			check(player.getHealth() == 12.0F, "finishing off a mob with a sakura weapon heals one heart (health " + player.getHealth() + ")");
+
+			// Petal Guard: blocking heals 1 health, at most once a second.
+			DamageSource source = level.damageSources().mobAttack(zombie);
+			sakura.behavior.onShieldBlock(sakura, player, zombie, new ItemStack(sakura.shield.get()), source, 4.0F);
+			sakura.behavior.onShieldBlock(sakura, player, zombie, new ItemStack(sakura.shield.get()), source, 4.0F);
+			check(player.getHealth() == 13.0F, "blocking with the sakura shield heals half a heart, once a second (health " + player.getHealth() + ")");
+			player.setHealth(player.getMaxHealth());
+
+			equip(player, sakura);
+			player.removeAllEffects();
+		});
+		ctx.waitTicks(25);
+		check(!server.computeOnServer(s -> player(s).hasEffect(MobEffects.REGENERATION)), "Hanami gives nothing away from flowers");
+		server.runCommand("setblock 2 -60 0 minecraft:pink_petals");
+		ctx.waitTicks(25);
+		check(server.computeOnServer(s -> player(s).hasEffect(MobEffects.REGENERATION)), "the full sakura set gives Regeneration near pink petals");
+		server.runCommand("setblock 2 -60 0 minecraft:air");
+		check(tooltip(ctx, sakura.sword.get()).contains("Blossoming"), "sakura weapon tooltip shows Blossoming");
+		check(tooltip(ctx, sakura.chestplate.get()).contains("Hanami"), "sakura armor tooltip shows its set bonus");
+		server.runOnServer(s -> {
+			unequip(player(s));
+			player(s).removeAllEffects();
+		});
+	}
 
 	private void checkSteel(ClientGameTestContext ctx, TestServerContext server) {
 		MaterialSet steel = ModMaterials.STEEL;

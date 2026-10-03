@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "sakura_ingot",
+  "key": {
+    "#": "gearexpansion:sakura_nugget"
+  },
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "result": {
+    "id": "gearexpansion:sakura_ingot"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "sakura_ingot",
+  "ingredients": [
+    "gearexpansion:sakura_block"
+  ],
+  "result": {
+    "count": 9,
+    "id": "gearexpansion:sakura_ingot"
+  }
+}

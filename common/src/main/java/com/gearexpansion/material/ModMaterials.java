@@ -17,6 +17,7 @@ import com.gearexpansion.material.behavior.CobaltBehavior;
 import com.gearexpansion.material.behavior.BrassBehavior;
 import com.gearexpansion.material.behavior.EmeraldBehavior;
 import com.gearexpansion.material.behavior.InferniumBehavior;
+import com.gearexpansion.material.behavior.SakuraBehavior;
 import com.gearexpansion.material.behavior.SilverBehavior;
 import com.gearexpansion.material.behavior.SteelBehavior;
 import com.gearexpansion.material.behavior.TungstenBehavior;
@@ -138,6 +139,20 @@ public final class ModMaterials {
 		.armor(13, 2, 6, 5, 2, 22, ModSounds.armorEquip("amethyst"), 0.0F, 0.0F)
 		.shield(300, 1.0F)
 		.behavior(new AmethystBehavior())
+		.build();
+
+	/**
+	 * Sakura: a pretty, gentle set made from iron and cherry blossom petals in the Alloy Forge.
+	 * About iron's strength, but very enchantable, and it heals: kills and shield blocks restore a
+	 * little health, and the full set grows you back among flowers.
+	 */
+	public static final MaterialSet SAKURA = MaterialSet.builder("sakura")
+		.alloy()
+		.tools(ToolTier.IRON, 300, 7.0F, 2.0F, 22)
+		.armor(16, 2, 6, 5, 2, 22, ModSounds.armorEquip("sakura"), 0.0F, 0.0F)
+		.shield(400, 1.0F)
+		.behavior(new SakuraBehavior())
+		.colors(MapColor.COLOR_PINK, MapColor.COLOR_PINK)
 		.build();
 
 	/**

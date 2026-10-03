@@ -107,6 +107,12 @@ MATERIALS = {
         "stretch": True,
         "glowmask": True,
     },
+    "sakura": {
+        "tools": "diamond", "armor": "diamond",
+        "ingot": "iron_ingot", "nugget": "iron_nugget", "block": "iron_block",
+        # Soft pastel cherry blossom pink, lighter and cooler than rose gold.
+        "metal": ["#5A2140", "#8E3D66", "#C2618E", "#E58DB3", "#F5B8D2", "#FFE3EF"],
+    },
     "steel": {
         "tools": "iron", "armor": "iron",
         "ingot": "iron_ingot", "nugget": "iron_nugget", "block": "iron_block",

@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased
+
+### Materials
+
+- **Sakura**: a pretty, gentle iron-tier set made from iron and pink petals in the Alloy Forge, with very high enchantability. Weapons heal you when they finish off a mob, and the shield heals you when it blocks. Set bonus Hanami: Regeneration near flowers, and a trail of falling cherry petals.
+
 ## 1.1.0 - Metals
 
 Four new metals and an in-game guidebook.

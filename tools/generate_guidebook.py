@@ -202,9 +202,9 @@ ENTRIES = [
                   "Taking the results gives experience, like a furnace."),
         crafting("alloy_forge", body="A blast furnace in the middle, a block of copper above it, and bricks around the rest."),
     ], start=True),
-    Entry("alloy_forge", "alloys", "Alloys", "Brass, Rose Gold, and Steel", f"{NS}:brass_ingot", -2, 1, [
+    Entry("alloy_forge", "alloys", "Alloys", "Brass, Rose Gold, Sakura, and Steel", f"{NS}:brass_ingot", -2, 1, [
         text("Alloys",
-             "The Alloy Forge makes three alloys, shown on the next pages.\n\n"
+             "The Alloy Forge makes four alloys, shown on the next pages.\n\n"
              "Recipes use the common ingot tags, so copper, zinc, gold, and iron from other mods work too."),
         spotlight(f"{NS}:brass_ingot", "Brass",
                   "**3 copper ingots** and **1 zinc ingot** make 4 Brass Ingots.\n\n"
@@ -212,6 +212,10 @@ ENTRIES = [
         spotlight(f"{NS}:rose_gold_ingot", "Rose Gold",
                   "**3 gold ingots** and **1 copper ingot** make 2 Rose Gold Ingots.\n\n"
                   "See [Rose Gold](entry://materials/rose_gold) for its gear."),
+        spotlight(f"{NS}:sakura_ingot", "Sakura",
+                  "**1 iron ingot** and **4 pink petals** make 1 Sakura Ingot. Pink petals carpet the "
+                  "ground in cherry groves.\n\n"
+                  "See [Sakura](entry://materials/sakura) for its gear."),
         spotlight(f"{NS}:steel_ingot", "Steel",
                   "**1 iron ingot** and **2 coal or charcoal** make 1 Steel Ingot. It takes a little longer "
                   "than the other alloys.\n\n"
@@ -408,6 +412,19 @@ MATERIALS = [
         "Everything you use loses 50% less durability. Dropping below 30% health gives Resistance I for "
         "5 seconds (once a minute).",
         recipes=[smelting("titanium_ingot_from_smelting_raw_titanium", body=BLAST_TOO)],
+    ),
+    Material(
+        "sakura", "Sakura", "Iron", "sakura_ingot",
+        "A pretty, gentle set made from cherry blossoms.",
+        {"durability": 300, "sword": 6, "armor": 15},
+        "In the [Alloy Forge](entry://alloy_forge/alloy_forge), 1 iron ingot and 4 pink petals make "
+        "1 Sakura Ingot. Pink petals carpet the ground in cherry groves.",
+        ["**Gear:** about iron's strength, with very high enchantability (22).",
+         "**Blossoming:** finishing off a mob with a sakura sword, spear, or axe heals one heart.",
+         "**Petal Guard:** blocking with the sakura shield heals half a heart, at most once a second."],
+        "Hanami",
+        "Regeneration while within 3 blocks of flowers, cherry leaves, or pink petals, and you leave a "
+        "trail of falling cherry petals as you walk.",
     ),
     Material(
         "steel", "Steel", "Iron", "steel_ingot",
