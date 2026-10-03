@@ -1,6 +1,8 @@
 # Changelog
 
-## 1.2.0 - Depths & Seas (in progress)
+## 1.2.0 - Depths & Seas
+
+Three new materials from the deep: Obsidian, Prismarine, and Echo.
 
 ### Materials
 

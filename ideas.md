@@ -90,7 +90,7 @@ Titanium stats as built:
 - Ore: veins of 5, 4 per chunk, Y -64 to -16, half of any ore touching air is skipped, needs a diamond pickaxe
 - Armor is kept out of vanilla's armor tags for now so it can't be trimmed (trims don't show on the 3D models). Revisit with the trims decision.
 
-1.2 Depths & Seas, all three built together:
+1.2 Depths & Seas, all three built together. Version 1.2.0 is complete:
 
 | Material | Status |
 |---|---|
@@ -117,7 +117,7 @@ Titanium stats as built:
 |---|---|---|---|
 | **1.0** | Foundations | Titanium *(built first)*, Zinc, Brass, Aluminum, Rose Gold, Verdigris, Emerald, Amethyst, Infernium | Alloy Forge, shields, set bonus system, keybind abilities, config, JEI/REI/Jade support, advancements |
 | 1.1 | Metals | Silver, Steel, Tungsten, Cobalt | Modonomicon guidebook (done) |
-| 1.2 | Depths & Seas | Obsidian, Prismarine, Echo | New Elder Guardian drop |
+| 1.2 | Depths & Seas | Obsidian, Prismarine, Echo (done) | New Elder Guardian drop (not done) |
 | 1.3 | Elements | Frostite, Fulgurite, Verdantite | Lightning/weather mechanics |
 | 1.4 | Celestial | StarShard, Astral, Sunstone, Moonstone, Voidsteel | Falling stars event, Eclipse synergy |
 
