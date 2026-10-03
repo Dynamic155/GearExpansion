@@ -30,6 +30,7 @@ final class LanguageGenerator extends FabricLanguageProvider {
 
 		t.add(ModBlocks.ALLOY_FORGE.get(), "Alloy Forge");
 		t.add("container.gearexpansion.alloy_forge", "Alloy Forge");
+		t.add(ModBlocks.FULGURITE.get(), "Fulgurite");
 		// Alloy Forge recipes in JEI and REI.
 		t.add("gui.gearexpansion.alloying.cooking_time", "%ss");
 		t.add("gui.gearexpansion.alloying.boosted_time", "%ss with a boost fuel such as blaze powder or lava");
@@ -94,6 +95,9 @@ final class LanguageGenerator extends FabricLanguageProvider {
 		obsidian(t);
 		prismarine(t);
 		echo(t);
+		frostite(t);
+		fulgurite(t);
+		verdantite(t);
 		infernium(t);
 		abilities(t);
 		advancements(t);
@@ -141,6 +145,15 @@ final class LanguageGenerator extends FabricLanguageProvider {
 		t.add(CONFIG + ".category.echo", "Echo");
 		t.add(CONFIG + ".category.echo.group.gear", "Gear");
 		t.add(CONFIG + ".category.echo.group.set_bonus", "Set Bonus: Silence");
+		t.add(CONFIG + ".category.frostite", "Frostite");
+		t.add(CONFIG + ".category.frostite.group.gear", "Gear");
+		t.add(CONFIG + ".category.frostite.group.set_bonus", "Set Bonus: Permafrost");
+		t.add(CONFIG + ".category.fulgurite", "Fulgurite");
+		t.add(CONFIG + ".category.fulgurite.group.gear", "Gear");
+		t.add(CONFIG + ".category.fulgurite.group.set_bonus", "Set Bonus: Stormcaller");
+		t.add(CONFIG + ".category.verdantite", "Verdantite");
+		t.add(CONFIG + ".category.verdantite.group.gear", "Gear");
+		t.add(CONFIG + ".category.verdantite.group.set_bonus", "Set Bonus: Overgrowth");
 		t.add(CONFIG + ".category.infernium", "Infernium");
 		t.add(CONFIG + ".category.infernium.group.gear", "Gear");
 		t.add(CONFIG + ".category.infernium.group.set_bonus", "Set Bonus: Heat Core");
@@ -305,6 +318,49 @@ final class LanguageGenerator extends FabricLanguageProvider {
 		option(t, "echoDetectionReduction", "Detection Reduction", "How much closer hostile mobs must be to notice the wearer.");
 	}
 
+	private static void frostite(TranslationBuilder t) {
+		t.add("set_bonus.gearexpansion.frostite", "Frostite");
+		t.add("set_bonus.gearexpansion.frostite.slow", "Permafrost: melee attackers are slowed");
+		t.add("set_bonus.gearexpansion.frostite.walk", "Sprinting freezes water underfoot");
+		t.add("trait.gearexpansion.frostbite", "Frostbite: hits slow and gradually freeze targets");
+		t.add("trait.gearexpansion.rime", "Rime: blocking a melee attack slows the attacker");
+		t.add("trait.gearexpansion.insulated", "Insulated: you can't freeze");
+		t.add("trait.gearexpansion.snow_walker", "Snow Walker: walk on powder snow");
+
+		option(t, "frostiteFreezeTicks", "Freeze per Hit", "Freezing a frostite weapon adds per hit, in ticks (140 is fully frozen).");
+		option(t, "frostiteSetBonus", "Enable Set Bonus", "Whether wearing the full Frostite set grants Permafrost.");
+		option(t, "frostiteFreezeWater", "Freeze Water", "Whether sprinting in the full set freezes water underfoot.");
+	}
+
+	private static void fulgurite(TranslationBuilder t) {
+		t.add("set_bonus.gearexpansion.fulgurite", "Fulgurite");
+		t.add("set_bonus.gearexpansion.fulgurite.storm", "Stormcaller: Speed and Strength in the rain (more Speed in thunderstorms)");
+		t.add("trait.gearexpansion.chain_lightning", "Chain Lightning: critical hits in the rain arc to a nearby mob (two in a thunderstorm) for %s damage");
+		t.add("trait.gearexpansion.static", "Static: blocking a melee attack shocks the attacker for %s damage (doubled in thunderstorms)");
+		t.add("trait.gearexpansion.grounded", "Grounded: %s%% less lightning damage per piece");
+
+		option(t, "fulguriteFormChance", "Fulgurite Formation", "Chance each sand block around a lightning strike becomes Fulgurite.");
+		option(t, "fulguriteChainDamage", "Chain Lightning Damage", "Damage each chain of lightning from a critical hit deals.");
+		option(t, "fulguriteShieldShock", "Shield Shock", "Damage the fulgurite shield deals to melee attackers.");
+		option(t, "fulguriteSetBonus", "Enable Set Bonus", "Whether wearing the full Fulgurite set grants Stormcaller.");
+	}
+
+	private static void verdantite(TranslationBuilder t) {
+		t.add("set_bonus.gearexpansion.verdantite", "Verdantite");
+		t.add("set_bonus.gearexpansion.verdantite.growth", "Overgrowth: plants within %s blocks grow faster");
+		t.add("set_bonus.gearexpansion.verdantite.hunger", "Working the fields (near farmland or crops) costs no hunger");
+		t.add("trait.gearexpansion.replanting", "Replanting: felling the bottom log of a tree plants a sapling");
+		t.add("trait.gearexpansion.wide", "Wide: works on a 3x3 area (sneak for one block)");
+		t.add("trait.gearexpansion.regrowth", "Regrowth: slowly repairs itself while held");
+		t.add("trait.gearexpansion.bee_friend", "Bee Friend: bees leave you alone");
+
+		option(t, "verdantiteWideTools", "Wide Hoe and Shovel", "Whether verdantite hoes and shovels work on 3x3 areas.");
+		option(t, "verdantiteReplanting", "Replanting Axe", "Whether the verdantite axe plants a sapling after felling a tree.");
+		option(t, "verdantiteBeeFriend", "Bee Friend", "Whether bees leave verdantite wearers alone.");
+		option(t, "verdantiteSetBonus", "Enable Set Bonus", "Whether wearing the full Verdantite set grants Overgrowth.");
+		option(t, "verdantiteGrowthChance", "Growth Chance", "Chance each second that a nearby growing plant gets an extra growth tick.");
+	}
+
 	private static void infernium(TranslationBuilder t) {
 		t.add("set_bonus.gearexpansion.infernium", "Infernium");
 		t.add("set_bonus.gearexpansion.infernium.lava", "Heat Core: walk and swim in lava for %ss before the heat gauge fills");
@@ -340,6 +396,9 @@ final class LanguageGenerator extends FabricLanguageProvider {
 		advancement(t, "obsidian", "Unbreakable Walls", "Alloy obsidian and iron into Reinforced Obsidian");
 		advancement(t, "prismarine", "Scales of the Deep", "Craft a Prismarine Scale");
 		advancement(t, "echo", "Sound of Silence", "Alloy echo shards and sculk into echo");
+		advancement(t, "frostite", "Cold as Ice", "Smelt a frostite ingot");
+		advancement(t, "fulgurite", "Lightning in a Bottle", "Gather a Fulgurite Shard from where lightning struck sand");
+		advancement(t, "verdantite", "Green Thumb", "Smelt a verdantite ingot");
 		advancement(t, "infernium_template", "Hot Off the Press", "Find an Infernium Upgrade template in the Nether");
 		advancement(t, "infernium", "Forged in Fire", "Upgrade titanium gear to infernium");
 	}

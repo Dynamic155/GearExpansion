@@ -1,6 +1,7 @@
 package com.gearexpansion.item;
 
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -11,6 +12,7 @@ import net.minecraft.world.inventory.ClickAction;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.context.UseOnContext;
 import org.jspecify.annotations.Nullable;
 
 import com.gearexpansion.material.MaterialSet;
@@ -32,6 +34,13 @@ public class GearToolItem extends Item {
 		ItemStack weapon = source.getWeaponItem();
 		float bonus = weapon == null ? 0.0F : material.behavior.attackDamageBonus(material, weapon, victim, damage, source);
 		return super.getAttackDamageBonus(victim, damage, source) + bonus;
+	}
+
+	@Override
+	public InteractionResult useOn(UseOnContext context) {
+		InteractionResult result = super.useOn(context);
+		material.behavior.afterUseOn(material, context, result);
+		return result;
 	}
 
 	@Override

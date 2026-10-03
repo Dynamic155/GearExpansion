@@ -24,6 +24,7 @@ public final class GearExpansionDataGenerator implements DataGeneratorEntrypoint
 		pack.addProvider(AdvancementGenerator::new);
 		pack.addProvider(WorldgenGenerator::new);
 		pack.addProvider(NeoForgeBiomeModifierGenerator::new);
+		pack.addProvider(TagGenerator.Biomes::new);
 		TagGenerator.Blocks blockTags = pack.addProvider(TagGenerator.Blocks::new);
 		pack.addProvider((output, registries) -> new TagGenerator.Items(output, registries, blockTags));
 	}

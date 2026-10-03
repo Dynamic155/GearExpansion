@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_frostite_ingot": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gearexpansion:frostite_ingot"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipes": "gearexpansion:frostite_leggings"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_frostite_ingot"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "gearexpansion:frostite_leggings"
+    ]
+  }
+}

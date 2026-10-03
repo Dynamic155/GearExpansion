@@ -1,0 +1,32 @@
+{
+  "parent": "gearexpansion:root",
+  "criteria": {
+    "has_frostite_ingot": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gearexpansion:frostite_ingot"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.gearexpansion.frostite.description"
+    },
+    "icon": {
+      "id": "gearexpansion:frostite_ingot"
+    },
+    "title": {
+      "translate": "advancements.gearexpansion.frostite.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_frostite_ingot"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

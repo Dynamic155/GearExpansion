@@ -1,0 +1,72 @@
+{
+  "type": "modonomicon:content",
+  "id": "gearexpansion:materials/frostite",
+  "category": "gearexpansion:materials",
+  "name": "Frostite",
+  "description": "Diamond tier. Set bonus: Permafrost",
+  "icon": "gearexpansion:frostite_ingot",
+  "background": {
+    "sprite": "modonomicon:modonomicon/themes/default/node/entry_backgrounds/square_gold",
+    "width": 26,
+    "height": 26
+  },
+  "x": 5,
+  "y": 1,
+  "name_style": {
+    "render_name": "bottom",
+    "show_name_before_unlock": true
+  },
+  "parents": [],
+  "pages": [
+    {
+      "type": "modonomicon:spotlight",
+      "item": {
+        "id": "gearexpansion:frostite_ingot"
+      },
+      "title": "Frostite",
+      "text": "Ice-cold gear from the frozen peaks.\n\n- **Tier:** Diamond\n- **Durability:** 1400\n- **Sword damage:** 6.5\n- **Armor (full set):** 18",
+      "id": "page1"
+    },
+    {
+      "type": "modonomicon:text",
+      "title": "Getting It",
+      "text": "**Frostite Ore** grows inside the packed ice and blue ice of **Frozen Peaks** and **Ice Spikes**. Mine it with an iron pickaxe or better, then smelt or blast the raw frostite.",
+      "show_title_separator": true,
+      "id": "page2"
+    },
+    {
+      "type": "modonomicon:text",
+      "title": "The Gear",
+      "text": "- **Frostbite:** frostite swords, spears, and axes slow what they hit and build up freezing, like powder snow. A few hits freeze a mob solid.\n- **Insulated:** wearing any piece of frostite armor stops you from freezing.\n- **Snow Walker:** frostite boots walk on powder snow, like leather boots.\n- **Rime:** blocking a melee attack with the frostite shield slows the attacker.",
+      "show_title_separator": true,
+      "id": "page3"
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "item": {
+        "id": "gearexpansion:frostite_chestplate"
+      },
+      "title": "Permafrost",
+      "text": "**Full set bonus.** Melee attackers are slowed, and sprinting along still water freezes it underfoot (it melts again soon after), like a weaker Frost Walker.",
+      "id": "page4"
+    },
+    {
+      "type": "modonomicon:smelting_recipe",
+      "recipe_id_1": "gearexpansion:frostite_ingot_from_smelting_raw_frostite",
+      "text": "A blast furnace works too, and is faster.",
+      "id": "page5"
+    },
+    {
+      "type": "modonomicon:crafting_recipe",
+      "recipe_id_1": "gearexpansion:frostite_pickaxe",
+      "recipe_id_2": "gearexpansion:frostite_sword",
+      "id": "page6"
+    },
+    {
+      "type": "modonomicon:crafting_recipe",
+      "recipe_id_1": "gearexpansion:frostite_chestplate",
+      "recipe_id_2": "gearexpansion:frostite_shield",
+      "id": "page7"
+    }
+  ]
+}

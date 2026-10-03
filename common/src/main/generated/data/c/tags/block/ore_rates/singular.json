@@ -11,6 +11,9 @@
     "gearexpansion:cobalt_ore",
     "gearexpansion:tungsten_ore",
     "gearexpansion:deepslate_tungsten_ore",
+    "gearexpansion:frostite_ore",
+    "gearexpansion:verdantite_ore",
+    "gearexpansion:deepslate_verdantite_ore",
     "gearexpansion:infernium_ore"
   ]
 }

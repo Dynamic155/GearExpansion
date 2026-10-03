@@ -16,6 +16,7 @@ public final class ModItems {
 	public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(GearExpansion.MOD_ID, Registries.ITEM);
 
 	public static final RegistrySupplier<BlockItem> ALLOY_FORGE = register("alloy_forge", p -> new BlockItem(ModBlocks.ALLOY_FORGE.get(), p), Item.Properties::useBlockDescriptionPrefix);
+	public static final RegistrySupplier<BlockItem> FULGURITE = register("fulgurite", p -> new BlockItem(ModBlocks.FULGURITE.get(), p), Item.Properties::useBlockDescriptionPrefix);
 
 	private ModItems() {
 	}

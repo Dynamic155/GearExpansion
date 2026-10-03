@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:smelting",
+  "cookingtime": 200,
+  "experience": 1.0,
+  "group": "verdantite_ingot",
+  "ingredient": "gearexpansion:raw_verdantite",
+  "result": {
+    "id": "gearexpansion:verdantite_ingot"
+  }
+}

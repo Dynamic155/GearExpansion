@@ -98,6 +98,14 @@ Titanium stats as built:
 | Prismarine | Done: Prismarine Scales (3 shards + 2 crystals + 1 copper, makes 2), Tidal weapons (+3 vs aquatic mobs), Gills armor (Respiration, swim speed, underwater mining per piece), Spined shield, Tidebound set bonus (Conduit Power in water or rain). Not done from the plan: the Tidal Core Elder Guardian drop and the trident synergy. |
 | Echo | Done: Alloy Forge (1 echo shard + 4 sculk + 2 iron, makes 2), Muffled tools, Soft Step boots, Echo Guard shield (Darkness), Silence set bonus (no vibrations while sneaking, mobs notice from half as far), glowing 3D armor |
 
+1.3 Elements, all three built together:
+
+| Material | Status |
+|---|---|
+| Frostite | Done: ore in packed and blue ice (Frozen Peaks, Ice Spikes; a new ICE ore kind), Frostbite weapons (Slowness and freezing), Insulated armor (freeze immune), Snow Walker boots, Rime shield, Permafrost set bonus (slows attackers, sprinting freezes water) |
+| Fulgurite | Done: lightning striking sand forms Fulgurite blocks (2 to 4 shards each), Chain Lightning crits in rain or storms, Grounded armor (lightning immune with the full set), Static shield, Stormcaller set bonus (Speed and Strength in rain). Not done from the plan: the bonus with Verdigris (there's no mixed-set system yet). |
+| Verdantite | Done: Lush Caves ore, Replanting axe, 3x3 hoe and shovel, Bee Friend armor, Regrowth shield, Overgrowth set bonus (faster plant growth, no hunger near crops). Changed from the plan: no Regeneration (it overlapped Sakura), and foxes aren't affected. |
+
 ---
 
 ## 2. Design pillars

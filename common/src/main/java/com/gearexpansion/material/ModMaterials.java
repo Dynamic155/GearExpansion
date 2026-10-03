@@ -17,6 +17,8 @@ import com.gearexpansion.material.behavior.BrassBehavior;
 import com.gearexpansion.material.behavior.CobaltBehavior;
 import com.gearexpansion.material.behavior.EchoBehavior;
 import com.gearexpansion.material.behavior.EmeraldBehavior;
+import com.gearexpansion.material.behavior.FrostiteBehavior;
+import com.gearexpansion.material.behavior.FulguriteBehavior;
 import com.gearexpansion.material.behavior.InferniumBehavior;
 import com.gearexpansion.material.behavior.ObsidianBehavior;
 import com.gearexpansion.material.behavior.PrismarineBehavior;
@@ -24,8 +26,10 @@ import com.gearexpansion.material.behavior.SakuraBehavior;
 import com.gearexpansion.material.behavior.SilverBehavior;
 import com.gearexpansion.material.behavior.SteelBehavior;
 import com.gearexpansion.material.behavior.TungstenBehavior;
+import com.gearexpansion.material.behavior.VerdantiteBehavior;
 import com.gearexpansion.material.behavior.VerdigrisBehavior;
 import com.gearexpansion.registry.ModSounds;
+import com.gearexpansion.worldgen.ModBiomeTags;
 
 /** All gear materials. Stats and ore placement follow ideas.md. */
 public final class ModMaterials {
@@ -264,6 +268,49 @@ public final class ModMaterials {
 		.glowing()
 		.behavior(new EchoBehavior())
 		.colors(MapColor.COLOR_CYAN, MapColor.COLOR_CYAN)
+		.build();
+
+	/**
+	 * Frostite: a pale blue ore grown inside the packed and blue ice of Frozen Peaks and Ice Spikes.
+	 * Weapons freeze and slow what they hit, the armor keeps out the cold, and the full set slows
+	 * attackers and freezes water underfoot while sprinting.
+	 */
+	public static final MaterialSet FROSTITE = MaterialSet.builder("frostite")
+		.tools(ToolTier.DIAMOND, 1400, 7.5F, 2.5F, 12)
+		.armor(30, 3, 7, 6, 2, 12, ModSounds.armorEquip("frostite"), 1.0F, 0.0F)
+		.shield(700, 1.0F)
+		.requiresTool(BlockTags.NEEDS_IRON_TOOL)
+		.iceOre(ModBiomeTags.HAS_FROSTITE_ORE, 6, 16, 60, 256, 0.0F)
+		.behavior(new FrostiteBehavior())
+		.colors(MapColor.ICE, MapColor.ICE)
+		.build();
+
+	/**
+	 * Fulgurite: glassy shards from the Fulgurite that forms where lightning strikes sand. Storm gear:
+	 * critical hits chain lightning in the rain, the armor shrugs off lightning, and the full set
+	 * charges you with Speed and Strength in bad weather.
+	 */
+	public static final MaterialSet FULGURITE = MaterialSet.builder("fulgurite")
+		.craftedMaterial("fulgurite_shard")
+		.tools(ToolTier.DIAMOND, 1200, 8.0F, 2.5F, 16)
+		.armor(28, 3, 7, 5, 2, 16, ModSounds.armorEquip("fulgurite"), 1.0F, 0.0F)
+		.shield(600, 1.0F)
+		.behavior(new FulguriteBehavior())
+		.build();
+
+	/**
+	 * Verdantite: a living green ore from Lush Caves. Gardening gear: the axe replants trees, the hoe
+	 * and shovel work 3x3, bees leave the wearer alone, and the shield regrows. The full set makes
+	 * plants nearby grow faster.
+	 */
+	public static final MaterialSet VERDANTITE = MaterialSet.builder("verdantite")
+		.tools(ToolTier.IRON, 400, 7.0F, 2.0F, 16)
+		.armor(18, 2, 6, 5, 2, 16, ModSounds.armorEquip("verdantite"), 0.5F, 0.0F)
+		.shield(500, 1.0F)
+		.requiresTool(BlockTags.NEEDS_STONE_TOOL)
+		.ore("", ModBiomeTags.HAS_VERDANTITE_ORE, 8, 12, -64, 64, 0.0F)
+		.behavior(new VerdantiteBehavior())
+		.colors(MapColor.COLOR_LIGHT_GREEN, MapColor.PLANT)
 		.build();
 
 	/**

@@ -416,6 +416,84 @@ public final class GearExpansionConfig {
 	@Comment("How much closer hostile mobs must be to notice the wearer.")
 	public int echoDetectionReduction = 50;
 
+	// Frostite
+
+	@AutoGen(category = "frostite", group = "gear")
+	@IntSlider(min = 0, max = 140, step = 10)
+	@SerialEntry
+	@Comment("Freezing a frostite weapon adds per hit, in ticks. A mob is fully frozen at 140, like powder snow.")
+	public int frostiteFreezeTicks = 40;
+
+	@AutoGen(category = "frostite", group = "set_bonus")
+	@TickBox
+	@SerialEntry
+	@Comment("Whether the full Frostite set grants its Permafrost bonus.")
+	public boolean frostiteSetBonus = true;
+
+	@AutoGen(category = "frostite", group = "set_bonus")
+	@TickBox
+	@SerialEntry
+	@Comment("Whether sprinting in the full set freezes water underfoot, like a weaker Frost Walker.")
+	public boolean frostiteFreezeWater = true;
+
+	// Fulgurite
+
+	@AutoGen(category = "fulgurite", group = "gear")
+	@IntSlider(min = 0, max = 100, step = 5, format = "%d%%")
+	@SerialEntry
+	@Comment("Chance each sand block around a lightning strike becomes Fulgurite. The struck block always does.")
+	public int fulguriteFormChance = 40;
+
+	@AutoGen(category = "fulgurite", group = "gear")
+	@IntSlider(min = 0, max = 20, step = 1)
+	@SerialEntry
+	@Comment("Damage each chain of lightning from a fulgurite weapon's critical hit deals.")
+	public int fulguriteChainDamage = 5;
+
+	@AutoGen(category = "fulgurite", group = "gear")
+	@IntSlider(min = 0, max = 10, step = 1)
+	@SerialEntry
+	@Comment("Damage the fulgurite shield deals to melee attackers when it blocks (doubled in thunderstorms).")
+	public int fulguriteShieldShock = 2;
+
+	@AutoGen(category = "fulgurite", group = "set_bonus")
+	@TickBox
+	@SerialEntry
+	@Comment("Whether the full Fulgurite set grants its Stormcaller bonus.")
+	public boolean fulguriteSetBonus = true;
+
+	// Verdantite
+
+	@AutoGen(category = "verdantite", group = "gear")
+	@TickBox
+	@SerialEntry
+	@Comment("Whether verdantite hoes and shovels work on 3x3 areas (sneak for a single block).")
+	public boolean verdantiteWideTools = true;
+
+	@AutoGen(category = "verdantite", group = "gear")
+	@TickBox
+	@SerialEntry
+	@Comment("Whether the verdantite axe plants a sapling where it fells the bottom log of a tree.")
+	public boolean verdantiteReplanting = true;
+
+	@AutoGen(category = "verdantite", group = "gear")
+	@TickBox
+	@SerialEntry
+	@Comment("Whether bees leave alone anyone wearing a piece of verdantite armor.")
+	public boolean verdantiteBeeFriend = true;
+
+	@AutoGen(category = "verdantite", group = "set_bonus")
+	@TickBox
+	@SerialEntry
+	@Comment("Whether the full Verdantite set grants its Overgrowth bonus.")
+	public boolean verdantiteSetBonus = true;
+
+	@AutoGen(category = "verdantite", group = "set_bonus")
+	@IntSlider(min = 0, max = 50, step = 1, format = "%d%%")
+	@SerialEntry
+	@Comment("Chance each second that a growing plant near the wearer gets an extra growth tick.")
+	public int verdantiteGrowthChance = 5;
+
 	// Infernium
 
 	@AutoGen(category = "infernium", group = "gear")

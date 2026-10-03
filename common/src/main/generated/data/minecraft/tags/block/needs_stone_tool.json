@@ -9,6 +9,10 @@
     "gearexpansion:bauxite_ore",
     "gearexpansion:deepslate_bauxite_ore",
     "gearexpansion:raw_bauxite_block",
-    "gearexpansion:brass_block"
+    "gearexpansion:brass_block",
+    "gearexpansion:verdantite_block",
+    "gearexpansion:verdantite_ore",
+    "gearexpansion:deepslate_verdantite_ore",
+    "gearexpansion:raw_verdantite_block"
   ]
 }

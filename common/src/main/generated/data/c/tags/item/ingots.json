@@ -11,6 +11,8 @@
     "#c:ingots/cobalt",
     "#c:ingots/tungsten",
     "#c:ingots/echo",
+    "#c:ingots/frostite",
+    "#c:ingots/verdantite",
     "#c:ingots/infernium"
   ]
 }

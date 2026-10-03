@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "#": "minecraft:stick",
+    "X": "#gearexpansion:fulgurite_repair_materials"
+  },
+  "pattern": [
+    "  X",
+    " # ",
+    "#  "
+  ],
+  "result": {
+    "id": "gearexpansion:fulgurite_spear"
+  }
+}

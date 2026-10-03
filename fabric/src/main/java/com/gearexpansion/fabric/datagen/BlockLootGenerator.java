@@ -5,6 +5,7 @@ import java.util.concurrent.CompletableFuture;
 import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootSubProvider;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.world.level.storage.loot.providers.number.ints.ContextIntProviders;
 
 import com.gearexpansion.material.MaterialSet;
 import com.gearexpansion.material.ModMaterials;
@@ -18,6 +19,8 @@ final class BlockLootGenerator extends FabricBlockLootSubProvider {
 	@Override
 	public void generate() {
 		dropSelf(ModBlocks.ALLOY_FORGE.get());
+		// Fulgurite breaks into 2 to 4 shards; Silk Touch keeps the block.
+		add(ModBlocks.FULGURITE.get(), block -> createSingleItemTableWithSilkTouch(block, ModMaterials.FULGURITE.ingot.get(), ContextIntProviders.between(2, 4)));
 
 		for (MaterialSet set : ModMaterials.ALL) {
 			if (set.storageBlock != null) {

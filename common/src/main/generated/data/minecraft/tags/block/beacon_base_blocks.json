@@ -11,6 +11,8 @@
     "gearexpansion:cobalt_block",
     "gearexpansion:tungsten_block",
     "gearexpansion:echo_block",
+    "gearexpansion:frostite_block",
+    "gearexpansion:verdantite_block",
     "gearexpansion:infernium_block"
   ]
 }

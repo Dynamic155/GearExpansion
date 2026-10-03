@@ -7,6 +7,7 @@ import dev.architectury.registry.registries.RegistrySupplier;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
@@ -25,6 +26,16 @@ public final class ModBlocks {
 		.requiresCorrectToolForDrops()
 		.strength(3.5F)
 		.lightLevel(state -> state.getValue(BlockStateProperties.LIT) ? 13 : 0));
+
+	/**
+	 * Glassy, fused sand left where lightning strikes sand (see FulguriteFormation). Brittle like
+	 * glass; breaking it drops Fulgurite Shards.
+	 */
+	public static final RegistrySupplier<Block> FULGURITE = register("fulgurite", Block::new, BlockBehaviour.Properties.of()
+		.mapColor(MapColor.SAND)
+		.instrument(NoteBlockInstrument.HAT)
+		.strength(1.5F)
+		.sound(SoundType.GLASS));
 
 	private ModBlocks() {
 	}

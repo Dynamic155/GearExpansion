@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_raw_verdantite": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gearexpansion:raw_verdantite"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipes": "gearexpansion:raw_verdantite_block"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_raw_verdantite"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "gearexpansion:raw_verdantite_block"
+    ]
+  }
+}

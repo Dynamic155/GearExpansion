@@ -100,6 +100,27 @@
             "items": "gearexpansion:echo_ingot"
           },
           {
+            "items": "gearexpansion:raw_frostite"
+          },
+          {
+            "items": "gearexpansion:frostite_nugget"
+          },
+          {
+            "items": "gearexpansion:frostite_ingot"
+          },
+          {
+            "items": "gearexpansion:fulgurite_shard"
+          },
+          {
+            "items": "gearexpansion:raw_verdantite"
+          },
+          {
+            "items": "gearexpansion:verdantite_nugget"
+          },
+          {
+            "items": "gearexpansion:verdantite_ingot"
+          },
+          {
             "items": "gearexpansion:raw_infernium"
           },
           {

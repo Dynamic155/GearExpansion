@@ -7,6 +7,7 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.levelgen.VerticalAnchor;
 import net.minecraft.world.level.levelgen.feature.BlockReplacement;
 import net.minecraft.world.level.levelgen.feature.Feature;
@@ -16,6 +17,7 @@ import net.minecraft.world.level.levelgen.placement.CountPlacement;
 import net.minecraft.world.level.levelgen.placement.HeightRangePlacement;
 import net.minecraft.world.level.levelgen.placement.InSquarePlacement;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
+import net.minecraft.world.level.levelgen.structure.templatesystem.BlockMatchTest;
 import net.minecraft.world.level.levelgen.structure.templatesystem.HeightMatchTest;
 import net.minecraft.world.level.levelgen.structure.templatesystem.RuleTest;
 import net.minecraft.world.level.levelgen.structure.templatesystem.TagMatchTest;
@@ -57,6 +59,8 @@ public final class ModOres {
 		RuleTest deepslate = RuleTest.either(new TagMatchTest(BlockTags.HEIGHT_SPECIFIC_ORE_REPLACEABLES), HeightMatchTest.max(8), new TagMatchTest(BlockTags.DEEPSLATE_ORE_REPLACEABLES));
 
 		RuleTest netherrack = new TagMatchTest(BlockTags.BASE_STONE_NETHER);
+		RuleTest packedIce = new BlockMatchTest(Blocks.PACKED_ICE);
+		RuleTest blueIce = new BlockMatchTest(Blocks.BLUE_ICE);
 
 		for (MaterialSet set : ModMaterials.ALL) {
 			List<BlockReplacement> replacements = switch (set.oreKind) {
@@ -64,6 +68,9 @@ public final class ModOres {
 					BlockReplacement.replace(stone, set.ore.get().defaultBlockState()),
 					BlockReplacement.replace(deepslate, set.deepslateOre.get().defaultBlockState()));
 				case NETHER -> List.of(BlockReplacement.replace(netherrack, set.ore.get().defaultBlockState()));
+				case ICE -> List.of(
+					BlockReplacement.replace(packedIce, set.ore.get().defaultBlockState()),
+					BlockReplacement.replace(blueIce, set.ore.get().defaultBlockState()));
 				case NONE -> List.of();
 			};
 			for (OreGeneration ore : set.oreGeneration) {

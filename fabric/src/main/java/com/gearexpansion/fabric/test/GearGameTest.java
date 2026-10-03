@@ -15,6 +15,14 @@ import net.fabricmc.fabric.api.client.gametest.v1.FabricClientGameTest;
 import net.fabricmc.fabric.api.client.gametest.v1.context.ClientGameTestContext;
 import net.fabricmc.fabric.api.client.gametest.v1.context.TestServerContext;
 import net.fabricmc.fabric.api.client.gametest.v1.context.TestSingleplayerContext;
+import net.minecraft.world.phys.Vec3;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.level.block.PowderSnowBlock;
+import net.minecraft.world.level.block.CropBlock;
+import net.minecraft.world.item.context.UseOnContext;
+import net.minecraft.world.entity.animal.bee.Bee;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.core.Direction;
 import net.minecraft.client.CameraType;
 import net.minecraft.client.gui.screens.inventory.CreativeModeInventoryScreen;
 import net.minecraft.core.BlockPos;
@@ -138,6 +146,9 @@ public final class GearGameTest implements FabricClientGameTest {
 			checkObsidian(ctx, server);
 			checkPrismarine(ctx, server);
 			checkEcho(ctx, server);
+			checkFrostite(ctx, server);
+			checkFulgurite(ctx, server);
+			checkVerdantite(ctx, server);
 			checkInfernium(ctx, server);
 
 			screenshots(ctx, server);
@@ -206,7 +217,11 @@ public final class GearGameTest implements FabricClientGameTest {
 			}
 			boolean deep = set.oreGeneration.getFirst().maxY() <= 0;
 			int y = deep ? -40 : 20;
-			String stone = set.oreKind == MaterialSet.OreKind.NETHER ? "minecraft:netherrack" : deep ? "minecraft:deepslate" : "minecraft:stone";
+			String stone = switch (set.oreKind) {
+				case NETHER -> "minecraft:netherrack";
+				case ICE -> "minecraft:packed_ice";
+				default -> deep ? "minecraft:deepslate" : "minecraft:stone";
+			};
 			server.runCommand("forceload add " + x + " 100");
 			ctx.waitTicks(20);
 			server.runCommand("fill " + x + " " + y + " 100 " + (x + 15) + " " + (y + 15) + " 115 " + stone);
@@ -595,7 +610,8 @@ public final class GearGameTest implements FabricClientGameTest {
 	}
 
 	private static int expectedCount(RegistrySupplier<CreativeModeTab> tab) {
-		int count = tab == ModTabs.BLOCKS ? 1 : 0;
+		// The Blocks tab also holds the Alloy Forge and Fulgurite.
+		int count = tab == ModTabs.BLOCKS ? 2 : 0;
 		for (MaterialSet set : ModMaterials.ALL) {
 			if (tab == ModTabs.BLOCKS) {
 				count += set.blocks().size();
@@ -1084,7 +1100,8 @@ public final class GearGameTest implements FabricClientGameTest {
 			equip(player, prismarine);
 		});
 		server.runCommand("weather rain");
-		ctx.waitTicks(25);
+		// Rain fades in over about a second before it counts.
+		ctx.waitTicks(60);
 		server.runOnServer(s -> {
 			ServerPlayer player = player(s);
 			double mining = player.getAttributeValue(Attributes.SUBMERGED_MINING_SPEED);
@@ -1101,8 +1118,9 @@ public final class GearGameTest implements FabricClientGameTest {
 
 	private void checkEcho(ClientGameTestContext ctx, TestServerContext server) {
 		MaterialSet echo = ModMaterials.ECHO;
-		BlockPos sensor = new BlockPos(3, -60, 0);
-		server.runCommand("tp @p 0 -60 0 0 0");
+		// Away from where earlier checks fight and kill mobs, so the sensor only hears the player.
+		BlockPos sensor = new BlockPos(3, -60, 40);
+		server.runCommand("tp @p 0 -60 40 0 0");
 		server.runOnServer(s -> {
 			ServerPlayer player = player(s);
 			ServerLevel level = s.overworld();
@@ -1134,7 +1152,7 @@ public final class GearGameTest implements FabricClientGameTest {
 		ctx.waitTicks(10);
 		check(server.computeOnServer(s -> SculkSensorBlock.getPhase(s.overworld().getBlockState(sensor)) != SculkSensorPhase.INACTIVE),
 			"a sculk sensor hears ordinary footsteps");
-		server.runCommand("setblock 3 -60 0 minecraft:air");
+		server.runCommand("setblock 3 -60 40 minecraft:air");
 		server.runOnServer(s -> {
 			ServerPlayer player = player(s);
 			ServerLevel level = s.overworld();
@@ -1154,8 +1172,189 @@ public final class GearGameTest implements FabricClientGameTest {
 			unequip(player);
 		});
 		server.runCommand("kill @e[type=zombie]");
+		server.runCommand("tp @p 0 -60 0 0 0");
 		check(tooltip(ctx, echo.pickaxe.get()).contains("Muffled"), "echo tool tooltip shows Muffled");
 		check(tooltip(ctx, echo.chestplate.get()).contains("Silence"), "echo armor tooltip shows its set bonus");
+	}
+
+	// Frostite, Fulgurite, Verdantite --------------------------------------------------
+
+	private void checkFrostite(ClientGameTestContext ctx, TestServerContext server) {
+		MaterialSet frostite = ModMaterials.FROSTITE;
+		server.runOnServer(s -> {
+			ServerPlayer player = player(s);
+			ServerLevel level = s.overworld();
+			check(!canMine(Items.STONE_PICKAXE, frostite.ore.get().defaultBlockState()), "a stone pickaxe can't mine frostite ore");
+			check(canMine(Items.IRON_PICKAXE, frostite.ore.get().defaultBlockState()), "an iron pickaxe mines frostite ore");
+
+			Zombie zombie = EntityTypes.ZOMBIE.create(level, EntitySpawnReason.COMMAND);
+			frostite.behavior.onHurtEnemy(frostite, new ItemStack(frostite.sword.get()), zombie, player);
+			check(zombie.hasEffect(MobEffects.SLOWNESS) && zombie.getTicksFrozen() == 40, "frostite weapons slow and start to freeze their targets");
+
+			check(!PowderSnowBlock.canEntityWalkOnPowderSnow(player), "players sink into powder snow without the right boots");
+			player.setItemSlot(EquipmentSlot.FEET, new ItemStack(frostite.boots.get()));
+			check(PowderSnowBlock.canEntityWalkOnPowderSnow(player), "frostite boots walk on powder snow");
+			check(!player.canFreeze(), "frostite armor keeps the wearer from freezing");
+			player.setItemSlot(EquipmentSlot.FEET, ItemStack.EMPTY);
+			equip(player, frostite);
+
+			GearCombat.modifyIncomingDamage(player, level.damageSources().mobAttack(zombie), 2.0F);
+			check(zombie.getEffect(MobEffects.SLOWNESS) != null, "the full frostite set slows melee attackers");
+		});
+		// Sprinting next to still water in the full set freezes it.
+		server.runCommand("fill 30 -61 0 34 -61 4 minecraft:water");
+		server.runCommand("setblock 32 -61 2 minecraft:stone");
+		server.runCommand("tp @p 32.5 -60 2.5");
+		ctx.waitTicks(3);
+		server.runOnServer(s -> player(s).setSprinting(true));
+		ctx.waitTicks(3);
+		check(server.computeOnServer(s -> s.overworld().getBlockState(new BlockPos(31, -61, 2)).is(Blocks.FROSTED_ICE)),
+			"sprinting in the full frostite set freezes water underfoot");
+		server.runOnServer(s -> {
+			player(s).setSprinting(false);
+			unequip(player(s));
+			player(s).removeAllEffects();
+		});
+		server.runCommand("fill 30 -61 0 34 -61 4 minecraft:grass_block");
+		server.runCommand("tp @p 0 -60 0 0 0");
+		check(tooltip(ctx, frostite.sword.get()).contains("Frostbite"), "frostite weapon tooltip shows Frostbite");
+	}
+
+	private void checkFulgurite(ClientGameTestContext ctx, TestServerContext server) {
+		MaterialSet fulgurite = ModMaterials.FULGURITE;
+		// Lightning striking sand fuses it into Fulgurite.
+		server.runCommand("fill 39 -63 -1 41 -61 1 minecraft:sand");
+		server.runCommand("summon minecraft:lightning_bolt 40 -60 0");
+		ctx.waitTicks(5);
+		server.runOnServer(s -> {
+			ServerLevel level = s.overworld();
+			ServerPlayer player = player(s);
+			check(level.getBlockState(new BlockPos(40, -61, 0)).is(ModBlocks.FULGURITE.get()), "lightning striking sand fuses it into Fulgurite");
+			var drops = Block.getDrops(ModBlocks.FULGURITE.get().defaultBlockState(), level, player.blockPosition(), null, player, new ItemStack(Items.IRON_PICKAXE));
+			int shards = drops.stream().filter(stack -> stack.is(fulgurite.ingot.get())).mapToInt(ItemStack::getCount).sum();
+			check(shards >= 2 && shards <= 4, "fulgurite breaks into 2 to 4 shards (got " + shards + ")");
+
+			equip(player, fulgurite);
+			float lightning = GearCombat.modifyIncomingDamage(player, level.damageSources().lightningBolt(), 10.0F);
+			check(lightning == 0.0F, "the full fulgurite set takes no lightning damage (took " + lightning + ")");
+		});
+		server.runCommand("fill 39 -63 -1 41 -60 1 minecraft:grass_block");
+		server.runCommand("fill 39 -60 -1 41 -59 1 minecraft:air");
+		server.runCommand("tp @p 0 -60 0 0 0");
+		server.runCommand("weather thunder");
+		// Rain fades in over about a second before it counts.
+		ctx.waitTicks(60);
+		server.runOnServer(s -> {
+			ServerPlayer player = player(s);
+			ServerLevel level = s.overworld();
+			check(player.hasEffect(MobEffects.SPEED) && player.hasEffect(MobEffects.STRENGTH), "the full fulgurite set grants Speed and Strength in a storm");
+
+			// A falling (critical) hit in a thunderstorm arcs to nearby mobs.
+			Zombie first = EntityTypes.ZOMBIE.create(level, EntitySpawnReason.COMMAND);
+			Zombie second = EntityTypes.ZOMBIE.create(level, EntitySpawnReason.COMMAND);
+			for (Zombie zombie : List.of(first, second)) {
+				zombie.setNoAi(true);
+				level.addFreshEntity(zombie);
+			}
+			first.setPos(player.getX() + 2, player.getY(), player.getZ());
+			second.setPos(player.getX() + 4, player.getY(), player.getZ());
+			player.fallDistance = 1.0F;
+			player.setOnGround(false);
+			fulgurite.behavior.onHurtEnemy(fulgurite, new ItemStack(fulgurite.sword.get()), first, player);
+			player.fallDistance = 0.0F;
+			player.setOnGround(true);
+			check(second.getHealth() < second.getMaxHealth(), "fulgurite critical hits chain lightning to nearby mobs in a storm");
+
+			fulgurite.behavior.onShieldBlock(fulgurite, player, first, new ItemStack(fulgurite.shield.get()), level.damageSources().mobAttack(first), 4.0F);
+			check(first.getHealth() < first.getMaxHealth(), "the fulgurite shield shocks melee attackers");
+			unequip(player);
+			player.removeAllEffects();
+		});
+		server.runCommand("weather clear");
+		server.runCommand("kill @e[type=zombie]");
+		server.runCommand("kill @e[type=lightning_bolt]");
+		check(tooltip(ctx, fulgurite.sword.get()).contains("Chain Lightning"), "fulgurite weapon tooltip shows Chain Lightning");
+	}
+
+	private void checkVerdantite(ClientGameTestContext ctx, TestServerContext server) {
+		MaterialSet verdantite = ModMaterials.VERDANTITE;
+		server.runCommand("tp @p 50 -60 4 180 60");
+		server.runCommand("fill 47 -60 -3 57 -58 3 minecraft:air");
+		server.runCommand("fill 47 -61 -3 57 -61 3 minecraft:grass_block");
+		server.runCommand("setblock 55 -60 0 minecraft:oak_log");
+		ctx.waitTicks(2);
+		server.runOnServer(s -> {
+			ServerPlayer player = player(s);
+			ServerLevel level = s.overworld();
+			check(canMine(Items.STONE_PICKAXE, verdantite.ore.get().defaultBlockState()), "a stone pickaxe mines verdantite ore");
+
+			// The wide hoe tills a 3x3 patch.
+			player.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(verdantite.hoe.get()));
+			BlockPos center = new BlockPos(50, -61, 0);
+			BlockHitResult hit = new BlockHitResult(Vec3.atCenterOf(center).relative(Direction.UP, 0.5), Direction.UP, center, false);
+			verdantite.hoe.get().useOn(new UseOnContext(player, InteractionHand.MAIN_HAND, hit));
+			long farmland = BlockPos.betweenClosedStream(center.offset(-1, 0, -1), center.offset(1, 0, 1))
+				.filter(pos -> level.getBlockState(pos).is(Blocks.FARMLAND)).count();
+			check(farmland == 9, "the verdantite hoe tills a 3x3 patch (tilled " + farmland + ")");
+
+			// The axe replants the bottom log of a tree.
+			BlockPos log = new BlockPos(55, -60, 0);
+			ItemStack axe = new ItemStack(verdantite.axe.get());
+			player.setItemSlot(EquipmentSlot.MAINHAND, axe);
+			verdantite.behavior.onBlockBroken(verdantite, player, axe, level.getBlockState(log), log);
+			level.removeBlock(log, false);
+			player.setItemSlot(EquipmentSlot.MAINHAND, ItemStack.EMPTY);
+
+			// Bees leave verdantite wearers alone.
+			Bee bee = EntityTypes.BEE.create(level, EntitySpawnReason.COMMAND);
+			bee.setTarget(player);
+			check(bee.getTarget() == player, "bees can target players normally");
+			bee.setTarget(null);
+			player.setItemSlot(EquipmentSlot.HEAD, new ItemStack(verdantite.helmet.get()));
+			bee.setTarget(player);
+			check(bee.getTarget() == null, "bees leave anyone wearing verdantite armor alone");
+
+			// Regrowth: the shield mends while held.
+			ItemStack shield = new ItemStack(verdantite.shield.get());
+			shield.setDamageValue(10);
+			player.setItemSlot(EquipmentSlot.OFFHAND, shield);
+
+			// Overgrowth: wheat planted around the farmland grows faster; tested at a high chance so it's quick.
+			BlockPos.betweenClosed(center.offset(-1, 1, -1), center.offset(1, 1, 1)).forEach(pos -> level.setBlockAndUpdate(pos, Blocks.WHEAT.defaultBlockState()));
+			equip(player, verdantite);
+			GearExpansionConfig.get().verdantiteGrowthChance = 100;
+		});
+		ctx.waitTicks(105);
+		server.runOnServer(s -> {
+			ServerPlayer player = player(s);
+			ServerLevel level = s.overworld();
+			BlockState replanted = level.getBlockState(new BlockPos(55, -60, 0));
+			check(replanted.is(Blocks.OAK_SAPLING), "the verdantite axe replants an oak sapling (found " + replanted + ")");
+			check(player.getItemBySlot(EquipmentSlot.OFFHAND).getDamageValue() < 10, "the verdantite shield slowly repairs itself while held");
+			BlockPos center = new BlockPos(50, -61, 0);
+			int age = BlockPos.betweenClosedStream(center.offset(-1, 1, -1), center.offset(1, 1, 1))
+				.mapToInt(pos -> level.getBlockState(pos).getValue(CropBlock.AGE)).sum();
+			check(age > 0, "crops near the full verdantite set grow faster (total age " + age + ")");
+			check(SetBonuses.VERDANTITE.isTending(player), "the full verdantite set counts as tending the fields near farmland");
+			// Enough exhaustion to cost a point of saturation on the next tick, if it were counted.
+			player.getFoodData().setSaturation(5.0F);
+			player.causeFoodExhaustion(8.0F);
+		});
+		ctx.waitTicks(2);
+		server.runOnServer(s -> {
+			ServerPlayer player = player(s);
+			check(player.getFoodData().getSaturationLevel() == 5.0F, "working the fields in the full verdantite set costs no hunger");
+			GearExpansionConfig.get().verdantiteGrowthChance = 5;
+			unequip(player);
+			player.setItemSlot(EquipmentSlot.OFFHAND, ItemStack.EMPTY);
+			player.removeAllEffects();
+		});
+		server.runCommand("fill 47 -60 -3 57 -58 3 minecraft:air");
+		server.runCommand("fill 47 -61 -3 57 -61 3 minecraft:grass_block");
+		server.runCommand("kill @e[type=item]");
+		server.runCommand("tp @p 0 -60 0 0 0");
+		check(tooltip(ctx, verdantite.hoe.get()).contains("Wide"), "verdantite hoe tooltip shows Wide");
+		check(tooltip(ctx, verdantite.chestplate.get()).contains("Overgrowth"), "verdantite armor tooltip shows its set bonus");
 	}
 
 	private void checkEmerald(ClientGameTestContext ctx, TestServerContext server) {

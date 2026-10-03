@@ -11,7 +11,11 @@
 		"ItemStackDurabilityMixin",
 		"LivingEntityCombatMixin",
 		"LivingEntityEffectMixin",
+		"LightningBoltMixin",
 		"LivingEntityVisibilityMixin",
+		"MobTargetMixin",
+		"PlayerExhaustionMixin",
+		"PowderSnowBlockMixin",
 		"ServerExplosionMixin",
 		"ServerLevelLightningMixin",
 		"ServerLevelVibrationMixin"

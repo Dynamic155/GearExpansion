@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipes": "gearexpansion:verdantite_ingot_from_blasting_verdantite_ore"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_verdantite_ore": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gearexpansion:verdantite_ore"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_verdantite_ore"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "gearexpansion:verdantite_ingot_from_blasting_verdantite_ore"
+    ]
+  }
+}

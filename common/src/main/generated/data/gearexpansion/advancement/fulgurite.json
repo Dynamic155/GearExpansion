@@ -1,0 +1,32 @@
+{
+  "parent": "gearexpansion:root",
+  "criteria": {
+    "has_fulgurite_shard": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gearexpansion:fulgurite_shard"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.gearexpansion.fulgurite.description"
+    },
+    "icon": {
+      "id": "gearexpansion:fulgurite_shard"
+    },
+    "title": {
+      "translate": "advancements.gearexpansion.fulgurite.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_fulgurite_shard"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

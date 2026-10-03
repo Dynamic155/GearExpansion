@@ -1,0 +1,66 @@
+{
+  "type": "modonomicon:content",
+  "id": "gearexpansion:materials/fulgurite",
+  "category": "gearexpansion:materials",
+  "name": "Fulgurite",
+  "description": "Diamond tier. Set bonus: Stormcaller",
+  "icon": "gearexpansion:fulgurite_shard",
+  "background": {
+    "sprite": "modonomicon:modonomicon/themes/default/node/entry_backgrounds/square_gold",
+    "width": 26,
+    "height": 26
+  },
+  "x": 7,
+  "y": 1,
+  "name_style": {
+    "render_name": "bottom",
+    "show_name_before_unlock": true
+  },
+  "parents": [],
+  "pages": [
+    {
+      "type": "modonomicon:spotlight",
+      "item": {
+        "id": "gearexpansion:fulgurite_shard"
+      },
+      "title": "Fulgurite",
+      "text": "Storm gear made from lightning-fused sand.\n\n- **Tier:** Diamond\n- **Durability:** 1200\n- **Sword damage:** 6.5\n- **Armor (full set):** 17",
+      "id": "page1"
+    },
+    {
+      "type": "modonomicon:text",
+      "title": "Getting It",
+      "text": "When lightning strikes **sand**, it fuses into **Fulgurite** blocks. Break them for 2 to 4 **Fulgurite Shards** each (Silk Touch keeps the block).\n\nLightning is rare, so help it along: a **lightning rod** standing on sand turns the sand under it into Fulgurite in every storm, and a **Channeling** trident calls lightning down on purpose.",
+      "show_title_separator": true,
+      "id": "page2"
+    },
+    {
+      "type": "modonomicon:text",
+      "title": "The Gear",
+      "text": "- **Chain Lightning:** critical hits in the rain arc lightning to a nearby mob for 5 damage, or two mobs in a thunderstorm.\n- **Grounded:** each armor piece blocks a quarter of lightning damage, so the full set ignores it.\n- **Static:** blocking a melee attack with the fulgurite shield shocks the attacker (harder in a thunderstorm).",
+      "show_title_separator": true,
+      "id": "page3"
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "item": {
+        "id": "gearexpansion:fulgurite_chestplate"
+      },
+      "title": "Stormcaller",
+      "text": "**Full set bonus.** Speed and Strength while you're out in the rain, and more Speed in a thunderstorm.",
+      "id": "page4"
+    },
+    {
+      "type": "modonomicon:crafting_recipe",
+      "recipe_id_1": "gearexpansion:fulgurite_pickaxe",
+      "recipe_id_2": "gearexpansion:fulgurite_sword",
+      "id": "page5"
+    },
+    {
+      "type": "modonomicon:crafting_recipe",
+      "recipe_id_1": "gearexpansion:fulgurite_chestplate",
+      "recipe_id_2": "gearexpansion:fulgurite_shield",
+      "id": "page6"
+    }
+  ]
+}

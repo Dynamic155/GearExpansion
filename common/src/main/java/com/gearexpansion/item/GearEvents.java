@@ -5,6 +5,7 @@ import java.util.Map;
 import dev.architectury.event.EventResult;
 import dev.architectury.event.events.common.BlockEvent;
 import dev.architectury.event.events.common.LootEvent;
+import dev.architectury.event.events.common.TickEvent;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.ItemStack;
@@ -16,6 +17,7 @@ import net.minecraft.world.level.storage.loot.predicates.LootItemRandomChanceCon
 import net.minecraft.world.level.storage.loot.providers.number.ints.ContextIntProviders;
 
 import com.gearexpansion.material.ModMaterials;
+import com.gearexpansion.material.behavior.VerdantiteBehavior;
 import com.gearexpansion.setbonus.SetBonuses;
 
 /** Event listeners for gear that don't belong to a single item class. */
@@ -24,6 +26,9 @@ public final class GearEvents {
 	}
 
 	public static void init() {
+		// Saplings the verdantite axe queued while breaking logs.
+		TickEvent.SERVER_POST.register(server -> VerdantiteBehavior.plantPending());
+
 		BlockEvent.BREAK.register((level, pos, state, player) -> {
 			ItemStack tool = player.getMainHandItem();
 			ModMaterials.ofGear(tool).ifPresent(set -> set.behavior.onBlockBroken(set, player, tool, state, pos));

@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "verdantite_ingot",
+  "ingredients": [
+    "gearexpansion:verdantite_block"
+  ],
+  "result": {
+    "count": 9,
+    "id": "gearexpansion:verdantite_ingot"
+  }
+}

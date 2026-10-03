@@ -6,12 +6,14 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jspecify.annotations.Nullable;
 
@@ -37,6 +39,10 @@ public interface GearBehavior {
 
 	/** Every tick for gear in an inventory or equipment slot. Server side. */
 	default void inventoryTick(MaterialSet set, ItemStack stack, ServerLevel level, Entity owner, @Nullable EquipmentSlot slot) {
+	}
+
+	/** After a tool of this material was used on a block (tilling, path-making, stripping, and so on). */
+	default void afterUseOn(MaterialSet set, UseOnContext context, InteractionResult result) {
 	}
 
 	/** After a player breaks a block with one of this material's tools. */

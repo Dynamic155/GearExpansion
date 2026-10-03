@@ -36,6 +36,7 @@ ASSETS = ROOT / "common" / "src" / "main" / "resources" / "assets" / "gearexpans
 #   base_item       gear is made from an existing item (Emerald): no ingot, nugget, or block textures
 #   material_item   (name, vanilla texture, gradient) for a crafted material item like the Resonant Crystal
 #   ore_base        for Nether ores: the plain stone texture, so only pixels that differ (the mineral) are recolored
+#   ore_on          for ores in other blocks (Frostite in packed ice): the block to lay the recolored mineral over
 #   template        vanilla texture to recolor for an upgrade smithing template
 #   glowmask        make _glowmask textures for the 3D armor and shield from their brightest pixels
 #   stages          (suffix, gradient) pairs: extra copies of all gear textures, e.g. Verdigris oxidation stages
@@ -114,6 +115,26 @@ MATERIALS = {
         "metal": ["#020A0E", "#051519", "#082228", "#0C333B", "#124A55", "#3FD8D2"],
         "stretch": True,
         "glowmask": True,
+    },
+    "frostite": {
+        "tools": "iron", "armor": "iron", "raw": "iron", "ore": "diamond", "ore_on": "packed_ice",
+        # Light sky-ice blue, paler and less green than prismarine.
+        "metal": ["#0B2A3C", "#165070", "#2A7FA8", "#5AB0D6", "#A0DDF2", "#EAFBFF"],
+        "raw_colors": ["#16303F", "#2A5068", "#457A96", "#6FA6C2", "#A6D2E6", "#E2F4FB"],
+        "ore_colors": ["#0E3A5A", "#1F6A98", "#3C9AD0", "#74C8F0", "#B8E9FF", "#FFFFFF"],
+    },
+    "fulgurite": {
+        "tools": "golden", "armor": "golden", "armor_entity": "gold",
+        "material_item": ("fulgurite_shard", "quartz", ["#2A2216", "#5A4C34", "#8F7E5C", "#C4B48C", "#EAE0C2", "#FFFDF2"]),
+        # Pale fused sand with glassy highlights.
+        "metal": ["#2A2216", "#4E412B", "#7D6A45", "#AE9A6A", "#D9CCA0", "#FFF8DA"],
+    },
+    "verdantite": {
+        "tools": "iron", "armor": "iron", "raw": "iron", "ore": "emerald",
+        # Mossy, living green, more olive than emerald.
+        "metal": ["#14240F", "#26401A", "#3D6227", "#5C8A38", "#86B552", "#BEE08A"],
+        "raw_colors": ["#1A2412", "#2E4020", "#4A6332", "#6C8A48", "#94B266", "#C2DA92"],
+        "ore_colors": ["#1A3A10", "#2F6420", "#4C9634", "#74C450", "#A6E57A", "#DDFBB6"],
     },
     "infernium": {
         "tools": "netherite", "armor": "netherite",
@@ -513,6 +534,14 @@ def generate_gear(vanilla, name, spec, metal, suffix, gear_stretch):
         write_png(item / f"{name}_shield{suffix}_glowmask.png", glowmask(shield))
 
 
+def overlay_ore(vanilla, base_texture, ore, colors):
+    """The mineral pixels of vanilla's {ore}_ore, recolored, drawn over another block's texture."""
+    base = vanilla.texture(f"block/{base_texture}")
+    source = vanilla.texture(f"block/{ore}_ore")
+    gems = recolor(source, colors, ore_gems, stretch=(0.35, 1.0))
+    return [[gems[y][x] if ore_gems(source[y][x]) else base[y][x] for x in range(len(base[0]))] for y in range(len(base))]
+
+
 def generate(vanilla, name, spec):
     metal = spec["metal"]
     gear_stretch = (0.0, 1.0) if spec.get("stretch") else None
@@ -544,7 +573,10 @@ def generate(vanilla, name, spec):
         ore_colors = spec.get("ore_colors", metal)
         make(item / f"raw_{ore_name}.png", f"item/raw_{raw_source}", raw)
         make(block / f"raw_{ore_name}_block.png", f"block/raw_{raw_source}_block", raw)
-        if "ore_base" in spec:
+        if "ore_on" in spec:
+            # Ores in other blocks: the mineral of a vanilla ore, recolored, laid over that block.
+            write_png(block / f"{ore_name}_ore.png", overlay_ore(vanilla, spec["ore_on"], ore, ore_colors))
+        elif "ore_base" in spec:
             # Nether ores: netherrack is too colorful to tell apart by color, so recolor what differs from it.
             base = vanilla.texture(f"block/{spec['ore_base']}")
             pixels = indexed(vanilla.texture(f"block/{ore}_ore"))
@@ -630,7 +662,17 @@ def generate_alloy_forge(vanilla):
     print("generated assets for the alloy forge")
 
 
-EXTRAS = {"alloy_forge": generate_alloy_forge}
+# Fused sand: pale glassy veins with a faint lavender sheen, like lightning-fused silica.
+FULGURITE_VEINS = ["#3A3326", "#6B6150", "#A59C88", "#D4CFC2", "#EEEAF4", "#FFFFFF"]
+
+
+def generate_fulgurite(vanilla):
+    block = ASSETS / "textures" / "block"
+    write_png(block / "fulgurite.png", overlay_ore(vanilla, "sand", "diamond", FULGURITE_VEINS))
+    print("generated assets for fulgurite")
+
+
+EXTRAS = {"alloy_forge": generate_alloy_forge, "fulgurite_block": generate_fulgurite}
 
 
 if __name__ == "__main__":

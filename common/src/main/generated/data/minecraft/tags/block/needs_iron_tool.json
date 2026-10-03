@@ -9,6 +9,9 @@
     "gearexpansion:cobalt_block",
     "gearexpansion:cobalt_ore",
     "gearexpansion:raw_cobalt_block",
-    "gearexpansion:echo_block"
+    "gearexpansion:echo_block",
+    "gearexpansion:frostite_block",
+    "gearexpansion:frostite_ore",
+    "gearexpansion:raw_frostite_block"
   ]
 }

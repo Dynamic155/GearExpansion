@@ -425,6 +425,93 @@
       }
     ]
   },
+  "item.armor.equip_frostite": {
+    "subtitle": "subtitles.item.armor.equip",
+    "sounds": [
+      {
+        "name": "minecraft:block/powder_snow/break1",
+        "pitch": 1.1
+      },
+      {
+        "name": "minecraft:block/powder_snow/break2",
+        "pitch": 1.1
+      },
+      {
+        "name": "minecraft:block/powder_snow/break3",
+        "pitch": 1.1
+      },
+      {
+        "name": "minecraft:block/powder_snow/break4",
+        "pitch": 1.1
+      },
+      {
+        "name": "minecraft:block/powder_snow/break5",
+        "pitch": 1.1
+      },
+      {
+        "name": "minecraft:block/powder_snow/break6",
+        "pitch": 1.1
+      },
+      {
+        "name": "minecraft:block/powder_snow/break7",
+        "pitch": 1.1
+      }
+    ]
+  },
+  "item.armor.equip_fulgurite": {
+    "subtitle": "subtitles.item.armor.equip",
+    "sounds": [
+      {
+        "name": "minecraft:item/armor/equip_chain1",
+        "pitch": 1.5
+      },
+      {
+        "name": "minecraft:item/armor/equip_chain2",
+        "pitch": 1.5
+      },
+      {
+        "name": "minecraft:item/armor/equip_chain3",
+        "pitch": 1.5
+      },
+      {
+        "name": "minecraft:item/armor/equip_chain4",
+        "pitch": 1.5
+      },
+      {
+        "name": "minecraft:item/armor/equip_chain5",
+        "pitch": 1.5
+      },
+      {
+        "name": "minecraft:item/armor/equip_chain6",
+        "pitch": 1.5
+      }
+    ]
+  },
+  "item.armor.equip_verdantite": {
+    "subtitle": "subtitles.item.armor.equip",
+    "sounds": [
+      {
+        "name": "minecraft:block/moss/break1",
+        "pitch": 1.0
+      },
+      {
+        "name": "minecraft:block/moss/break2",
+        "pitch": 1.0
+      },
+      {
+        "name": "minecraft:block/moss/break3",
+        "pitch": 1.0
+      },
+      {
+        "name": "minecraft:block/moss/break4",
+        "pitch": 1.0
+      },
+      {
+        "name": "minecraft:block/moss/break5",
+        "pitch": 1.0
+      }
+    ]
+  },
   "item.armor.equip_infernium": {
     "subtitle": "subtitles.item.armor.equip",
     "sounds": [

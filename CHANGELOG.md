@@ -1,5 +1,17 @@
 # Changelog
 
+## 1.3.0 - Elements (in progress)
+
+### Materials
+
+- **Frostite**: an ore in the packed and blue ice of Frozen Peaks and Ice Spikes. Weapons slow and freeze targets, the armor stops freezing and its boots walk on powder snow, and the shield slows attackers. Set bonus Permafrost: melee attackers are slowed, and sprinting freezes water underfoot.
+- **Fulgurite**: lightning striking sand now fuses it into Fulgurite, which breaks into Fulgurite Shards. Critical hits chain lightning in the rain, the armor shrugs off lightning, and the shield shocks attackers. Set bonus Stormcaller: Speed and Strength in the rain.
+- **Verdantite**: an ore in Lush Caves. The axe replants trees, the hoe and shovel work 3x3, bees leave the wearer alone, and the shield slowly repairs itself. Set bonus Overgrowth: plants nearby grow faster, and farming costs no hunger.
+
+### Changes
+
+- The guidebook's materials map keeps each tier on one row, with Infernium straight below Titanium.
+
 ## 1.2.0 - Depths & Seas
 
 Three new materials from the deep: Obsidian, Prismarine, and Echo.

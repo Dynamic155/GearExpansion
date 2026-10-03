@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "frostite_ingot",
+  "ingredients": [
+    "gearexpansion:frostite_block"
+  ],
+  "result": {
+    "count": 9,
+    "id": "gearexpansion:frostite_ingot"
+  }
+}

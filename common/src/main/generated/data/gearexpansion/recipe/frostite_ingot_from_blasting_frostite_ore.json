@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:blasting",
+  "cookingtime": 100,
+  "experience": 1.0,
+  "group": "frostite_ingot",
+  "ingredient": "gearexpansion:frostite_ore",
+  "result": {
+    "id": "gearexpansion:frostite_ingot"
+  }
+}

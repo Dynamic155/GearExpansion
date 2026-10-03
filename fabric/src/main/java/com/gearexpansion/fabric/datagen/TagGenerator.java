@@ -18,12 +18,14 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
 
 import com.gearexpansion.material.MaterialSet;
 import com.gearexpansion.block.entity.AlloyForgeBlockEntity;
 import com.gearexpansion.material.ModMaterials;
 import com.gearexpansion.registry.ModBlocks;
+import com.gearexpansion.worldgen.ModBiomeTags;
 
 /**
  * Block and item tags. Our items join vanilla's tool tags and the common {@code c:} tags so
@@ -60,7 +62,7 @@ final class TagGenerator {
 
 		@Override
 		protected void addTags(HolderLookup.Provider registries) {
-			builder(BlockTags.MINEABLE_WITH_PICKAXE).add(key(ModBlocks.ALLOY_FORGE));
+			builder(BlockTags.MINEABLE_WITH_PICKAXE).add(key(ModBlocks.ALLOY_FORGE), key(ModBlocks.FULGURITE));
 
 			for (MaterialSet set : ModMaterials.ALL) {
 				if (set.storageBlock != null) {
@@ -94,7 +96,7 @@ final class TagGenerator {
 				}
 				if (set.oreKind == MaterialSet.OreKind.NETHER) {
 					builder(ConventionalBlockItemTags.ORES_IN_GROUND_NETHERRACK.block()).add(key(set.ore));
-				} else {
+				} else if (set.oreKind == MaterialSet.OreKind.OVERWORLD) {
 					builder(ConventionalBlockItemTags.ORES_IN_GROUND_STONE.block()).add(key(set.ore));
 					builder(ConventionalBlockItemTags.ORES_IN_GROUND_DEEPSLATE.block()).add(key(set.deepslateOre));
 				}
@@ -173,9 +175,26 @@ final class TagGenerator {
 				if (set.piglinSafe) {
 					builder(ItemTags.PIGLIN_SAFE_ARMOR).add(helmet, chestplate, leggings, boots);
 				}
+				// Frostite keeps out the cold like leather: wearing any piece stops freezing.
+				if (set == ModMaterials.FROSTITE) {
+					builder(ItemTags.FREEZE_IMMUNE_WEARABLES).add(helmet, chestplate, leggings, boots);
+				}
 
 				builder(ConventionalItemTags.SHIELD_TOOLS).add(itemKey(set.shield));
 			}
+		}
+	}
+
+	/** Biomes our ores generate in, beyond vanilla's broad tags. */
+	static final class Biomes extends FabricTagsProvider<Biome> {
+		Biomes(FabricPackOutput output, CompletableFuture<HolderLookup.Provider> registries) {
+			super(output, Registries.BIOME, registries);
+		}
+
+		@Override
+		protected void addTags(HolderLookup.Provider registries) {
+			builder(ModBiomeTags.HAS_FROSTITE_ORE).add(net.minecraft.world.level.biome.Biomes.FROZEN_PEAKS, net.minecraft.world.level.biome.Biomes.ICE_SPIKES);
+			builder(ModBiomeTags.HAS_VERDANTITE_ORE).add(net.minecraft.world.level.biome.Biomes.LUSH_CAVES);
 		}
 	}
 }

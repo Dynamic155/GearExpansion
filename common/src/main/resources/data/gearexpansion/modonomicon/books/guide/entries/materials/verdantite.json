@@ -1,0 +1,72 @@
+{
+  "type": "modonomicon:content",
+  "id": "gearexpansion:materials/verdantite",
+  "category": "gearexpansion:materials",
+  "name": "Verdantite",
+  "description": "Iron tier. Set bonus: Overgrowth",
+  "icon": "gearexpansion:verdantite_ingot",
+  "background": {
+    "sprite": "modonomicon:modonomicon/themes/default/node/entry_backgrounds/square_gold",
+    "width": 26,
+    "height": 26
+  },
+  "x": 7,
+  "y": -1,
+  "name_style": {
+    "render_name": "bottom",
+    "show_name_before_unlock": true
+  },
+  "parents": [],
+  "pages": [
+    {
+      "type": "modonomicon:spotlight",
+      "item": {
+        "id": "gearexpansion:verdantite_ingot"
+      },
+      "title": "Verdantite",
+      "text": "Living gear for gardeners and farmers.\n\n- **Tier:** Iron\n- **Durability:** 400\n- **Sword damage:** 6\n- **Armor (full set):** 15",
+      "id": "page1"
+    },
+    {
+      "type": "modonomicon:text",
+      "title": "Getting It",
+      "text": "**Verdantite Ore** is found in **Lush Caves**, in stone and deepslate. Mine it with a stone pickaxe or better, then smelt or blast the raw verdantite.",
+      "show_title_separator": true,
+      "id": "page2"
+    },
+    {
+      "type": "modonomicon:text",
+      "title": "The Gear",
+      "text": "- **Replanting:** felling the bottom log of a tree with a verdantite axe plants a sapling in its place.\n- **Wide:** the verdantite hoe and shovel till and flatten a 3x3 area. Sneak to work a single block.\n- **Bee Friend:** bees leave you alone while you wear any verdantite armor.\n- **Regrowth:** the verdantite shield slowly repairs itself while you hold it.",
+      "show_title_separator": true,
+      "id": "page3"
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "item": {
+        "id": "gearexpansion:verdantite_chestplate"
+      },
+      "title": "Overgrowth",
+      "text": "**Full set bonus.** Crops, saplings, and other growing plants within 4 blocks grow faster, and working the fields (near farmland or crops) costs no hunger.",
+      "id": "page4"
+    },
+    {
+      "type": "modonomicon:smelting_recipe",
+      "recipe_id_1": "gearexpansion:verdantite_ingot_from_smelting_raw_verdantite",
+      "text": "A blast furnace works too, and is faster.",
+      "id": "page5"
+    },
+    {
+      "type": "modonomicon:crafting_recipe",
+      "recipe_id_1": "gearexpansion:verdantite_pickaxe",
+      "recipe_id_2": "gearexpansion:verdantite_sword",
+      "id": "page6"
+    },
+    {
+      "type": "modonomicon:crafting_recipe",
+      "recipe_id_1": "gearexpansion:verdantite_chestplate",
+      "recipe_id_2": "gearexpansion:verdantite_shield",
+      "id": "page7"
+    }
+  ]
+}

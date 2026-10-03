@@ -25,7 +25,7 @@ public final class ModTabs {
 	public static final DeferredRegister<CreativeModeTab> TABS = DeferredRegister.create(GearExpansion.MOD_ID, Registries.CREATIVE_MODE_TAB);
 
 	public static final RegistrySupplier<CreativeModeTab> BLOCKS = tab("blocks", () -> ModMaterials.TITANIUM.ore.get(),
-		() -> List.of(ModBlocks.ALLOY_FORGE.get()),
+		() -> List.of(ModBlocks.ALLOY_FORGE.get(), ModBlocks.FULGURITE.get()),
 		set -> set.blocks().stream().map(Supplier::get).map(ItemLike.class::cast).toList());
 
 	public static final RegistrySupplier<CreativeModeTab> TOOLS = tab("tools", () -> ModMaterials.TITANIUM.pickaxe.get(),

@@ -251,7 +251,7 @@ ENTRIES = [
 # Tiers, weakest first. Each tier is a row in the Materials overview.
 TIERS = ["Copper", "Iron", "Diamond", "Netherite"]
 # Entries per row before a tier wraps onto another row.
-ROW_LENGTH = 7
+ROW_LENGTH = 8
 
 
 @dataclass
@@ -508,6 +508,53 @@ MATERIALS = [
         "you. Hostile mobs also have to get twice as close to notice you.",
     ),
     Material(
+        "frostite", "Frostite", "Diamond", "frostite_ingot",
+        "Ice-cold gear from the frozen peaks.",
+        {"durability": 1400, "sword": 6.5, "armor": 18},
+        "**Frostite Ore** grows inside the packed ice and blue ice of **Frozen Peaks** and **Ice Spikes**. "
+        "Mine it with an iron pickaxe or better, then smelt or blast the raw frostite.",
+        ["**Frostbite:** frostite swords, spears, and axes slow what they hit and build up freezing, like powder "
+         "snow. A few hits freeze a mob solid.",
+         "**Insulated:** wearing any piece of frostite armor stops you from freezing.",
+         "**Snow Walker:** frostite boots walk on powder snow, like leather boots.",
+         "**Rime:** blocking a melee attack with the frostite shield slows the attacker."],
+        "Permafrost",
+        "Melee attackers are slowed, and sprinting along still water freezes it underfoot (it melts again "
+        "soon after), like a weaker Frost Walker.",
+        recipes=[smelting("frostite_ingot_from_smelting_raw_frostite", body=BLAST_TOO)],
+    ),
+    Material(
+        "fulgurite", "Fulgurite", "Diamond", "fulgurite_shard",
+        "Storm gear made from lightning-fused sand.",
+        {"durability": 1200, "sword": 6.5, "armor": 17},
+        "When lightning strikes **sand**, it fuses into **Fulgurite** blocks. Break them for 2 to 4 "
+        "**Fulgurite Shards** each (Silk Touch keeps the block).\n\n"
+        "Lightning is rare, so help it along: a **lightning rod** standing on sand turns the sand under it "
+        "into Fulgurite in every storm, and a **Channeling** trident calls lightning down on purpose.",
+        ["**Chain Lightning:** critical hits in the rain arc lightning to a nearby mob for 5 damage, or two "
+         "mobs in a thunderstorm.",
+         "**Grounded:** each armor piece blocks a quarter of lightning damage, so the full set ignores it.",
+         "**Static:** blocking a melee attack with the fulgurite shield shocks the attacker (harder in a "
+         "thunderstorm)."],
+        "Stormcaller",
+        "Speed and Strength while you're out in the rain, and more Speed in a thunderstorm.",
+    ),
+    Material(
+        "verdantite", "Verdantite", "Iron", "verdantite_ingot",
+        "Living gear for gardeners and farmers.",
+        {"durability": 400, "sword": 6, "armor": 15},
+        "**Verdantite Ore** is found in **Lush Caves**, in stone and deepslate. Mine it with a stone "
+        "pickaxe or better, then smelt or blast the raw verdantite.",
+        ["**Replanting:** felling the bottom log of a tree with a verdantite axe plants a sapling in its place.",
+         "**Wide:** the verdantite hoe and shovel till and flatten a 3x3 area. Sneak to work a single block.",
+         "**Bee Friend:** bees leave you alone while you wear any verdantite armor.",
+         "**Regrowth:** the verdantite shield slowly repairs itself while you hold it."],
+        "Overgrowth",
+        "Crops, saplings, and other growing plants within 4 blocks grow faster, and working the fields (near "
+        "farmland or crops) costs no hunger.",
+        recipes=[smelting("verdantite_ingot_from_smelting_raw_verdantite", body=BLAST_TOO)],
+    ),
+    Material(
         "infernium", "Infernium", "Netherite", "infernium_ingot",
         "The endgame metal of the Nether. Its 3D armor glows.",
         {"durability": 2200, "sword": 8, "armor": 20},
@@ -564,16 +611,24 @@ def material_pages(m):
 
 
 def material_entries():
-    """One row per tier (wrapping long tiers), with rows and entries 2 steps apart, centered."""
+    """One row per tier (wrapping long tiers), with rows and entries 2 steps apart, centered.
+
+    An upgrade alone in its row (Infernium) sits straight below the material it upgrades, so the
+    line between them doesn't cross other entries.
+    """
     rows = []
     for tier in TIERS:
         in_tier = [m for m in MATERIALS if m.tier == tier]
         rows += [in_tier[start:start + ROW_LENGTH] for start in range(0, len(in_tier), ROW_LENGTH)]
     entries = []
+    columns = {}
     for row, chunk in enumerate(rows):
         y = row * 2 - (len(rows) - 1)
         for column, m in enumerate(chunk):
             x = column * 2 - (len(chunk) - 1)
+            if len(chunk) == 1 and m.parents and m.parents[0] in columns:
+                x = columns[m.parents[0]]
+            columns[m.id] = x
             item = m.item if ":" in m.item else f"{NS}:{m.item}"
             entries.append(Entry("materials", m.id, m.name, f"{m.tier} tier. Set bonus: {m.set_bonus}",
                                  item, x, y, material_pages(m), parents=m.parents))

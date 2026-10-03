@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:ore",
+  "discard_chance_on_air_exposure": 0.0,
+  "size": 6,
+  "targets": [
+    {
+      "state": "gearexpansion:frostite_ore",
+      "target": {
+        "block": "minecraft:packed_ice",
+        "predicate_type": "minecraft:block_match"
+      }
+    },
+    {
+      "state": "gearexpansion:frostite_ore",
+      "target": {
+        "block": "minecraft:blue_ice",
+        "predicate_type": "minecraft:block_match"
+      }
+    }
+  ]
+}

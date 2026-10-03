@@ -1,6 +1,7 @@
 {
   "values": [
     "gearexpansion:alloy_forge",
+    "gearexpansion:fulgurite",
     "gearexpansion:zinc_block",
     "gearexpansion:zinc_ore",
     "gearexpansion:deepslate_zinc_ore",
@@ -29,6 +30,13 @@
     "gearexpansion:deepslate_tungsten_ore",
     "gearexpansion:raw_tungsten_block",
     "gearexpansion:echo_block",
+    "gearexpansion:frostite_block",
+    "gearexpansion:frostite_ore",
+    "gearexpansion:raw_frostite_block",
+    "gearexpansion:verdantite_block",
+    "gearexpansion:verdantite_ore",
+    "gearexpansion:deepslate_verdantite_ore",
+    "gearexpansion:raw_verdantite_block",
     "gearexpansion:infernium_block",
     "gearexpansion:infernium_ore",
     "gearexpansion:raw_infernium_block"

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_frostite_ore": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gearexpansion:frostite_ore"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipes": "gearexpansion:frostite_ingot_from_blasting_frostite_ore"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_frostite_ore"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "gearexpansion:frostite_ingot_from_blasting_frostite_ore"
+    ]
+  }
+}

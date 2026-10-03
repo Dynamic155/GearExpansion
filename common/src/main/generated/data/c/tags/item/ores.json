@@ -7,6 +7,8 @@
     "#c:ores/titanium",
     "#c:ores/cobalt",
     "#c:ores/tungsten",
+    "#c:ores/frostite",
+    "#c:ores/verdantite",
     "#c:ores/infernium"
   ]
 }

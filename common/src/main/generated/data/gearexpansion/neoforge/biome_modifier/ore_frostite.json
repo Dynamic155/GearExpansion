@@ -1,0 +1,6 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "#gearexpansion:has_frostite_ore",
+  "features": "gearexpansion:ore_frostite",
+  "step": "underground_ores"
+}

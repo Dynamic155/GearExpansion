@@ -75,7 +75,9 @@ public final class MaterialSet {
 		/** Stone and deepslate ores in the Overworld. */
 		OVERWORLD,
 		/** A netherrack ore in the Nether. */
-		NETHER
+		NETHER,
+		/** An ore inside packed ice and blue ice. */
+		ICE
 	}
 
 	public final String name;
@@ -172,6 +174,12 @@ public final class MaterialSet {
 				.mapColor(MapColor.STONE).instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops().strength(3.0F, 3.0F));
 			this.deepslateOre = ModBlocks.register("deepslate_" + oreName + "_ore", p -> new DropExperienceBlock(ConstantInt.of(0), p), BlockBehaviour.Properties.of()
 				.mapColor(MapColor.DEEPSLATE).instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops().strength(4.5F, 3.0F).sound(SoundType.DEEPSLATE));
+		} else if (oreKind == OreKind.ICE) {
+			// Slippery like packed ice, but needs a proper pickaxe.
+			this.ore = ModBlocks.register(oreName + "_ore", p -> new DropExperienceBlock(ConstantInt.of(0), p), BlockBehaviour.Properties.of()
+				.mapColor(MapColor.ICE).instrument(NoteBlockInstrument.CHIME).requiresCorrectToolForDrops().strength(3.0F, 3.0F)
+				.friction(0.98F).sound(SoundType.GLASS));
+			this.deepslateOre = null;
 		} else if (oreKind == OreKind.NETHER) {
 			this.ore = ModBlocks.register(oreName + "_ore", p -> new DropExperienceBlock(ConstantInt.of(0), p), BlockBehaviour.Properties.of()
 				.mapColor(MapColor.NETHER).instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops().strength(3.0F, 3.0F).sound(SoundType.NETHER_ORE));
@@ -493,6 +501,13 @@ public final class MaterialSet {
 		public Builder netherOre(int veinSize, int veinsPerChunk, int minY, int maxY, float airExposureDiscard) {
 			this.oreKind = OreKind.NETHER;
 			this.oreGeneration.add(new OreGeneration("", BiomeTags.IS_NETHER, veinSize, veinsPerChunk, minY, maxY, airExposureDiscard));
+			return this;
+		}
+
+		/** An ore that grows inside packed ice and blue ice, in {@code biomes}. */
+		public Builder iceOre(TagKey<Biome> biomes, int veinSize, int veinsPerChunk, int minY, int maxY, float airExposureDiscard) {
+			this.oreKind = OreKind.ICE;
+			this.oreGeneration.add(new OreGeneration("", biomes, veinSize, veinsPerChunk, minY, maxY, airExposureDiscard));
 			return this;
 		}
 

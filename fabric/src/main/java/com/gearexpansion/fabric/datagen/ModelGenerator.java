@@ -23,6 +23,7 @@ final class ModelGenerator extends FabricModelProvider {
 	public void generateBlockStateModels(BlockModelGenerators generators) {
 		// Same models as the blast furnace: front, side, and top textures, with a lit front.
 		generators.createFurnace(ModBlocks.ALLOY_FORGE.get(), TexturedModel.ORIENTABLE_ONLY_TOP);
+		generators.createTrivialCube(ModBlocks.FULGURITE.get());
 
 		for (MaterialSet set : ModMaterials.ALL) {
 			set.blocks().forEach(block -> generators.createTrivialCube(block.get()));

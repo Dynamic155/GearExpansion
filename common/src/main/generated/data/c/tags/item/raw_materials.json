@@ -7,6 +7,8 @@
     "#c:raw_materials/titanium",
     "#c:raw_materials/cobalt",
     "#c:raw_materials/tungsten",
+    "#c:raw_materials/frostite",
+    "#c:raw_materials/verdantite",
     "#c:raw_materials/infernium"
   ]
 }

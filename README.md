@@ -81,6 +81,9 @@ From weakest to strongest. Tier is what the pickaxe can mine, using vanilla's ti
 | Obsidian | Diamond | 2000 | 7 | 19 | Alloy Forge | Blastproof |
 | Prismarine | Diamond | 1300 | 6.5 | 18 | Prismarine Scales | Tidebound |
 | Echo | Diamond | 1800 | 7 | 20 | Alloy Forge | Silence |
+| Frostite | Diamond | 1400 | 6.5 | 18 | Ore in packed ice | Permafrost |
+| Fulgurite | Diamond | 1200 | 6.5 | 17 | Lightning-struck sand | Stormcaller |
+| Verdantite | Iron | 400 | 6 | 15 | Lush Caves ore | Overgrowth |
 | Infernium | Netherite | 2200 | 8 | 20 | Nether ore and a template | Heat Core |
 
 Every material has a **sword, pickaxe, axe, shovel, hoe, spear, helmet, chestplate, leggings, boots, and shield**.
@@ -293,6 +296,44 @@ Sculk-touched gear for moving unheard. Its 3D armor glows with soul light.
 - **Soft Step:** your footsteps make no vibrations while you wear echo boots.
 - **Shield, Echo Guard:** blocking a melee attack gives the attacker 3 seconds of Darkness.
 - **Set bonus, Silence:** while sneaking, you make no vibrations at all, so sculk sensors, shriekers, and wardens can't hear you. Hostile mobs also have to get twice as close to notice you.
+
+### Frostite
+
+![Frostite gear](docs/images/frostite.png)
+
+Ice-cold gear from the frozen peaks.
+
+- **Getting it:** Frostite Ore grows inside the packed ice and blue ice of **Frozen Peaks** and **Ice Spikes**. Mine it with an iron pickaxe or better, then smelt or blast the raw frostite.
+- **Frostbite:** frostite swords, spears, and axes slow what they hit and build up freezing, like powder snow. A few hits freeze a mob solid.
+- **Insulated:** wearing any piece of frostite armor stops you from freezing.
+- **Snow Walker:** frostite boots walk on powder snow, like leather boots.
+- **Shield, Rime:** blocking a melee attack slows the attacker.
+- **Set bonus, Permafrost:** melee attackers are slowed, and sprinting along still water freezes it underfoot (it melts again soon after), like a weaker Frost Walker.
+
+### Fulgurite
+
+![Fulgurite gear](docs/images/fulgurite.png)
+
+Storm gear made from lightning-fused sand.
+
+- **Getting it:** when lightning strikes **sand**, it fuses into **Fulgurite** blocks. Break them for 2 to 4 Fulgurite Shards each (Silk Touch keeps the block). Lightning is rare, so help it along: a **lightning rod** standing on sand turns the sand under it into Fulgurite in every storm, and a **Channeling** trident calls lightning down on purpose. Natural lightning only strikes where it rains, so beaches work but deserts don't.
+- **Chain Lightning:** critical hits in the rain arc lightning to a nearby mob for 5 damage, or to two mobs in a thunderstorm.
+- **Grounded:** each armor piece blocks a quarter of lightning damage, so the full set ignores it.
+- **Shield, Static:** blocking a melee attack shocks the attacker for 2 damage (4 in a thunderstorm).
+- **Set bonus, Stormcaller:** Speed and Strength while you're out in the rain, and more Speed in a thunderstorm.
+
+### Verdantite
+
+![Verdantite gear](docs/images/verdantite.png)
+
+Living gear for gardeners and farmers.
+
+- **Getting it:** Verdantite Ore is found in **Lush Caves**, in stone and deepslate. Mine it with a stone pickaxe or better, then smelt or blast the raw verdantite.
+- **Replanting:** felling the bottom log of a tree with a verdantite axe plants a sapling in its place.
+- **Wide:** the verdantite hoe and shovel till and flatten a 3x3 area. Sneak to work a single block.
+- **Bee Friend:** bees leave you alone while you wear any verdantite armor, even after you disturb their hive.
+- **Shield, Regrowth:** slowly repairs itself while you hold it.
+- **Set bonus, Overgrowth:** crops, saplings, and other growing plants within 4 blocks grow faster, and working the fields (near farmland or crops) costs no hunger.
 
 ### Infernium
 
