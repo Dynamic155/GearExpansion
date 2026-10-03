@@ -31,6 +31,16 @@
       },
       "trigger": "minecraft:inventory_changed"
     },
+    "has_infernium_dagger": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gearexpansion:infernium_dagger"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
     "has_infernium_helmet": {
       "conditions": {
         "items": [
@@ -66,6 +76,16 @@
         "items": [
           {
             "items": "gearexpansion:infernium_pickaxe"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_infernium_scythe": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gearexpansion:infernium_scythe"
           }
         ]
       },
@@ -132,6 +152,8 @@
       "has_infernium_shovel",
       "has_infernium_hoe",
       "has_infernium_spear",
+      "has_infernium_dagger",
+      "has_infernium_scythe",
       "has_infernium_helmet",
       "has_infernium_chestplate",
       "has_infernium_leggings",

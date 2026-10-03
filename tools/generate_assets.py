@@ -522,6 +522,8 @@ def generate_gear(vanilla, name, spec, metal, suffix, gear_stretch):
         pixels = indexed(vanilla.texture(f"item/{tools}_{tool}"))
         recolored = recolor(pixels, metal, lambda px: (px[4], px[5]) not in handle, gear_stretch)
         write_png(item / f"{name}_{tool}{suffix}.png", unindexed(recolored))
+    for weapon, art in WEAPON_ART.items():
+        write_png(item / f"{name}_{weapon}{suffix}.png", recolor(drawn(art), metal, tool_head, gear_stretch))
     for piece in ("helmet", "chestplate", "leggings", "boots"):
         write_png(item / f"{name}_{piece}{suffix}.png", recolor(vanilla.texture(f"item/{armor}_{piece}"), metal, everything, gear_stretch))
 
@@ -532,6 +534,57 @@ def generate_gear(vanilla, name, spec, metal, suffix, gear_stretch):
     if spec.get("glowmask"):
         write_png(item / "armor" / f"{name}_armor{suffix}_glowmask.png", glowmask(armor_texture_pixels))
         write_png(item / f"{name}_shield{suffix}_glowmask.png", glowmask(shield))
+
+
+# Vanilla has no dagger or scythe, so these are drawn here in the same style and palette as vanilla's
+# iron tools (wooden handle, grey head), then recolored like the other tools.
+WEAPON_PALETTE = {
+    "a": "#444444", "b": "#FFFFFF", "c": "#181818", "d": "#BEBEBE", "e": "#D8D8D8", "f": "#6B6B6B", "g": "#969696",
+    "h": "#493615", "i": "#684E1E", "j": "#896727", "k": "#281E0B",
+}
+WEAPON_ART = {
+    "dagger": [
+        "................",
+        "................",
+        "................",
+        "...........aaa..",
+        "..........abbc..",
+        ".........abdbc..",
+        "........abdec...",
+        ".....a.aedec....",
+        ".....afaedc.....",
+        "......agec......",
+        ".....hfgfa......",
+        "....hjkcaa......",
+        "...aik..........",
+        "...afc..........",
+        "...ccc..........",
+        "................",
+    ],
+    "scythe": [
+        "................",
+        "...aaaaaaaa.....",
+        "..afggdddeeaa...",
+        ".afgdeeebbbbca..",
+        "afgdbcaa...hjk..",
+        "afdbc.....hjk...",
+        "agbc.....hjk....",
+        "abc.....hik.....",
+        "ac.....hjk......",
+        "c.....hik.......",
+        ".....hjk........",
+        "....hik.........",
+        "...hjk..........",
+        "..hik...........",
+        "..kk............",
+        "................",
+    ],
+}
+
+
+def drawn(rows):
+    """Pixels from a WEAPON_ART drawing."""
+    return [[(0, 0, 0, 0) if ch == "." else (*hex_rgb(WEAPON_PALETTE[ch]), 255) for ch in row] for row in rows]
 
 
 def overlay_ore(vanilla, base_texture, ore, colors):

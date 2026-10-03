@@ -7,6 +7,7 @@ import dev.architectury.event.events.common.BlockEvent;
 import dev.architectury.event.events.common.LootEvent;
 import dev.architectury.event.events.common.TickEvent;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.storage.loot.BuiltInLootTables;
@@ -31,6 +32,10 @@ public final class GearEvents {
 
 		BlockEvent.BREAK.register((level, pos, state, player) -> {
 			ItemStack tool = player.getMainHandItem();
+			// A scythe harvests and replants grown crops instead of breaking them.
+			if (level instanceof ServerLevel serverLevel && GearWeapons.reap(serverLevel, player, tool, pos, state)) {
+				return EventResult.interruptFalse();
+			}
 			ModMaterials.ofGear(tool).ifPresent(set -> set.behavior.onBlockBroken(set, player, tool, state, pos));
 			SetBonuses.onBlockBroken(player, state, pos);
 

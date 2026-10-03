@@ -11,6 +11,7 @@ import net.minecraft.world.item.ItemStack;
 
 import com.gearexpansion.config.GearExpansionConfig;
 import com.gearexpansion.item.GearDurability;
+import com.gearexpansion.item.GearWeapons;
 import com.gearexpansion.material.MaterialSet;
 import com.gearexpansion.material.ModMaterials;
 import com.gearexpansion.setbonus.SetBonus;
@@ -34,6 +35,16 @@ public final class GearTooltips {
 	private static void traits(ItemStack stack, List<Component> lines) {
 		if (GearExpansionConfig.get().zincCorrosionProof && GearDurability.isGalvanized(stack)) {
 			lines.add(Component.translatable("trait.gearexpansion.corrosion_proof").withStyle(ChatFormatting.DARK_AQUA));
+		}
+		GearExpansionConfig config = GearExpansionConfig.get();
+		if (stack.is(GearWeapons.DAGGERS) && config.daggerBackstabBonus > 0) {
+			lines.add(Component.translatable("trait.gearexpansion.backstab", config.daggerBackstabBonus).withStyle(ChatFormatting.DARK_AQUA));
+		}
+		if (stack.is(GearWeapons.SCYTHES)) {
+			lines.add(Component.translatable("trait.gearexpansion.wide_sweep").withStyle(ChatFormatting.DARK_AQUA));
+			if (config.scytheReaping) {
+				lines.add(Component.translatable("trait.gearexpansion.reaping").withStyle(ChatFormatting.DARK_AQUA));
+			}
 		}
 		ModMaterials.ofGear(stack).ifPresent(set -> {
 			if (stack.is(set.shield.get()) && set.blockingSpeed > MaterialSet.VANILLA_BLOCKING_SPEED) {

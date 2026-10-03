@@ -168,6 +168,8 @@ final class RecipeGenerator extends FabricRecipeProvider {
 				tool(set, RecipeCategory.TOOLS, set.shovel.get(), "X", "#", "#");
 				tool(set, RecipeCategory.TOOLS, set.hoe.get(), "XX", " #", " #");
 				tool(set, RecipeCategory.COMBAT, set.spear.get(), "  X", " # ", "#  ");
+				tool(set, RecipeCategory.COMBAT, set.dagger.get(), "X", "#");
+				tool(set, RecipeCategory.COMBAT, set.scythe.get(), "XXX", "  #", "  #");
 			}
 
 			private void tool(MaterialSet set, RecipeCategory category, Item result, String... pattern) {

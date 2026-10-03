@@ -34,7 +34,7 @@ public final class ModTabs {
 
 	public static final RegistrySupplier<CreativeModeTab> COMBAT = tab("combat", () -> ModMaterials.TITANIUM.sword.get(),
 		List::of,
-		set -> List.of(set.sword.get(), set.spear.get(), set.helmet.get(), set.chestplate.get(), set.leggings.get(), set.boots.get(), set.shield.get()));
+		set -> List.of(set.sword.get(), set.dagger.get(), set.scythe.get(), set.spear.get(), set.helmet.get(), set.chestplate.get(), set.leggings.get(), set.boots.get(), set.shield.get()));
 
 	public static final RegistrySupplier<CreativeModeTab> INGREDIENTS = tab("ingredients", () -> ModMaterials.TITANIUM.ingot.get(),
 		List::of,

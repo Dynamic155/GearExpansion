@@ -25,7 +25,7 @@
     {
       "type": "modonomicon:text",
       "title": "Crafting the Gear",
-      "text": "Every material has a **sword, pickaxe, axe, shovel, hoe, spear, helmet, chestplate, leggings, boots, and shield**.\n\nTools and armor use the same shapes as vanilla, with the material in place of iron.",
+      "text": "Every material has a **sword, dagger, scythe, spear, pickaxe, axe, shovel, hoe, helmet, chestplate, leggings, boots, and shield**.\n\nTools and armor use the same shapes as vanilla, with the material in place of iron. See [Daggers and Scythes](entry://getting_started/daggers_scythes) for the two new weapons.",
       "show_title_separator": true,
       "id": "page1"
     },

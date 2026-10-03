@@ -520,6 +520,26 @@ public final class GearExpansionConfig {
 	@Comment("Seconds before Eruption can be used again.")
 	public int inferniumEruptionCooldown = 30;
 
+	// Daggers and scythes
+
+	@AutoGen(category = "weapons", group = "dagger")
+	@IntSlider(min = 0, max = 200, step = 5, format = "%d%%")
+	@SerialEntry
+	@Comment("Extra damage a dagger deals when it hits a mob from behind (Backstab).")
+	public int daggerBackstabBonus = 50;
+
+	@AutoGen(category = "weapons", group = "scythe")
+	@IntSlider(min = 0, max = 100, step = 5, format = "%d%%")
+	@SerialEntry
+	@Comment("Percent of a scythe's attack damage its sweep deals to everything in the arc in front of you. Sweeping Edge adds more.")
+	public int scytheSweepDamage = 50;
+
+	@AutoGen(category = "weapons", group = "scythe")
+	@TickBox
+	@SerialEntry
+	@Comment("Whether breaking a fully grown crop with a scythe harvests and replants the grown crops around it (Reaping).")
+	public boolean scytheReaping = true;
+
 	/** The settings in effect: the server's while connected to a remote server, otherwise this game's file. */
 	public static GearExpansionConfig get() {
 		GearExpansionConfig override = serverOverride;

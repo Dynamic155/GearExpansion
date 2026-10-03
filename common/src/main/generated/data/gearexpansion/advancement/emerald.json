@@ -31,6 +31,16 @@
       },
       "trigger": "minecraft:inventory_changed"
     },
+    "has_emerald_dagger": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gearexpansion:emerald_dagger"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
     "has_emerald_helmet": {
       "conditions": {
         "items": [
@@ -66,6 +76,16 @@
         "items": [
           {
             "items": "gearexpansion:emerald_pickaxe"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_emerald_scythe": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gearexpansion:emerald_scythe"
           }
         ]
       },
@@ -131,6 +151,8 @@
       "has_emerald_shovel",
       "has_emerald_hoe",
       "has_emerald_spear",
+      "has_emerald_dagger",
+      "has_emerald_scythe",
       "has_emerald_helmet",
       "has_emerald_chestplate",
       "has_emerald_leggings",

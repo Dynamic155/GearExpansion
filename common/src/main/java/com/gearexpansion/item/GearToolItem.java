@@ -32,7 +32,8 @@ public class GearToolItem extends Item {
 	@Override
 	public float getAttackDamageBonus(Entity victim, float damage, DamageSource source) {
 		ItemStack weapon = source.getWeaponItem();
-		float bonus = weapon == null ? 0.0F : material.behavior.attackDamageBonus(material, weapon, victim, damage, source);
+		float bonus = weapon == null ? 0.0F : material.behavior.attackDamageBonus(material, weapon, victim, damage, source)
+			+ GearWeapons.backstabBonus(weapon, victim, damage, source.getEntity());
 		return super.getAttackDamageBonus(victim, damage, source) + bonus;
 	}
 

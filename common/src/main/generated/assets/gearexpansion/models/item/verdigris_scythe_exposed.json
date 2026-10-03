@@ -1,0 +1,6 @@
+{
+  "parent": "gearexpansion:item/scythe_handheld",
+  "textures": {
+    "layer0": "gearexpansion:item/verdigris_scythe_exposed"
+  }
+}

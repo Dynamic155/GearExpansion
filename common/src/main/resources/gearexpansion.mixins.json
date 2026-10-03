@@ -15,6 +15,7 @@
 		"LivingEntityVisibilityMixin",
 		"MobTargetMixin",
 		"PlayerExhaustionMixin",
+		"PlayerScytheMixin",
 		"PowderSnowBlockMixin",
 		"ServerExplosionMixin",
 		"ServerLevelLightningMixin",

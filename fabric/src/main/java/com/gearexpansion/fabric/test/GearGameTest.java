@@ -150,6 +150,7 @@ public final class GearGameTest implements FabricClientGameTest {
 			checkFulgurite(ctx, server);
 			checkVerdantite(ctx, server);
 			checkInfernium(ctx, server);
+			WeaponChecks.run(ctx, server, this::check);
 
 			screenshots(ctx, server);
 			RecipeViewerChecks.run(ctx, this::check);
@@ -618,7 +619,7 @@ public final class GearGameTest implements FabricClientGameTest {
 			} else if (tab == ModTabs.TOOLS) {
 				count += 4;
 			} else if (tab == ModTabs.COMBAT) {
-				count += 7;
+				count += 9;
 			} else {
 				count += set.ingredients().size();
 			}
