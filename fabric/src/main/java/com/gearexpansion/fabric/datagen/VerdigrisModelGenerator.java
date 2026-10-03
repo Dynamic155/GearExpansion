@@ -56,8 +56,7 @@ final class VerdigrisModelGenerator implements DataProvider {
 					writes.add(save(output, name + suffix, flat("minecraft:item/generated", name + suffix)));
 					writes.add(save(output, name + "_in_hand" + suffix, flat("minecraft:item/spear_in_hand", name + "_in_hand" + suffix)));
 				} else {
-					String parent = item == set.scythe ? ModelGenerator.SCYTHE_PARENT : tool ? "minecraft:item/handheld" : "minecraft:item/generated";
-					writes.add(save(output, name + suffix, flat(parent, name + suffix)));
+					writes.add(save(output, name + suffix, flat(tool ? "minecraft:item/handheld" : "minecraft:item/generated", name + suffix)));
 				}
 				if (stage > 0) {
 					JsonObject entry = new JsonObject();

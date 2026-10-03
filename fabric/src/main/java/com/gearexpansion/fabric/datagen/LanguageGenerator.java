@@ -28,8 +28,6 @@ final class LanguageGenerator extends FabricLanguageProvider {
 		t.add("trait.gearexpansion.corrosion_proof", "Corrosion-proof: no durability loss in water");
 		t.add("trait.gearexpansion.lightweight_shield", "Lightweight: no slowdown while blocking");
 		t.add("trait.gearexpansion.backstab", "Backstab: +%s%% damage when hitting from behind");
-		t.add("trait.gearexpansion.wide_sweep", "Wide Sweep: sweeps everything in reach in front of you");
-		t.add("trait.gearexpansion.reaping", "Reaping: harvests and replants grown crops 3x3 (sneak for one)");
 
 		t.add(ModBlocks.ALLOY_FORGE.get(), "Alloy Forge");
 		t.add("container.gearexpansion.alloy_forge", "Alloy Forge");
@@ -76,7 +74,6 @@ final class LanguageGenerator extends FabricLanguageProvider {
 			t.add(set.hoe.get(), name + " Hoe");
 			t.add(set.spear.get(), name + " Spear");
 			t.add(set.dagger.get(), name + " Dagger");
-			t.add(set.scythe.get(), name + " Scythe");
 			t.add(set.helmet.get(), name + " Helmet");
 			t.add(set.chestplate.get(), name + " Chestplate");
 			t.add(set.leggings.get(), name + " Leggings");
@@ -178,12 +175,9 @@ final class LanguageGenerator extends FabricLanguageProvider {
 		t.add(CONFIG + ".category.infernium", "Infernium");
 		t.add(CONFIG + ".category.infernium.group.gear", "Gear");
 		t.add(CONFIG + ".category.infernium.group.set_bonus", "Set Bonus: Heat Core");
-		t.add(CONFIG + ".category.weapons", "Daggers and Scythes");
+		t.add(CONFIG + ".category.weapons", "Daggers");
 		t.add(CONFIG + ".category.weapons.group.dagger", "Daggers");
-		t.add(CONFIG + ".category.weapons.group.scythe", "Scythes");
 		option(t, "daggerBackstabBonus", "Backstab Bonus", "Extra damage a dagger deals when it hits a mob from behind.");
-		option(t, "scytheSweepDamage", "Sweep Damage", "Percent of a scythe's attack damage its sweep deals to everything in the arc in front of you. Sweeping Edge adds more.");
-		option(t, "scytheReaping", "Reaping", "Whether breaking a grown crop with a scythe harvests and replants the grown crops around it.");
 	}
 
 	private static void verdigris(TranslationBuilder t) {

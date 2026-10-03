@@ -1,8 +1,8 @@
 # Changelog
 
-## 1.4.0 - Kawaii (in progress)
+## 1.4.0 - Kawaii
 
-Four cute new sets, plus daggers and scythes for every material.
+Four cute new sets, plus a dagger for every material.
 
 ### Materials
 
@@ -11,10 +11,9 @@ Four cute new sets, plus daggers and scythes for every material.
 - **Magical Girl**: Sparkle Gems from the Alloy Forge (diamond, amethyst, and glowstone). Diamond tier with a chest bow, a star, and glowing armor. Full swings at full health fire a Sparkle Beam, and the shield bounces projectiles back. Set bonus Transformation: press R to Transform for 30 seconds of Strength, Speed, Resistance, and Slow Falling.
 - **Fairy Kei**: Fairy Ingots from the Alloy Forge (iron, feathers, and light blue dye). Light and quick, with little wings. Weapons make mobs float, each armor piece softens falls, and the shield stops knockback. Set bonus Daydream: double jump, and drift down gently while holding jump.
 
-### New weapons
+### New weapon
 
 - **Daggers** for every material: fast and light, with Backstab (50% more damage from behind).
-- **Scythes** for every material: slow and heavy, with more reach, a Wide Sweep that hits everything in front of you, and Reaping, which harvests and replants grown crops 3x3.
 
 ## 1.3.0 - Elements
 

@@ -28,7 +28,6 @@ import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
-import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -38,7 +37,6 @@ import net.minecraft.world.item.component.BlocksAttacks;
 import net.minecraft.world.item.component.DamageResistant;
 import net.minecraft.world.item.component.ItemAttributeModifiers;
 import net.minecraft.world.item.component.UseEffects;
-import net.minecraft.world.item.component.Weapon;
 import net.minecraft.world.item.equipment.ArmorMaterial;
 import net.minecraft.world.item.equipment.ArmorType;
 import net.minecraft.world.item.equipment.EquipmentAsset;
@@ -61,7 +59,7 @@ import com.gearexpansion.registry.ModItems;
 
 /**
  * Everything one gear material adds: its material item (usually an ingot, plus a nugget and a
- * storage block), ores if it's mined, eight tools and weapons, four armor pieces, and a shield. Each material
+ * storage block), ores if it's mined, seven tools and weapons, four armor pieces, and a shield. Each material
  * is defined once with a {@link Builder}; registration, data generation, and world generation all
  * read from it.
  */
@@ -72,10 +70,6 @@ public final class MaterialSet {
 	/** Daggers hit lighter but faster than swords (see {@code GearWeapons} for Backstab). */
 	private static final float DAGGER_DAMAGE = 1.5F;
 	private static final float DAGGER_SPEED = -1.8F;
-	/** Scythes hit harder but slower than swords, reach further, and sweep in a wide arc. */
-	private static final float SCYTHE_DAMAGE = 4.5F;
-	private static final float SCYTHE_SPEED = -3.0F;
-	private static final double SCYTHE_REACH = 0.5;
 
 	/** Where a material's ore generates. */
 	public enum OreKind {
@@ -147,7 +141,6 @@ public final class MaterialSet {
 	public final RegistrySupplier<Item> hoe;
 	public final RegistrySupplier<Item> spear;
 	public final RegistrySupplier<Item> dagger;
-	public final RegistrySupplier<Item> scythe;
 
 	public final RegistrySupplier<Item> helmet;
 	public final RegistrySupplier<Item> chestplate;
@@ -231,7 +224,6 @@ public final class MaterialSet {
 		float spearDuration = 1.0F / (1.0F / s[0] + speed);
 		this.spear = tool("spear", p -> p.spear(tools, spearDuration, s[1], s[2], s[3], s[4], s[5], s[6], s[7], s[8]), fireproof);
 		this.dagger = tool("dagger", p -> p.sword(tools, DAGGER_DAMAGE, DAGGER_SPEED + speed), fireproof);
-		this.scythe = tool("scythe", p -> scythe(p, tools, speed), fireproof);
 
 		this.helmet = armor(b, ArmorType.HELMET, fireproof);
 		this.chestplate = armor(b, ArmorType.CHESTPLATE, fireproof);
@@ -267,20 +259,6 @@ public final class MaterialSet {
 
 	private RegistrySupplier<Item> tool(String kind, UnaryOperator<Item.Properties> stats, UnaryOperator<Item.Properties> fireproof) {
 		return ModItems.register(name + "_" + kind, p -> new GearToolItem(p, this), p -> fireproof.apply(stats.apply(p)));
-	}
-
-	/** Mines like a hoe (leaves, hay, crops), but is a weapon: one durability per hit, more reach, and a wide sweep. */
-	private static Item.Properties scythe(Item.Properties properties, ToolMaterial tools, float speedBonus) {
-		return properties.tool(tools, BlockTags.MINEABLE_WITH_HOE, SCYTHE_DAMAGE, SCYTHE_SPEED + speedBonus, 0.0F)
-			.component(DataComponents.WEAPON, new Weapon(1))
-			.attributes(ItemAttributeModifiers.builder()
-				.add(Attributes.ATTACK_DAMAGE, new AttributeModifier(Item.BASE_ATTACK_DAMAGE_ID,
-					SCYTHE_DAMAGE + tools.attackDamageBonus(), AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND)
-				.add(Attributes.ATTACK_SPEED, new AttributeModifier(Item.BASE_ATTACK_SPEED_ID,
-					SCYTHE_SPEED + speedBonus, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND)
-				.add(Attributes.ENTITY_INTERACTION_RANGE, new AttributeModifier(GearExpansion.id("scythe_reach"),
-					SCYTHE_REACH, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND)
-				.build());
 	}
 
 	private RegistrySupplier<Item> armor(Builder b, ArmorType type, UnaryOperator<Item.Properties> fireproof) {
@@ -322,7 +300,7 @@ public final class MaterialSet {
 	}
 
 	public List<RegistrySupplier<Item>> tools() {
-		return List.of(sword, pickaxe, axe, shovel, hoe, spear, dagger, scythe);
+		return List.of(sword, pickaxe, axe, shovel, hoe, spear, dagger);
 	}
 
 	public List<RegistrySupplier<Item>> armorPieces() {
@@ -378,7 +356,7 @@ public final class MaterialSet {
 	}
 
 	public boolean isWeapon(ItemStack stack) {
-		return stack.is(sword.get()) || stack.is(spear.get()) || stack.is(axe.get()) || stack.is(dagger.get()) || stack.is(scythe.get());
+		return stack.is(sword.get()) || stack.is(spear.get()) || stack.is(axe.get()) || stack.is(dagger.get());
 	}
 
 	/** Names for common {@code c:} ore and raw material tags, e.g. both "bauxite" and "aluminum". */

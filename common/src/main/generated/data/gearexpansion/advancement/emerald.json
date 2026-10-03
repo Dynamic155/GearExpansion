@@ -81,16 +81,6 @@
       },
       "trigger": "minecraft:inventory_changed"
     },
-    "has_emerald_scythe": {
-      "conditions": {
-        "items": [
-          {
-            "items": "gearexpansion:emerald_scythe"
-          }
-        ]
-      },
-      "trigger": "minecraft:inventory_changed"
-    },
     "has_emerald_shield": {
       "conditions": {
         "items": [
@@ -152,7 +142,6 @@
       "has_emerald_hoe",
       "has_emerald_spear",
       "has_emerald_dagger",
-      "has_emerald_scythe",
       "has_emerald_helmet",
       "has_emerald_chestplate",
       "has_emerald_leggings",

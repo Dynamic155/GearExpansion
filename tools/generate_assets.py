@@ -649,7 +649,7 @@ def generate_gear(vanilla, name, spec, metal, suffix, gear_stretch):
         write_png(item / f"{name}_shield{suffix}_glowmask.png", glowmask(shield))
 
 
-# Vanilla has no dagger or scythe, so these are drawn here in the same style and palette as vanilla's
+# Vanilla has no dagger, so it's drawn here in the same style and palette as vanilla's
 # iron tools (wooden handle, grey head), then recolored like the other tools.
 WEAPON_PALETTE = {
     "a": "#444444", "b": "#FFFFFF", "c": "#181818", "d": "#BEBEBE", "e": "#D8D8D8", "f": "#6B6B6B", "g": "#969696",
@@ -672,24 +672,6 @@ WEAPON_ART = {
         "...aik..........",
         "...afc..........",
         "...ccc..........",
-        "................",
-    ],
-    "scythe": [
-        "................",
-        "...aaaaaaaa.....",
-        "..afggdddeeaa...",
-        ".afgdeeebbbbca..",
-        "afgdbcaa...hjk..",
-        "afdbc.....hjk...",
-        "agbc.....hjk....",
-        "abc.....hik.....",
-        "ac.....hjk......",
-        "c.....hik.......",
-        ".....hjk........",
-        "....hik.........",
-        "...hjk..........",
-        "..hik...........",
-        "..kk............",
         "................",
     ],
 }

@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:smithing_transform",
-  "addition": "gearexpansion:infernium_ingot",
-  "base": "gearexpansion:titanium_scythe",
-  "result": {
-    "id": "gearexpansion:infernium_scythe"
-  },
-  "template": "gearexpansion:infernium_upgrade_smithing_template"
-}

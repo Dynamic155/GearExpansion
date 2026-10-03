@@ -106,11 +106,12 @@ Titanium stats as built:
 | Fulgurite | Done: lightning striking sand forms Fulgurite blocks (2 to 4 shards each), Chain Lightning crits in rain or storms, Grounded armor (lightning immune with the full set), Static shield, Stormcaller set bonus (Speed and Strength in rain). Not done from the plan: the bonus with Verdigris (there's no mixed-set system yet). |
 | Verdantite | Done: Lush Caves ore, Replanting axe, 3x3 hoe and shovel, Bee Friend armor, Regrowth shield, Overgrowth set bonus (faster plant growth, no hunger near crops). Changed from the plan: no Regeneration (it overlapped Sakura), and foxes aren't affected. |
 
-1.4 Kawaii (added before Celestial at the user's request):
+1.4 Kawaii (added before Celestial at the user's request). Version 1.4.0 is complete:
 
 | Material | Status |
 |---|---|
-| Daggers and scythes | Done: for every material, with Backstab daggers, Wide Sweep and Reaping scythes, recipes, tags (sword enchantments; Sweeping Edge for scythes), drawn textures recolored per material, guidebook entry, game test |
+| Daggers | Done: for every material, with Backstab, recipes, tags (sword enchantments), a drawn texture recolored per material, guidebook entry, game test |
+| Scythes | Postponed: built (Wide Sweep, Reaping) but taken out before release until they have a better texture. The code is in git history (commit 1c9a4e5). |
 | Pastel Princess | Done: Alloy Forge alloy, Charm weapons, Royal Favor villager discounts, Royal Guard shield, Royal Court set bonus, crown on the 3D helmet, game test |
 | Jirai Kei | Done: Alloy Forge alloy, Desperation weapons, Clingy shield, Landmine set bonus, twin bows and a heart on the 3D armor, game test |
 | Magical Girl | Done: Alloy Forge alloy, Sparkle Beam weapons, Barrier shield, Transformation ability, chest bow and star on the glowing 3D armor, game test |
@@ -137,10 +138,10 @@ Titanium stats as built:
 | 1.1 | Metals | Silver, Steel, Tungsten, Cobalt | Modonomicon guidebook (done) |
 | 1.2 | Depths & Seas | Obsidian, Prismarine, Echo (done) | New Elder Guardian drop (not done) |
 | 1.3 | Elements | Frostite, Fulgurite, Verdantite (done) | Lightning/weather mechanics (done) |
-| 1.4 | Kawaii | Pastel Princess, Jirai Kei, Magical Girl, Fairy Kei | Daggers and scythes for every material |
+| 1.4 | Kawaii | Pastel Princess, Jirai Kei, Magical Girl, Fairy Kei | Daggers for every material (scythes postponed for a better texture) |
 | 1.5 | Celestial | StarShard, Astral, Sunstone, Moonstone, Voidsteel | Falling stars event, Eclipse synergy |
 
-**Per material:** 8 tools and weapons (sword, dagger, scythe, spear, pickaxe, axe, shovel, hoe) + 4 armor pieces + shield. Daggers and scythes were added for every material in 1.4. Plus the ore (stone + deepslate), raw ore, ingot, nugget, and storage blocks where relevant.
+**Per material:** 7 tools and weapons (sword, dagger, spear, pickaxe, axe, shovel, hoe) + 4 armor pieces + shield. Daggers were added for every material in 1.4. Plus the ore (stone + deepslate), raw ore, ingot, nugget, and storage blocks where relevant.
 
 ---
 
@@ -355,11 +356,11 @@ Vanilla already has copper gear, so ours **oxidizes like copper blocks**.
 
 ### 1.4: Kawaii
 
-Added at the user's request before Celestial: four cutesy sets, all made in the Alloy Forge, plus daggers and scythes for every material.
+Added at the user's request before Celestial: four cutesy sets, all made in the Alloy Forge, plus daggers for every material.
 
 #### Daggers and scythes
 - **Dagger:** 1.5 damage below a sword's baseline, faster swings. **Backstab:** 50% more damage when hitting a mob from behind.
-- **Scythe:** 1.5 damage above a sword's baseline, slow (1 attack a second), +0.5 reach, mines like a hoe. **Wide Sweep:** sweeps everything in reach in the half circle in front of you. **Reaping:** breaking a grown crop harvests and replants the grown crops around it (3x3).
+- **Scythe (postponed until it has a better texture):** 1.5 damage above a sword's baseline, slow (1 attack a second), +0.5 reach, mines like a hoe. **Wide Sweep:** sweeps everything in reach in the half circle in front of you. **Reaping:** breaking a grown crop harvests and replants the grown crops around it (3x3). The finished code is in commit 1c9a4e5; NeoForge needs the sweep hooks from commit e76bb7a.
 
 #### Pastel Princess
 - **Obtain:** Alloy Forge: 2 gold ingots + 1 amethyst shard + 1 pink dye = 2 Princess Gold Ingots.

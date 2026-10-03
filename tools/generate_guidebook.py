@@ -147,31 +147,25 @@ ENTRIES = [
     ], start=True),
     Entry("getting_started", "crafting_gear", "Crafting the Gear", "Tools, armor, and shields", f"{NS}:zinc_sword", -3, 0, [
         text("Crafting the Gear",
-             "Every material has a **sword, dagger, scythe, spear, pickaxe, axe, shovel, hoe, helmet, "
+             "Every material has a **sword, dagger, spear, pickaxe, axe, shovel, hoe, helmet, "
              "chestplate, leggings, boots, and shield**.\n\n"
              "Tools and armor use the same shapes as vanilla, with the material in place of iron. See "
-             "[Daggers and Scythes](entry://getting_started/daggers_scythes) for the two new weapons."),
+             "[Daggers](entry://getting_started/daggers) for the newest weapon."),
         text("Shields and Upgrades",
              "The **shield** is a vanilla shield with four of the material around it, one on each side.\n\n"
              "Infernium is the exception: it's an upgrade at a smithing table, like netherite."),
         crafting("zinc_pickaxe", "zinc_shield"),
     ], parents=["welcome"]),
-    Entry("getting_started", "daggers_scythes", "Daggers and Scythes", "Two new weapons for every material",
+    Entry("getting_started", "daggers", "Daggers", "A quick weapon for every material",
           f"{NS}:zinc_dagger", -5, 2, [
         text("Daggers",
              "A **dagger** hits for less than a sword but swings faster.\n\n"
              "**Backstab:** hitting a mob from behind deals 50% more damage. Catch mobs while they're "
              "busy with something else."),
-        text("Scythes",
-             "A **scythe** is slow and heavy, and reaches half a block further.\n\n"
-             "**Wide Sweep:** a full-strength swing on the ground sweeps everything in reach in front of you "
-             "for half the attack's damage. Sweeping Edge makes the sweep stronger.\n\n"
-             "**Reaping:** breaking a fully grown crop harvests the grown crops around it (3x3) and replants "
-             "them. Sneak to break just one."),
         text("Material Traits",
-             "Weapon traits count for daggers and scythes too. A silver dagger still hits the undead harder, "
-             "and an infernium scythe still sets mobs alight."),
-        crafting("zinc_dagger", "zinc_scythe", body="One ingot over a stick makes a dagger. Three ingots over two sticks make a scythe."),
+             "Weapon traits count for daggers too. A silver dagger still hits the undead harder, and an "
+             "infernium dagger still sets mobs alight."),
+        crafting("zinc_dagger", body="One of the material over a stick makes a dagger."),
     ], parents=["crafting_gear"]),
     Entry("getting_started", "set_bonuses", "Set Bonuses", "Wearing a full set", f"{NS}:titanium_chestplate", 0, 0, [
         text("Set Bonuses",

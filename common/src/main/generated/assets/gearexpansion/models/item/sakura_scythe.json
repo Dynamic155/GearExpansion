@@ -1,6 +1,0 @@
-{
-  "parent": "gearexpansion:item/scythe_handheld",
-  "textures": {
-    "layer0": "gearexpansion:item/sakura_scythe"
-  }
-}

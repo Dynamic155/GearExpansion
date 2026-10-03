@@ -1,9 +1,9 @@
 {
   "type": "modonomicon:content",
-  "id": "gearexpansion:getting_started/daggers_scythes",
+  "id": "gearexpansion:getting_started/daggers",
   "category": "gearexpansion:getting_started",
-  "name": "Daggers and Scythes",
-  "description": "Two new weapons for every material",
+  "name": "Daggers",
+  "description": "A quick weapon for every material",
   "icon": "gearexpansion:zinc_dagger",
   "background": {
     "sprite": "modonomicon:modonomicon/themes/default/node/entry_backgrounds/square_gold",
@@ -31,24 +31,16 @@
     },
     {
       "type": "modonomicon:text",
-      "title": "Scythes",
-      "text": "A **scythe** is slow and heavy, and reaches half a block further.\n\n**Wide Sweep:** a full-strength swing on the ground sweeps everything in reach in front of you for half the attack's damage. Sweeping Edge makes the sweep stronger.\n\n**Reaping:** breaking a fully grown crop harvests the grown crops around it (3x3) and replants them. Sneak to break just one.",
+      "title": "Material Traits",
+      "text": "Weapon traits count for daggers too. A silver dagger still hits the undead harder, and an infernium dagger still sets mobs alight.",
       "show_title_separator": true,
       "id": "page2"
     },
     {
-      "type": "modonomicon:text",
-      "title": "Material Traits",
-      "text": "Weapon traits count for daggers and scythes too. A silver dagger still hits the undead harder, and an infernium scythe still sets mobs alight.",
-      "show_title_separator": true,
-      "id": "page3"
-    },
-    {
       "type": "modonomicon:crafting_recipe",
       "recipe_id_1": "gearexpansion:zinc_dagger",
-      "recipe_id_2": "gearexpansion:zinc_scythe",
-      "text": "One ingot over a stick makes a dagger. Three ingots over two sticks make a scythe.",
-      "id": "page4"
+      "text": "One of the material over a stick makes a dagger.",
+      "id": "page3"
     }
   ]
 }

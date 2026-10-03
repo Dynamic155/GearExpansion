@@ -4,7 +4,7 @@ A Minecraft mod that adds new materials, each with a full set of tools, 3D armor
 
 The mod aims for a Vanilla+ feel: new content that fits naturally alongside vanilla progression, with strong effects kept in check by meters, cooldowns, and costs. Nearly every number can be changed in the settings.
 
-**Version 1.3.0** for **Minecraft 26.3**, on **Fabric** and **NeoForge**.
+**Version 1.4.0** for **Minecraft 26.3**, on **Fabric** and **NeoForge**.
 
 ## Contents
 
@@ -57,7 +57,7 @@ Notes on the optional mods:
 - Jade 26.3.4 crashes on startup by itself, on both loaders. Until it is fixed, use Jade 26.3.3 on Fabric or 26.3.1 on NeoForge.
 - Modonomicon 2.16.0 for NeoForge needs NeoForge 26.3.0.39-beta or newer, even though Gear Expansion itself works from 26.3.0.37-beta.
 
-Download the Gear Expansion file for your loader from the [Releases](../../releases) page: `gearexpansion-fabric-1.3.0.jar` or `gearexpansion-neoforge-1.3.0.jar`. Make sure every library is the Minecraft 26.3 version for your loader.
+Download the Gear Expansion file for your loader from the [Releases](../../releases) page: `gearexpansion-fabric-1.4.0.jar` or `gearexpansion-neoforge-1.4.0.jar`. Make sure every library is the Minecraft 26.3 version for your loader.
 
 ## Every material at a glance
 
@@ -90,7 +90,7 @@ From weakest to strongest. Tier is what the pickaxe can mine, using vanilla's ti
 | Fairy Kei | Iron | 280 | 6 | 12 | Alloy Forge | Daydream |
 | Infernium | Netherite | 2200 | 8 | 20 | Nether ore and a template | Heat Core |
 
-Every material has a **sword, dagger, scythe, spear, pickaxe, axe, shovel, hoe, helmet, chestplate, leggings, boots, and shield**.
+Every material has a **sword, dagger, spear, pickaxe, axe, shovel, hoe, helmet, chestplate, leggings, boots, and shield**.
 
 ## The materials
 
@@ -106,14 +106,11 @@ XSX      X = the material, S = a vanilla shield
 
 Infernium is the exception: it's an upgrade at a smithing table, like netherite (see below).
 
-### Daggers and scythes
+### Daggers
 
-Every material also has two extra weapons:
+Every material also has a **dagger** (one of the material over a stick). It hits for less than a sword but swings faster. **Backstab:** hitting a mob from behind deals 50% more damage.
 
-- **Dagger** (one material over a stick): hits for less than a sword but swings faster. **Backstab:** hitting a mob from behind deals 50% more damage.
-- **Scythe** (three of the material over two sticks, like a wide hoe): slow and heavy, with half a block more reach. **Wide Sweep:** a full-strength swing on the ground sweeps everything in reach in front of you for half the attack's damage (Sweeping Edge makes it stronger). **Reaping:** breaking a fully grown crop harvests the grown crops around it (3x3) and replants them; sneak to break just one.
-
-Daggers take the same enchantments as swords, and scythes also take Sweeping Edge. Each material's weapon traits (like Silver's bonus against undead) work on its daggers and scythes too.
+Daggers take the same enchantments as swords, except Sweeping Edge. Each material's weapon traits (like Silver's bonus against undead) work on its dagger too.
 
 ### Zinc
 

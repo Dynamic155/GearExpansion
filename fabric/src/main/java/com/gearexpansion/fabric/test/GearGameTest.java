@@ -627,7 +627,7 @@ public final class GearGameTest implements FabricClientGameTest {
 			} else if (tab == ModTabs.TOOLS) {
 				count += 4;
 			} else if (tab == ModTabs.COMBAT) {
-				count += 9;
+				count += 8;
 			} else {
 				count += set.ingredients().size();
 			}

@@ -161,15 +161,12 @@ final class TagGenerator {
 				builder(ItemTags.SHOVELS).add(itemKey(set.shovel));
 				builder(ItemTags.HOES).add(itemKey(set.hoe));
 				builder(ItemTags.SPEARS).add(itemKey(set.spear));
-				// Daggers and scythes take the same enchantments as swords; scythes also take Sweeping Edge.
+				// Daggers take the same enchantments as swords, except Sweeping Edge.
 				var dagger = itemKey(set.dagger);
-				var scythe = itemKey(set.scythe);
 				builder(GearWeapons.DAGGERS).add(dagger);
-				builder(GearWeapons.SCYTHES).add(scythe);
-				builder(ItemTags.MELEE_WEAPON_ENCHANTABLE).add(dagger, scythe);
-				builder(ItemTags.SWEEPING_ENCHANTABLE).add(scythe);
-				builder(ItemTags.DURABILITY_ENCHANTABLE).add(dagger, scythe);
-				builder(ConventionalItemTags.MELEE_WEAPON_TOOLS).add(dagger, scythe);
+				builder(ItemTags.MELEE_WEAPON_ENCHANTABLE).add(dagger);
+				builder(ItemTags.DURABILITY_ENCHANTABLE).add(dagger);
+				builder(ConventionalItemTags.MELEE_WEAPON_TOOLS).add(dagger);
 
 				var helmet = itemKey(set.helmet);
 				var chestplate = itemKey(set.chestplate);
