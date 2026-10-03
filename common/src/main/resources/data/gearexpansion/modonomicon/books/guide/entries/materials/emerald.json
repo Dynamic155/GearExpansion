@@ -11,7 +11,7 @@
     "height": 26
   },
   "x": -1,
-  "y": -1,
+  "y": -3,
   "name_style": {
     "render_name": "bottom",
     "show_name_before_unlock": true
@@ -37,7 +37,7 @@
     {
       "type": "modonomicon:text",
       "title": "The Gear",
-      "text": "- **Illager's Bane:** emerald swords, spears, and axes deal 50%% more damage to raiders (pillagers, vindicators, evokers, ravagers, and witches).\n- **Prospector:** the emerald pickaxe has a 25%% chance to drop bonus experience when it mines an ore.\n- **Lucky armor:** each piece adds 1 Luck, for better fishing and loot.\n- **Shield:** blocking a raider knocks it back hard.",
+      "text": "- **Illager's Bane:** emerald weapons deal 50%% more damage to raiders (pillagers, vindicators, evokers, ravagers, and witches).\n- **Prospector:** the emerald pickaxe has a 25%% chance to drop bonus experience when it mines an ore.\n- **Lucky armor:** each piece adds 1 Luck, for better fishing and loot.\n- **Shield:** blocking a raider knocks it back hard.",
       "show_title_separator": true,
       "id": "page3"
     },

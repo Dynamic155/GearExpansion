@@ -3,6 +3,7 @@ package com.gearexpansion.mixin;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.projectile.Projectile;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -29,6 +30,20 @@ public abstract class LivingEntityCombatMixin {
 	@ModifyVariable(method = "hurtServer", at = @At("HEAD"), argsOnly = true)
 	private float gearexpansion$modifyDamage(float damage, ServerLevel level, DamageSource source) {
 		return GearCombat.modifyIncomingDamage((LivingEntity) (Object) this, source, damage);
+	}
+
+	@Inject(method = "applyItemBlocking", at = @At("RETURN"))
+	private void gearexpansion$onProjectileBlocked(ServerLevel level, DamageSource source, float damage, CallbackInfoReturnable<Float> cir) {
+		if (cir.getReturnValue() > 0.0F && source.getDirectEntity() instanceof Projectile projectile) {
+			GearCombat.onProjectileBlocked((LivingEntity) (Object) this, projectile);
+		}
+	}
+
+	@Inject(method = "knockback(DDDLnet/minecraft/world/damagesource/DamageSource;FZ)V", at = @At("HEAD"), cancellable = true)
+	private void gearexpansion$steadyShield(double power, double xd, double zd, DamageSource source, float damage, boolean comesFromEffect, CallbackInfo ci) {
+		if (GearCombat.preventsKnockback((LivingEntity) (Object) this)) {
+			ci.cancel();
+		}
 	}
 
 	@Inject(method = "blockUsingItem", at = @At("HEAD"))

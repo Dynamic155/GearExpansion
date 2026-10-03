@@ -136,6 +136,35 @@ MATERIALS = {
         "raw_colors": ["#1A2412", "#2E4020", "#4A6332", "#6C8A48", "#94B266", "#C2DA92"],
         "ore_colors": ["#1A3A10", "#2F6420", "#4C9634", "#74C450", "#A6E57A", "#DDFBB6"],
     },
+    # Kawaii sets (1.4).
+    "pastel_princess": {
+        "tools": "golden", "armor": "golden", "armor_entity": "gold",
+        "material_item": ("princess_gold_ingot", "gold_ingot", ["#4A2A5C", "#7E5296", "#B086C8", "#E0B4E6", "#F8D8F0", "#FFF2C8"]),
+        # Lilac and lavender, cooler than Sakura's pink, worn with a gold crown.
+        "metal": ["#3E2A5C", "#6A4A92", "#9877C4", "#BFA2E2", "#DCC6F4", "#F6EBFF"],
+        "stretch": True,
+    },
+    "jirai_kei": {
+        "tools": "diamond", "armor": "diamond",
+        "material_item": ("heartbreak_ingot", "iron_ingot", ["#120A10", "#2A1424", "#4A1E3C", "#8A3068", "#D2559A", "#FFA6D2"]),
+        # Black with hot pink highlights.
+        "metal": ["#0A0608", "#140B12", "#1E0F1A", "#341328", "#9A2E6E", "#FF8CC6"],
+        "stretch": True,
+    },
+    "magical_girl": {
+        "tools": "diamond", "armor": "diamond",
+        "material_item": ("sparkle_gem", "diamond", ["#3A1050", "#7A2290", "#C040B0", "#F070C8", "#FFB8E2", "#FFF6C0"]),
+        # Bright magenta and pink, with starry yellow highlights that glow on the 3D armor.
+        "metal": ["#2E0F45", "#6A1F7E", "#B23AA8", "#EE6FC4", "#FFB0DE", "#FFF3B0"],
+        "glowmask": True,
+    },
+    "fairy_kei": {
+        "tools": "iron", "armor": "iron",
+        "material_item": ("fairy_ingot", "iron_ingot", ["#56689A", "#7A9AD2", "#9CCFE8", "#C0EFD8", "#F8D2EE", "#FFFFFF"]),
+        # Pastel rainbow: baby blue, mint, and pink.
+        "metal": ["#4A62A8", "#6E9AE0", "#86CCF0", "#9EEACB", "#FFB8E4", "#FFE2F4"],
+        "stretch": True,
+    },
     "infernium": {
         "tools": "netherite", "armor": "netherite",
         "ingot": "netherite_ingot", "nugget": "iron_nugget", "block": "netherite_block",
@@ -436,8 +465,89 @@ def geo_json(identifier, bones, size=64):
     }
 
 
+# Extra 3D details on some armor: (bone, origin, size, color, pattern). They sit on the armor bones,
+# so each shows only with its piece. Their textures are painted into the unused bottom of the armor
+# texture (see decoration_layout). A pattern is rows of "#" (color) and "." (darker), drawn on the front.
+HEART = ["#.#", "###", ".#."]
+STAR = [".#.", "###", ".#."]
+ARMOR_DECORATIONS = {
+    "pastel_princess": [
+        # A little gold crown with a pink gem at the front.
+        ("armorHead", [-3, 33, -3], [6, 1, 6], "#F2C94C", None),
+        ("armorHead", [-3, 34, -3], [1, 1, 1], "#F2C94C", None),
+        ("armorHead", [2, 34, -3], [1, 1, 1], "#F2C94C", None),
+        ("armorHead", [-3, 34, 2], [1, 1, 1], "#F2C94C", None),
+        ("armorHead", [2, 34, 2], [1, 1, 1], "#F2C94C", None),
+        ("armorHead", [-0.5, 34, -3], [1, 2, 1], "#FF7EB6", None),
+    ],
+    "jirai_kei": [
+        # Twin bows on top of the head: pink loops around a black knot.
+        ("armorHead", [-5.5, 33, -2.5], [2, 2, 1], "#FF8CC6", None),
+        ("armorHead", [-3.5, 33.5, -2.5], [1, 1, 1], "#1A0F18", None),
+        ("armorHead", [-2.5, 33, -2.5], [2, 2, 1], "#FF8CC6", None),
+        ("armorHead", [0.5, 33, -2.5], [2, 2, 1], "#FF8CC6", None),
+        ("armorHead", [2.5, 33.5, -2.5], [1, 1, 1], "#1A0F18", None),
+        ("armorHead", [3.5, 33, -2.5], [2, 2, 1], "#FF8CC6", None),
+        # A pink heart on the chest.
+        ("armorBody", [-1.5, 19, -3.6], [3, 3, 1], "#F0508A", HEART),
+    ],
+    "magical_girl": [
+        # A big ribbon bow on the chest, with tails, and a star on the forehead.
+        ("armorBody", [-4, 19, -3.8], [3, 3, 1], "#FF5FB4", None),
+        ("armorBody", [-1, 19.5, -4], [2, 2, 1], "#FFD54A", None),
+        ("armorBody", [1, 19, -3.8], [3, 3, 1], "#FF5FB4", None),
+        ("armorBody", [-1.5, 16, -3.6], [1, 3, 1], "#FF5FB4", None),
+        ("armorBody", [0.5, 16, -3.6], [1, 3, 1], "#FF5FB4", None),
+        ("armorHead", [-1.5, 29, -5.4], [3, 3, 1], "#FFE680", STAR),
+    ],
+    "fairy_kei": [
+        # Little pastel wings on the back.
+        ("armorBody", [-6, 15, 3.2], [5, 8, 1], "#C8E4FF", None),
+        ("armorBody", [1, 15, 3.2], [5, 8, 1], "#FFD0EC", None),
+        ("armorBody", [-5, 13, 3.2], [3, 2, 1], "#D2FFE4", None),
+        ("armorBody", [2, 13, 3.2], [3, 2, 1], "#D2FFE4", None),
+    ],
+}
+
+
+def decoration_layout(name):
+    """Each decoration with the texture position (u, v) its box UV starts at, packed into the free area."""
+    placed = []
+    u, v, row_height = 16, 32, 0
+    for bone, origin, size, color, pattern in ARMOR_DECORATIONS.get(name, []):
+        w, h, d = (max(1, int(round(n))) for n in size)
+        width, height = 2 * (w + d), d + h
+        if u + width > 64:
+            u, v, row_height = 16, v + row_height, 0
+        placed.append((bone, origin, size, color, pattern, (u, v), (w, h, d)))
+        u += width
+        row_height = max(row_height, height)
+    return placed
+
+
+def paint_decorations(name, pixels):
+    """Paints each decoration's box: its color all over, a darker underside, and its pattern on the front."""
+    for _, _, _, color, pattern, (u, v), (w, h, d) in decoration_layout(name):
+        base = hex_rgb(color)
+        dark = tuple(round(c * 0.72) for c in base)
+        light = tuple(min(255, round(c * 1.08 + 12)) for c in base)
+        for y in range(v, v + d + h):
+            for x in range(u, u + 2 * (w + d)):
+                pixels[y][x] = (*base, 255)
+        for x in range(u + d, u + d + w):
+            for y in range(v, v + d):
+                pixels[y][x] = (*light, 255)          # top
+                pixels[y][x + w] = (*dark, 255)       # bottom
+        if pattern:
+            for row, line in enumerate(pattern[:h]):
+                for col, ch in enumerate(line[:w]):
+                    pixels[v + d + row][u + d + col] = (*(base if ch == "#" else dark), 255)
+    return pixels
+
+
 def armor_geo(name):
     bones = []
+    decorations = decoration_layout(name)
     for bone_name, parent, pivot, cube in ARMOR_BONES:
         bone = {"name": bone_name, "pivot": pivot}
         if parent:
@@ -448,6 +558,9 @@ def armor_geo(name):
             if mirror:
                 entry["mirror"] = True
             bone["cubes"] = [entry]
+            for deco_bone, deco_origin, deco_size, _, _, deco_uv, _ in decorations:
+                if deco_bone == bone_name:
+                    bone["cubes"].append({"origin": deco_origin, "size": deco_size, "uv": list(deco_uv)})
         bones.append(bone)
     return geo_json(f"geometry.{name}_armor", bones)
 
@@ -527,7 +640,7 @@ def generate_gear(vanilla, name, spec, metal, suffix, gear_stretch):
     for piece in ("helmet", "chestplate", "leggings", "boots"):
         write_png(item / f"{name}_{piece}{suffix}.png", recolor(vanilla.texture(f"item/{armor}_{piece}"), metal, everything, gear_stretch))
 
-    armor_texture_pixels = recolor(armor_texture(vanilla, armor_entity), metal, everything, gear_stretch)
+    armor_texture_pixels = paint_decorations(name, recolor(armor_texture(vanilla, armor_entity), metal, everything, gear_stretch))
     write_png(item / "armor" / f"{name}_armor{suffix}.png", armor_texture_pixels)
     shield = recolor(vanilla.texture("entity/shield/shield_base_nopattern"), metal, grey_metal)
     write_png(item / f"{name}_shield{suffix}.png", shield)

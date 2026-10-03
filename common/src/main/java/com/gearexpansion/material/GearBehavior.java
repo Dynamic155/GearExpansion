@@ -12,6 +12,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.block.state.BlockState;
@@ -56,6 +57,15 @@ public interface GearBehavior {
 
 	/** When a shield of this material blocks an attack from {@code attacker}. */
 	default void onShieldBlock(MaterialSet set, LivingEntity defender, LivingEntity attacker, ItemStack shield, DamageSource source, float damage) {
+	}
+
+	/** When a shield of this material blocks a projectile (an arrow, trident, or fireball). */
+	default void onProjectileBlocked(MaterialSet set, LivingEntity defender, ItemStack shield, Projectile projectile) {
+	}
+
+	/** Whether someone blocking with a shield of this material takes no knockback. */
+	default boolean preventsKnockbackWhileBlocking(MaterialSet set, LivingEntity defender, ItemStack shield) {
+		return false;
 	}
 
 	/**

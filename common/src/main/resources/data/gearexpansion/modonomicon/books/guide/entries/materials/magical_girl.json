@@ -1,0 +1,66 @@
+{
+  "type": "modonomicon:content",
+  "id": "gearexpansion:materials/magical_girl",
+  "category": "gearexpansion:materials",
+  "name": "Magical Girl",
+  "description": "Diamond tier. Set bonus: Transformation",
+  "icon": "gearexpansion:sparkle_gem",
+  "background": {
+    "sprite": "modonomicon:modonomicon/themes/default/node/entry_backgrounds/square_gold",
+    "width": 26,
+    "height": 26
+  },
+  "x": 1,
+  "y": 3,
+  "name_style": {
+    "render_name": "bottom",
+    "show_name_before_unlock": true
+  },
+  "parents": [],
+  "pages": [
+    {
+      "type": "modonomicon:spotlight",
+      "item": {
+        "id": "gearexpansion:sparkle_gem"
+      },
+      "title": "Magical Girl",
+      "text": "Sparkling gear for a hero who transforms.\n\n- **Tier:** Diamond\n- **Durability:** 1500\n- **Sword damage:** 7\n- **Armor (full set):** 20",
+      "id": "page1"
+    },
+    {
+      "type": "modonomicon:text",
+      "title": "Getting It",
+      "text": "In the [Alloy Forge](entry://alloy_forge/alloy_forge), 1 diamond, 2 amethyst shards, and 2 glowstone dust make 1 Sparkle Gem.",
+      "show_title_separator": true,
+      "id": "page2"
+    },
+    {
+      "type": "modonomicon:text",
+      "title": "The Gear",
+      "text": "- **Gear:** about diamond's strength. The armor glows faintly.\n- **Sparkle Beam:** at full health, a fully charged swing with a magical girl weapon also fires a beam of light that deals 4 damage to every mob in a line up to 8 blocks ahead.\n- **Barrier:** arrows and other projectiles blocked by the magical girl shield bounce straight back at whoever shot them.",
+      "show_title_separator": true,
+      "id": "page3"
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "item": {
+        "id": "gearexpansion:magical_girl_chestplate"
+      },
+      "title": "Transformation",
+      "text": "**Full set bonus.** Unlocks the **Transform** ability.\n\n**Transform (R):** for 30 seconds you get Strength, Speed, Resistance, and Slow Falling, wrapped in sparkles. It can be used again after 5 minutes.",
+      "id": "page4"
+    },
+    {
+      "type": "modonomicon:crafting_recipe",
+      "recipe_id_1": "gearexpansion:magical_girl_pickaxe",
+      "recipe_id_2": "gearexpansion:magical_girl_sword",
+      "id": "page5"
+    },
+    {
+      "type": "modonomicon:crafting_recipe",
+      "recipe_id_1": "gearexpansion:magical_girl_chestplate",
+      "recipe_id_2": "gearexpansion:magical_girl_shield",
+      "id": "page6"
+    }
+  ]
+}

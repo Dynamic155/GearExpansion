@@ -494,6 +494,134 @@ public final class GearExpansionConfig {
 	@Comment("Chance each second that a growing plant near the wearer gets an extra growth tick.")
 	public int verdantiteGrowthChance = 5;
 
+	// Pastel Princess
+
+	@AutoGen(category = "pastel_princess", group = "gear")
+	@IntSlider(min = 0, max = 100, step = 5, format = "%d%%")
+	@SerialEntry
+	@Comment("Chance a hit from a pastel princess weapon charms the mob, so it leaves you alone for a while.")
+	public int pastelPrincessCharmChance = 25;
+
+	@AutoGen(category = "pastel_princess", group = "gear")
+	@IntSlider(min = 1, max = 20, step = 1, format = "%ds")
+	@SerialEntry
+	@Comment("Seconds a charmed mob leaves you alone.")
+	public int pastelPrincessCharmSeconds = 4;
+
+	@AutoGen(category = "pastel_princess", group = "gear")
+	@IntSlider(min = 0, max = 25, step = 1, format = "%d%%")
+	@SerialEntry
+	@Comment("Percent villagers take off their prices for each piece of pastel princess armor you wear.")
+	public int pastelPrincessDiscount = 5;
+
+	@AutoGen(category = "pastel_princess", group = "set_bonus")
+	@TickBox
+	@SerialEntry
+	@Comment("Whether the full Pastel Princess set grants its Royal Court bonus.")
+	public boolean pastelPrincessSetBonus = true;
+
+	@AutoGen(category = "pastel_princess", group = "set_bonus")
+	@IntSlider(min = 4, max = 32, step = 2)
+	@SerialEntry
+	@Comment("Blocks within which your pets and iron golems get Strength and Regeneration.")
+	public int pastelPrincessCourtRange = 12;
+
+	@AutoGen(category = "pastel_princess", group = "set_bonus")
+	@IntSlider(min = 0, max = 50, step = 5, format = "%d%%")
+	@SerialEntry
+	@Comment("Extra percent villagers take off their prices while you wear the full set.")
+	public int pastelPrincessCourtDiscount = 15;
+
+	// Jirai Kei
+
+	@AutoGen(category = "jirai_kei", group = "gear")
+	@IntSlider(min = 0, max = 200, step = 5, format = "%d%%")
+	@SerialEntry
+	@Comment("Extra damage jirai kei weapons deal at almost no health. It grows as your health drops (half at half health).")
+	public int jiraiKeiDesperation = 50;
+
+	@AutoGen(category = "jirai_kei", group = "gear")
+	@IntSlider(min = 0, max = 10, step = 1)
+	@SerialEntry
+	@Comment("Health (in half hearts) the jirai kei shield heals when it blocks while you are below a third of your health.")
+	public int jiraiKeiShieldHeal = 2;
+
+	@AutoGen(category = "jirai_kei", group = "set_bonus")
+	@TickBox
+	@SerialEntry
+	@Comment("Whether the full Jirai Kei set grants its Landmine bonus.")
+	public boolean jiraiKeiSetBonus = true;
+
+	@AutoGen(category = "jirai_kei", group = "set_bonus")
+	@IntSlider(min = 0, max = 30, step = 1)
+	@SerialEntry
+	@Comment("Damage the Landmine burst deals to each mob nearby.")
+	public int jiraiKeiLandmineDamage = 6;
+
+	@AutoGen(category = "jirai_kei", group = "set_bonus")
+	@IntSlider(min = 10, max = 300, step = 10, format = "%ds")
+	@SerialEntry
+	@Comment("Seconds before the Landmine can go off again.")
+	public int jiraiKeiLandmineCooldown = 60;
+
+	// Magical Girl
+
+	@AutoGen(category = "magical_girl", group = "gear")
+	@IntSlider(min = 0, max = 20, step = 1)
+	@SerialEntry
+	@Comment("Damage the Sparkle Beam deals to each mob in its path.")
+	public int magicalGirlBeamDamage = 4;
+
+	@AutoGen(category = "magical_girl", group = "gear")
+	@TickBox
+	@SerialEntry
+	@Comment("Whether the magical girl shield bounces blocked arrows and other projectiles back at the shooter.")
+	public boolean magicalGirlBarrier = true;
+
+	@AutoGen(category = "magical_girl", group = "set_bonus")
+	@TickBox
+	@SerialEntry
+	@Comment("Whether the full Magical Girl set grants its Transformation ability.")
+	public boolean magicalGirlSetBonus = true;
+
+	@AutoGen(category = "magical_girl", group = "set_bonus")
+	@IntSlider(min = 5, max = 120, step = 5, format = "%ds")
+	@SerialEntry
+	@Comment("Seconds a Transformation lasts.")
+	public int magicalGirlTransformSeconds = 30;
+
+	@AutoGen(category = "magical_girl", group = "set_bonus")
+	@IntSlider(min = 30, max = 900, step = 30, format = "%ds")
+	@SerialEntry
+	@Comment("Seconds before you can Transform again.")
+	public int magicalGirlTransformCooldown = 300;
+
+	// Fairy Kei
+
+	@AutoGen(category = "fairy_kei", group = "gear")
+	@IntSlider(min = 0, max = 100, step = 5, format = "%d ticks")
+	@SerialEntry
+	@Comment("Ticks a mob hit by a fairy kei weapon floats (20 ticks is a second).")
+	public int fairyKeiFloatTicks = 20;
+
+	@AutoGen(category = "fairy_kei", group = "gear")
+	@IntSlider(min = 0, max = 25, step = 5, format = "%d%%")
+	@SerialEntry
+	@Comment("Percent less fall damage for each piece of fairy kei armor you wear.")
+	public int fairyKeiFallReduction = 25;
+
+	@AutoGen(category = "fairy_kei", group = "gear")
+	@TickBox
+	@SerialEntry
+	@Comment("Whether the fairy kei shield stops knockback while you block.")
+	public boolean fairyKeiSteadyShield = true;
+
+	@AutoGen(category = "fairy_kei", group = "set_bonus")
+	@TickBox
+	@SerialEntry
+	@Comment("Whether the full Fairy Kei set grants its Daydream bonus.")
+	public boolean fairyKeiSetBonus = true;
+
 	// Infernium
 
 	@AutoGen(category = "infernium", group = "gear")

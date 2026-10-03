@@ -1,0 +1,20 @@
+{
+  "type": "gearexpansion:alloying",
+  "cookingtime": 300,
+  "experience": 1.5,
+  "ingredients": [
+    {
+      "ingredient": "#c:gems/diamond"
+    },
+    {
+      "ingredient": "minecraft:crying_obsidian"
+    },
+    {
+      "count": 2,
+      "ingredient": "minecraft:gunpowder"
+    }
+  ],
+  "result": {
+    "id": "gearexpansion:heartbreak_ingot"
+  }
+}

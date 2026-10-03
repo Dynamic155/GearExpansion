@@ -14,12 +14,13 @@
 		"LightningBoltMixin",
 		"LivingEntityVisibilityMixin",
 		"MobTargetMixin",
+		"PlayerAttackMixin",
 		"PlayerExhaustionMixin",
-		"PlayerScytheMixin",
 		"PowderSnowBlockMixin",
 		"ServerExplosionMixin",
 		"ServerLevelLightningMixin",
-		"ServerLevelVibrationMixin"
+		"ServerLevelVibrationMixin",
+		"VillagerPricesMixin"
 	],
 	"client": [],
 	"injectors": {

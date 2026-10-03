@@ -1,0 +1,20 @@
+{
+  "type": "gearexpansion:alloying",
+  "cookingtime": 200,
+  "experience": 0.7,
+  "ingredients": [
+    {
+      "ingredient": "#c:ingots/iron"
+    },
+    {
+      "count": 2,
+      "ingredient": "minecraft:feather"
+    },
+    {
+      "ingredient": "minecraft:light_blue_dye"
+    }
+  ],
+  "result": {
+    "id": "gearexpansion:fairy_ingot"
+  }
+}

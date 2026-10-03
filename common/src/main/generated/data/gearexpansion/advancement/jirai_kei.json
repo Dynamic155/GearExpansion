@@ -1,0 +1,32 @@
+{
+  "parent": "gearexpansion:alloy_forge",
+  "criteria": {
+    "has_heartbreak_ingot": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gearexpansion:heartbreak_ingot"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.gearexpansion.jirai_kei.description"
+    },
+    "icon": {
+      "id": "gearexpansion:heartbreak_ingot"
+    },
+    "title": {
+      "translate": "advancements.gearexpansion.jirai_kei.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_heartbreak_ingot"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

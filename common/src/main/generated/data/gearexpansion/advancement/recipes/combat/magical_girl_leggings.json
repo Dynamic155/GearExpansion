@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_sparkle_gem": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gearexpansion:sparkle_gem"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipes": "gearexpansion:magical_girl_leggings"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_sparkle_gem"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "gearexpansion:magical_girl_leggings"
+    ]
+  }
+}

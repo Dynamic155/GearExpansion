@@ -44,11 +44,15 @@ public final class SetBonuses {
 	public static final SetBonus FROSTITE = new FrostiteSetBonus();
 	public static final SetBonus FULGURITE = new FulguriteSetBonus();
 	public static final VerdantiteSetBonus VERDANTITE = new VerdantiteSetBonus();
+	public static final SetBonus PASTEL_PRINCESS = new PastelPrincessSetBonus();
+	public static final SetBonus JIRAI_KEI = new JiraiKeiSetBonus();
+	public static final MagicalGirlSetBonus MAGICAL_GIRL = new MagicalGirlSetBonus();
+	public static final FairyKeiSetBonus FAIRY_KEI = new FairyKeiSetBonus();
 	public static final SetBonus INFERNIUM = new InferniumSetBonus();
 
 	public static final List<SetBonus> ALL = List.of(ZINC, VERDIGRIS, ROSE_GOLD, ALUMINUM, BRASS, SILVER, EMERALD, AMETHYST, SAKURA, STEEL,
 		TITANIUM, COBALT, TUNGSTEN, OBSIDIAN, PRISMARINE, ECHO,
-		FROSTITE, FULGURITE, VERDANTITE, INFERNIUM);
+		FROSTITE, FULGURITE, VERDANTITE, PASTEL_PRINCESS, JIRAI_KEI, MAGICAL_GIRL, FAIRY_KEI, INFERNIUM);
 
 	/** The HUD meters last sent to each player, so unchanged values aren't resent. */
 	private static final Map<UUID, GearHudPayload> SENT_HUD = new WeakHashMap<>();

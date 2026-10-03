@@ -11,7 +11,7 @@
     "height": 26
   },
   "x": 3,
-  "y": -1,
+  "y": -3,
   "name_style": {
     "render_name": "bottom",
     "show_name_before_unlock": true
@@ -37,7 +37,7 @@
     {
       "type": "modonomicon:text",
       "title": "The Gear",
-      "text": "- **Gear:** about iron's strength, with very high enchantability (22).\n- **Blossoming:** finishing off a mob with a sakura sword, spear, or axe heals one heart.\n- **Petal Guard:** blocking with the sakura shield heals half a heart, at most once a second.",
+      "text": "- **Gear:** about iron's strength, with very high enchantability (22).\n- **Blossoming:** finishing off a mob with a sakura weapon heals one heart.\n- **Petal Guard:** blocking with the sakura shield heals half a heart, at most once a second.",
       "show_title_separator": true,
       "id": "page3"
     },

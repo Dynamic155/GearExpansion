@@ -106,6 +106,16 @@ Titanium stats as built:
 | Fulgurite | Done: lightning striking sand forms Fulgurite blocks (2 to 4 shards each), Chain Lightning crits in rain or storms, Grounded armor (lightning immune with the full set), Static shield, Stormcaller set bonus (Speed and Strength in rain). Not done from the plan: the bonus with Verdigris (there's no mixed-set system yet). |
 | Verdantite | Done: Lush Caves ore, Replanting axe, 3x3 hoe and shovel, Bee Friend armor, Regrowth shield, Overgrowth set bonus (faster plant growth, no hunger near crops). Changed from the plan: no Regeneration (it overlapped Sakura), and foxes aren't affected. |
 
+1.4 Kawaii (added before Celestial at the user's request):
+
+| Material | Status |
+|---|---|
+| Daggers and scythes | Done: for every material, with Backstab daggers, Wide Sweep and Reaping scythes, recipes, tags (sword enchantments; Sweeping Edge for scythes), drawn textures recolored per material, guidebook entry, game test |
+| Pastel Princess | Done: Alloy Forge alloy, Charm weapons, Royal Favor villager discounts, Royal Guard shield, Royal Court set bonus, crown on the 3D helmet, game test |
+| Jirai Kei | Done: Alloy Forge alloy, Desperation weapons, Clingy shield, Landmine set bonus, twin bows and a heart on the 3D armor, game test |
+| Magical Girl | Done: Alloy Forge alloy, Sparkle Beam weapons, Barrier shield, Transformation ability, chest bow and star on the glowing 3D armor, game test |
+| Fairy Kei | Done: Alloy Forge alloy, Whimsy weapons, Cloud Step armor, Steady shield, Daydream set bonus (double jump and drift), wings on the 3D chestplate, game test |
+
 ---
 
 ## 2. Design pillars
@@ -127,9 +137,10 @@ Titanium stats as built:
 | 1.1 | Metals | Silver, Steel, Tungsten, Cobalt | Modonomicon guidebook (done) |
 | 1.2 | Depths & Seas | Obsidian, Prismarine, Echo (done) | New Elder Guardian drop (not done) |
 | 1.3 | Elements | Frostite, Fulgurite, Verdantite (done) | Lightning/weather mechanics (done) |
-| 1.4 | Celestial | StarShard, Astral, Sunstone, Moonstone, Voidsteel | Falling stars event, Eclipse synergy |
+| 1.4 | Kawaii | Pastel Princess, Jirai Kei, Magical Girl, Fairy Kei | Daggers and scythes for every material |
+| 1.5 | Celestial | StarShard, Astral, Sunstone, Moonstone, Voidsteel | Falling stars event, Eclipse synergy |
 
-**Per material:** 6 tools (sword, pickaxe, axe, shovel, hoe, spear) + 4 armor pieces + shield. Plus the ore (stone + deepslate), raw ore, ingot, nugget, and storage blocks where relevant.
+**Per material:** 8 tools and weapons (sword, dagger, scythe, spear, pickaxe, axe, shovel, hoe) + 4 armor pieces + shield. Daggers and scythes were added for every material in 1.4. Plus the ore (stone + deepslate), raw ore, ingot, nugget, and storage blocks where relevant.
 
 ---
 
@@ -174,11 +185,15 @@ Verify these against 26.3 code when implementing.
 | Frostite | 1.3 | Diamond- | Ice biome ore | Freezing | Vanilla + icicles |
 | Fulgurite | 1.3 | Diamond- | Lightning strikes sand | Storm, chain lightning | Vanilla + arcs |
 | Verdantite | 1.3 | Iron | Lush caves ore | Nature utility | Vanilla + leaves |
-| StarShard | 1.4 | Diamond | Falling stars | Starlight, night power | Vanilla + glow |
-| Astral | 1.4 | Netherite | StarShard + End upgrade | Gravity, mobility | **Bold** |
-| Sunstone | 1.4 | Diamond- | Desert/badlands ore | Day power | Vanilla + rays |
-| Moonstone | 1.4 | Diamond- | Mountain peak ore | Moon-phase power | Vanilla + glow |
-| Voidsteel | 1.4 | Netherite | End outer islands | Blink, teleport | **Bold** |
+| Pastel Princess | 1.4 | Iron | Alloy Forge: gold + amethyst + pink dye | Charm, pets, villager discounts | Vanilla + crown |
+| Jirai Kei | 1.4 | Diamond | Alloy Forge: diamond + crying obsidian + gunpowder | Glass cannon, low-health power | Vanilla + bows |
+| Magical Girl | 1.4 | Diamond | Alloy Forge: diamond + amethyst + glowstone | Transformation, sparkle beam | Vanilla + ribbon, glow |
+| Fairy Kei | 1.4 | Iron | Alloy Forge: iron + feathers + light blue dye | Floaty, double jump | Vanilla + wings |
+| StarShard | 1.5 | Diamond | Falling stars | Starlight, night power | Vanilla + glow |
+| Astral | 1.5 | Netherite | StarShard + End upgrade | Gravity, mobility | **Bold** |
+| Sunstone | 1.5 | Diamond- | Desert/badlands ore | Day power | Vanilla + rays |
+| Moonstone | 1.5 | Diamond- | Mountain peak ore | Moon-phase power | Vanilla + glow |
+| Voidsteel | 1.5 | Netherite | End outer islands | Blink, teleport | **Bold** |
 
 ---
 
@@ -338,7 +353,46 @@ Vanilla already has copper gear, so ours **oxidizes like copper blocks**.
 - **Set bonus (Overgrowth):** Slow Regeneration while standing on grass or moss. Crops near you grow slightly faster.
 - **Look:** Bark and leaf plates with flowering vines.
 
-### 1.4: Celestial
+### 1.4: Kawaii
+
+Added at the user's request before Celestial: four cutesy sets, all made in the Alloy Forge, plus daggers and scythes for every material.
+
+#### Daggers and scythes
+- **Dagger:** 1.5 damage below a sword's baseline, faster swings. **Backstab:** 50% more damage when hitting a mob from behind.
+- **Scythe:** 1.5 damage above a sword's baseline, slow (1 attack a second), +0.5 reach, mines like a hoe. **Wide Sweep:** sweeps everything in reach in the half circle in front of you. **Reaping:** breaking a grown crop harvests and replants the grown crops around it (3x3).
+
+#### Pastel Princess
+- **Obtain:** Alloy Forge: 2 gold ingots + 1 amethyst shard + 1 pink dye = 2 Princess Gold Ingots.
+- **Tools:** Charm: a chance that a hit mob leaves you alone for a few seconds (not bosses).
+- **Armor:** Royal Favor: villager discount per piece. Piglin-safe like gold.
+- **Shield:** Royal Guard: blocking gives your pets Regeneration.
+- **Set bonus (Royal Court):** pets and iron golems nearby get Strength and Regeneration; bigger villager discount.
+- **Look:** Lilac and lavender with a gold crown.
+
+#### Jirai Kei
+- **Obtain:** Alloy Forge: 1 diamond + 1 crying obsidian + 2 gunpowder = 1 Heartbreak Ingot.
+- **Tools:** Desperation: up to +50% damage as your health drops.
+- **Armor:** Glass cannon: diamond weapons, armor about like iron.
+- **Shield:** Clingy: blocking at low health heals you a little.
+- **Set bonus (Landmine):** dropping below a third of your health sets off a heart burst that hurts and throws back nearby mobs (no block damage, 60s cooldown).
+- **Look:** Black and pink, twin bows, a heart on the chest.
+
+#### Magical Girl
+- **Obtain:** Alloy Forge: 1 diamond + 2 amethyst shards + 2 glowstone dust = 1 Sparkle Gem.
+- **Tools:** Sparkle Beam: at full health, a full swing fires a short beam.
+- **Shield:** Barrier: blocked projectiles bounce back at the shooter.
+- **Set bonus (Transformation):** keybind ability: 30s of Strength, Speed, Resistance, and Slow Falling (5 min cooldown).
+- **Look:** Magenta and pink with a chest bow, a star, and a glow.
+
+#### Fairy Kei
+- **Obtain:** Alloy Forge: 1 iron ingot + 2 feathers + 1 light blue dye = 1 Fairy Ingot.
+- **Tools:** Whimsy: hits make mobs float for a moment. +0.2 attack speed.
+- **Armor:** Cloud Step: 25% less fall damage per piece; a little faster per piece.
+- **Shield:** Steady: no knockback while blocking.
+- **Set bonus (Daydream):** double jump, and drift down gently while holding jump.
+- **Look:** Pastel rainbow (baby blue, mint, pink) with little wings.
+
+### 1.5: Celestial
 
 #### StarShard
 - **Obtain:** **Falling stars.** On clear nights, a shooting star may land nearby, leaving a small crater with a glowing StarShard cluster. It fades at sunrise if not collected. Rare End city loot as a backup.
@@ -389,6 +443,7 @@ One shared **"Set Ability"** key (default key TBD, avoiding vanilla and common m
 | Brass | **Spring Release** | Release the wound spring: burst of speed + a knockback punch | Needs a full spring meter |
 | Infernium | **Eruption** | Vent stored heat as a ring of fire that ignites nearby mobs | Uses the heat gauge; 30s cooldown |
 | Tungsten | **Ground Slam** | Stomp to knock back and slow nearby mobs | 20s cooldown |
+| Magical Girl | **Transform** | Strength, Speed, Resistance, and Slow Falling for 30s | 5 min cooldown |
 | Astral | **Astral Dash** | Short dash in the direction you're looking, even mid-air | 8s cooldown, costs hunger |
 | Voidsteel | **Blink** | Teleport up to 8 blocks forward | 30s cooldown |
 

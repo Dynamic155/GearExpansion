@@ -512,6 +512,94 @@
       }
     ]
   },
+  "item.armor.equip_pastel_princess": {
+    "subtitle": "subtitles.item.armor.equip",
+    "sounds": [
+      {
+        "name": "minecraft:item/armor/equip_gold1",
+        "pitch": 1.5
+      },
+      {
+        "name": "minecraft:item/armor/equip_gold2",
+        "pitch": 1.5
+      },
+      {
+        "name": "minecraft:item/armor/equip_gold3",
+        "pitch": 1.5
+      },
+      {
+        "name": "minecraft:item/armor/equip_gold4",
+        "pitch": 1.5
+      },
+      {
+        "name": "minecraft:item/armor/equip_gold5",
+        "pitch": 1.5
+      },
+      {
+        "name": "minecraft:item/armor/equip_gold6",
+        "pitch": 1.5
+      }
+    ]
+  },
+  "item.armor.equip_jirai_kei": {
+    "subtitle": "subtitles.item.armor.equip",
+    "sounds": [
+      {
+        "name": "minecraft:item/armor/equip_leather1",
+        "pitch": 1.3
+      },
+      {
+        "name": "minecraft:item/armor/equip_leather2",
+        "pitch": 1.3
+      },
+      {
+        "name": "minecraft:item/armor/equip_leather3",
+        "pitch": 1.3
+      },
+      {
+        "name": "minecraft:item/armor/equip_leather4",
+        "pitch": 1.3
+      },
+      {
+        "name": "minecraft:item/armor/equip_leather5",
+        "pitch": 1.3
+      },
+      {
+        "name": "minecraft:item/armor/equip_leather6",
+        "pitch": 1.3
+      }
+    ]
+  },
+  "item.armor.equip_magical_girl": {
+    "subtitle": "subtitles.item.armor.equip",
+    "sounds": [
+      {
+        "name": "minecraft:block/amethyst/shimmer",
+        "pitch": 1.4
+      }
+    ]
+  },
+  "item.armor.equip_fairy_kei": {
+    "subtitle": "subtitles.item.armor.equip",
+    "sounds": [
+      {
+        "name": "minecraft:dig/cloth1",
+        "pitch": 1.4
+      },
+      {
+        "name": "minecraft:dig/cloth2",
+        "pitch": 1.4
+      },
+      {
+        "name": "minecraft:dig/cloth3",
+        "pitch": 1.4
+      },
+      {
+        "name": "minecraft:dig/cloth4",
+        "pitch": 1.4
+      }
+    ]
+  },
   "item.armor.equip_infernium": {
     "subtitle": "subtitles.item.armor.equip",
     "sounds": [

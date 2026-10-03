@@ -1,0 +1,66 @@
+{
+  "type": "modonomicon:content",
+  "id": "gearexpansion:materials/pastel_princess",
+  "category": "gearexpansion:materials",
+  "name": "Pastel Princess",
+  "description": "Iron tier. Set bonus: Royal Court",
+  "icon": "gearexpansion:princess_gold_ingot",
+  "background": {
+    "sprite": "modonomicon:modonomicon/themes/default/node/entry_backgrounds/square_gold",
+    "width": 26,
+    "height": 26
+  },
+  "x": -1,
+  "y": -1,
+  "name_style": {
+    "render_name": "bottom",
+    "show_name_before_unlock": true
+  },
+  "parents": [],
+  "pages": [
+    {
+      "type": "modonomicon:spotlight",
+      "item": {
+        "id": "gearexpansion:princess_gold_ingot"
+      },
+      "title": "Pastel Princess",
+      "text": "Regal, charming gear in soft pink and gold.\n\n- **Tier:** Iron\n- **Durability:** 320\n- **Sword damage:** 6\n- **Armor (full set):** 15",
+      "id": "page1"
+    },
+    {
+      "type": "modonomicon:text",
+      "title": "Getting It",
+      "text": "In the [Alloy Forge](entry://alloy_forge/alloy_forge), 2 gold ingots, 1 amethyst shard, and 1 pink dye make 2 Princess Gold Ingots.",
+      "show_title_separator": true,
+      "id": "page2"
+    },
+    {
+      "type": "modonomicon:text",
+      "title": "The Gear",
+      "text": "- **Gear:** about iron's strength, with the best enchantability in the mod (25). Piglins treat the armor as gold.\n- **Charm:** a hit from a pastel princess weapon has a 25%% chance to charm the mob, so it leaves you alone for 4 seconds. Bosses can't be charmed.\n- **Royal Favor:** villagers take 5%% off their prices for each armor piece you wear.\n- **Royal Guard:** blocking with the pastel princess shield gives your pets nearby Regeneration.",
+      "show_title_separator": true,
+      "id": "page3"
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "item": {
+        "id": "gearexpansion:pastel_princess_chestplate"
+      },
+      "title": "Royal Court",
+      "text": "**Full set bonus.** Your tamed pets and iron golems within 12 blocks get Strength and Regeneration, and villagers take another 15%% off their prices.",
+      "id": "page4"
+    },
+    {
+      "type": "modonomicon:crafting_recipe",
+      "recipe_id_1": "gearexpansion:pastel_princess_pickaxe",
+      "recipe_id_2": "gearexpansion:pastel_princess_sword",
+      "id": "page5"
+    },
+    {
+      "type": "modonomicon:crafting_recipe",
+      "recipe_id_1": "gearexpansion:pastel_princess_chestplate",
+      "recipe_id_2": "gearexpansion:pastel_princess_shield",
+      "id": "page6"
+    }
+  ]
+}

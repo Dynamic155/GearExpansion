@@ -2,6 +2,9 @@ package com.gearexpansion.item;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.UUID;
+import java.util.concurrent.ConcurrentHashMap;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
@@ -47,7 +50,22 @@ public final class GearWeapons {
 	/** A hit counts as from behind when the attacker is more than 120 degrees from where the target faces. */
 	private static final double BEHIND_COSINE = -0.5;
 
+	/** How charged each player's current swing is (1 is a full swing), noted as the attack starts. Server side only. */
+	private static final Map<UUID, Float> SWING_STRENGTH = new ConcurrentHashMap<>();
+
 	private GearWeapons() {
+	}
+
+	/** Notes how charged a player's swing is, before the attack resets the charge. */
+	public static void recordSwing(Player player, float strength) {
+		if (!player.level().isClientSide()) {
+			SWING_STRENGTH.put(player.getUUID(), strength);
+		}
+	}
+
+	/** Whether the player's current attack is a fully charged swing. */
+	public static boolean isFullSwing(Player player) {
+		return SWING_STRENGTH.getOrDefault(player.getUUID(), 0.0F) > 0.9F;
 	}
 
 	/** Backstab: extra damage when a dagger hits a living target from behind. */

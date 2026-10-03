@@ -184,7 +184,8 @@ ENTRIES = [
              "A few full sets also have an **ability**, used with the **Set Ability key**: **R** by default. "
              "Change it under Controls, in the Gear Expansion category.\n\n"
              "The key uses the ability of the full set you're wearing:\n\n"
-             + bullets("**Spring Release** (Brass)", "**Ground Slam** (Tungsten)", "**Eruption** (Infernium)")),
+             + bullets("**Spring Release** (Brass)", "**Ground Slam** (Tungsten)", "**Transform** (Magical Girl)",
+                       "**Eruption** (Infernium)")),
         text("HUD Meters",
              "Meters appear above the hotbar only when they matter:\n\n"
              + bullets("Brass's spring", "Infernium's heat gauge", "Amethyst's crystal shell", "the ability cooldown")),
@@ -222,7 +223,7 @@ ENTRIES = [
     ], start=True),
     Entry("alloy_forge", "alloys", "Alloys", "Every Alloy Forge recipe", f"{NS}:brass_ingot", -2, 1, [
         text("Alloys",
-             "The Alloy Forge makes six alloys, shown on the next pages.\n\n"
+             "The Alloy Forge makes ten alloys, shown on the next pages.\n\n"
              "Recipes use the common ingot tags, so copper, zinc, gold, and iron from other mods work too."),
         spotlight(f"{NS}:brass_ingot", "Brass",
                   "**3 copper ingots** and **1 zinc ingot** make 4 Brass Ingots.\n\n"
@@ -246,6 +247,20 @@ ENTRIES = [
                   "**1 echo shard**, **4 sculk**, and **2 iron ingots** make 2 Echo Ingots. It takes a "
                   "little longer than most alloys.\n\n"
                   "See [Echo](entry://materials/echo) for its gear."),
+        spotlight(f"{NS}:princess_gold_ingot", "Princess Gold",
+                  "**2 gold ingots**, **1 amethyst shard**, and **1 pink dye** make 2 Princess Gold Ingots.\n\n"
+                  "See [Pastel Princess](entry://materials/pastel_princess) for its gear."),
+        spotlight(f"{NS}:heartbreak_ingot", "Heartbreak Ingot",
+                  "**1 diamond**, **1 crying obsidian**, and **2 gunpowder** make 1 Heartbreak Ingot. It takes "
+                  "a little longer than most alloys.\n\n"
+                  "See [Jirai Kei](entry://materials/jirai_kei) for its gear."),
+        spotlight(f"{NS}:sparkle_gem", "Sparkle Gem",
+                  "**1 diamond**, **2 amethyst shards**, and **2 glowstone dust** make 1 Sparkle Gem. It takes "
+                  "a little longer than most alloys.\n\n"
+                  "See [Magical Girl](entry://materials/magical_girl) for its gear."),
+        spotlight(f"{NS}:fairy_ingot", "Fairy Ingot",
+                  "**1 iron ingot**, **2 feathers**, and **1 light blue dye** make 1 Fairy Ingot.\n\n"
+                  "See [Fairy Kei](entry://materials/fairy_kei) for its gear."),
     ], parents=["alloy_forge"]),
     Entry("alloy_forge", "fuel", "Fuel and Hoppers", "Fuel, boosts, and automation", "minecraft:blaze_powder", 2, 1, [
         text("Fuel",
@@ -372,7 +387,7 @@ MATERIALS = [
         {"durability": 280, "sword": 6, "armor": 15},
         "**Silver Ore** is found between Y -16 and Y 48, in stone and deepslate. Mine it with an iron "
         "pickaxe or better, then smelt or blast the raw silver.",
-        ["**Hallowed:** silver swords, spears, and axes deal 4 extra damage to undead (zombies, skeletons, "
+        ["**Hallowed:** silver weapons deal 4 extra damage to undead (zombies, skeletons, "
          "phantoms, the wither, and so on). It stacks with Smite.",
          "**Warding:** each armor piece takes 6% less damage from undead, including arrows from skeletons "
          "(24% for the full set).",
@@ -386,7 +401,7 @@ MATERIALS = [
         "Gear for traders and raid defenders.",
         {"durability": 500, "sword": 6, "armor": 15},
         "Made straight from **emeralds**, so it's expensive on purpose.",
-        ["**Illager's Bane:** emerald swords, spears, and axes deal 50% more damage to raiders (pillagers, "
+        ["**Illager's Bane:** emerald weapons deal 50% more damage to raiders (pillagers, "
          "vindicators, evokers, ravagers, and witches).",
          "**Prospector:** the emerald pickaxe has a 25% chance to drop bonus experience when it mines an ore.",
          "**Lucky armor:** each piece adds 1 Luck, for better fishing and loot.",
@@ -465,7 +480,7 @@ MATERIALS = [
         "In the [Alloy Forge](entry://alloy_forge/alloy_forge), 1 iron ingot and 4 pink petals make "
         "1 Sakura Ingot. Pink petals carpet the ground in cherry groves.",
         ["**Gear:** about iron's strength, with very high enchantability (22).",
-         "**Blossoming:** finishing off a mob with a sakura sword, spear, or axe heals one heart.",
+         "**Blossoming:** finishing off a mob with a sakura weapon heals one heart.",
          "**Petal Guard:** blocking with the sakura shield heals half a heart, at most once a second."],
         "Hanami",
         "Regeneration while within 3 blocks of flowers, cherry leaves, or pink petals, and you leave a "
@@ -503,7 +518,7 @@ MATERIALS = [
         {"durability": 1300, "sword": 6.5, "armor": 18},
         "Craft **Prismarine Scales** from 3 prismarine shards, 2 prismarine crystals, and 1 copper ingot "
         "(makes 2). Guardians and ocean monuments are the place to find shards and crystals.",
-        ["**Tidal:** prismarine swords, spears, and axes deal 3 extra damage to sea creatures, like Impaling.",
+        ["**Tidal:** prismarine weapons deal 3 extra damage to sea creatures, like Impaling.",
          "**Gills:** each armor piece works like a level of Respiration, makes you swim a little faster, "
          "and removes a quarter of the underwater mining penalty (the full set mines at full speed).",
          "**Spined:** melee attackers take 2 damage when the prismarine shield blocks them."],
@@ -531,7 +546,7 @@ MATERIALS = [
         {"durability": 1400, "sword": 6.5, "armor": 18},
         "**Frostite Ore** grows inside the packed ice and blue ice of **Frozen Peaks** and **Ice Spikes**. "
         "Mine it with an iron pickaxe or better, then smelt or blast the raw frostite.",
-        ["**Frostbite:** frostite swords, spears, and axes slow what they hit and build up freezing, like powder "
+        ["**Frostbite:** frostite weapons slow what they hit and build up freezing, like powder "
          "snow. A few hits freeze a mob solid.",
          "**Insulated:** wearing any piece of frostite armor stops you from freezing.",
          "**Snow Walker:** frostite boots walk on powder snow, like leather boots.",
@@ -573,6 +588,69 @@ MATERIALS = [
         recipes=[smelting("verdantite_ingot_from_smelting_raw_verdantite", body=BLAST_TOO)],
     ),
     Material(
+        "pastel_princess", "Pastel Princess", "Iron", "princess_gold_ingot",
+        "Regal, charming gear in soft pink and gold.",
+        {"durability": 320, "sword": 6, "armor": 15},
+        "In the [Alloy Forge](entry://alloy_forge/alloy_forge), 2 gold ingots, 1 amethyst shard, and 1 pink dye make "
+        "2 Princess Gold Ingots.",
+        ["**Gear:** about iron's strength, with the best enchantability in the mod (25). Piglins treat the "
+         "armor as gold.",
+         "**Charm:** a hit from a pastel princess weapon has a 25% chance to charm the mob, so it leaves you "
+         "alone for 4 seconds. Bosses can't be charmed.",
+         "**Royal Favor:** villagers take 5% off their prices for each armor piece you wear.",
+         "**Royal Guard:** blocking with the pastel princess shield gives your pets nearby Regeneration."],
+        "Royal Court",
+        "Your tamed pets and iron golems within 12 blocks get Strength and Regeneration, and villagers take "
+        "another 15% off their prices.",
+    ),
+    Material(
+        "jirai_kei", "Jirai Kei", "Diamond", "heartbreak_ingot",
+        "Cute, black and pink, and dangerous when cornered.",
+        {"durability": 900, "sword": 7.5, "armor": 15},
+        "In the [Alloy Forge](entry://alloy_forge/alloy_forge), 1 diamond, 1 crying obsidian, and 2 gunpowder make "
+        "1 Heartbreak Ingot.",
+        ["**Gear:** a glass cannon. Diamond mining and more damage than diamond, but armor only about "
+         "as strong as iron.",
+         "**Desperation:** jirai kei weapons deal more damage the lower your health: up to 50% more when "
+         "you're almost out, and 25% at half health.",
+         "**Clingy:** blocking with the jirai kei shield while below a third of your health heals a heart, "
+         "at most once a second."],
+        "Landmine",
+        "The first hit that drops you below a third of your health sets off a burst of pink hearts. Every "
+        "mob within 4 blocks takes 6 damage and is thrown back. It breaks no blocks, and it can go off "
+        "again after 60 seconds.",
+    ),
+    Material(
+        "magical_girl", "Magical Girl", "Diamond", "sparkle_gem",
+        "Sparkling gear for a hero who transforms.",
+        {"durability": 1500, "sword": 7, "armor": 20},
+        "In the [Alloy Forge](entry://alloy_forge/alloy_forge), 1 diamond, 2 amethyst shards, and 2 glowstone dust make "
+        "1 Sparkle Gem.",
+        ["**Gear:** about diamond's strength. The armor glows faintly.",
+         "**Sparkle Beam:** at full health, a fully charged swing with a magical girl weapon also fires a "
+         "beam of light that deals 4 damage to every mob in a line up to 8 blocks ahead.",
+         "**Barrier:** arrows and other projectiles blocked by the magical girl shield bounce straight "
+         "back at whoever shot them."],
+        "Transformation",
+        "Unlocks the **Transform** ability.",
+        ability="**Transform (R):** for 30 seconds you get Strength, Speed, Resistance, and Slow Falling, "
+                "wrapped in sparkles. It can be used again after 5 minutes.",
+    ),
+    Material(
+        "fairy_kei", "Fairy Kei", "Iron", "fairy_ingot",
+        "Light, floaty gear in pastel rainbow colors.",
+        {"durability": 280, "sword": 6, "armor": 12},
+        "In the [Alloy Forge](entry://alloy_forge/alloy_forge), 1 iron ingot, 2 feathers, and 1 light blue dye make "
+        "1 Fairy Ingot.",
+        ["**Gear:** light like Aluminum: weaker armor, +0.2 attack speed on every tool, and each armor "
+         "piece makes you a little faster.",
+         "**Whimsy:** mobs hit by a fairy kei weapon float up for a moment.",
+         "**Cloud Step:** each armor piece takes a quarter off fall damage, so the full set ignores falls.",
+         "**Steady:** you take no knockback while blocking with the fairy kei shield."],
+        "Daydream",
+        "Press jump in midair to jump a second time, and hold jump while falling to drift down gently.",
+    ),
+    Material(
         "infernium", "Infernium", "Netherite", "infernium_ingot",
         "The endgame metal of the Nether. Its 3D armor glows.",
         {"durability": 2200, "sword": 8, "armor": 20},
@@ -584,7 +662,7 @@ MATERIALS = [
         "7 titanium ingots, 1 netherrack, and the template, which makes 2.\n"
         "4. At a smithing table, combine the template, a piece of **titanium gear**, and an **Infernium Ingot**.",
         ["**Fireproof:** infernium items don't burn in fire or lava.",
-         "**Searing weapons:** swords, spears, and axes set targets on fire, and deal 3 extra damage to "
+         "**Searing weapons:** infernium weapons set targets on fire, and deal 3 extra damage to "
          "burning targets.",
          "**Smelting pickaxe:** the infernium pickaxe smelts what it mines (iron ore drops iron ingots, and so on).",
          "**Fire Ward:** each armor piece blocks 15% of fire damage (60% for the full set).",

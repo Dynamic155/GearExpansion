@@ -7,6 +7,7 @@ import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.item.ItemStack;
 
 import com.gearexpansion.material.MaterialSet;
@@ -68,6 +69,22 @@ public final class GearCombat {
 				bonus.onShieldBlock(defender, attacker, source, damage);
 			}
 		}
+	}
+
+	/** After {@code defender} blocks a projectile with a shield. */
+	public static void onProjectileBlocked(LivingEntity defender, Projectile projectile) {
+		ItemStack shield = defender.getItemBlockingWith();
+		if (shield != null) {
+			ModMaterials.ofGear(shield).ifPresent(set -> set.behavior.onProjectileBlocked(set, defender, shield, projectile));
+		}
+	}
+
+	/** Whether {@code entity} is blocking with a shield that stops knockback. */
+	public static boolean preventsKnockback(LivingEntity entity) {
+		ItemStack shield = entity.getItemBlockingWith();
+		return shield != null && ModMaterials.ofGear(shield)
+			.map(set -> set.behavior.preventsKnockbackWhileBlocking(set, entity, shield))
+			.orElse(false);
 	}
 
 	/** How many armor pieces of {@code set} the entity is wearing. */

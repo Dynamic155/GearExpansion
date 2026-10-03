@@ -151,6 +151,7 @@ public final class GearGameTest implements FabricClientGameTest {
 			checkVerdantite(ctx, server);
 			checkInfernium(ctx, server);
 			WeaponChecks.run(ctx, server, this::check);
+			KawaiiChecks.run(ctx, server, this::check);
 
 			screenshots(ctx, server);
 			RecipeViewerChecks.run(ctx, this::check);
@@ -465,7 +466,7 @@ public final class GearGameTest implements FabricClientGameTest {
 		}
 	}
 
-	private static String tooltip(ClientGameTestContext ctx, Item item) {
+	static String tooltip(ClientGameTestContext ctx, Item item) {
 		return ctx.computeOnClient(mc -> {
 			StringBuilder text = new StringBuilder();
 			new ItemStack(item).getTooltipLines(Item.TooltipContext.of(mc.level), mc.player, TooltipFlag.NORMAL)
@@ -564,6 +565,13 @@ public final class GearGameTest implements FabricClientGameTest {
 			server.runCommand("tp @p 0 -60 0 20 10");
 			ctx.waitTicks(15);
 			ctx.takeScreenshot("showcase_" + set.name);
+			if (set == ModMaterials.FAIRY_KEI) {
+				// Fairy Kei's wings are on the back.
+				ctx.runOnClient(mc -> mc.options.setCameraType(CameraType.THIRD_PERSON_BACK));
+				ctx.waitTicks(5);
+				ctx.takeScreenshot("showcase_back_" + set.name);
+				ctx.runOnClient(mc -> mc.options.setCameraType(CameraType.THIRD_PERSON_FRONT));
+			}
 		}
 		ctx.runOnClient(mc -> {
 			mc.gui.hud.toggle();

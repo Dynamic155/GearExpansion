@@ -11,7 +11,7 @@
     "height": 26
   },
   "x": -3,
-  "y": 3,
+  "y": 5,
   "name_style": {
     "render_name": "bottom",
     "show_name_before_unlock": true
@@ -41,7 +41,7 @@
     {
       "type": "modonomicon:text",
       "title": "The Gear",
-      "text": "- **Fireproof:** infernium items don't burn in fire or lava.\n- **Searing weapons:** swords, spears, and axes set targets on fire, and deal 3 extra damage to burning targets.\n- **Smelting pickaxe:** the infernium pickaxe smelts what it mines (iron ore drops iron ingots, and so on).\n- **Fire Ward:** each armor piece blocks 15%% of fire damage (60%% for the full set).\n- **Shield:** blocking a melee attack sets the attacker on fire.",
+      "text": "- **Fireproof:** infernium items don't burn in fire or lava.\n- **Searing weapons:** infernium weapons set targets on fire, and deal 3 extra damage to burning targets.\n- **Smelting pickaxe:** the infernium pickaxe smelts what it mines (iron ore drops iron ingots, and so on).\n- **Fire Ward:** each armor piece blocks 15%% of fire damage (60%% for the full set).\n- **Shield:** blocking a melee attack sets the attacker on fire.",
       "show_title_separator": true,
       "id": "page3"
     },

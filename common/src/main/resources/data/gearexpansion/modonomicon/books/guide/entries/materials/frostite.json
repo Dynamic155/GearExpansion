@@ -37,7 +37,7 @@
     {
       "type": "modonomicon:text",
       "title": "The Gear",
-      "text": "- **Frostbite:** frostite swords, spears, and axes slow what they hit and build up freezing, like powder snow. A few hits freeze a mob solid.\n- **Insulated:** wearing any piece of frostite armor stops you from freezing.\n- **Snow Walker:** frostite boots walk on powder snow, like leather boots.\n- **Rime:** blocking a melee attack with the frostite shield slows the attacker.",
+      "text": "- **Frostbite:** frostite weapons slow what they hit and build up freezing, like powder snow. A few hits freeze a mob solid.\n- **Insulated:** wearing any piece of frostite armor stops you from freezing.\n- **Snow Walker:** frostite boots walk on powder snow, like leather boots.\n- **Rime:** blocking a melee attack with the frostite shield slows the attacker.",
       "show_title_separator": true,
       "id": "page3"
     },

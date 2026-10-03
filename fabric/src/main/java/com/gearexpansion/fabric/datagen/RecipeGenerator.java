@@ -78,6 +78,15 @@ final class RecipeGenerator extends FabricRecipeProvider {
 					new CountedIngredient(Ingredient.of(Items.SCULK), 4), metal("iron", 2));
 				// Steel takes longer: iron tempered with coal or charcoal.
 				alloy(ModMaterials.STEEL.ingot.get(), 1, 300, 1.0F, metal("iron", 1), new CountedIngredient(tag(ItemTags.COALS), 2));
+				// Kawaii materials.
+				alloy(ModMaterials.PASTEL_PRINCESS.ingot.get(), 2, 200, 0.8F, metal("gold", 2),
+					new CountedIngredient(Ingredient.of(Items.AMETHYST_SHARD), 1), new CountedIngredient(Ingredient.of(Items.DYE.pink()), 1));
+				alloy(ModMaterials.JIRAI_KEI.ingot.get(), 1, 300, 1.5F, new CountedIngredient(tag(ConventionalItemTags.DIAMOND_GEMS), 1),
+					new CountedIngredient(Ingredient.of(Items.CRYING_OBSIDIAN), 1), new CountedIngredient(Ingredient.of(Items.GUNPOWDER), 2));
+				alloy(ModMaterials.MAGICAL_GIRL.ingot.get(), 1, 300, 1.5F, new CountedIngredient(tag(ConventionalItemTags.DIAMOND_GEMS), 1),
+					new CountedIngredient(Ingredient.of(Items.AMETHYST_SHARD), 2), new CountedIngredient(Ingredient.of(Items.GLOWSTONE_DUST), 2));
+				alloy(ModMaterials.FAIRY_KEI.ingot.get(), 1, 200, 0.7F, metal("iron", 1),
+					new CountedIngredient(Ingredient.of(Items.FEATHER), 2), new CountedIngredient(Ingredient.of(Items.DYE.lightBlue()), 1));
 			}
 
 			private CountedIngredient metal(String name, int count) {

@@ -69,6 +69,10 @@ final class AdvancementGenerator extends FabricAdvancementProvider {
 		task(output, root, "frostite", ModMaterials.FROSTITE.ingot.get(), AdvancementType.TASK, List.of(ModMaterials.FROSTITE.ingot.get()));
 		task(output, root, "fulgurite", ModMaterials.FULGURITE.ingot.get(), AdvancementType.TASK, List.of(ModMaterials.FULGURITE.ingot.get()));
 		task(output, root, "verdantite", ModMaterials.VERDANTITE.ingot.get(), AdvancementType.TASK, List.of(ModMaterials.VERDANTITE.ingot.get()));
+		task(output, forge, "pastel_princess", ModMaterials.PASTEL_PRINCESS.ingot.get(), AdvancementType.TASK, List.of(ModMaterials.PASTEL_PRINCESS.ingot.get()));
+		task(output, forge, "jirai_kei", ModMaterials.JIRAI_KEI.ingot.get(), AdvancementType.TASK, List.of(ModMaterials.JIRAI_KEI.ingot.get()));
+		task(output, forge, "magical_girl", ModMaterials.MAGICAL_GIRL.ingot.get(), AdvancementType.TASK, List.of(ModMaterials.MAGICAL_GIRL.ingot.get()));
+		task(output, forge, "fairy_kei", ModMaterials.FAIRY_KEI.ingot.get(), AdvancementType.TASK, List.of(ModMaterials.FAIRY_KEI.ingot.get()));
 		AdvancementHolder template = task(output, titanium, "infernium_template", ModMaterials.INFERNIUM.upgradeTemplate.get(), AdvancementType.TASK,
 			List.of(ModMaterials.INFERNIUM.upgradeTemplate.get()));
 		task(output, template, "infernium", ModMaterials.INFERNIUM.chestplate.get(), AdvancementType.GOAL, gear(ModMaterials.INFERNIUM));

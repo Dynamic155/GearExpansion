@@ -1,0 +1,66 @@
+{
+  "type": "modonomicon:content",
+  "id": "gearexpansion:materials/jirai_kei",
+  "category": "gearexpansion:materials",
+  "name": "Jirai Kei",
+  "description": "Diamond tier. Set bonus: Landmine",
+  "icon": "gearexpansion:heartbreak_ingot",
+  "background": {
+    "sprite": "modonomicon:modonomicon/themes/default/node/entry_backgrounds/square_gold",
+    "width": 26,
+    "height": 26
+  },
+  "x": -1,
+  "y": 3,
+  "name_style": {
+    "render_name": "bottom",
+    "show_name_before_unlock": true
+  },
+  "parents": [],
+  "pages": [
+    {
+      "type": "modonomicon:spotlight",
+      "item": {
+        "id": "gearexpansion:heartbreak_ingot"
+      },
+      "title": "Jirai Kei",
+      "text": "Cute, black and pink, and dangerous when cornered.\n\n- **Tier:** Diamond\n- **Durability:** 900\n- **Sword damage:** 7.5\n- **Armor (full set):** 15",
+      "id": "page1"
+    },
+    {
+      "type": "modonomicon:text",
+      "title": "Getting It",
+      "text": "In the [Alloy Forge](entry://alloy_forge/alloy_forge), 1 diamond, 1 crying obsidian, and 2 gunpowder make 1 Heartbreak Ingot.",
+      "show_title_separator": true,
+      "id": "page2"
+    },
+    {
+      "type": "modonomicon:text",
+      "title": "The Gear",
+      "text": "- **Gear:** a glass cannon. Diamond mining and more damage than diamond, but armor only about as strong as iron.\n- **Desperation:** jirai kei weapons deal more damage the lower your health: up to 50%% more when you're almost out, and 25%% at half health.\n- **Clingy:** blocking with the jirai kei shield while below a third of your health heals a heart, at most once a second.",
+      "show_title_separator": true,
+      "id": "page3"
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "item": {
+        "id": "gearexpansion:jirai_kei_chestplate"
+      },
+      "title": "Landmine",
+      "text": "**Full set bonus.** The first hit that drops you below a third of your health sets off a burst of pink hearts. Every mob within 4 blocks takes 6 damage and is thrown back. It breaks no blocks, and it can go off again after 60 seconds.",
+      "id": "page4"
+    },
+    {
+      "type": "modonomicon:crafting_recipe",
+      "recipe_id_1": "gearexpansion:jirai_kei_pickaxe",
+      "recipe_id_2": "gearexpansion:jirai_kei_sword",
+      "id": "page5"
+    },
+    {
+      "type": "modonomicon:crafting_recipe",
+      "recipe_id_1": "gearexpansion:jirai_kei_chestplate",
+      "recipe_id_2": "gearexpansion:jirai_kei_shield",
+      "id": "page6"
+    }
+  ]
+}

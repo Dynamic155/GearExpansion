@@ -17,10 +17,14 @@ import com.gearexpansion.material.behavior.BrassBehavior;
 import com.gearexpansion.material.behavior.CobaltBehavior;
 import com.gearexpansion.material.behavior.EchoBehavior;
 import com.gearexpansion.material.behavior.EmeraldBehavior;
+import com.gearexpansion.material.behavior.FairyKeiBehavior;
 import com.gearexpansion.material.behavior.FrostiteBehavior;
 import com.gearexpansion.material.behavior.FulguriteBehavior;
 import com.gearexpansion.material.behavior.InferniumBehavior;
+import com.gearexpansion.material.behavior.JiraiKeiBehavior;
+import com.gearexpansion.material.behavior.MagicalGirlBehavior;
 import com.gearexpansion.material.behavior.ObsidianBehavior;
+import com.gearexpansion.material.behavior.PastelPrincessBehavior;
 import com.gearexpansion.material.behavior.PrismarineBehavior;
 import com.gearexpansion.material.behavior.SakuraBehavior;
 import com.gearexpansion.material.behavior.SilverBehavior;
@@ -311,6 +315,62 @@ public final class ModMaterials {
 		.ore("", ModBiomeTags.HAS_VERDANTITE_ORE, 8, 12, -64, 64, 0.0F)
 		.behavior(new VerdantiteBehavior())
 		.colors(MapColor.COLOR_LIGHT_GREEN, MapColor.PLANT)
+		.build();
+
+	/**
+	 * Pastel Princess: a regal, charming set of Princess Gold (gold, amethyst, and pink dye from the
+	 * Alloy Forge). About iron's strength and very enchantable. Weapons charm mobs into leaving you
+	 * alone, villagers give discounts, and the full set strengthens your pets and iron golems.
+	 */
+	public static final MaterialSet PASTEL_PRINCESS = MaterialSet.builder("pastel_princess")
+		.craftedMaterial("princess_gold_ingot")
+		.tools(ToolTier.IRON, 320, 7.0F, 2.0F, 25)
+		.armor(16, 2, 6, 5, 2, 25, ModSounds.armorEquip("pastel_princess"), 0.0F, 0.0F)
+		.shield(400, 1.0F)
+		.piglinSafe()
+		.behavior(new PastelPrincessBehavior())
+		.build();
+
+	/**
+	 * Jirai Kei: a cute but volatile glass cannon of Heartbreak Ingots (diamond, crying obsidian, and
+	 * gunpowder from the Alloy Forge). Diamond tools and damage, but armor about like iron. Weapons hit
+	 * harder as your health drops, and the full set goes off like a landmine when you're nearly beaten.
+	 */
+	public static final MaterialSet JIRAI_KEI = MaterialSet.builder("jirai_kei")
+		.craftedMaterial("heartbreak_ingot")
+		.tools(ToolTier.DIAMOND, 900, 8.0F, 3.5F, 15)
+		.armor(20, 2, 6, 5, 2, 15, ModSounds.armorEquip("jirai_kei"), 0.5F, 0.0F)
+		.shield(500, 1.0F)
+		.behavior(new JiraiKeiBehavior())
+		.build();
+
+	/**
+	 * Magical Girl: sparkling diamond-tier gear of Sparkle Gems (diamond, amethyst, and glowstone from the
+	 * Alloy Forge). Weapons fire a Sparkle Beam at full health, the shield bounces projectiles back, and
+	 * the full set can Transform for a burst of power.
+	 */
+	public static final MaterialSet MAGICAL_GIRL = MaterialSet.builder("magical_girl")
+		.craftedMaterial("sparkle_gem")
+		.tools(ToolTier.DIAMOND, 1500, 8.0F, 3.0F, 18)
+		.armor(33, 3, 8, 6, 3, 18, ModSounds.armorEquip("magical_girl"), 2.0F, 0.0F)
+		.shield(700, 1.0F)
+		.glowing()
+		.behavior(new MagicalGirlBehavior())
+		.build();
+
+	/**
+	 * Fairy Kei: light, floaty pastel gear of Fairy Ingots (iron, feathers, and light blue dye from the
+	 * Alloy Forge). Iron tier, a little faster, and every piece softens falls. Weapons make mobs float,
+	 * and the full set double jumps and drifts down gently.
+	 */
+	public static final MaterialSet FAIRY_KEI = MaterialSet.builder("fairy_kei")
+		.craftedMaterial("fairy_ingot")
+		.tools(ToolTier.IRON, 280, 7.5F, 2.0F, 18)
+		.attackSpeedBonus(0.2F)
+		.armor(14, 2, 5, 4, 1, 18, ModSounds.armorEquip("fairy_kei"), 0.0F, 0.0F)
+		.armorBonus("speed", Attributes.MOVEMENT_SPEED, 0.02, AttributeModifier.Operation.ADD_MULTIPLIED_BASE)
+		.shield(300, 1.0F)
+		.behavior(new FairyKeiBehavior())
 		.build();
 
 	/**

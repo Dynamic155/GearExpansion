@@ -1,0 +1,32 @@
+{
+  "parent": "gearexpansion:alloy_forge",
+  "criteria": {
+    "has_sparkle_gem": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gearexpansion:sparkle_gem"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.gearexpansion.magical_girl.description"
+    },
+    "icon": {
+      "id": "gearexpansion:sparkle_gem"
+    },
+    "title": {
+      "translate": "advancements.gearexpansion.magical_girl.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_sparkle_gem"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

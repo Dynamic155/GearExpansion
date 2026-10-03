@@ -84,9 +84,13 @@ From weakest to strongest. Tier is what the pickaxe can mine, using vanilla's ti
 | Frostite | Diamond | 1400 | 6.5 | 18 | Ore in packed ice | Permafrost |
 | Fulgurite | Diamond | 1200 | 6.5 | 17 | Lightning-struck sand | Stormcaller |
 | Verdantite | Iron | 400 | 6 | 15 | Lush Caves ore | Overgrowth |
+| Pastel Princess | Iron | 320 | 6 | 15 | Alloy Forge | Royal Court |
+| Jirai Kei | Diamond | 900 | 7.5 | 15 | Alloy Forge | Landmine |
+| Magical Girl | Diamond | 1500 | 7 | 20 | Alloy Forge | Transformation |
+| Fairy Kei | Iron | 280 | 6 | 12 | Alloy Forge | Daydream |
 | Infernium | Netherite | 2200 | 8 | 20 | Nether ore and a template | Heat Core |
 
-Every material has a **sword, pickaxe, axe, shovel, hoe, spear, helmet, chestplate, leggings, boots, and shield**.
+Every material has a **sword, dagger, scythe, spear, pickaxe, axe, shovel, hoe, helmet, chestplate, leggings, boots, and shield**.
 
 ## The materials
 
@@ -101,6 +105,15 @@ XSX      X = the material, S = a vanilla shield
 ```
 
 Infernium is the exception: it's an upgrade at a smithing table, like netherite (see below).
+
+### Daggers and scythes
+
+Every material also has two extra weapons:
+
+- **Dagger** (one material over a stick): hits for less than a sword but swings faster. **Backstab:** hitting a mob from behind deals 50% more damage.
+- **Scythe** (three of the material over two sticks, like a wide hoe): slow and heavy, with half a block more reach. **Wide Sweep:** a full-strength swing on the ground sweeps everything in reach in front of you for half the attack's damage (Sweeping Edge makes it stronger). **Reaping:** breaking a fully grown crop harvests the grown crops around it (3x3) and replants them; sneak to break just one.
+
+Daggers take the same enchantments as swords, and scythes also take Sweeping Edge. Each material's weapon traits (like Silver's bonus against undead) work on its daggers and scythes too.
 
 ### Zinc
 
@@ -168,7 +181,7 @@ A steampunk alloy of copper and zinc.
 A precious metal for fighting the undead.
 
 - **Getting it:** Silver Ore is found between Y -16 and Y 48, in stone and deepslate. Mine it with an iron pickaxe or better, then smelt or blast the raw silver.
-- **Hallowed:** silver swords, spears, and axes deal 4 extra damage to undead (zombies, skeletons, phantoms, the wither, and so on). It stacks with Smite.
+- **Hallowed:** silver weapons deal 4 extra damage to undead (zombies, skeletons, phantoms, the wither, and so on). It stacks with Smite.
 - **Warding:** each armor piece takes 6% less damage from undead, including arrows from skeletons (24% for the full set).
 - **Shield:** blocking an undead mob knocks it back hard.
 - **Set bonus, Blessed:** Wither lasts half as long, and undead within 8 blocks glow, so you can see them through walls.
@@ -180,7 +193,7 @@ A precious metal for fighting the undead.
 Gear for traders and raid defenders.
 
 - **Getting it:** made straight from **emeralds**, so it's expensive on purpose.
-- **Illager's Bane:** emerald swords, spears, and axes deal 50% more damage to raiders (pillagers, vindicators, evokers, ravagers, and witches).
+- **Illager's Bane:** emerald weapons deal 50% more damage to raiders (pillagers, vindicators, evokers, ravagers, and witches).
 - **Prospector:** the emerald pickaxe has a 25% chance to drop bonus experience when it mines an ore.
 - **Lucky armor:** each piece adds 1 Luck, for better fishing and loot.
 - **Shield:** blocking a raider knocks it back hard.
@@ -207,7 +220,7 @@ A pretty, gentle set made from cherry blossoms.
 
 - **Getting it:** in the **Alloy Forge**, 1 iron ingot and 4 pink petals make 1 Sakura Ingot. Pink petals carpet the ground in cherry groves.
 - **Gear:** about iron's strength, with very high enchantability (22 for tools and armor).
-- **Blossoming:** finishing off a mob with a sakura sword, spear, or axe heals one heart, in a burst of petals.
+- **Blossoming:** finishing off a mob with a sakura weapon heals one heart, in a burst of petals.
 - **Petal Guard:** blocking with the sakura shield heals half a heart, at most once a second.
 - **Set bonus, Hanami:** Regeneration while within 3 blocks of flowers, cherry leaves, or pink petals, and you leave a trail of falling cherry petals as you walk. The trail can be turned off in the settings.
 
@@ -280,7 +293,7 @@ Heavy gear built to protect your base.
 Ocean gear for exploring the deep.
 
 - **Getting it:** craft **Prismarine Scales** from 3 prismarine shards, 2 prismarine crystals, and 1 copper ingot (makes 2). Guardians and ocean monuments are the place to find shards and crystals.
-- **Tidal:** prismarine swords, spears, and axes deal 3 extra damage to sea creatures (guardians, squid, fish, dolphins, and so on), like Impaling.
+- **Tidal:** prismarine weapons deal 3 extra damage to sea creatures (guardians, squid, fish, dolphins, and so on), like Impaling.
 - **Gills:** each armor piece works like a level of Respiration, makes you swim a little faster, and removes a quarter of the underwater mining penalty, so the full set mines at full speed underwater.
 - **Shield, Spined:** melee attackers take 2 damage when the prismarine shield blocks them.
 - **Set bonus, Tidebound:** Conduit Power while you're in water or rain.
@@ -304,7 +317,7 @@ Sculk-touched gear for moving unheard. Its 3D armor glows with soul light.
 Ice-cold gear from the frozen peaks.
 
 - **Getting it:** Frostite Ore grows inside the packed ice and blue ice of **Frozen Peaks** and **Ice Spikes**. Mine it with an iron pickaxe or better, then smelt or blast the raw frostite.
-- **Frostbite:** frostite swords, spears, and axes slow what they hit and build up freezing, like powder snow. A few hits freeze a mob solid.
+- **Frostbite:** frostite weapons slow what they hit and build up freezing, like powder snow. A few hits freeze a mob solid.
 - **Insulated:** wearing any piece of frostite armor stops you from freezing.
 - **Snow Walker:** frostite boots walk on powder snow, like leather boots.
 - **Shield, Rime:** blocking a melee attack slows the attacker.
@@ -335,6 +348,56 @@ Living gear for gardeners and farmers.
 - **Shield, Regrowth:** slowly repairs itself while you hold it.
 - **Set bonus, Overgrowth:** crops, saplings, and other growing plants within 4 blocks grow faster, and working the fields (near farmland or crops) costs no hunger.
 
+### Pastel Princess
+
+![Pastel Princess gear](docs/images/pastel_princess.png)
+
+Regal, charming gear in lilac and gold, with a little crown on the helmet.
+
+- **Getting it:** in the **Alloy Forge**, 2 gold ingots, 1 amethyst shard, and 1 pink dye make 2 Princess Gold Ingots.
+- **Gear:** about iron's strength, with the best enchantability in the mod (25). Piglins treat the armor as gold.
+- **Charm:** a hit from a pastel princess weapon has a 25% chance to charm the mob, so it leaves you alone for 4 seconds. Bosses can't be charmed.
+- **Royal Favor:** villagers take 5% off their prices for each armor piece you wear.
+- **Shield, Royal Guard:** blocking gives your pets nearby Regeneration.
+- **Set bonus, Royal Court:** your tamed pets and iron golems within 12 blocks get Strength and Regeneration, and villagers take another 15% off their prices.
+
+### Jirai Kei
+
+![Jirai Kei gear](docs/images/jirai_kei.png)
+
+Cute, black and pink, and dangerous when cornered. The helmet has twin bows and the chestplate a heart.
+
+- **Getting it:** in the **Alloy Forge**, 1 diamond, 1 crying obsidian, and 2 gunpowder make 1 Heartbreak Ingot.
+- **Gear:** a glass cannon. Diamond mining and more damage than diamond, but armor only about as strong as iron.
+- **Desperation:** jirai kei weapons deal more damage the lower your health: up to 50% more when you're almost out, and 25% at half health.
+- **Shield, Clingy:** blocking while below a third of your health heals a heart, at most once a second.
+- **Set bonus, Landmine:** the first hit that drops you below a third of your health sets off a burst of pink hearts. Every mob within 4 blocks takes 6 damage and is thrown back. It breaks no blocks, and can go off again after 60 seconds (shown above the hotbar).
+
+### Magical Girl
+
+![Magical Girl gear](docs/images/magical_girl.png)
+
+Sparkling gear for a hero who transforms, with a ribbon bow on the chest and a star on the helmet. The armor glows faintly.
+
+- **Getting it:** in the **Alloy Forge**, 1 diamond, 2 amethyst shards, and 2 glowstone dust make 1 Sparkle Gem.
+- **Gear:** about diamond's strength.
+- **Sparkle Beam:** at full health, a fully charged swing with a magical girl weapon also fires a beam of light that deals 4 damage to every mob in a line up to 8 blocks ahead.
+- **Shield, Barrier:** arrows and other projectiles it blocks bounce straight back at whoever shot them.
+- **Set bonus, Transformation:** press the **Set Ability key** (R) to **Transform** for 30 seconds: Strength, Speed, Resistance, and Slow Falling, wrapped in sparkles. It can be used again after 5 minutes.
+
+### Fairy Kei
+
+![Fairy Kei gear](docs/images/fairy_kei.png)
+
+Light, floaty gear in pastel rainbow colors, with little wings on the back.
+
+- **Getting it:** in the **Alloy Forge**, 1 iron ingot, 2 feathers, and 1 light blue dye make 1 Fairy Ingot.
+- **Gear:** light like Aluminum: weaker armor, +0.2 attack speed on every tool, and each armor piece makes you a little faster.
+- **Whimsy:** mobs hit by a fairy kei weapon float up for a moment.
+- **Cloud Step:** each armor piece takes a quarter off fall damage, so the full set ignores falls.
+- **Shield, Steady:** no knockback while you block with it.
+- **Set bonus, Daydream:** press jump in midair to jump a second time, and hold jump while falling to drift down gently.
+
 ### Infernium
 
 ![Infernium gear](docs/images/infernium.png)
@@ -347,7 +410,7 @@ The endgame metal of the Nether. Its 3D armor glows.
   3. Find an **Infernium Upgrade Smithing Template**: about half of Bastion treasure chests have one, and other Bastion chests (10%) and Nether Fortress chests (8%) sometimes do. Copy a template with 7 titanium ingots, 1 netherrack, and the template, which makes 2.
   4. At a smithing table, combine the template, a piece of **titanium gear**, and an **Infernium Ingot**.
 - **Fireproof:** infernium items don't burn in fire or lava.
-- **Searing weapons:** swords, spears, and axes set targets on fire, and deal 3 extra damage to burning targets.
+- **Searing weapons:** infernium weapons set targets on fire, and deal 3 extra damage to burning targets.
 - **Smelting pickaxe:** the infernium pickaxe smelts what it mines (iron ore drops iron ingots, and so on).
 - **Fire Ward:** each armor piece blocks 15% of fire damage (60% for the full set).
 - **Shield:** blocking a melee attack sets the attacker on fire.
@@ -375,6 +438,10 @@ A workstation for making alloys.
   - 1 iron ingot + 2 coal or charcoal = 1 Steel Ingot (takes a little longer)
   - 2 obsidian + 1 iron ingot = 1 Reinforced Obsidian (takes a little longer)
   - 1 echo shard + 4 sculk + 2 iron ingots = 2 Echo Ingots (takes a little longer)
+  - 2 gold ingots + 1 amethyst shard + 1 pink dye = 2 Princess Gold Ingots
+  - 1 diamond + 1 crying obsidian + 2 gunpowder = 1 Heartbreak Ingot (takes a little longer)
+  - 1 diamond + 2 amethyst shards + 2 glowstone dust = 1 Sparkle Gem (takes a little longer)
+  - 1 iron ingot + 2 feathers + 1 light blue dye = 1 Fairy Ingot
 - **Fuel:** any normal furnace fuel. **Blaze powder** and **lava buckets** make it work twice as fast. Shift-clicking fuel puts it in the fuel slot; once that is full, extra coal goes to the inputs for steel.
 - **Experience:** taking the results gives experience, like a furnace.
 - **Automation:** hoppers on top fill the inputs, hoppers on the side add fuel, and hoppers underneath take the results.
@@ -383,7 +450,7 @@ A workstation for making alloys.
 
 ## Set abilities and the HUD
 
-- **Set Ability key:** **R** by default. Change it under Controls, in the Gear Expansion category. It uses the ability of the full set you're wearing: **Spring Release** (Brass), **Ground Slam** (Tungsten), or **Eruption** (Infernium).
+- **Set Ability key:** **R** by default. Change it under Controls, in the Gear Expansion category. It uses the ability of the full set you're wearing: **Spring Release** (Brass), **Ground Slam** (Tungsten), **Transform** (Magical Girl), or **Eruption** (Infernium).
 - **HUD meters** appear above the hotbar only when they matter: Brass's spring, Infernium's heat gauge, Amethyst's crystal shell, and the ability cooldown.
 - **Tooltips** show each item's special traits, the set bonus, and how many pieces of the set you're wearing, like "Titanium Set (3/4)". The bonus is greyed out until you wear all four.
 

@@ -1,0 +1,32 @@
+{
+  "parent": "gearexpansion:alloy_forge",
+  "criteria": {
+    "has_fairy_ingot": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gearexpansion:fairy_ingot"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.gearexpansion.fairy_kei.description"
+    },
+    "icon": {
+      "id": "gearexpansion:fairy_ingot"
+    },
+    "title": {
+      "translate": "advancements.gearexpansion.fairy_kei.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_fairy_ingot"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

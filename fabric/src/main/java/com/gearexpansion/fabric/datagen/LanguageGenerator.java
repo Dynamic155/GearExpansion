@@ -103,6 +103,10 @@ final class LanguageGenerator extends FabricLanguageProvider {
 		frostite(t);
 		fulgurite(t);
 		verdantite(t);
+		pastelPrincess(t);
+		jiraiKei(t);
+		magicalGirl(t);
+		fairyKei(t);
 		infernium(t);
 		abilities(t);
 		advancements(t);
@@ -159,6 +163,18 @@ final class LanguageGenerator extends FabricLanguageProvider {
 		t.add(CONFIG + ".category.verdantite", "Verdantite");
 		t.add(CONFIG + ".category.verdantite.group.gear", "Gear");
 		t.add(CONFIG + ".category.verdantite.group.set_bonus", "Set Bonus: Overgrowth");
+		t.add(CONFIG + ".category.pastel_princess", "Pastel Princess");
+		t.add(CONFIG + ".category.pastel_princess.group.gear", "Gear");
+		t.add(CONFIG + ".category.pastel_princess.group.set_bonus", "Set Bonus: Royal Court");
+		t.add(CONFIG + ".category.jirai_kei", "Jirai Kei");
+		t.add(CONFIG + ".category.jirai_kei.group.gear", "Gear");
+		t.add(CONFIG + ".category.jirai_kei.group.set_bonus", "Set Bonus: Landmine");
+		t.add(CONFIG + ".category.magical_girl", "Magical Girl");
+		t.add(CONFIG + ".category.magical_girl.group.gear", "Gear");
+		t.add(CONFIG + ".category.magical_girl.group.set_bonus", "Set Bonus: Transformation");
+		t.add(CONFIG + ".category.fairy_kei", "Fairy Kei");
+		t.add(CONFIG + ".category.fairy_kei.group.gear", "Gear");
+		t.add(CONFIG + ".category.fairy_kei.group.set_bonus", "Set Bonus: Daydream");
 		t.add(CONFIG + ".category.infernium", "Infernium");
 		t.add(CONFIG + ".category.infernium.group.gear", "Gear");
 		t.add(CONFIG + ".category.infernium.group.set_bonus", "Set Bonus: Heat Core");
@@ -372,6 +388,66 @@ final class LanguageGenerator extends FabricLanguageProvider {
 		option(t, "verdantiteGrowthChance", "Growth Chance", "Chance each second that a nearby growing plant gets an extra growth tick.");
 	}
 
+	private static void pastelPrincess(TranslationBuilder t) {
+		t.add("set_bonus.gearexpansion.pastel_princess", "Pastel Princess");
+		t.add("set_bonus.gearexpansion.pastel_princess.court", "Royal Court: your pets and iron golems within %s blocks get Strength and Regeneration");
+		t.add("set_bonus.gearexpansion.pastel_princess.discount", "Villagers take another %s%% off their prices");
+		t.add("trait.gearexpansion.charm", "Charm: %s%% chance a mob you hit leaves you alone for %ss");
+		t.add("trait.gearexpansion.royal_favor", "Royal Favor: villagers take %s%% off their prices per piece");
+		t.add("trait.gearexpansion.royal_guard", "Royal Guard: blocking gives your pets nearby Regeneration");
+
+		option(t, "pastelPrincessCharmChance", "Charm Chance", "Chance a hit from a pastel princess weapon charms the mob.");
+		option(t, "pastelPrincessCharmSeconds", "Charm Time", "Seconds a charmed mob leaves you alone.");
+		option(t, "pastelPrincessDiscount", "Villager Discount", "Percent villagers take off their prices for each armor piece.");
+		option(t, "pastelPrincessSetBonus", "Enable Set Bonus", "Whether wearing the full Pastel Princess set grants Royal Court.");
+		option(t, "pastelPrincessCourtRange", "Court Range", "Blocks within which your pets and iron golems are strengthened.");
+		option(t, "pastelPrincessCourtDiscount", "Court Discount", "Extra percent villagers take off with the full set.");
+	}
+
+	private static void jiraiKei(TranslationBuilder t) {
+		t.add("set_bonus.gearexpansion.jirai_kei", "Jirai Kei");
+		t.add("set_bonus.gearexpansion.jirai_kei.landmine", "Landmine: dropping below a third of your health sets off a heart burst (%s damage)");
+		t.add("set_bonus.gearexpansion.jirai_kei.cooldown", "Breaks no blocks (%ss cooldown)");
+		t.add("trait.gearexpansion.desperation", "Desperation: up to +%s%% damage as your health drops");
+		t.add("trait.gearexpansion.clingy", "Clingy: blocking below a third of your health heals %s hearts");
+
+		option(t, "jiraiKeiDesperation", "Desperation", "Extra damage jirai kei weapons deal at almost no health.");
+		option(t, "jiraiKeiShieldHeal", "Shield Heal", "Health (in half hearts) the shield heals when it blocks at low health.");
+		option(t, "jiraiKeiSetBonus", "Enable Set Bonus", "Whether wearing the full Jirai Kei set grants Landmine.");
+		option(t, "jiraiKeiLandmineDamage", "Landmine Damage", "Damage the heart burst deals to each mob nearby.");
+		option(t, "jiraiKeiLandmineCooldown", "Landmine Cooldown", "Seconds before the Landmine can go off again.");
+	}
+
+	private static void magicalGirl(TranslationBuilder t) {
+		t.add("set_bonus.gearexpansion.magical_girl", "Magical Girl");
+		t.add("set_bonus.gearexpansion.magical_girl.transform", "Press %s: Transform for %ss");
+		t.add("set_bonus.gearexpansion.magical_girl.effects", "Strength, Speed, Resistance, and Slow Falling");
+		t.add("set_bonus.gearexpansion.magical_girl.cooldown", "%ss cooldown");
+		t.add("set_bonus.gearexpansion.magical_girl.transformed", "Transformed!");
+		t.add("trait.gearexpansion.sparkle_beam", "Sparkle Beam: full swings at full health fire a beam (%s damage)");
+		t.add("trait.gearexpansion.barrier", "Barrier: blocked projectiles bounce back at the shooter");
+
+		option(t, "magicalGirlBeamDamage", "Sparkle Beam Damage", "Damage the Sparkle Beam deals to each mob in its path.");
+		option(t, "magicalGirlBarrier", "Barrier Shield", "Whether the shield bounces blocked projectiles back at the shooter.");
+		option(t, "magicalGirlSetBonus", "Enable Set Bonus", "Whether wearing the full Magical Girl set grants Transformation.");
+		option(t, "magicalGirlTransformSeconds", "Transformation Time", "Seconds a Transformation lasts.");
+		option(t, "magicalGirlTransformCooldown", "Transformation Cooldown", "Seconds before you can Transform again.");
+	}
+
+	private static void fairyKei(TranslationBuilder t) {
+		t.add("set_bonus.gearexpansion.fairy_kei", "Fairy Kei");
+		t.add("set_bonus.gearexpansion.fairy_kei.double_jump", "Daydream: press jump in midair to jump again");
+		t.add("set_bonus.gearexpansion.fairy_kei.drift", "Hold jump while falling to drift down gently");
+		t.add("trait.gearexpansion.whimsy", "Whimsy: mobs you hit float for a moment");
+		t.add("trait.gearexpansion.cloud_step", "Cloud Step: %s%% less fall damage per piece");
+		t.add("trait.gearexpansion.steady", "Steady: no knockback while blocking");
+
+		option(t, "fairyKeiFloatTicks", "Float Time", "Ticks a mob hit by a fairy kei weapon floats.");
+		option(t, "fairyKeiFallReduction", "Fall Damage Reduction", "Percent less fall damage for each armor piece.");
+		option(t, "fairyKeiSteadyShield", "Steady Shield", "Whether the shield stops knockback while you block.");
+		option(t, "fairyKeiSetBonus", "Enable Set Bonus", "Whether wearing the full Fairy Kei set grants Daydream.");
+	}
+
 	private static void infernium(TranslationBuilder t) {
 		t.add("set_bonus.gearexpansion.infernium", "Infernium");
 		t.add("set_bonus.gearexpansion.infernium.lava", "Heat Core: walk and swim in lava for %ss before the heat gauge fills");
@@ -410,6 +486,10 @@ final class LanguageGenerator extends FabricLanguageProvider {
 		advancement(t, "frostite", "Cold as Ice", "Smelt a frostite ingot");
 		advancement(t, "fulgurite", "Lightning in a Bottle", "Gather a Fulgurite Shard from where lightning struck sand");
 		advancement(t, "verdantite", "Green Thumb", "Smelt a verdantite ingot");
+		advancement(t, "pastel_princess", "Royalty", "Alloy gold, amethyst, and pink dye into Princess Gold");
+		advancement(t, "jirai_kei", "Handle With Care", "Alloy a Heartbreak Ingot");
+		advancement(t, "magical_girl", "Make a Wish", "Alloy a Sparkle Gem");
+		advancement(t, "fairy_kei", "Head in the Clouds", "Alloy a Fairy Ingot");
 		advancement(t, "infernium_template", "Hot Off the Press", "Find an Infernium Upgrade template in the Nether");
 		advancement(t, "infernium", "Forged in Fire", "Upgrade titanium gear to infernium");
 	}

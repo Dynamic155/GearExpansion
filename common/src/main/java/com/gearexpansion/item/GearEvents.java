@@ -18,6 +18,7 @@ import net.minecraft.world.level.storage.loot.predicates.LootItemRandomChanceCon
 import net.minecraft.world.level.storage.loot.providers.number.ints.ContextIntProviders;
 
 import com.gearexpansion.material.ModMaterials;
+import com.gearexpansion.material.behavior.MagicalGirlBehavior;
 import com.gearexpansion.material.behavior.VerdantiteBehavior;
 import com.gearexpansion.setbonus.SetBonuses;
 
@@ -29,6 +30,8 @@ public final class GearEvents {
 	public static void init() {
 		// Saplings the verdantite axe queued while breaking logs.
 		TickEvent.SERVER_POST.register(server -> VerdantiteBehavior.plantPending());
+		// Projectiles the magical girl shield blocked, sent back once vanilla's own bounce is done.
+		TickEvent.SERVER_POST.register(server -> MagicalGirlBehavior.reflectPending());
 
 		BlockEvent.BREAK.register((level, pos, state, player) -> {
 			ItemStack tool = player.getMainHandItem();

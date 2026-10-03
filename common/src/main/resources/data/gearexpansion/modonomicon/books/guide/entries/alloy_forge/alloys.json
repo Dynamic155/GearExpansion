@@ -25,7 +25,7 @@
     {
       "type": "modonomicon:text",
       "title": "Alloys",
-      "text": "The Alloy Forge makes six alloys, shown on the next pages.\n\nRecipes use the common ingot tags, so copper, zinc, gold, and iron from other mods work too.",
+      "text": "The Alloy Forge makes ten alloys, shown on the next pages.\n\nRecipes use the common ingot tags, so copper, zinc, gold, and iron from other mods work too.",
       "show_title_separator": true,
       "id": "page1"
     },
@@ -82,6 +82,42 @@
       "title": "Echo",
       "text": "**1 echo shard**, **4 sculk**, and **2 iron ingots** make 2 Echo Ingots. It takes a little longer than most alloys.\n\nSee [Echo](entry://materials/echo) for its gear.",
       "id": "page7"
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "item": {
+        "id": "gearexpansion:princess_gold_ingot"
+      },
+      "title": "Princess Gold",
+      "text": "**2 gold ingots**, **1 amethyst shard**, and **1 pink dye** make 2 Princess Gold Ingots.\n\nSee [Pastel Princess](entry://materials/pastel_princess) for its gear.",
+      "id": "page8"
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "item": {
+        "id": "gearexpansion:heartbreak_ingot"
+      },
+      "title": "Heartbreak Ingot",
+      "text": "**1 diamond**, **1 crying obsidian**, and **2 gunpowder** make 1 Heartbreak Ingot. It takes a little longer than most alloys.\n\nSee [Jirai Kei](entry://materials/jirai_kei) for its gear.",
+      "id": "page9"
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "item": {
+        "id": "gearexpansion:sparkle_gem"
+      },
+      "title": "Sparkle Gem",
+      "text": "**1 diamond**, **2 amethyst shards**, and **2 glowstone dust** make 1 Sparkle Gem. It takes a little longer than most alloys.\n\nSee [Magical Girl](entry://materials/magical_girl) for its gear.",
+      "id": "page10"
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "item": {
+        "id": "gearexpansion:fairy_ingot"
+      },
+      "title": "Fairy Ingot",
+      "text": "**1 iron ingot**, **2 feathers**, and **1 light blue dye** make 1 Fairy Ingot.\n\nSee [Fairy Kei](entry://materials/fairy_kei) for its gear.",
+      "id": "page11"
     }
   ]
 }

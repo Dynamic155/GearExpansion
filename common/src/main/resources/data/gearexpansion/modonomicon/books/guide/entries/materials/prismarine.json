@@ -37,7 +37,7 @@
     {
       "type": "modonomicon:text",
       "title": "The Gear",
-      "text": "- **Tidal:** prismarine swords, spears, and axes deal 3 extra damage to sea creatures, like Impaling.\n- **Gills:** each armor piece works like a level of Respiration, makes you swim a little faster, and removes a quarter of the underwater mining penalty (the full set mines at full speed).\n- **Spined:** melee attackers take 2 damage when the prismarine shield blocks them.",
+      "text": "- **Tidal:** prismarine weapons deal 3 extra damage to sea creatures, like Impaling.\n- **Gills:** each armor piece works like a level of Respiration, makes you swim a little faster, and removes a quarter of the underwater mining penalty (the full set mines at full speed).\n- **Spined:** melee attackers take 2 damage when the prismarine shield blocks them.",
       "show_title_separator": true,
       "id": "page3"
     },

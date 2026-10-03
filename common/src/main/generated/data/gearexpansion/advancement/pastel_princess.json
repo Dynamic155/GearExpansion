@@ -1,0 +1,32 @@
+{
+  "parent": "gearexpansion:alloy_forge",
+  "criteria": {
+    "has_princess_gold_ingot": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gearexpansion:princess_gold_ingot"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.gearexpansion.pastel_princess.description"
+    },
+    "icon": {
+      "id": "gearexpansion:princess_gold_ingot"
+    },
+    "title": {
+      "translate": "advancements.gearexpansion.pastel_princess.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_princess_gold_ingot"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

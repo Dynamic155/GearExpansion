@@ -1,0 +1,21 @@
+{
+  "type": "gearexpansion:alloying",
+  "cookingtime": 300,
+  "experience": 1.5,
+  "ingredients": [
+    {
+      "ingredient": "#c:gems/diamond"
+    },
+    {
+      "count": 2,
+      "ingredient": "minecraft:amethyst_shard"
+    },
+    {
+      "count": 2,
+      "ingredient": "minecraft:glowstone_dust"
+    }
+  ],
+  "result": {
+    "id": "gearexpansion:sparkle_gem"
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_heartbreak_ingot": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gearexpansion:heartbreak_ingot"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipes": "gearexpansion:jirai_kei_boots"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_heartbreak_ingot"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "gearexpansion:jirai_kei_boots"
+    ]
+  }
+}

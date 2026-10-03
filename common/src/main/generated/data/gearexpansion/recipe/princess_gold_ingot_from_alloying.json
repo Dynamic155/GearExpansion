@@ -1,0 +1,21 @@
+{
+  "type": "gearexpansion:alloying",
+  "cookingtime": 200,
+  "experience": 0.8,
+  "ingredients": [
+    {
+      "count": 2,
+      "ingredient": "#c:ingots/gold"
+    },
+    {
+      "ingredient": "minecraft:amethyst_shard"
+    },
+    {
+      "ingredient": "minecraft:pink_dye"
+    }
+  ],
+  "result": {
+    "count": 2,
+    "id": "gearexpansion:princess_gold_ingot"
+  }
+}

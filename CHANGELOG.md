@@ -1,5 +1,21 @@
 # Changelog
 
+## 1.4.0 - Kawaii (in progress)
+
+Four cute new sets, plus daggers and scythes for every material.
+
+### Materials
+
+- **Pastel Princess**: Princess Gold from the Alloy Forge (gold, amethyst, and pink dye). Iron tier with the best enchantability in the mod, and a crown on the helmet. Weapons charm mobs into leaving you alone, each armor piece earns a villager discount, and the shield heals your pets. Set bonus Royal Court: your pets and iron golems get Strength and Regeneration, and villagers give a bigger discount.
+- **Jirai Kei**: Heartbreak Ingots from the Alloy Forge (diamond, crying obsidian, and gunpowder). A glass cannon with twin bows and a heart. Weapons hit harder the lower your health, and the shield heals you when it blocks at low health. Set bonus Landmine: dropping below a third of your health sets off a heart burst that hurts and throws back nearby mobs.
+- **Magical Girl**: Sparkle Gems from the Alloy Forge (diamond, amethyst, and glowstone). Diamond tier with a chest bow, a star, and glowing armor. Full swings at full health fire a Sparkle Beam, and the shield bounces projectiles back. Set bonus Transformation: press R to Transform for 30 seconds of Strength, Speed, Resistance, and Slow Falling.
+- **Fairy Kei**: Fairy Ingots from the Alloy Forge (iron, feathers, and light blue dye). Light and quick, with little wings. Weapons make mobs float, each armor piece softens falls, and the shield stops knockback. Set bonus Daydream: double jump, and drift down gently while holding jump.
+
+### New weapons
+
+- **Daggers** for every material: fast and light, with Backstab (50% more damage from behind).
+- **Scythes** for every material: slow and heavy, with more reach, a Wide Sweep that hits everything in front of you, and Reaping, which harvests and replants grown crops 3x3.
+
 ## 1.3.0 - Elements
 
 Three elemental materials: Frostite, Fulgurite, and Verdantite.
