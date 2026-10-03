@@ -98,7 +98,7 @@ Titanium stats as built:
 | Prismarine | Done: Prismarine Scales (3 shards + 2 crystals + 1 copper, makes 2), Tidal weapons (+3 vs aquatic mobs), Gills armor (Respiration, swim speed, underwater mining per piece), Spined shield, Tidebound set bonus (Conduit Power in water or rain). Not done from the plan: the Tidal Core Elder Guardian drop and the trident synergy. |
 | Echo | Done: Alloy Forge (1 echo shard + 4 sculk + 2 iron, makes 2), Muffled tools, Soft Step boots, Echo Guard shield (Darkness), Silence set bonus (no vibrations while sneaking, mobs notice from half as far), glowing 3D armor |
 
-1.3 Elements, all three built together:
+1.3 Elements, all three built together. Version 1.3.0 is complete:
 
 | Material | Status |
 |---|---|
@@ -126,7 +126,7 @@ Titanium stats as built:
 | **1.0** | Foundations | Titanium *(built first)*, Zinc, Brass, Aluminum, Rose Gold, Verdigris, Emerald, Amethyst, Infernium | Alloy Forge, shields, set bonus system, keybind abilities, config, JEI/REI/Jade support, advancements |
 | 1.1 | Metals | Silver, Steel, Tungsten, Cobalt | Modonomicon guidebook (done) |
 | 1.2 | Depths & Seas | Obsidian, Prismarine, Echo (done) | New Elder Guardian drop (not done) |
-| 1.3 | Elements | Frostite, Fulgurite, Verdantite | Lightning/weather mechanics |
+| 1.3 | Elements | Frostite, Fulgurite, Verdantite (done) | Lightning/weather mechanics (done) |
 | 1.4 | Celestial | StarShard, Astral, Sunstone, Moonstone, Voidsteel | Falling stars event, Eclipse synergy |
 
 **Per material:** 6 tools (sword, pickaxe, axe, shovel, hoe, spear) + 4 armor pieces + shield. Plus the ore (stone + deepslate), raw ore, ingot, nugget, and storage blocks where relevant.

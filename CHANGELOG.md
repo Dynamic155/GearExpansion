@@ -1,6 +1,8 @@
 # Changelog
 
-## 1.3.0 - Elements (in progress)
+## 1.3.0 - Elements
+
+Three elemental materials: Frostite, Fulgurite, and Verdantite.
 
 ### Materials
 

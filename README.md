@@ -4,7 +4,7 @@ A Minecraft mod that adds new materials, each with a full set of tools, 3D armor
 
 The mod aims for a Vanilla+ feel: new content that fits naturally alongside vanilla progression, with strong effects kept in check by meters, cooldowns, and costs. Nearly every number can be changed in the settings.
 
-**Version 1.2.0** for **Minecraft 26.3**, on **Fabric** and **NeoForge**.
+**Version 1.3.0** for **Minecraft 26.3**, on **Fabric** and **NeoForge**.
 
 ## Contents
 
@@ -57,7 +57,7 @@ Notes on the optional mods:
 - Jade 26.3.4 crashes on startup by itself, on both loaders. Until it is fixed, use Jade 26.3.3 on Fabric or 26.3.1 on NeoForge.
 - Modonomicon 2.16.0 for NeoForge needs NeoForge 26.3.0.39-beta or newer, even though Gear Expansion itself works from 26.3.0.37-beta.
 
-Download the Gear Expansion file for your loader from the [Releases](../../releases) page: `gearexpansion-fabric-1.2.0.jar` or `gearexpansion-neoforge-1.2.0.jar`. Make sure every library is the Minecraft 26.3 version for your loader.
+Download the Gear Expansion file for your loader from the [Releases](../../releases) page: `gearexpansion-fabric-1.3.0.jar` or `gearexpansion-neoforge-1.3.0.jar`. Make sure every library is the Minecraft 26.3 version for your loader.
 
 ## Every material at a glance
 
