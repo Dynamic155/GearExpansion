@@ -91,6 +91,8 @@ public final class MaterialSet {
 	public final boolean galvanized;
 	public final float blockingSpeed;
 	public final float shieldRaiseSeconds;
+	/** Raw ore and ore only smelt in a blast furnace, not a regular furnace. */
+	public final boolean blastFurnaceOnly;
 	/** Piglins stay neutral toward players wearing this armor, like gold. */
 	public final boolean piglinSafe;
 	/** Items don't burn in fire or lava, like netherite. */
@@ -151,6 +153,7 @@ public final class MaterialSet {
 		this.galvanized = b.galvanized;
 		this.blockingSpeed = b.blockingSpeed;
 		this.shieldRaiseSeconds = b.shieldRaiseSeconds;
+		this.blastFurnaceOnly = b.blastFurnaceOnly;
 		this.piglinSafe = b.piglinSafe;
 		this.fireResistant = b.fireResistant;
 		this.glowing = b.glowing;
@@ -377,6 +380,7 @@ public final class MaterialSet {
 		private ShieldStats shieldStats = new ShieldStats(336, 1.0F);
 		private float blockingSpeed = VANILLA_BLOCKING_SPEED;
 		private float shieldRaiseSeconds = VANILLA_SHIELD_RAISE_SECONDS;
+		private boolean blastFurnaceOnly;
 		private TagKey<Block> requiredToolTag = BlockTags.NEEDS_IRON_TOOL;
 		private final List<OreGeneration> oreGeneration = new ArrayList<>();
 		private GearBehavior behavior = GearBehavior.NONE;
@@ -435,6 +439,12 @@ public final class MaterialSet {
 		/** Movement speed while blocking, as a fraction of normal speed. Vanilla shields use 0.2. */
 		public Builder blockingSpeed(float speed) {
 			this.blockingSpeed = speed;
+			return this;
+		}
+
+		/** The raw ore and ore only smelt in a blast furnace, like Infernium's. */
+		public Builder blastFurnaceOnly() {
+			this.blastFurnaceOnly = true;
 			return this;
 		}
 

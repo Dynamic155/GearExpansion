@@ -25,7 +25,7 @@
     {
       "type": "modonomicon:text",
       "title": "Fuel",
-      "text": "The Alloy Forge burns any normal furnace fuel.\n\n**Blaze powder** and **lava buckets** make it work twice as fast.",
+      "text": "The Alloy Forge burns any normal furnace fuel.\n\n**Blaze powder** and **lava buckets** make it work twice as fast.\n\nShift-clicking fuel puts it in the fuel slot. Once that is full, extra coal goes to the inputs for steel.",
       "show_title_separator": true,
       "id": "page1"
     },

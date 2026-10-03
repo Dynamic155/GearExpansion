@@ -25,7 +25,7 @@
     {
       "type": "modonomicon:text",
       "title": "Set Abilities",
-      "text": "A few full sets also have an **ability**, used with the **Set Ability key**: **R** by default. Change it under Controls, in the Gear Expansion category.\n\nThe key uses the ability of the full set you're wearing:\n\n- **Spring Release** (Brass)\n- **Eruption** (Infernium)",
+      "text": "A few full sets also have an **ability**, used with the **Set Ability key**: **R** by default. Change it under Controls, in the Gear Expansion category.\n\nThe key uses the ability of the full set you're wearing:\n\n- **Spring Release** (Brass)\n- **Ground Slam** (Tungsten)\n- **Eruption** (Infernium)",
       "show_title_separator": true,
       "id": "page1"
     },

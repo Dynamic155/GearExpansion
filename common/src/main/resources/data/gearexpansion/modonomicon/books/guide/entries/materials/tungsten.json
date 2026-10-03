@@ -1,0 +1,72 @@
+{
+  "type": "modonomicon:content",
+  "id": "gearexpansion:materials/tungsten",
+  "category": "gearexpansion:materials",
+  "name": "Tungsten",
+  "description": "Diamond tier. Set bonus: Immovable",
+  "icon": "gearexpansion:tungsten_ingot",
+  "background": {
+    "sprite": "modonomicon:modonomicon/themes/default/node/entry_backgrounds/square_gold",
+    "width": 26,
+    "height": 26
+  },
+  "x": 2,
+  "y": 1,
+  "name_style": {
+    "render_name": "bottom",
+    "show_name_before_unlock": true
+  },
+  "parents": [],
+  "pages": [
+    {
+      "type": "modonomicon:spotlight",
+      "item": {
+        "id": "gearexpansion:tungsten_ingot"
+      },
+      "title": "Tungsten",
+      "text": "The tank: heavy, slow, and immovable.\n\n- **Tier:** Diamond\n- **Durability:** 2400\n- **Sword damage:** 8\n- **Armor (full set):** 20",
+      "id": "page1"
+    },
+    {
+      "type": "modonomicon:text",
+      "title": "Getting It",
+      "text": "**Tungsten Ore** is very rare, at the very bottom of the world (Y -64 to Y -48), in small, mostly buried veins. Mine it with a diamond pickaxe or better, then smelt or blast the raw tungsten.",
+      "show_title_separator": true,
+      "id": "page2"
+    },
+    {
+      "type": "modonomicon:text",
+      "title": "The Gear",
+      "text": "- **Weapons:** slow but hard-hitting; a tungsten sword hits as hard as netherite.\n- **Crushing:** tungsten axes and spears knock targets back further.\n- **Tools:** 2400 durability, but they mine slowly.\n- **Heavy armor:** 3 toughness and the most knockback resistance in the mod (0.15 per piece), but each piece makes you 4%% slower.\n- **Bulwark shield:** slow to raise, but 1500 durability and hard for axes to disable.",
+      "show_title_separator": true,
+      "id": "page3"
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "item": {
+        "id": "gearexpansion:tungsten_chestplate"
+      },
+      "title": "Immovable",
+      "text": "**Full set bonus.** No knockback at all while sneaking, and explosions deal 40%% less damage.\n\n**Ground Slam (R):** stomp the ground to hurt, knock back, and slow every mob within 5 blocks. 20 second cooldown.",
+      "id": "page4"
+    },
+    {
+      "type": "modonomicon:smelting_recipe",
+      "recipe_id_1": "gearexpansion:tungsten_ingot_from_smelting_raw_tungsten",
+      "text": "A blast furnace works too, and is faster.",
+      "id": "page5"
+    },
+    {
+      "type": "modonomicon:crafting_recipe",
+      "recipe_id_1": "gearexpansion:tungsten_pickaxe",
+      "recipe_id_2": "gearexpansion:tungsten_sword",
+      "id": "page6"
+    },
+    {
+      "type": "modonomicon:crafting_recipe",
+      "recipe_id_1": "gearexpansion:tungsten_chestplate",
+      "recipe_id_2": "gearexpansion:tungsten_shield",
+      "id": "page7"
+    }
+  ]
+}

@@ -135,8 +135,8 @@ final class RecipeGenerator extends FabricRecipeProvider {
 					if (set.deepslateOre != null) {
 						smeltables.add(set.deepslateOre.get());
 					}
-					// Nether ores (Infernium) only melt down in a blast furnace.
-					if (set.oreKind != MaterialSet.OreKind.NETHER) {
+					// Some ores (Infernium) only melt down in a blast furnace.
+					if (!set.blastFurnaceOnly) {
 						oreSmelting(smeltables, RecipeCategory.MISC, CookingBookCategory.MISC, ingot, 1.0F, 200, ingotName);
 					}
 					oreBlasting(smeltables, RecipeCategory.MISC, CookingBookCategory.MISC, ingot, 1.0F, 100, ingotName);

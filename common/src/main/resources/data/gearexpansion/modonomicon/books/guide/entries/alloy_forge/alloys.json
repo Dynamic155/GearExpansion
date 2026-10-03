@@ -3,7 +3,7 @@
   "id": "gearexpansion:alloy_forge/alloys",
   "category": "gearexpansion:alloy_forge",
   "name": "Alloys",
-  "description": "Brass and Rose Gold",
+  "description": "Brass, Rose Gold, and Steel",
   "icon": "gearexpansion:brass_ingot",
   "background": {
     "sprite": "modonomicon:modonomicon/themes/default/node/entry_backgrounds/square_gold",
@@ -25,7 +25,7 @@
     {
       "type": "modonomicon:text",
       "title": "Alloys",
-      "text": "The Alloy Forge makes two alloys, shown on the next pages.\n\nRecipes use the common ingot tags, so copper, zinc, and gold from other mods work too.",
+      "text": "The Alloy Forge makes three alloys, shown on the next pages.\n\nRecipes use the common ingot tags, so copper, zinc, gold, and iron from other mods work too.",
       "show_title_separator": true,
       "id": "page1"
     },
@@ -46,6 +46,15 @@
       "title": "Rose Gold",
       "text": "**3 gold ingots** and **1 copper ingot** make 2 Rose Gold Ingots.\n\nSee [Rose Gold](entry://materials/rose_gold) for its gear.",
       "id": "page3"
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "item": {
+        "id": "gearexpansion:steel_ingot"
+      },
+      "title": "Steel",
+      "text": "**1 iron ingot** and **2 coal or charcoal** make 1 Steel Ingot. It takes a little longer than the other alloys.\n\nSee [Steel](entry://materials/steel) for its gear.",
+      "id": "page4"
     }
   ]
 }

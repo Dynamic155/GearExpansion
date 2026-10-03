@@ -209,6 +209,7 @@ public final class ModMaterials {
 		.shield(900, 0.8F)
 		.requiresTool(BlockTags.NEEDS_DIAMOND_TOOL)
 		.netherOre(4, 4, 10, 40, 0.0F)
+		.blastFurnaceOnly()
 		.upgradedFrom(() -> TITANIUM)
 		.fireResistant()
 		.glowing()

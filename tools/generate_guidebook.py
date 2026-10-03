@@ -166,7 +166,7 @@ ENTRIES = [
              "A few full sets also have an **ability**, used with the **Set Ability key**: **R** by default. "
              "Change it under Controls, in the Gear Expansion category.\n\n"
              "The key uses the ability of the full set you're wearing:\n\n"
-             + bullets("**Spring Release** (Brass)", "**Eruption** (Infernium)")),
+             + bullets("**Spring Release** (Brass)", "**Ground Slam** (Tungsten)", "**Eruption** (Infernium)")),
         text("HUD Meters",
              "Meters appear above the hotbar only when they matter:\n\n"
              + bullets("Brass's spring", "Infernium's heat gauge", "Amethyst's crystal shell", "the ability cooldown")),
@@ -202,21 +202,27 @@ ENTRIES = [
                   "Taking the results gives experience, like a furnace."),
         crafting("alloy_forge", body="A blast furnace in the middle, a block of copper above it, and bricks around the rest."),
     ], start=True),
-    Entry("alloy_forge", "alloys", "Alloys", "Brass and Rose Gold", f"{NS}:brass_ingot", -2, 1, [
+    Entry("alloy_forge", "alloys", "Alloys", "Brass, Rose Gold, and Steel", f"{NS}:brass_ingot", -2, 1, [
         text("Alloys",
-             "The Alloy Forge makes two alloys, shown on the next pages.\n\n"
-             "Recipes use the common ingot tags, so copper, zinc, and gold from other mods work too."),
+             "The Alloy Forge makes three alloys, shown on the next pages.\n\n"
+             "Recipes use the common ingot tags, so copper, zinc, gold, and iron from other mods work too."),
         spotlight(f"{NS}:brass_ingot", "Brass",
                   "**3 copper ingots** and **1 zinc ingot** make 4 Brass Ingots.\n\n"
                   "See [Brass](entry://materials/brass) for its gear."),
         spotlight(f"{NS}:rose_gold_ingot", "Rose Gold",
                   "**3 gold ingots** and **1 copper ingot** make 2 Rose Gold Ingots.\n\n"
                   "See [Rose Gold](entry://materials/rose_gold) for its gear."),
+        spotlight(f"{NS}:steel_ingot", "Steel",
+                  "**1 iron ingot** and **2 coal or charcoal** make 1 Steel Ingot. It takes a little longer "
+                  "than the other alloys.\n\n"
+                  "See [Steel](entry://materials/steel) for its gear."),
     ], parents=["alloy_forge"]),
     Entry("alloy_forge", "fuel", "Fuel and Hoppers", "Fuel, boosts, and automation", "minecraft:blaze_powder", 2, 1, [
         text("Fuel",
              "The Alloy Forge burns any normal furnace fuel.\n\n"
-             "**Blaze powder** and **lava buckets** make it work twice as fast."),
+             "**Blaze powder** and **lava buckets** make it work twice as fast.\n\n"
+             "Shift-clicking fuel puts it in the fuel slot. Once that is full, extra coal goes to the inputs "
+             "for steel."),
         text("Automation",
              bullets("Hoppers on top fill the inputs.",
                      "Hoppers on the side add fuel.",
@@ -374,6 +380,20 @@ MATERIALS = [
         "A crystal shell completely absorbs one hit, shatters, and regrows over 45 seconds (shown above the hotbar).",
         recipes=[crafting("resonant_crystal")],
     ),
+    # Cobalt sits left of Titanium in the book, so Titanium is centered above Infernium, its upgrade.
+    Material(
+        "cobalt", "Cobalt", "Diamond", "cobalt_ingot",
+        "A deep blue Nether metal for fast mining.",
+        {"durability": 1100, "sword": 6.5, "armor": 15},
+        "**Cobalt Ore** is found throughout the Nether, from Y 0 to Y 128, in netherrack. Mine it with an "
+        "iron pickaxe or better, then smelt or blast the raw cobalt.",
+        ["**Swift:** cobalt tools are the fastest in the mod, faster than gold.",
+         "**Quick Guard:** the cobalt shield blocks the moment you raise it, with no delay."],
+        "Overdrive",
+        "Every 6 blocks you mine in a row (with at most 2 seconds between them) adds a level of Haste, up "
+        "to Haste II. Stop mining and it fades.",
+        recipes=[smelting("cobalt_ingot_from_smelting_raw_cobalt", body=BLAST_TOO)],
+    ),
     Material(
         "titanium", "Titanium", "Diamond", "titanium_ingot",
         "The reliable workhorse: diamond-level gear that almost never breaks.",
@@ -388,6 +408,36 @@ MATERIALS = [
         "Everything you use loses 50% less durability. Dropping below 30% health gives Resistance I for "
         "5 seconds (once a minute).",
         recipes=[smelting("titanium_ingot_from_smelting_raw_titanium", body=BLAST_TOO)],
+    ),
+    Material(
+        "steel", "Steel", "Iron", "steel_ingot",
+        "Plain, dependable, and tough. No gimmicks.",
+        {"durability": 750, "sword": 6.5, "armor": 16},
+        "In the [Alloy Forge](entry://alloy_forge/alloy_forge), 1 iron ingot and 2 coal (or charcoal) make "
+        "1 Steel Ingot.",
+        ["**Gear:** iron tier, with about three times iron's durability and a little more damage.",
+         "**Armor:** 1 toughness per piece.",
+         "**Reinforced shield:** 1200 durability, far more than a normal shield."],
+        "Hardened",
+        "+2 armor toughness.",
+    ),
+    Material(
+        "tungsten", "Tungsten", "Diamond", "tungsten_ingot",
+        "The tank: heavy, slow, and immovable.",
+        {"durability": 2400, "sword": 8, "armor": 20},
+        "**Tungsten Ore** is very rare, at the very bottom of the world (Y -64 to Y -48), in small, mostly "
+        "buried veins. Mine it with a diamond pickaxe or better, then smelt or blast the raw tungsten.",
+        ["**Weapons:** slow but hard-hitting; a tungsten sword hits as hard as netherite.",
+         "**Crushing:** tungsten axes and spears knock targets back further.",
+         "**Tools:** 2400 durability, but they mine slowly.",
+         "**Heavy armor:** 3 toughness and the most knockback resistance in the mod (0.15 per piece), but "
+         "each piece makes you 4% slower.",
+         "**Bulwark shield:** slow to raise, but 1500 durability and hard for axes to disable."],
+        "Immovable",
+        "No knockback at all while sneaking, and explosions deal 40% less damage.",
+        ability="**Ground Slam (R):** stomp the ground to hurt, knock back, and slow every mob within 5 "
+                "blocks. 20 second cooldown.",
+        recipes=[smelting("tungsten_ingot_from_smelting_raw_tungsten", body=BLAST_TOO)],
     ),
     Material(
         "infernium", "Infernium", "Netherite", "infernium_ingot",

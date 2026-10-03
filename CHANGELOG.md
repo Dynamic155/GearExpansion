@@ -1,6 +1,8 @@
 # Changelog
 
-## 1.1.0 - Metals (in progress)
+## 1.1.0 - Metals
+
+Four new metals and an in-game guidebook.
 
 ### Guidebook
 
