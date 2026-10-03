@@ -1,0 +1,66 @@
+{
+  "type": "modonomicon:content",
+  "id": "gearexpansion:materials/emerald",
+  "category": "gearexpansion:materials",
+  "name": "Emerald",
+  "description": "Iron tier. Set bonus: Merchant's Favor",
+  "icon": "minecraft:emerald",
+  "background": {
+    "sprite": "modonomicon:modonomicon/themes/default/node/entry_backgrounds/square_gold",
+    "width": 26,
+    "height": 26
+  },
+  "x": 2,
+  "y": -1,
+  "name_style": {
+    "render_name": "bottom",
+    "show_name_before_unlock": true
+  },
+  "parents": [],
+  "pages": [
+    {
+      "type": "modonomicon:spotlight",
+      "item": {
+        "id": "minecraft:emerald"
+      },
+      "title": "Emerald",
+      "text": "Gear for traders and raid defenders.\n\n- **Tier:** Iron\n- **Durability:** 500\n- **Sword damage:** 6\n- **Armor (full set):** 15",
+      "id": "page1"
+    },
+    {
+      "type": "modonomicon:text",
+      "title": "Getting It",
+      "text": "Made straight from **emeralds**, so it's expensive on purpose.",
+      "show_title_separator": true,
+      "id": "page2"
+    },
+    {
+      "type": "modonomicon:text",
+      "title": "The Gear",
+      "text": "- **Illager's Bane:** emerald swords, spears, and axes deal 50%% more damage to raiders (pillagers, vindicators, evokers, ravagers, and witches).\n- **Prospector:** the emerald pickaxe has a 25%% chance to drop bonus experience when it mines an ore.\n- **Lucky armor:** each piece adds 1 Luck, for better fishing and loot.\n- **Shield:** blocking a raider knocks it back hard.",
+      "show_title_separator": true,
+      "id": "page3"
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "item": {
+        "id": "gearexpansion:emerald_chestplate"
+      },
+      "title": "Merchant's Favor",
+      "text": "**Full set bonus.** You count as a Hero of the Village (level I): villagers trade at a discount and sometimes toss you gifts.",
+      "id": "page4"
+    },
+    {
+      "type": "modonomicon:crafting_recipe",
+      "recipe_id_1": "gearexpansion:emerald_pickaxe",
+      "recipe_id_2": "gearexpansion:emerald_sword",
+      "id": "page5"
+    },
+    {
+      "type": "modonomicon:crafting_recipe",
+      "recipe_id_1": "gearexpansion:emerald_chestplate",
+      "recipe_id_2": "gearexpansion:emerald_shield",
+      "id": "page6"
+    }
+  ]
+}

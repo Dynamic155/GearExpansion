@@ -1,0 +1,40 @@
+{
+  "type": "modonomicon:content",
+  "id": "gearexpansion:getting_started/settings",
+  "category": "gearexpansion:getting_started",
+  "name": "Settings",
+  "description": "Changing the numbers",
+  "icon": "minecraft:comparator",
+  "background": {
+    "sprite": "modonomicon:modonomicon/themes/default/node/entry_backgrounds/square_gold",
+    "width": 26,
+    "height": 26
+  },
+  "x": 2,
+  "y": 2,
+  "name_style": {
+    "render_name": "bottom",
+    "show_name_before_unlock": true
+  },
+  "parents": [
+    {
+      "entry": "gearexpansion:getting_started/set_bonuses"
+    }
+  ],
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "title": "Settings",
+      "text": "Settings are saved in the **gearexpansion.json5** file in the config folder, with an explanation above each one. You can turn each set bonus on or off and change its numbers.",
+      "show_title_separator": true,
+      "id": "page1"
+    },
+    {
+      "type": "modonomicon:text",
+      "title": "In Game",
+      "text": "With **YACL** installed, you can also change settings in game: from Mod Menu on Fabric, or from the Mods list on NeoForge.\n\nOn a server, the server's settings count. Your game uses them until you leave, and your own settings file isn't changed.",
+      "show_title_separator": true,
+      "id": "page2"
+    }
+  ]
+}

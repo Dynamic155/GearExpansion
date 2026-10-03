@@ -2,6 +2,10 @@
 
 ## 1.1.0 - Metals (in progress)
 
+### Guidebook
+
+- **Gear Expansion Guide**: with Modonomicon installed, craft an in-game guidebook from a book and either raw zinc or a zinc ingot. It covers every material, the Alloy Forge, set abilities, the HUD, and settings. Modonomicon is optional; without it, nothing changes.
+
 ### Materials
 
 - **Silver**: an iron-tier ore metal against the undead. Weapons deal extra damage to undead, armor takes less damage from them, and the shield knocks them back. Set bonus Blessed: Wither lasts half as long, and nearby undead glow.

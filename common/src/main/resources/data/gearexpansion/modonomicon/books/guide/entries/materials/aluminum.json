@@ -1,0 +1,72 @@
+{
+  "type": "modonomicon:content",
+  "id": "gearexpansion:materials/aluminum",
+  "category": "gearexpansion:materials",
+  "name": "Aluminum",
+  "description": "Iron tier. Set bonus: Featherweight",
+  "icon": "gearexpansion:aluminum_ingot",
+  "background": {
+    "sprite": "modonomicon:modonomicon/themes/default/node/entry_backgrounds/square_gold",
+    "width": 26,
+    "height": 26
+  },
+  "x": -4,
+  "y": -1,
+  "name_style": {
+    "render_name": "bottom",
+    "show_name_before_unlock": true
+  },
+  "parents": [],
+  "pages": [
+    {
+      "type": "modonomicon:spotlight",
+      "item": {
+        "id": "gearexpansion:aluminum_ingot"
+      },
+      "title": "Aluminum",
+      "text": "A light, fast metal for exploring.\n\n- **Tier:** Iron\n- **Durability:** 180\n- **Sword damage:** 5.5\n- **Armor (full set):** 12",
+      "id": "page1"
+    },
+    {
+      "type": "modonomicon:text",
+      "title": "Getting It",
+      "text": "Smelt **Raw Bauxite** from **Bauxite Ore**, a reddish ore found between Y 32 and Y 96 everywhere, and in much richer deposits near the surface of **badlands** and **savannas** (Y 48 to 128). Mine it with a stone pickaxe or better.",
+      "show_title_separator": true,
+      "id": "page2"
+    },
+    {
+      "type": "modonomicon:text",
+      "title": "The Gear",
+      "text": "- **Fast weapons and tools:** very fast mining, and +0.3 attack speed on every tool, but low durability.\n- **Light armor:** each piece adds 3%% movement speed (12%% for the full set), with a little less protection than iron.\n- **Lightweight shield:** no slowdown while blocking (you still can't sprint).",
+      "show_title_separator": true,
+      "id": "page3"
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "item": {
+        "id": "gearexpansion:aluminum_chestplate"
+      },
+      "title": "Featherweight",
+      "text": "**Full set bonus.** 50%% less fall damage, 5%% stronger jumps, and 33%% faster movement in water (like Depth Strider I).",
+      "id": "page4"
+    },
+    {
+      "type": "modonomicon:smelting_recipe",
+      "recipe_id_1": "gearexpansion:aluminum_ingot_from_smelting_raw_bauxite",
+      "text": "A blast furnace works too, and is faster.",
+      "id": "page5"
+    },
+    {
+      "type": "modonomicon:crafting_recipe",
+      "recipe_id_1": "gearexpansion:aluminum_pickaxe",
+      "recipe_id_2": "gearexpansion:aluminum_sword",
+      "id": "page6"
+    },
+    {
+      "type": "modonomicon:crafting_recipe",
+      "recipe_id_1": "gearexpansion:aluminum_chestplate",
+      "recipe_id_2": "gearexpansion:aluminum_shield",
+      "id": "page7"
+    }
+  ]
+}

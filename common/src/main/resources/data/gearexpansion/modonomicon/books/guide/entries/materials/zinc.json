@@ -1,0 +1,72 @@
+{
+  "type": "modonomicon:content",
+  "id": "gearexpansion:materials/zinc",
+  "category": "gearexpansion:materials",
+  "name": "Zinc",
+  "description": "Copper tier. Set bonus: Galvanized",
+  "icon": "gearexpansion:zinc_ingot",
+  "background": {
+    "sprite": "modonomicon:modonomicon/themes/default/node/entry_backgrounds/square_gold",
+    "width": 26,
+    "height": 26
+  },
+  "x": -2,
+  "y": -3,
+  "name_style": {
+    "render_name": "bottom",
+    "show_name_before_unlock": true
+  },
+  "parents": [],
+  "pages": [
+    {
+      "type": "modonomicon:spotlight",
+      "item": {
+        "id": "gearexpansion:zinc_ingot"
+      },
+      "title": "Zinc",
+      "text": "A common early metal, a step above copper.\n\n- **Tier:** Copper\n- **Durability:** 260\n- **Sword damage:** 5\n- **Armor (full set):** 11",
+      "id": "page1"
+    },
+    {
+      "type": "modonomicon:text",
+      "title": "Getting It",
+      "text": "**Zinc Ore** is common between Y 0 and Y 64, in stone and deepslate. Mine it with a stone pickaxe or better, then smelt or blast the raw zinc.\n\nZinc is also an ingredient in [Brass](entry://materials/brass).",
+      "show_title_separator": true,
+      "id": "page2"
+    },
+    {
+      "type": "modonomicon:text",
+      "title": "The Gear",
+      "text": "- **Corrosion-proof:** all zinc gear (tools, armor, and shield) loses no durability while you're in water.\n- Copper-tier tools can mine iron ore but not diamond or gold ore.",
+      "show_title_separator": true,
+      "id": "page3"
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "item": {
+        "id": "gearexpansion:zinc_chestplate"
+      },
+      "title": "Galvanized",
+      "text": "**Full set bonus.** Poison, Hunger, and Nausea last 50%% shorter.",
+      "id": "page4"
+    },
+    {
+      "type": "modonomicon:smelting_recipe",
+      "recipe_id_1": "gearexpansion:zinc_ingot_from_smelting_raw_zinc",
+      "text": "A blast furnace works too, and is faster.",
+      "id": "page5"
+    },
+    {
+      "type": "modonomicon:crafting_recipe",
+      "recipe_id_1": "gearexpansion:zinc_pickaxe",
+      "recipe_id_2": "gearexpansion:zinc_sword",
+      "id": "page6"
+    },
+    {
+      "type": "modonomicon:crafting_recipe",
+      "recipe_id_1": "gearexpansion:zinc_chestplate",
+      "recipe_id_2": "gearexpansion:zinc_shield",
+      "id": "page7"
+    }
+  ]
+}

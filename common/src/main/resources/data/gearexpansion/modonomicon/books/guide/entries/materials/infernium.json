@@ -1,0 +1,80 @@
+{
+  "type": "modonomicon:content",
+  "id": "gearexpansion:materials/infernium",
+  "category": "gearexpansion:materials",
+  "name": "Infernium",
+  "description": "Netherite tier. Set bonus: Heat Core",
+  "icon": "gearexpansion:infernium_ingot",
+  "background": {
+    "sprite": "modonomicon:modonomicon/themes/default/node/entry_backgrounds/square_gold",
+    "width": 26,
+    "height": 26
+  },
+  "x": 0,
+  "y": 3,
+  "name_style": {
+    "render_name": "bottom",
+    "show_name_before_unlock": true
+  },
+  "parents": [
+    {
+      "entry": "gearexpansion:materials/titanium"
+    }
+  ],
+  "pages": [
+    {
+      "type": "modonomicon:spotlight",
+      "item": {
+        "id": "gearexpansion:infernium_ingot"
+      },
+      "title": "Infernium",
+      "text": "The endgame metal of the Nether. Its 3D armor glows.\n\n- **Tier:** Netherite\n- **Durability:** 2200\n- **Sword damage:** 8\n- **Armor (full set):** 20",
+      "id": "page1"
+    },
+    {
+      "type": "modonomicon:text",
+      "title": "Getting It",
+      "text": "1. Find **Infernium Ore** in the Nether, between Y 10 and Y 40 in netherrack. Mine it with a diamond pickaxe or better. It's hot: mining it without Fire Resistance sets you on fire for a moment.\n2. Raw Infernium can only be smelted in a **blast furnace**.\n3. Find an **Infernium Upgrade Smithing Template**: about half of Bastion treasure chests have one, and other Bastion chests (10%%) and Nether Fortress chests (8%%) sometimes do. Copy a template with 7 titanium ingots, 1 netherrack, and the template, which makes 2.\n4. At a smithing table, combine the template, a piece of **titanium gear**, and an **Infernium Ingot**.",
+      "show_title_separator": true,
+      "id": "page2"
+    },
+    {
+      "type": "modonomicon:text",
+      "title": "The Gear",
+      "text": "- **Fireproof:** infernium items don't burn in fire or lava.\n- **Searing weapons:** swords, spears, and axes set targets on fire, and deal 3 extra damage to burning targets.\n- **Smelting pickaxe:** the infernium pickaxe smelts what it mines (iron ore drops iron ingots, and so on).\n- **Fire Ward:** each armor piece blocks 15%% of fire damage (60%% for the full set).\n- **Shield:** blocking a melee attack sets the attacker on fire.",
+      "show_title_separator": true,
+      "id": "page3"
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "item": {
+        "id": "gearexpansion:infernium_chestplate"
+      },
+      "title": "Heat Core",
+      "text": "**Full set bonus.** Walk and swim in lava unharmed for up to 10 seconds, shown by the heat gauge above the hotbar. The gauge fills in lava and cools outside it. Fire doesn't burn you while the gauge has room, and melee attackers catch fire.\n\n**Eruption (R):** a ring of fire sets nearby mobs alight and hurts them. The more heat you've stored, the bigger and hotter it is, and it uses up the heat. 30 second cooldown.",
+      "id": "page4"
+    },
+    {
+      "type": "modonomicon:blasting_recipe",
+      "recipe_id_1": "gearexpansion:infernium_ingot_from_blasting_raw_infernium",
+      "id": "page5"
+    },
+    {
+      "type": "modonomicon:crafting_recipe",
+      "recipe_id_1": "gearexpansion:infernium_upgrade_smithing_template",
+      "id": "page6"
+    },
+    {
+      "type": "modonomicon:smithing_recipe",
+      "recipe_id_1": "gearexpansion:infernium_pickaxe_smithing",
+      "recipe_id_2": "gearexpansion:infernium_sword_smithing",
+      "id": "page7"
+    },
+    {
+      "type": "modonomicon:smithing_recipe",
+      "recipe_id_1": "gearexpansion:infernium_chestplate_smithing",
+      "recipe_id_2": "gearexpansion:infernium_shield_smithing",
+      "id": "page8"
+    }
+  ]
+}

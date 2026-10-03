@@ -1,0 +1,7 @@
+{
+  "name": "Gear Expansion Guide",
+  "tooltip": "Every Gear Expansion material, the Alloy Forge, and set abilities.",
+  "description": "A guide to the materials, gear, and set bonuses of Gear Expansion.",
+  "model": "modonomicon:modonomicon_red",
+  "default_allow_page_split": true
+}

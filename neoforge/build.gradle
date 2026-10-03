@@ -55,6 +55,10 @@ dependencies {
 	compileOnly("maven.modrinth:jade:$rootProject.jade_neoforge_version") { transitive = false }
 	localRuntime "maven.modrinth:jade:$rootProject.jade_neoforge_version"
 
+	// Optional guidebook. The book is plain data, so nothing is compiled against it.
+	// Its jar already contains its libraries, so nothing else is needed.
+	localRuntime("com.klikli_dev:modonomicon-$rootProject.minecraft_version-neoforge:$rootProject.modonomicon_version") { transitive = false }
+
 	common(project(path: ':common')) { transitive = false }
 	shadowBundle project(path: ':common', configuration: 'transformProductionNeoForge')
 }

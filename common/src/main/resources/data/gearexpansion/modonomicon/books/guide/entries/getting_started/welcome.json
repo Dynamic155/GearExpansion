@@ -1,0 +1,36 @@
+{
+  "type": "modonomicon:content",
+  "id": "gearexpansion:getting_started/welcome",
+  "category": "gearexpansion:getting_started",
+  "name": "Welcome",
+  "description": "What Gear Expansion adds",
+  "icon": "minecraft:book",
+  "background": {
+    "sprite": "modonomicon:modonomicon/themes/default/node/entry_backgrounds/star_gold",
+    "width": 26,
+    "height": 26
+  },
+  "x": 0,
+  "y": -2,
+  "name_style": {
+    "render_name": "bottom",
+    "show_name_before_unlock": true
+  },
+  "parents": [],
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "title": "Gear Expansion",
+      "text": "Gear Expansion adds new materials, each with tools, armor, and a shield. Every material plays differently, and wearing a full set gives a set bonus.\n\nStrong effects are kept in check by meters, cooldowns, and costs, and nearly every number can be changed in the settings.",
+      "show_title_separator": true,
+      "id": "page1"
+    },
+    {
+      "type": "modonomicon:text",
+      "title": "Using This Book",
+      "text": "**Materials** has a page for every material: how to get it, what its gear does, its set bonus, and its recipes.\n\n**Alloy Forge** explains the workstation that makes Brass and Rose Gold.\n\nHover over an entry to see what it covers.",
+      "show_title_separator": true,
+      "id": "page2"
+    }
+  ]
+}

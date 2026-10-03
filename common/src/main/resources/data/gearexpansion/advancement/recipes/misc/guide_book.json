@@ -1,0 +1,49 @@
+{
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "modonomicon"
+      ]
+    }
+  ],
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "modonomicon"
+    }
+  ],
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_zinc": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "gearexpansion:raw_zinc",
+              "gearexpansion:zinc_ingot"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipes": "gearexpansion:guide_book"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_zinc"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "gearexpansion:guide_book"
+    ]
+  }
+}

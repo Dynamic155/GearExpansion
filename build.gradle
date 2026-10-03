@@ -77,6 +77,18 @@ subprojects {
 				includeGroup('maven.modrinth')
 			}
 		}
+		exclusiveContent {
+			forRepository {
+				maven {
+					name = 'klikli-dev'
+					url = 'https://dl.cloudsmith.io/public/klikli-dev/mods/maven/'
+				}
+			}
+			filter {
+				// Modonomicon.
+				includeGroup('com.klikli_dev')
+			}
+		}
 	}
 
 	dependencies {

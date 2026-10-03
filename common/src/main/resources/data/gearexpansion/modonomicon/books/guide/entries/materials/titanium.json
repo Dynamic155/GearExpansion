@@ -1,0 +1,72 @@
+{
+  "type": "modonomicon:content",
+  "id": "gearexpansion:materials/titanium",
+  "category": "gearexpansion:materials",
+  "name": "Titanium",
+  "description": "Diamond tier. Set bonus: Unbreakable Will",
+  "icon": "gearexpansion:titanium_ingot",
+  "background": {
+    "sprite": "modonomicon:modonomicon/themes/default/node/entry_backgrounds/square_gold",
+    "width": 26,
+    "height": 26
+  },
+  "x": 0,
+  "y": 1,
+  "name_style": {
+    "render_name": "bottom",
+    "show_name_before_unlock": true
+  },
+  "parents": [],
+  "pages": [
+    {
+      "type": "modonomicon:spotlight",
+      "item": {
+        "id": "gearexpansion:titanium_ingot"
+      },
+      "title": "Titanium",
+      "text": "The reliable workhorse: diamond-level gear that almost never breaks.\n\n- **Tier:** Diamond\n- **Durability:** 3000\n- **Sword damage:** 7\n- **Armor (full set):** 20",
+      "id": "page1"
+    },
+    {
+      "type": "modonomicon:text",
+      "title": "Getting It",
+      "text": "**Titanium Ore** is rare, deep underground between Y -64 and Y -16, in small, mostly buried veins. Mine it with a diamond pickaxe or better, then smelt or blast the raw titanium.\n\nTitanium gear is the base for [Infernium](entry://materials/infernium).",
+      "show_title_separator": true,
+      "id": "page2"
+    },
+    {
+      "type": "modonomicon:text",
+      "title": "The Gear",
+      "text": "- **Tools:** diamond tier and speed, with 3000 durability (about twice diamond), but low enchantability.\n- **Armor:** diamond-level protection with extra toughness (2.5 per piece) and a little knockback resistance.\n- **Shield:** 1000 durability, and axes disable it for less than half the usual time.",
+      "show_title_separator": true,
+      "id": "page3"
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "item": {
+        "id": "gearexpansion:titanium_chestplate"
+      },
+      "title": "Unbreakable Will",
+      "text": "**Full set bonus.** Everything you use loses 50%% less durability. Dropping below 30%% health gives Resistance I for 5 seconds (once a minute).",
+      "id": "page4"
+    },
+    {
+      "type": "modonomicon:smelting_recipe",
+      "recipe_id_1": "gearexpansion:titanium_ingot_from_smelting_raw_titanium",
+      "text": "A blast furnace works too, and is faster.",
+      "id": "page5"
+    },
+    {
+      "type": "modonomicon:crafting_recipe",
+      "recipe_id_1": "gearexpansion:titanium_pickaxe",
+      "recipe_id_2": "gearexpansion:titanium_sword",
+      "id": "page6"
+    },
+    {
+      "type": "modonomicon:crafting_recipe",
+      "recipe_id_1": "gearexpansion:titanium_chestplate",
+      "recipe_id_2": "gearexpansion:titanium_shield",
+      "id": "page7"
+    }
+  ]
+}

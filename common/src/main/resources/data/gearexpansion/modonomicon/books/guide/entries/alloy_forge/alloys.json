@@ -1,0 +1,51 @@
+{
+  "type": "modonomicon:content",
+  "id": "gearexpansion:alloy_forge/alloys",
+  "category": "gearexpansion:alloy_forge",
+  "name": "Alloys",
+  "description": "Brass and Rose Gold",
+  "icon": "gearexpansion:brass_ingot",
+  "background": {
+    "sprite": "modonomicon:modonomicon/themes/default/node/entry_backgrounds/square_gold",
+    "width": 26,
+    "height": 26
+  },
+  "x": -2,
+  "y": 1,
+  "name_style": {
+    "render_name": "bottom",
+    "show_name_before_unlock": true
+  },
+  "parents": [
+    {
+      "entry": "gearexpansion:alloy_forge/alloy_forge"
+    }
+  ],
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "title": "Alloys",
+      "text": "The Alloy Forge makes two alloys, shown on the next pages.\n\nRecipes use the common ingot tags, so copper, zinc, and gold from other mods work too.",
+      "show_title_separator": true,
+      "id": "page1"
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "item": {
+        "id": "gearexpansion:brass_ingot"
+      },
+      "title": "Brass",
+      "text": "**3 copper ingots** and **1 zinc ingot** make 4 Brass Ingots.\n\nSee [Brass](entry://materials/brass) for its gear.",
+      "id": "page2"
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "item": {
+        "id": "gearexpansion:rose_gold_ingot"
+      },
+      "title": "Rose Gold",
+      "text": "**3 gold ingots** and **1 copper ingot** make 2 Rose Gold Ingots.\n\nSee [Rose Gold](entry://materials/rose_gold) for its gear.",
+      "id": "page3"
+    }
+  ]
+}
