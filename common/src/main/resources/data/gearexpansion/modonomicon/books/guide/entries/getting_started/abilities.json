@@ -1,0 +1,40 @@
+{
+  "type": "modonomicon:content",
+  "id": "gearexpansion:getting_started/abilities",
+  "category": "gearexpansion:getting_started",
+  "name": "Set Abilities",
+  "description": "The Set Ability key and HUD meters",
+  "icon": "gearexpansion:brass_chestplate",
+  "background": {
+    "sprite": "modonomicon:modonomicon/themes/default/node/entry_backgrounds/square_gold",
+    "width": 26,
+    "height": 26
+  },
+  "x": -2,
+  "y": 2,
+  "name_style": {
+    "render_name": "bottom",
+    "show_name_before_unlock": true
+  },
+  "parents": [
+    {
+      "entry": "gearexpansion:getting_started/set_bonuses"
+    }
+  ],
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "title": "Set Abilities",
+      "text": "A few full sets also have an **ability**, used with the **Set Ability key**: **R** by default. Change it under Controls, in the Gear Expansion category.\n\nThe key uses the ability of the full set you're wearing:\n\n- **Spring Release** (Brass)\n- **Eruption** (Infernium)",
+      "show_title_separator": true,
+      "id": "page1"
+    },
+    {
+      "type": "modonomicon:text",
+      "title": "HUD Meters",
+      "text": "Meters appear above the hotbar only when they matter:\n\n- Brass's spring\n- Infernium's heat gauge\n- Amethyst's crystal shell\n- the ability cooldown",
+      "show_title_separator": true,
+      "id": "page2"
+    }
+  ]
+}

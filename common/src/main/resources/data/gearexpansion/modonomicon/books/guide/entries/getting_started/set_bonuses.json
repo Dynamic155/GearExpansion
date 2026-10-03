@@ -1,0 +1,33 @@
+{
+  "type": "modonomicon:content",
+  "id": "gearexpansion:getting_started/set_bonuses",
+  "category": "gearexpansion:getting_started",
+  "name": "Set Bonuses",
+  "description": "Wearing a full set",
+  "icon": "gearexpansion:titanium_chestplate",
+  "background": {
+    "sprite": "modonomicon:modonomicon/themes/default/node/entry_backgrounds/square_gold",
+    "width": 26,
+    "height": 26
+  },
+  "x": 0,
+  "y": 0,
+  "name_style": {
+    "render_name": "bottom",
+    "show_name_before_unlock": true
+  },
+  "parents": [
+    {
+      "entry": "gearexpansion:getting_started/welcome"
+    }
+  ],
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "title": "Set Bonuses",
+      "text": "Wearing all four armor pieces of one material gives its **set bonus**.\n\n**Tooltips** show each item's traits, the set bonus, and how many pieces you're wearing, like \"Titanium Set (3/4)\". The bonus is greyed out until you wear all four.",
+      "show_title_separator": true,
+      "id": "page1"
+    }
+  ]
+}

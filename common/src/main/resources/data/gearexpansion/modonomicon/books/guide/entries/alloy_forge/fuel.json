@@ -1,0 +1,40 @@
+{
+  "type": "modonomicon:content",
+  "id": "gearexpansion:alloy_forge/fuel",
+  "category": "gearexpansion:alloy_forge",
+  "name": "Fuel and Hoppers",
+  "description": "Fuel, boosts, and automation",
+  "icon": "minecraft:blaze_powder",
+  "background": {
+    "sprite": "modonomicon:modonomicon/themes/default/node/entry_backgrounds/square_gold",
+    "width": 26,
+    "height": 26
+  },
+  "x": 2,
+  "y": 1,
+  "name_style": {
+    "render_name": "bottom",
+    "show_name_before_unlock": true
+  },
+  "parents": [
+    {
+      "entry": "gearexpansion:alloy_forge/alloy_forge"
+    }
+  ],
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "title": "Fuel",
+      "text": "The Alloy Forge burns any normal furnace fuel.\n\n**Blaze powder** and **lava buckets** make it work twice as fast.",
+      "show_title_separator": true,
+      "id": "page1"
+    },
+    {
+      "type": "modonomicon:text",
+      "title": "Automation",
+      "text": "- Hoppers on top fill the inputs.\n- Hoppers on the side add fuel.\n- Hoppers underneath take the results.\n\nWith Jade installed, looking at a forge shows its inputs, fuel, progress, and result.",
+      "show_title_separator": true,
+      "id": "page2"
+    }
+  ]
+}

@@ -71,5 +71,13 @@ versionRange = "[26.3.1,)"
 ordering = "NONE"
 side = "BOTH"
 
+# Optional guidebook: the Gear Expansion Guide, and a recipe for it.
+[[dependencies.gearexpansion]]
+modId = "modonomicon"
+type = "optional"
+versionRange = "[2.16.0,)"
+ordering = "NONE"
+side = "BOTH"
+
 [[mixins]]
 config = "gearexpansion.mixins.json"

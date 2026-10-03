@@ -1,0 +1,71 @@
+{
+  "type": "modonomicon:content",
+  "id": "gearexpansion:materials/amethyst",
+  "category": "gearexpansion:materials",
+  "name": "Amethyst",
+  "description": "Iron tier. Set bonus: Shatterguard",
+  "icon": "gearexpansion:resonant_crystal",
+  "background": {
+    "sprite": "modonomicon:modonomicon/themes/default/node/entry_backgrounds/square_gold",
+    "width": 26,
+    "height": 26
+  },
+  "x": 4,
+  "y": -1,
+  "name_style": {
+    "render_name": "bottom",
+    "show_name_before_unlock": true
+  },
+  "parents": [],
+  "pages": [
+    {
+      "type": "modonomicon:spotlight",
+      "item": {
+        "id": "gearexpansion:resonant_crystal"
+      },
+      "title": "Amethyst",
+      "text": "Crystal gear: fragile, but highly enchantable and full of tricks.\n\n- **Tier:** Iron\n- **Durability:** 220\n- **Sword damage:** 6\n- **Armor (full set):** 15",
+      "id": "page1"
+    },
+    {
+      "type": "modonomicon:text",
+      "title": "Getting It",
+      "text": "Craft a **Resonant Crystal** from 4 amethyst shards and 1 copper ingot. The gear is made from crystals.",
+      "show_title_separator": true,
+      "id": "page2"
+    },
+    {
+      "type": "modonomicon:text",
+      "title": "The Gear",
+      "text": "- **Shatter:** critical hits (attacking while falling) with an amethyst sword burst crystal over nearby mobs, dealing 3 damage to each.\n- **Resonance:** when the amethyst pickaxe mines an ore, it chimes louder and higher the more of that ore is nearby. It's a hot-or-cold hint, not x-ray.\n- **Perfect Block:** blocking with the amethyst shield right as you raise it knocks the attacker back with a chime.\n- **Chiming armor:** the armor chimes softly when you're hit.",
+      "show_title_separator": true,
+      "id": "page3"
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "item": {
+        "id": "gearexpansion:amethyst_chestplate"
+      },
+      "title": "Shatterguard",
+      "text": "**Full set bonus.** A crystal shell completely absorbs one hit, shatters, and regrows over 45 seconds (shown above the hotbar).",
+      "id": "page4"
+    },
+    {
+      "type": "modonomicon:crafting_recipe",
+      "recipe_id_1": "gearexpansion:resonant_crystal",
+      "id": "page5"
+    },
+    {
+      "type": "modonomicon:crafting_recipe",
+      "recipe_id_1": "gearexpansion:amethyst_pickaxe",
+      "recipe_id_2": "gearexpansion:amethyst_sword",
+      "id": "page6"
+    },
+    {
+      "type": "modonomicon:crafting_recipe",
+      "recipe_id_1": "gearexpansion:amethyst_chestplate",
+      "recipe_id_2": "gearexpansion:amethyst_shield",
+      "id": "page7"
+    }
+  ]
+}

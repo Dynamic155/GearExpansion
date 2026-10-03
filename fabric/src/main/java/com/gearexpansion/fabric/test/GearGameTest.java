@@ -130,6 +130,7 @@ public final class GearGameTest implements FabricClientGameTest {
 			screenshots(ctx, server);
 			RecipeViewerChecks.run(ctx, this::check);
 			JadeChecks.run(ctx, server, this::check);
+			GuidebookChecks.run(ctx, server, this::check);
 		}
 
 		if (failures.isEmpty()) {

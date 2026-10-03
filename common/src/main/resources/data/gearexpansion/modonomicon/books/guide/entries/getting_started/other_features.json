@@ -1,0 +1,40 @@
+{
+  "type": "modonomicon:content",
+  "id": "gearexpansion:getting_started/other_features",
+  "category": "gearexpansion:getting_started",
+  "name": "Other Features",
+  "description": "Tabs, advancements, and more",
+  "icon": "minecraft:knowledge_book",
+  "background": {
+    "sprite": "modonomicon:modonomicon/themes/default/node/entry_backgrounds/square_gold",
+    "width": 26,
+    "height": 26
+  },
+  "x": 3,
+  "y": 0,
+  "name_style": {
+    "render_name": "bottom",
+    "show_name_before_unlock": true
+  },
+  "parents": [
+    {
+      "entry": "gearexpansion:getting_started/welcome"
+    }
+  ],
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "title": "Other Features",
+      "text": "- **Creative tabs:** Blocks, Tools, Combat, and Ingredients, grouped by material.\n- **Advancements:** one for each material, the Alloy Forge, and the Infernium upgrade, in their own tab.\n- **Equip sounds:** each armor set has its own.",
+      "show_title_separator": true,
+      "id": "page1"
+    },
+    {
+      "type": "modonomicon:text",
+      "title": "Compatibility",
+      "text": "Ores, raw materials, ingots, nuggets, and storage blocks use the common c: tags, so other mods' machines and recipes recognize them.\n\nWith JEI or REI installed, the Alloy Forge has its own recipe category.",
+      "show_title_separator": true,
+      "id": "page2"
+    }
+  ]
+}

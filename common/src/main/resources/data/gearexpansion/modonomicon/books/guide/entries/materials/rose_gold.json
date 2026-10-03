@@ -1,0 +1,66 @@
+{
+  "type": "modonomicon:content",
+  "id": "gearexpansion:materials/rose_gold",
+  "category": "gearexpansion:materials",
+  "name": "Rose Gold",
+  "description": "Copper tier. Set bonus: Lucky Charm",
+  "icon": "gearexpansion:rose_gold_ingot",
+  "background": {
+    "sprite": "modonomicon:modonomicon/themes/default/node/entry_backgrounds/square_gold",
+    "width": 26,
+    "height": 26
+  },
+  "x": 2,
+  "y": -3,
+  "name_style": {
+    "render_name": "bottom",
+    "show_name_before_unlock": true
+  },
+  "parents": [],
+  "pages": [
+    {
+      "type": "modonomicon:spotlight",
+      "item": {
+        "id": "gearexpansion:rose_gold_ingot"
+      },
+      "title": "Rose Gold",
+      "text": "An elegant alloy of gold and copper, built for enchanting.\n\n- **Tier:** Copper\n- **Durability:** 180\n- **Sword damage:** 4.5\n- **Armor (full set):** 11",
+      "id": "page1"
+    },
+    {
+      "type": "modonomicon:text",
+      "title": "Getting It",
+      "text": "In the [Alloy Forge](entry://alloy_forge/alloy_forge), 3 gold ingots and 1 copper ingot make 2 Rose Gold Ingots.",
+      "show_title_separator": true,
+      "id": "page2"
+    },
+    {
+      "type": "modonomicon:text",
+      "title": "The Gear",
+      "text": "- **Gold's strengths, fixed:** fast mining (faster than iron) and very high enchantability (22 for tools, 25 for armor), with far more durability than gold.\n- **Piglin-friendly:** piglins treat rose gold armor like gold armor and stay neutral.",
+      "show_title_separator": true,
+      "id": "page3"
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "item": {
+        "id": "gearexpansion:rose_gold_chestplate"
+      },
+      "title": "Lucky Charm",
+      "text": "**Full set bonus.** 25%% more experience from experience orbs, and enchanting tables give better offers, as if 3 more bookshelves surrounded them.",
+      "id": "page4"
+    },
+    {
+      "type": "modonomicon:crafting_recipe",
+      "recipe_id_1": "gearexpansion:rose_gold_pickaxe",
+      "recipe_id_2": "gearexpansion:rose_gold_sword",
+      "id": "page5"
+    },
+    {
+      "type": "modonomicon:crafting_recipe",
+      "recipe_id_1": "gearexpansion:rose_gold_chestplate",
+      "recipe_id_2": "gearexpansion:rose_gold_shield",
+      "id": "page6"
+    }
+  ]
+}

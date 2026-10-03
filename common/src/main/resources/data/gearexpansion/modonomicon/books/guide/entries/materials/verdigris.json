@@ -1,0 +1,71 @@
+{
+  "type": "modonomicon:content",
+  "id": "gearexpansion:materials/verdigris",
+  "category": "gearexpansion:materials",
+  "name": "Verdigris",
+  "description": "Copper tier. Set bonus: Conductive",
+  "icon": "gearexpansion:verdigris_plate",
+  "background": {
+    "sprite": "modonomicon:modonomicon/themes/default/node/entry_backgrounds/square_gold",
+    "width": 26,
+    "height": 26
+  },
+  "x": 0,
+  "y": -3,
+  "name_style": {
+    "render_name": "bottom",
+    "show_name_before_unlock": true
+  },
+  "parents": [],
+  "pages": [
+    {
+      "type": "modonomicon:spotlight",
+      "item": {
+        "id": "gearexpansion:verdigris_plate"
+      },
+      "title": "Verdigris",
+      "text": "Copper gear that oxidizes as you use it, like copper blocks.\n\n- **Tier:** Copper\n- **Durability:** 240\n- **Sword damage:** 5\n- **Armor (full set):** 12 (up to 16 oxidized)",
+      "id": "page1"
+    },
+    {
+      "type": "modonomicon:text",
+      "title": "Getting It",
+      "text": "Craft **Verdigris Plates** from 2 copper ingots, 1 honeycomb, and 1 green dye (makes 2). The gear is made from plates.",
+      "show_title_separator": true,
+      "id": "page2"
+    },
+    {
+      "type": "modonomicon:text",
+      "title": "The Gear",
+      "text": "- **Oxidation:** while held or worn, the gear slowly ages through four stages: Fresh, Exposed, Weathered, and Oxidized (about 20 minutes of use per stage). Its color and stats change too.\n- Tools mine and attack slower as they oxidize (oxidized: 70%% mining speed, -0.3 attack speed).\n- Armor gets tougher (weathered and oxidized: +1 armor per piece, and up to +1 toughness).\n- Fully oxidized gear has a 30%% chance to ignore each point of wear.\n- **Waxing:** right-click honeycomb onto the item in your inventory to stop it changing. Right-click an axe onto it to scrape off the wax, or, if it isn't waxed, to turn it back one stage.",
+      "show_title_separator": true,
+      "id": "page3"
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "item": {
+        "id": "gearexpansion:verdigris_chestplate"
+      },
+      "title": "Conductive",
+      "text": "**Full set bonus.** Natural lightning within 16 blocks strikes you instead, like a lightning rod, but it doesn't hurt you. A strike gives Speed and Strength for 10 seconds (once every 2 minutes).",
+      "id": "page4"
+    },
+    {
+      "type": "modonomicon:crafting_recipe",
+      "recipe_id_1": "gearexpansion:verdigris_plate",
+      "id": "page5"
+    },
+    {
+      "type": "modonomicon:crafting_recipe",
+      "recipe_id_1": "gearexpansion:verdigris_pickaxe",
+      "recipe_id_2": "gearexpansion:verdigris_sword",
+      "id": "page6"
+    },
+    {
+      "type": "modonomicon:crafting_recipe",
+      "recipe_id_1": "gearexpansion:verdigris_chestplate",
+      "recipe_id_2": "gearexpansion:verdigris_shield",
+      "id": "page7"
+    }
+  ]
+}

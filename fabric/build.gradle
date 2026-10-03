@@ -60,6 +60,11 @@ dependencies {
 	compileOnly("maven.modrinth:jade:$rootProject.jade_fabric_version") { transitive = false }
 	localRuntime "maven.modrinth:jade:$rootProject.jade_fabric_version"
 
+	// Optional guidebook. The book is plain data; only the game test uses Modonomicon's classes.
+	// Its jar already contains its libraries, so nothing else is needed.
+	compileOnly("com.klikli_dev:modonomicon-$rootProject.minecraft_version-fabric:$rootProject.modonomicon_version") { transitive = false }
+	localRuntime("com.klikli_dev:modonomicon-$rootProject.minecraft_version-fabric:$rootProject.modonomicon_version") { transitive = false }
+
 	common(project(path: ':common')) { transitive = false }
 	shadowBundle project(path: ':common', configuration: 'transformProductionFabric')
 }

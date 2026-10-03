@@ -51,7 +51,8 @@
 		"yet_another_config_lib_v3": ">=3.9.7",
 		"jei": ">=31.8",
 		"roughlyenoughitems": ">=26.3",
-		"jade": ">=26.3.3"
+		"jade": ">=26.3.3",
+		"modonomicon": ">=2.16.0"
 	},
 	"depends": {
 		"fabricloader": ">=0.19.5",
