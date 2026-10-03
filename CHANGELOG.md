@@ -1,6 +1,8 @@
 # Changelog
 
-## Unreleased
+## 1.1.1 - Sakura
+
+A pretty, gentle new set.
 
 ### Materials
 

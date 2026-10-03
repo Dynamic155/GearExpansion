@@ -57,7 +57,7 @@ Version 1.0.0 is complete, and 1.0.1 finishes the remaining 1.0 promises.
 
 Version 1.1.0 is complete.
 
-Added after 1.1.0, before 1.2:
+Released in 1.1.1:
 
 | Material | Status |
 |---|---|
@@ -148,7 +148,7 @@ Verify these against 26.3 code when implementing.
 | Titanium | 1.0 | Diamond | Rare deep ore | Near-unbreakable, tough | Vanilla |
 | Infernium | 1.0 | Netherite | Nether ore + template | Heat, lava, fire | **Bold** |
 | Silver | 1.1 | Iron | Overworld ore | Anti-undead | Vanilla |
-| Sakura | 1.1+ | Iron | Alloy Forge: iron + pink petals | Cute, healing among flowers | Vanilla |
+| Sakura | 1.1.1 | Iron | Alloy Forge: iron + pink petals | Cute, healing among flowers | Vanilla |
 | Steel | 1.1 | Iron+ | Alloy Forge: iron + coal | Reliable workhorse | Vanilla |
 | Tungsten | 1.1 | Diamond+ | Very deep ore | The tank: heavy, immovable | **Bold** |
 | Cobalt | 1.1 | Diamond | Nether ore | Mining speed | Vanilla |
