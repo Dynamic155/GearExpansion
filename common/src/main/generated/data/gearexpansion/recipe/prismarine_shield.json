@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "S": "minecraft:shield",
+    "X": "gearexpansion:prismarine_scale"
+  },
+  "pattern": [
+    " X ",
+    "XSX",
+    " X "
+  ],
+  "result": {
+    "id": "gearexpansion:prismarine_shield"
+  }
+}

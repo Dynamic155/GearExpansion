@@ -1,0 +1,32 @@
+{
+  "parent": "gearexpansion:alloy_forge",
+  "criteria": {
+    "has_echo_ingot": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gearexpansion:echo_ingot"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.gearexpansion.echo.description"
+    },
+    "icon": {
+      "id": "gearexpansion:echo_ingot"
+    },
+    "title": {
+      "translate": "advancements.gearexpansion.echo.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_echo_ingot"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

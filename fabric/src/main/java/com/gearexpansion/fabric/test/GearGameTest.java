@@ -38,7 +38,11 @@ import net.minecraft.world.entity.EntityTypes;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.monster.zombie.Zombie;
 import net.minecraft.world.entity.monster.illager.Pillager;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.AbstractFurnaceBlock;
+import net.minecraft.world.level.block.SculkSensorBlock;
+import net.minecraft.world.level.block.state.properties.SculkSensorPhase;
+import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.HopperBlockEntity;
 import net.minecraft.world.level.storage.loot.BuiltInLootTables;
@@ -131,6 +135,9 @@ public final class GearGameTest implements FabricClientGameTest {
 			checkSteel(ctx, server);
 			checkCobalt(ctx, server);
 			checkTungsten(ctx, server);
+			checkObsidian(ctx, server);
+			checkPrismarine(ctx, server);
+			checkEcho(ctx, server);
 			checkInfernium(ctx, server);
 
 			screenshots(ctx, server);
@@ -1019,6 +1026,136 @@ public final class GearGameTest implements FabricClientGameTest {
 			unequip(player(s));
 			player(s).removeAllEffects();
 		});
+	}
+
+	// Obsidian, Prismarine, Echo -------------------------------------------------------
+
+	private void checkObsidian(ClientGameTestContext ctx, TestServerContext server) {
+		MaterialSet obsidian = ModMaterials.OBSIDIAN;
+		server.runCommand("tp @p 0 -60 0 0 0");
+		server.runCommand("gamemode creative @p");
+		server.runOnServer(s -> {
+			ServerPlayer player = player(s);
+			ServerLevel level = s.overworld();
+			AlloyingRecipeInput input = new AlloyingRecipeInput(List.of(new ItemStack(Items.OBSIDIAN, 2), new ItemStack(Items.IRON_INGOT), ItemStack.EMPTY));
+			var recipe = s.getRecipeManager().getRecipeFor(ModRecipes.ALLOYING.get(), input, level);
+			check(recipe.isPresent() && recipe.get().value().result().item().value() == obsidian.ingot.get(), "obsidian and iron alloy into Reinforced Obsidian");
+			check(new ItemStack(obsidian.sword.get()).has(DataComponents.DAMAGE_RESISTANT), "obsidian gear survives explosions when dropped");
+			check(new ItemStack(obsidian.shield.get()).get(DataComponents.BLOCKS_ATTACKS).damageReductions().size() == 2, "the obsidian shield blocks explosions from every side");
+
+			equip(player, obsidian);
+			float explosion = GearCombat.modifyIncomingDamage(player, level.damageSources().explosion(null, null), 10.0F);
+			check(Math.abs(explosion - 4.0F) < 0.01F, "the full obsidian set takes 60% less explosion damage (took " + explosion + ")");
+
+			// An explosion near the wearer leaves the ground intact; one far away doesn't.
+			level.explode(null, 4.5, -60.0, 0.5, 3.0F, Level.ExplosionInteraction.TNT);
+			check(!level.getBlockState(new BlockPos(4, -61, 0)).isAir(), "an explosion near the full obsidian set breaks no blocks");
+			level.explode(null, 24.5, -60.0, 0.5, 3.0F, Level.ExplosionInteraction.TNT);
+			check(level.getBlockState(new BlockPos(24, -61, 0)).isAir(), "an explosion far from the wearer breaks blocks as normal");
+			unequip(player);
+		});
+		server.runCommand("fill 20 -63 -4 28 -60 4 minecraft:grass_block replace minecraft:air");
+		server.runCommand("kill @e[type=item]");
+		server.runCommand("gamemode survival @p");
+		check(tooltip(ctx, obsidian.shield.get()).contains("Blast Wall"), "obsidian shield tooltip shows Blast Wall");
+	}
+
+	private void checkPrismarine(ClientGameTestContext ctx, TestServerContext server) {
+		MaterialSet prismarine = ModMaterials.PRISMARINE;
+		server.runCommand("tp @p 0 -60 0 0 0");
+		server.runOnServer(s -> {
+			ServerPlayer player = player(s);
+			ServerLevel level = s.overworld();
+			check(s.getRecipeManager().byKey(ResourceKey.create(Registries.RECIPE, GearExpansion.id("prismarine_scale"))).isPresent(), "recipe exists: prismarine_scale");
+			player.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(prismarine.sword.get()));
+			DamageSource source = level.damageSources().playerAttack(player);
+			var cod = EntityTypes.COD.create(level, EntitySpawnReason.COMMAND);
+			Zombie zombie = EntityTypes.ZOMBIE.create(level, EntitySpawnReason.COMMAND);
+			check(prismarine.sword.get().getAttackDamageBonus(cod, 10.0F, source) == 3.0F, "prismarine weapons deal 3 extra damage to sea creatures");
+			check(prismarine.sword.get().getAttackDamageBonus(zombie, 10.0F, source) == 0.0F, "prismarine weapons deal normal damage on land");
+			player.setItemSlot(EquipmentSlot.MAINHAND, ItemStack.EMPTY);
+
+			// Spined: melee attackers take damage when the shield blocks.
+			zombie.setNoAi(true);
+			zombie.setPos(player.getX() + 2, player.getY(), player.getZ());
+			level.addFreshEntity(zombie);
+			prismarine.behavior.onShieldBlock(prismarine, player, zombie, new ItemStack(prismarine.shield.get()), level.damageSources().mobAttack(zombie), 4.0F);
+			check(zombie.getHealth() < zombie.getMaxHealth(), "the prismarine shield pricks melee attackers");
+			equip(player, prismarine);
+		});
+		server.runCommand("weather rain");
+		ctx.waitTicks(25);
+		server.runOnServer(s -> {
+			ServerPlayer player = player(s);
+			double mining = player.getAttributeValue(Attributes.SUBMERGED_MINING_SPEED);
+			check(Math.abs(mining - 1.0) < 0.001, "the full prismarine set mines at full speed underwater (got " + mining + ")");
+			check(player.getAttributeValue(Attributes.OXYGEN_BONUS) == 4.0, "each prismarine piece works like a level of Respiration");
+			check(player.hasEffect(MobEffects.CONDUIT_POWER), "the full prismarine set grants Conduit Power in the rain");
+			unequip(player);
+			player.removeAllEffects();
+		});
+		server.runCommand("weather clear");
+		server.runCommand("kill @e[type=zombie]");
+		check(tooltip(ctx, prismarine.sword.get()).contains("Tidal"), "prismarine weapon tooltip shows Tidal");
+	}
+
+	private void checkEcho(ClientGameTestContext ctx, TestServerContext server) {
+		MaterialSet echo = ModMaterials.ECHO;
+		BlockPos sensor = new BlockPos(3, -60, 0);
+		server.runCommand("tp @p 0 -60 0 0 0");
+		server.runOnServer(s -> {
+			ServerPlayer player = player(s);
+			ServerLevel level = s.overworld();
+			AlloyingRecipeInput input = new AlloyingRecipeInput(List.of(new ItemStack(Items.ECHO_SHARD), new ItemStack(Items.SCULK, 4), new ItemStack(Items.IRON_INGOT, 2)));
+			var recipe = s.getRecipeManager().getRecipeFor(ModRecipes.ALLOYING.get(), input, level);
+			check(recipe.isPresent() && recipe.get().value().result().item().value() == echo.ingot.get(), "echo shards, sculk, and iron alloy into echo");
+
+			player.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(echo.pickaxe.get()));
+			check(SetBonuses.ECHO.muffles(player, GameEvent.BLOCK_DESTROY), "mining with an echo tool makes no vibrations");
+			player.setItemSlot(EquipmentSlot.MAINHAND, ItemStack.EMPTY);
+			check(!SetBonuses.ECHO.muffles(player, GameEvent.BLOCK_DESTROY), "mining with other tools still makes vibrations");
+			// Putting boots on is itself a vibration, so do it before the sensor is placed.
+			player.setItemSlot(EquipmentSlot.FEET, new ItemStack(echo.boots.get()));
+		});
+		ctx.waitTicks(20);
+		server.runOnServer(s -> {
+			ServerPlayer player = player(s);
+			s.overworld().setBlockAndUpdate(sensor, Blocks.SCULK_SENSOR.defaultBlockState());
+			s.overworld().gameEvent(player, GameEvent.STEP, player.position());
+		});
+		ctx.waitTicks(10);
+		check(server.computeOnServer(s -> SculkSensorBlock.getPhase(s.overworld().getBlockState(sensor)) == SculkSensorPhase.INACTIVE),
+			"a sculk sensor doesn't hear footsteps in echo boots");
+		server.runOnServer(s -> {
+			ServerPlayer player = player(s);
+			player.setItemSlot(EquipmentSlot.FEET, ItemStack.EMPTY);
+			s.overworld().gameEvent(player, GameEvent.STEP, player.position());
+		});
+		ctx.waitTicks(10);
+		check(server.computeOnServer(s -> SculkSensorBlock.getPhase(s.overworld().getBlockState(sensor)) != SculkSensorPhase.INACTIVE),
+			"a sculk sensor hears ordinary footsteps");
+		server.runCommand("setblock 3 -60 0 minecraft:air");
+		server.runOnServer(s -> {
+			ServerPlayer player = player(s);
+			ServerLevel level = s.overworld();
+			equip(player, echo);
+			Zombie zombie = EntityTypes.ZOMBIE.create(level, EntitySpawnReason.COMMAND);
+			check(Math.abs(player.getVisibilityPercent(level, zombie) - 0.5) < 0.001, "hostile mobs notice the full echo set from half as far");
+			player.setShiftKeyDown(true);
+			check(SetBonuses.ECHO.muffles(player, GameEvent.ENTITY_ACTION), "sneaking in the full echo set makes no vibrations");
+			player.setShiftKeyDown(false);
+			check(!SetBonuses.ECHO.muffles(player, GameEvent.ENTITY_ACTION), "walking normally in the full echo set still makes some vibrations");
+
+			zombie.setNoAi(true);
+			zombie.setPos(player.getX() + 2, player.getY(), player.getZ());
+			level.addFreshEntity(zombie);
+			echo.behavior.onShieldBlock(echo, player, zombie, new ItemStack(echo.shield.get()), level.damageSources().mobAttack(zombie), 4.0F);
+			check(zombie.hasEffect(MobEffects.DARKNESS), "the echo shield gives melee attackers Darkness");
+			unequip(player);
+		});
+		server.runCommand("kill @e[type=zombie]");
+		check(tooltip(ctx, echo.pickaxe.get()).contains("Muffled"), "echo tool tooltip shows Muffled");
+		check(tooltip(ctx, echo.chestplate.get()).contains("Silence"), "echo armor tooltip shows its set bonus");
 	}
 
 	private void checkEmerald(ClientGameTestContext ctx, TestServerContext server) {

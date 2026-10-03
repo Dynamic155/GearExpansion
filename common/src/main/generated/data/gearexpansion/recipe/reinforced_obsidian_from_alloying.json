@@ -1,0 +1,17 @@
+{
+  "type": "gearexpansion:alloying",
+  "cookingtime": 300,
+  "experience": 1.0,
+  "ingredients": [
+    {
+      "count": 2,
+      "ingredient": "minecraft:obsidian"
+    },
+    {
+      "ingredient": "#c:ingots/iron"
+    }
+  ],
+  "result": {
+    "id": "gearexpansion:reinforced_obsidian"
+  }
+}

@@ -356,6 +356,66 @@ public final class GearExpansionConfig {
 	@Comment("Seconds before Ground Slam can be used again.")
 	public int tungstenSlamCooldown = 20;
 
+	// Obsidian
+
+	@AutoGen(category = "obsidian", group = "set_bonus")
+	@TickBox
+	@SerialEntry
+	@Comment("Whether the full Obsidian set grants its Blastproof bonus.")
+	public boolean obsidianSetBonus = true;
+
+	@AutoGen(category = "obsidian", group = "set_bonus")
+	@IntSlider(min = 0, max = 32, step = 1)
+	@SerialEntry
+	@Comment("Explosions within this many blocks of a wearer break no blocks. 0 turns it off.")
+	public int obsidianBlastproofRange = 8;
+
+	@AutoGen(category = "obsidian", group = "set_bonus")
+	@IntSlider(min = 0, max = 100, step = 5, format = "%d%%")
+	@SerialEntry
+	@Comment("Less damage from explosions while wearing the full set.")
+	public int obsidianExplosionReduction = 60;
+
+	// Prismarine
+
+	@AutoGen(category = "prismarine", group = "gear")
+	@IntSlider(min = 0, max = 20, step = 1)
+	@SerialEntry
+	@Comment("Extra damage prismarine weapons deal to sea creatures (Impaling V is 12.5).")
+	public int prismarineAquaticDamageBonus = 3;
+
+	@AutoGen(category = "prismarine", group = "gear")
+	@IntSlider(min = 0, max = 10, step = 1)
+	@SerialEntry
+	@Comment("Damage the prismarine shield deals back to melee attackers when it blocks.")
+	public int prismarineShieldThorns = 2;
+
+	@AutoGen(category = "prismarine", group = "set_bonus")
+	@TickBox
+	@SerialEntry
+	@Comment("Whether the full Prismarine set grants Conduit Power in water or rain (Tidebound).")
+	public boolean prismarineSetBonus = true;
+
+	// Echo
+
+	@AutoGen(category = "echo", group = "gear")
+	@IntSlider(min = 0, max = 20, step = 1, format = "%ds")
+	@SerialEntry
+	@Comment("Seconds of Darkness the echo shield gives melee attackers when it blocks.")
+	public int echoShieldDarknessSeconds = 3;
+
+	@AutoGen(category = "echo", group = "set_bonus")
+	@TickBox
+	@SerialEntry
+	@Comment("Whether the full Echo set grants its Silence bonus.")
+	public boolean echoSetBonus = true;
+
+	@AutoGen(category = "echo", group = "set_bonus")
+	@IntSlider(min = 0, max = 90, step = 5, format = "%d%%")
+	@SerialEntry
+	@Comment("How much closer hostile mobs must be to notice the wearer.")
+	public int echoDetectionReduction = 50;
+
 	// Infernium
 
 	@AutoGen(category = "infernium", group = "gear")

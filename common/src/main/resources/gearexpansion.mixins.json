@@ -11,7 +11,10 @@
 		"ItemStackDurabilityMixin",
 		"LivingEntityCombatMixin",
 		"LivingEntityEffectMixin",
-		"ServerLevelLightningMixin"
+		"LivingEntityVisibilityMixin",
+		"ServerExplosionMixin",
+		"ServerLevelLightningMixin",
+		"ServerLevelVibrationMixin"
 	],
 	"client": [],
 	"injectors": {

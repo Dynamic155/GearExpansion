@@ -73,6 +73,9 @@ final class RecipeGenerator extends FabricRecipeProvider {
 				alloy(ModMaterials.BRASS.ingot.get(), 4, 200, 0.7F, metal("copper", 3), metal("zinc", 1));
 				alloy(ModMaterials.ROSE_GOLD.ingot.get(), 2, 200, 0.7F, metal("gold", 3), metal("copper", 1));
 				alloy(ModMaterials.SAKURA.ingot.get(), 1, 200, 0.7F, metal("iron", 1), new CountedIngredient(Ingredient.of(Items.PINK_PETALS), 4));
+				alloy(ModMaterials.OBSIDIAN.ingot.get(), 1, 300, 1.0F, new CountedIngredient(Ingredient.of(Items.OBSIDIAN), 2), metal("iron", 1));
+				alloy(ModMaterials.ECHO.ingot.get(), 2, 300, 1.5F, new CountedIngredient(Ingredient.of(Items.ECHO_SHARD), 1),
+					new CountedIngredient(Ingredient.of(Items.SCULK), 4), metal("iron", 2));
 				// Steel takes longer: iron tempered with coal or charcoal.
 				alloy(ModMaterials.STEEL.ingot.get(), 1, 300, 1.0F, metal("iron", 1), new CountedIngredient(tag(ItemTags.COALS), 2));
 			}
@@ -94,6 +97,13 @@ final class RecipeGenerator extends FabricRecipeProvider {
 					.requires(Items.AMETHYST_SHARD, 4)
 					.requires(tag(ConventionalItemTags.COPPER_INGOTS))
 					.unlockedBy(getHasName(Items.AMETHYST_SHARD), has(Items.AMETHYST_SHARD))
+					.save(output);
+				MaterialSet prismarine = ModMaterials.PRISMARINE;
+				shapeless(RecipeCategory.MISC, prismarine.ingot.get(), 2)
+					.requires(Items.PRISMARINE_SHARD, 3)
+					.requires(Items.PRISMARINE_CRYSTALS, 2)
+					.requires(tag(ConventionalItemTags.COPPER_INGOTS))
+					.unlockedBy(getHasName(Items.PRISMARINE_SHARD), has(Items.PRISMARINE_SHARD))
 					.save(output);
 				MaterialSet verdigris = ModMaterials.VERDIGRIS;
 				shapeless(RecipeCategory.MISC, verdigris.ingot.get(), 2)

@@ -32,6 +32,8 @@ import com.gearexpansion.registry.ModItems;
 final class RecipeViewerChecks {
 	private static final List<Identifier> ALLOYING_RECIPES = List.of(
 		GearExpansion.id("brass_ingot_from_alloying"),
+		GearExpansion.id("echo_ingot_from_alloying"),
+		GearExpansion.id("reinforced_obsidian_from_alloying"),
 		GearExpansion.id("rose_gold_ingot_from_alloying"),
 		GearExpansion.id("sakura_ingot_from_alloying"),
 		GearExpansion.id("steel_ingot_from_alloying"));

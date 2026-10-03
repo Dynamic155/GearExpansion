@@ -362,6 +362,69 @@
       }
     ]
   },
+  "item.armor.equip_obsidian": {
+    "subtitle": "subtitles.item.armor.equip",
+    "sounds": [
+      {
+        "name": "minecraft:item/armor/equip_diamond1",
+        "pitch": 0.7
+      },
+      {
+        "name": "minecraft:item/armor/equip_diamond2",
+        "pitch": 0.7
+      },
+      {
+        "name": "minecraft:item/armor/equip_diamond3",
+        "pitch": 0.7
+      },
+      {
+        "name": "minecraft:item/armor/equip_diamond4",
+        "pitch": 0.7
+      },
+      {
+        "name": "minecraft:item/armor/equip_diamond5",
+        "pitch": 0.7
+      },
+      {
+        "name": "minecraft:item/armor/equip_diamond6",
+        "pitch": 0.7
+      }
+    ]
+  },
+  "item.armor.equip_prismarine": {
+    "subtitle": "subtitles.item.armor.equip",
+    "sounds": [
+      {
+        "name": "minecraft:mob/turtle/armor",
+        "pitch": 1.1
+      }
+    ]
+  },
+  "item.armor.equip_echo": {
+    "subtitle": "subtitles.item.armor.equip",
+    "sounds": [
+      {
+        "name": "minecraft:block/sculk_catalyst/place1",
+        "pitch": 0.9
+      },
+      {
+        "name": "minecraft:block/sculk_catalyst/place2",
+        "pitch": 0.9
+      },
+      {
+        "name": "minecraft:block/sculk_catalyst/place3",
+        "pitch": 0.9
+      },
+      {
+        "name": "minecraft:block/sculk_catalyst/place4",
+        "pitch": 0.9
+      },
+      {
+        "name": "minecraft:block/sculk_catalyst/place5",
+        "pitch": 0.9
+      }
+    ]
+  },
   "item.armor.equip_infernium": {
     "subtitle": "subtitles.item.armor.equip",
     "sounds": [

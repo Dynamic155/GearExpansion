@@ -38,10 +38,13 @@ public final class SetBonuses {
 	public static final SetBonus TITANIUM = new TitaniumSetBonus();
 	public static final CobaltSetBonus COBALT = new CobaltSetBonus();
 	public static final SetBonus TUNGSTEN = new TungstenSetBonus();
+	public static final ObsidianSetBonus OBSIDIAN = new ObsidianSetBonus();
+	public static final SetBonus PRISMARINE = new PrismarineSetBonus();
+	public static final EchoSetBonus ECHO = new EchoSetBonus();
 	public static final SetBonus INFERNIUM = new InferniumSetBonus();
 
 	public static final List<SetBonus> ALL = List.of(ZINC, VERDIGRIS, ROSE_GOLD, ALUMINUM, BRASS, SILVER, EMERALD, AMETHYST, SAKURA, STEEL,
-		TITANIUM, COBALT, TUNGSTEN, INFERNIUM);
+		TITANIUM, COBALT, TUNGSTEN, OBSIDIAN, PRISMARINE, ECHO, INFERNIUM);
 
 	/** The HUD meters last sent to each player, so unchanged values aren't resent. */
 	private static final Map<UUID, GearHudPayload> SENT_HUD = new WeakHashMap<>();

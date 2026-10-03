@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_echo_nugget": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gearexpansion:echo_nugget"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipes": "gearexpansion:echo_ingot_from_nuggets"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_echo_nugget"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "gearexpansion:echo_ingot_from_nuggets"
+    ]
+  }
+}

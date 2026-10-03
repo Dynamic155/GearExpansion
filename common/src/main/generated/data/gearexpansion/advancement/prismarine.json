@@ -1,0 +1,32 @@
+{
+  "parent": "gearexpansion:root",
+  "criteria": {
+    "has_prismarine_scale": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gearexpansion:prismarine_scale"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.gearexpansion.prismarine.description"
+    },
+    "icon": {
+      "id": "gearexpansion:prismarine_scale"
+    },
+    "title": {
+      "translate": "advancements.gearexpansion.prismarine.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_prismarine_scale"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

@@ -202,9 +202,9 @@ ENTRIES = [
                   "Taking the results gives experience, like a furnace."),
         crafting("alloy_forge", body="A blast furnace in the middle, a block of copper above it, and bricks around the rest."),
     ], start=True),
-    Entry("alloy_forge", "alloys", "Alloys", "Brass, Rose Gold, Sakura, and Steel", f"{NS}:brass_ingot", -2, 1, [
+    Entry("alloy_forge", "alloys", "Alloys", "Every Alloy Forge recipe", f"{NS}:brass_ingot", -2, 1, [
         text("Alloys",
-             "The Alloy Forge makes four alloys, shown on the next pages.\n\n"
+             "The Alloy Forge makes six alloys, shown on the next pages.\n\n"
              "Recipes use the common ingot tags, so copper, zinc, gold, and iron from other mods work too."),
         spotlight(f"{NS}:brass_ingot", "Brass",
                   "**3 copper ingots** and **1 zinc ingot** make 4 Brass Ingots.\n\n"
@@ -220,6 +220,14 @@ ENTRIES = [
                   "**1 iron ingot** and **2 coal or charcoal** make 1 Steel Ingot. It takes a little longer "
                   "than the other alloys.\n\n"
                   "See [Steel](entry://materials/steel) for its gear."),
+        spotlight(f"{NS}:reinforced_obsidian", "Reinforced Obsidian",
+                  "**2 obsidian** and **1 iron ingot** make 1 Reinforced Obsidian. It takes a little longer "
+                  "than most alloys.\n\n"
+                  "See [Obsidian](entry://materials/obsidian) for its gear."),
+        spotlight(f"{NS}:echo_ingot", "Echo",
+                  "**1 echo shard**, **4 sculk**, and **2 iron ingots** make 2 Echo Ingots. It takes a "
+                  "little longer than most alloys.\n\n"
+                  "See [Echo](entry://materials/echo) for its gear."),
     ], parents=["alloy_forge"]),
     Entry("alloy_forge", "fuel", "Fuel and Hoppers", "Fuel, boosts, and automation", "minecraft:blaze_powder", 2, 1, [
         text("Fuel",
@@ -384,7 +392,8 @@ MATERIALS = [
         "A crystal shell completely absorbs one hit, shatters, and regrows over 45 seconds (shown above the hotbar).",
         recipes=[crafting("resonant_crystal")],
     ),
-    # Cobalt sits left of Titanium in the book, so Titanium is centered above Infernium, its upgrade.
+    # The diamond row reads Cobalt, Tungsten, Titanium, Obsidian, Prismarine, Echo, so Titanium sits
+    # just above Infernium, its upgrade.
     Material(
         "cobalt", "Cobalt", "Diamond", "cobalt_ingot",
         "A deep blue Nether metal for fast mining.",
@@ -397,6 +406,24 @@ MATERIALS = [
         "Every 6 blocks you mine in a row (with at most 2 seconds between them) adds a level of Haste, up "
         "to Haste II. Stop mining and it fades.",
         recipes=[smelting("cobalt_ingot_from_smelting_raw_cobalt", body=BLAST_TOO)],
+    ),
+    Material(
+        "tungsten", "Tungsten", "Diamond", "tungsten_ingot",
+        "The tank: heavy, slow, and immovable.",
+        {"durability": 2400, "sword": 8, "armor": 20},
+        "**Tungsten Ore** is very rare, at the very bottom of the world (Y -64 to Y -48), in small, mostly "
+        "buried veins. Mine it with a diamond pickaxe or better, then smelt or blast the raw tungsten.",
+        ["**Weapons:** slow but hard-hitting; a tungsten sword hits as hard as netherite.",
+         "**Crushing:** tungsten axes and spears knock targets back further.",
+         "**Tools:** 2400 durability, but they mine slowly.",
+         "**Heavy armor:** 3 toughness and the most knockback resistance in the mod (0.15 per piece), but "
+         "each piece makes you 4% slower.",
+         "**Bulwark shield:** slow to raise, but 1500 durability and hard for axes to disable."],
+        "Immovable",
+        "No knockback at all while sneaking, and explosions deal 40% less damage.",
+        ability="**Ground Slam (R):** stomp the ground to hurt, knock back, and slow every mob within 5 "
+                "blocks. 20 second cooldown.",
+        recipes=[smelting("tungsten_ingot_from_smelting_raw_tungsten", body=BLAST_TOO)],
     ),
     Material(
         "titanium", "Titanium", "Diamond", "titanium_ingot",
@@ -439,22 +466,46 @@ MATERIALS = [
         "+2 armor toughness.",
     ),
     Material(
-        "tungsten", "Tungsten", "Diamond", "tungsten_ingot",
-        "The tank: heavy, slow, and immovable.",
-        {"durability": 2400, "sword": 8, "armor": 20},
-        "**Tungsten Ore** is very rare, at the very bottom of the world (Y -64 to Y -48), in small, mostly "
-        "buried veins. Mine it with a diamond pickaxe or better, then smelt or blast the raw tungsten.",
-        ["**Weapons:** slow but hard-hitting; a tungsten sword hits as hard as netherite.",
-         "**Crushing:** tungsten axes and spears knock targets back further.",
-         "**Tools:** 2400 durability, but they mine slowly.",
-         "**Heavy armor:** 3 toughness and the most knockback resistance in the mod (0.15 per piece), but "
-         "each piece makes you 4% slower.",
-         "**Bulwark shield:** slow to raise, but 1500 durability and hard for axes to disable."],
-        "Immovable",
-        "No knockback at all while sneaking, and explosions deal 40% less damage.",
-        ability="**Ground Slam (R):** stomp the ground to hurt, knock back, and slow every mob within 5 "
-                "blocks. 20 second cooldown.",
-        recipes=[smelting("tungsten_ingot_from_smelting_raw_tungsten", body=BLAST_TOO)],
+        "obsidian", "Obsidian", "Diamond", "reinforced_obsidian",
+        "Heavy gear built to protect your base.",
+        {"durability": 2000, "sword": 7, "armor": 19},
+        "In the [Alloy Forge](entry://alloy_forge/alloy_forge), 2 obsidian and 1 iron ingot make "
+        "1 Reinforced Obsidian.",
+        ["**Unyielding tools:** 2000 durability, but they mine slowly.",
+         "**Dense armor:** 2 toughness per piece, but each piece makes you 3% slower.",
+         "**Blast Wall:** the obsidian shield blocks explosions from every side, not just the front.",
+         "Obsidian gear survives explosions when dropped."],
+        "Blastproof",
+        "Explosions within 8 blocks of you break no blocks, so creepers can't blow holes in your base "
+        "while you're home. Explosions also deal 60% less damage to you.",
+    ),
+    Material(
+        "prismarine", "Prismarine", "Diamond", "prismarine_scale",
+        "Ocean gear for exploring the deep.",
+        {"durability": 1300, "sword": 6.5, "armor": 18},
+        "Craft **Prismarine Scales** from 3 prismarine shards, 2 prismarine crystals, and 1 copper ingot "
+        "(makes 2). Guardians and ocean monuments are the place to find shards and crystals.",
+        ["**Tidal:** prismarine swords, spears, and axes deal 3 extra damage to sea creatures, like Impaling.",
+         "**Gills:** each armor piece works like a level of Respiration, makes you swim a little faster, "
+         "and removes a quarter of the underwater mining penalty (the full set mines at full speed).",
+         "**Spined:** melee attackers take 2 damage when the prismarine shield blocks them."],
+        "Tidebound",
+        "Conduit Power while you're in water or rain: you breathe underwater, see clearly, and mine faster.",
+        recipes=[crafting("prismarine_scale")],
+    ),
+    Material(
+        "echo", "Echo", "Diamond", "echo_ingot",
+        "Sculk-touched gear for moving unheard.",
+        {"durability": 1800, "sword": 7, "armor": 20},
+        "In the [Alloy Forge](entry://alloy_forge/alloy_forge), 1 echo shard, 4 sculk, and 2 iron ingots "
+        "make 2 Echo Ingots. Echo shards are found in Ancient City chests.",
+        ["**Muffled:** mining with echo tools makes no vibrations.",
+         "**Soft Step:** your footsteps make no vibrations while you wear echo boots.",
+         "**Echo Guard:** blocking a melee attack with the echo shield gives the attacker 3 seconds of Darkness.",
+         "The 3D armor glows with soul light."],
+        "Silence",
+        "While sneaking, you make no vibrations at all, so sculk sensors, shriekers, and wardens can't hear "
+        "you. Hostile mobs also have to get twice as close to notice you.",
     ),
     Material(
         "infernium", "Infernium", "Netherite", "infernium_ingot",

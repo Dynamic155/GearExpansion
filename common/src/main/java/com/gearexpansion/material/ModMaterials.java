@@ -13,10 +13,13 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.material.MapColor;
 
 import com.gearexpansion.material.behavior.AmethystBehavior;
-import com.gearexpansion.material.behavior.CobaltBehavior;
 import com.gearexpansion.material.behavior.BrassBehavior;
+import com.gearexpansion.material.behavior.CobaltBehavior;
+import com.gearexpansion.material.behavior.EchoBehavior;
 import com.gearexpansion.material.behavior.EmeraldBehavior;
 import com.gearexpansion.material.behavior.InferniumBehavior;
+import com.gearexpansion.material.behavior.ObsidianBehavior;
+import com.gearexpansion.material.behavior.PrismarineBehavior;
 import com.gearexpansion.material.behavior.SakuraBehavior;
 import com.gearexpansion.material.behavior.SilverBehavior;
 import com.gearexpansion.material.behavior.SteelBehavior;
@@ -212,6 +215,55 @@ public final class ModMaterials {
 		.ore(4, 3, -64, -48, 0.6F)
 		.behavior(new TungstenBehavior())
 		.colors(MapColor.COLOR_BLACK, MapColor.DEEPSLATE)
+		.build();
+
+	/**
+	 * Obsidian: Reinforced Obsidian from the Alloy Forge. Slow, very durable tools and heavy armor
+	 * built to protect your base: the full set stops explosions near you from breaking blocks.
+	 * Obsidian gear survives explosions as dropped items, and the shield blocks blasts from any side.
+	 */
+	public static final MaterialSet OBSIDIAN = MaterialSet.builder("obsidian")
+		.craftedMaterial("reinforced_obsidian")
+		.tools(ToolTier.DIAMOND, 2000, 4.5F, 3.0F, 6)
+		.armor(38, 3, 7, 6, 3, 6, ModSounds.armorEquip("obsidian"), 2.0F, 0.05F)
+		.armorBonus("weight", Attributes.MOVEMENT_SPEED, -0.03, AttributeModifier.Operation.ADD_MULTIPLIED_BASE)
+		.shield(1600, 0.5F)
+		.shieldBlocksAllExplosions()
+		.blastResistant()
+		.behavior(new ObsidianBehavior())
+		.build();
+
+	/**
+	 * Prismarine: ocean gear made from Prismarine Scales (prismarine shards and crystals with copper).
+	 * Weapons hit sea creatures harder, the armor breathes and mines underwater, and the spiny shield
+	 * pricks attackers. The full set grants Conduit Power in water or rain.
+	 */
+	public static final MaterialSet PRISMARINE = MaterialSet.builder("prismarine")
+		.craftedMaterial("prismarine_scale")
+		.tools(ToolTier.DIAMOND, 1300, 7.5F, 2.5F, 14)
+		.armor(30, 3, 7, 6, 2, 14, ModSounds.armorEquip("prismarine"), 1.0F, 0.0F)
+		// Each piece removes a quarter of the underwater mining penalty, so the full set mines at full speed.
+		.armorBonus("submerged_mining", Attributes.SUBMERGED_MINING_SPEED, 0.2, AttributeModifier.Operation.ADD_VALUE)
+		// Each piece works like a level of Respiration.
+		.armorBonus("oxygen", Attributes.OXYGEN_BONUS, 1.0, AttributeModifier.Operation.ADD_VALUE)
+		.armorBonus("swim", Attributes.WATER_MOVEMENT_EFFICIENCY, 0.08, AttributeModifier.Operation.ADD_VALUE)
+		.shield(800, 1.0F)
+		.behavior(new PrismarineBehavior())
+		.build();
+
+	/**
+	 * Echo: sculk-touched gear alloyed from echo shards, sculk, and iron. Its tools mine without
+	 * vibrations, its boots step silently, and the full set hides you: hostile mobs notice you from
+	 * half as far, and while sneaking you make no vibrations at all.
+	 */
+	public static final MaterialSet ECHO = MaterialSet.builder("echo")
+		.alloy()
+		.tools(ToolTier.DIAMOND, 1800, 8.0F, 3.0F, 15)
+		.armor(33, 3, 8, 6, 3, 15, ModSounds.armorEquip("echo"), 2.0F, 0.0F)
+		.shield(700, 1.0F)
+		.glowing()
+		.behavior(new EchoBehavior())
+		.colors(MapColor.COLOR_CYAN, MapColor.COLOR_CYAN)
 		.build();
 
 	/**

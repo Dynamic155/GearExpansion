@@ -78,6 +78,9 @@ From weakest to strongest. Tier is what the pickaxe can mine, using vanilla's ti
 | Titanium | Diamond | 3000 | 7 | 20 | Rare deep ore | Unbreakable Will |
 | Cobalt | Diamond | 1100 | 6.5 | 15 | Nether ore | Overdrive |
 | Tungsten | Diamond | 2400 | 8 | 20 | Very rare, very deep ore | Immovable |
+| Obsidian | Diamond | 2000 | 7 | 19 | Alloy Forge | Blastproof |
+| Prismarine | Diamond | 1300 | 6.5 | 18 | Prismarine Scales | Tidebound |
+| Echo | Diamond | 1800 | 7 | 20 | Alloy Forge | Silence |
 | Infernium | Netherite | 2200 | 8 | 20 | Nether ore and a template | Heat Core |
 
 Every material has a **sword, pickaxe, axe, shovel, hoe, spear, helmet, chestplate, leggings, boots, and shield**.
@@ -254,6 +257,43 @@ The tank: heavy, slow, and immovable.
 - **Set bonus, Immovable:** no knockback at all while sneaking, and explosions deal 40% less damage.
 - **Ability, Ground Slam (R):** stomp the ground to hurt (4 damage), knock back, and slow every mob within 5 blocks. 20 second cooldown.
 
+### Obsidian
+
+![Obsidian gear](docs/images/obsidian.png)
+
+Heavy gear built to protect your base.
+
+- **Getting it:** in the **Alloy Forge**, 2 obsidian and 1 iron ingot make 1 Reinforced Obsidian.
+- **Unyielding tools:** diamond tier with 2000 durability, but they mine slowly.
+- **Dense armor:** 2 toughness per piece, but each piece makes you 3% slower.
+- **Shield, Blast Wall:** blocks explosions from every side while raised, not just from the front.
+- **Blastproof items:** obsidian gear survives explosions when dropped.
+- **Set bonus, Blastproof:** explosions within 8 blocks of you break no blocks and start no fires, so creepers can't blow holes in your base while you're home. Explosions also deal 60% less damage to you.
+
+### Prismarine
+
+![Prismarine gear](docs/images/prismarine.png)
+
+Ocean gear for exploring the deep.
+
+- **Getting it:** craft **Prismarine Scales** from 3 prismarine shards, 2 prismarine crystals, and 1 copper ingot (makes 2). Guardians and ocean monuments are the place to find shards and crystals.
+- **Tidal:** prismarine swords, spears, and axes deal 3 extra damage to sea creatures (guardians, squid, fish, dolphins, and so on), like Impaling.
+- **Gills:** each armor piece works like a level of Respiration, makes you swim a little faster, and removes a quarter of the underwater mining penalty, so the full set mines at full speed underwater.
+- **Shield, Spined:** melee attackers take 2 damage when the prismarine shield blocks them.
+- **Set bonus, Tidebound:** Conduit Power while you're in water or rain.
+
+### Echo
+
+![Echo gear](docs/images/echo.png)
+
+Sculk-touched gear for moving unheard. Its 3D armor glows with soul light.
+
+- **Getting it:** in the **Alloy Forge**, 1 echo shard, 4 sculk, and 2 iron ingots make 2 Echo Ingots. Echo shards are found in Ancient City chests.
+- **Muffled:** mining with echo tools makes no vibrations.
+- **Soft Step:** your footsteps make no vibrations while you wear echo boots.
+- **Shield, Echo Guard:** blocking a melee attack gives the attacker 3 seconds of Darkness.
+- **Set bonus, Silence:** while sneaking, you make no vibrations at all, so sculk sensors, shriekers, and wardens can't hear you. Hostile mobs also have to get twice as close to notice you.
+
 ### Infernium
 
 ![Infernium gear](docs/images/infernium.png)
@@ -292,6 +332,8 @@ A workstation for making alloys.
   - 3 gold ingots + 1 copper ingot = 2 Rose Gold Ingots
   - 1 iron ingot + 4 pink petals = 1 Sakura Ingot
   - 1 iron ingot + 2 coal or charcoal = 1 Steel Ingot (takes a little longer)
+  - 2 obsidian + 1 iron ingot = 1 Reinforced Obsidian (takes a little longer)
+  - 1 echo shard + 4 sculk + 2 iron ingots = 2 Echo Ingots (takes a little longer)
 - **Fuel:** any normal furnace fuel. **Blaze powder** and **lava buckets** make it work twice as fast. Shift-clicking fuel puts it in the fuel slot; once that is full, extra coal goes to the inputs for steel.
 - **Experience:** taking the results gives experience, like a furnace.
 - **Automation:** hoppers on top fill the inputs, hoppers on the side add fuel, and hoppers underneath take the results.

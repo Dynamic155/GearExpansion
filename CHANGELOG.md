@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.2.0 - Depths & Seas (in progress)
+
+### Materials
+
+- **Obsidian**: Reinforced Obsidian from the Alloy Forge. Slow, very durable tools; heavy armor; a shield that blocks explosions from every side; and gear that survives explosions when dropped. Set bonus Blastproof: explosions near you break no blocks, and hurt you 60% less.
+- **Prismarine**: ocean gear from Prismarine Scales. Weapons hit sea creatures harder, the armor breathes, swims, and mines underwater, and the shield pricks melee attackers. Set bonus Tidebound: Conduit Power in water or rain.
+- **Echo**: an Alloy Forge alloy of echo shards, sculk, and iron. Tools mine without vibrations, boots step silently, and the shield gives attackers Darkness. Set bonus Silence: no vibrations at all while sneaking, and hostile mobs notice you from half as far. The 3D armor glows.
+
 ## 1.1.1 - Sakura
 
 A pretty, gentle new set.

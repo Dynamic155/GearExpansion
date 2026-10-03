@@ -95,6 +95,26 @@ MATERIALS = {
         # Purple crystal.
         "metal": ["#2A1442", "#4A2470", "#6E3BA0", "#9A62C8", "#C495E6", "#EAD3FA"],
     },
+    "obsidian": {
+        "tools": "diamond", "armor": "diamond",
+        "material_item": ("reinforced_obsidian", "netherite_ingot", ["#0B0612", "#1A0F2B", "#2B1A45", "#3F2763", "#5B3A8A", "#8A64BF"]),
+        # Volcanic black-purple glass.
+        "metal": ["#0B0612", "#1A0F2B", "#2B1A45", "#3F2763", "#5B3A8A", "#8A64BF"],
+    },
+    "prismarine": {
+        "tools": "diamond", "armor": "diamond",
+        "material_item": ("prismarine_scale", "prismarine_crystals", ["#0C2A33", "#16495A", "#22707F", "#3E9CA6", "#73C7C8", "#B8EDE6"]),
+        # Sea-green prismarine, bluer than oxidized verdigris.
+        "metal": ["#0C2A33", "#16495A", "#22707F", "#3E9CA6", "#73C7C8", "#B8EDE6"],
+    },
+    "echo": {
+        "tools": "netherite", "armor": "netherite",
+        "ingot": "netherite_ingot", "nugget": "iron_nugget", "block": "netherite_block",
+        # Near-black sculk with only the brightest highlights in soul-light cyan, which glow on the 3D armor.
+        "metal": ["#020A0E", "#051519", "#082228", "#0C333B", "#124A55", "#3FD8D2"],
+        "stretch": True,
+        "glowmask": True,
+    },
     "infernium": {
         "tools": "netherite", "armor": "netherite",
         "ingot": "netherite_ingot", "nugget": "iron_nugget", "block": "netherite_block",

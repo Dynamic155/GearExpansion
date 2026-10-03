@@ -1,0 +1,66 @@
+{
+  "type": "modonomicon:content",
+  "id": "gearexpansion:materials/obsidian",
+  "category": "gearexpansion:materials",
+  "name": "Obsidian",
+  "description": "Diamond tier. Set bonus: Blastproof",
+  "icon": "gearexpansion:reinforced_obsidian",
+  "background": {
+    "sprite": "modonomicon:modonomicon/themes/default/node/entry_backgrounds/square_gold",
+    "width": 26,
+    "height": 26
+  },
+  "x": 1,
+  "y": 1,
+  "name_style": {
+    "render_name": "bottom",
+    "show_name_before_unlock": true
+  },
+  "parents": [],
+  "pages": [
+    {
+      "type": "modonomicon:spotlight",
+      "item": {
+        "id": "gearexpansion:reinforced_obsidian"
+      },
+      "title": "Obsidian",
+      "text": "Heavy gear built to protect your base.\n\n- **Tier:** Diamond\n- **Durability:** 2000\n- **Sword damage:** 7\n- **Armor (full set):** 19",
+      "id": "page1"
+    },
+    {
+      "type": "modonomicon:text",
+      "title": "Getting It",
+      "text": "In the [Alloy Forge](entry://alloy_forge/alloy_forge), 2 obsidian and 1 iron ingot make 1 Reinforced Obsidian.",
+      "show_title_separator": true,
+      "id": "page2"
+    },
+    {
+      "type": "modonomicon:text",
+      "title": "The Gear",
+      "text": "- **Unyielding tools:** 2000 durability, but they mine slowly.\n- **Dense armor:** 2 toughness per piece, but each piece makes you 3%% slower.\n- **Blast Wall:** the obsidian shield blocks explosions from every side, not just the front.\n- Obsidian gear survives explosions when dropped.",
+      "show_title_separator": true,
+      "id": "page3"
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "item": {
+        "id": "gearexpansion:obsidian_chestplate"
+      },
+      "title": "Blastproof",
+      "text": "**Full set bonus.** Explosions within 8 blocks of you break no blocks, so creepers can't blow holes in your base while you're home. Explosions also deal 60%% less damage to you.",
+      "id": "page4"
+    },
+    {
+      "type": "modonomicon:crafting_recipe",
+      "recipe_id_1": "gearexpansion:obsidian_pickaxe",
+      "recipe_id_2": "gearexpansion:obsidian_sword",
+      "id": "page5"
+    },
+    {
+      "type": "modonomicon:crafting_recipe",
+      "recipe_id_1": "gearexpansion:obsidian_chestplate",
+      "recipe_id_2": "gearexpansion:obsidian_shield",
+      "id": "page6"
+    }
+  ]
+}

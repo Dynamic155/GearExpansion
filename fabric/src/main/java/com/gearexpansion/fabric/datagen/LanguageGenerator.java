@@ -91,6 +91,9 @@ final class LanguageGenerator extends FabricLanguageProvider {
 		titanium(t);
 		cobalt(t);
 		tungsten(t);
+		obsidian(t);
+		prismarine(t);
+		echo(t);
 		infernium(t);
 		abilities(t);
 		advancements(t);
@@ -130,6 +133,14 @@ final class LanguageGenerator extends FabricLanguageProvider {
 		t.add(CONFIG + ".category.tungsten", "Tungsten");
 		t.add(CONFIG + ".category.tungsten.group.gear", "Gear");
 		t.add(CONFIG + ".category.tungsten.group.set_bonus", "Set Bonus: Immovable");
+		t.add(CONFIG + ".category.obsidian", "Obsidian");
+		t.add(CONFIG + ".category.obsidian.group.set_bonus", "Set Bonus: Blastproof");
+		t.add(CONFIG + ".category.prismarine", "Prismarine");
+		t.add(CONFIG + ".category.prismarine.group.gear", "Gear");
+		t.add(CONFIG + ".category.prismarine.group.set_bonus", "Set Bonus: Tidebound");
+		t.add(CONFIG + ".category.echo", "Echo");
+		t.add(CONFIG + ".category.echo.group.gear", "Gear");
+		t.add(CONFIG + ".category.echo.group.set_bonus", "Set Bonus: Silence");
 		t.add(CONFIG + ".category.infernium", "Infernium");
 		t.add(CONFIG + ".category.infernium.group.gear", "Gear");
 		t.add(CONFIG + ".category.infernium.group.set_bonus", "Set Bonus: Heat Core");
@@ -255,6 +266,45 @@ final class LanguageGenerator extends FabricLanguageProvider {
 		option(t, "tungstenSlamCooldown", "Ground Slam Cooldown", "Seconds before Ground Slam can be used again.");
 	}
 
+	private static void obsidian(TranslationBuilder t) {
+		t.add("set_bonus.gearexpansion.obsidian", "Obsidian");
+		t.add("set_bonus.gearexpansion.obsidian.blocks", "Blastproof: explosions within %s blocks of you break no blocks");
+		t.add("set_bonus.gearexpansion.obsidian.damage", "Explosions deal %s%% less damage");
+		t.add("trait.gearexpansion.unyielding", "Unyielding: very durable, but slow");
+		t.add("trait.gearexpansion.dense", "Dense: tough, but 3% slower per piece");
+		t.add("trait.gearexpansion.blast_wall", "Blast Wall: blocks explosions from every side");
+		t.add("trait.gearexpansion.blastproof_item", "Survives explosions when dropped");
+
+		option(t, "obsidianSetBonus", "Enable Set Bonus", "Whether wearing the full Obsidian set grants Blastproof.");
+		option(t, "obsidianBlastproofRange", "Protected Range", "Explosions within this many blocks of a wearer break no blocks.");
+		option(t, "obsidianExplosionReduction", "Explosion Reduction", "Less damage from explosions while wearing the full set.");
+	}
+
+	private static void prismarine(TranslationBuilder t) {
+		t.add("set_bonus.gearexpansion.prismarine", "Prismarine");
+		t.add("set_bonus.gearexpansion.prismarine.tidebound", "Tidebound: Conduit Power while in water or rain");
+		t.add("trait.gearexpansion.tidal", "Tidal: +%s damage to sea creatures");
+		t.add("trait.gearexpansion.spined", "Spined: melee attackers take %s damage when you block");
+		t.add("trait.gearexpansion.gills", "Gills: breathe longer, swim faster, and mine faster underwater");
+
+		option(t, "prismarineAquaticDamageBonus", "Sea Creature Damage", "Extra damage prismarine weapons deal to sea creatures.");
+		option(t, "prismarineShieldThorns", "Shield Spines", "Damage the prismarine shield deals back to melee attackers.");
+		option(t, "prismarineSetBonus", "Enable Set Bonus", "Whether wearing the full Prismarine set grants Tidebound.");
+	}
+
+	private static void echo(TranslationBuilder t) {
+		t.add("set_bonus.gearexpansion.echo", "Echo");
+		t.add("set_bonus.gearexpansion.echo.silence", "Silence: while sneaking, you make no vibrations at all");
+		t.add("set_bonus.gearexpansion.echo.unseen", "Hostile mobs notice you %s%% closer");
+		t.add("trait.gearexpansion.muffled", "Muffled: mining makes no vibrations");
+		t.add("trait.gearexpansion.soft_step", "Soft Step: your footsteps make no vibrations");
+		t.add("trait.gearexpansion.echo_guard", "Echo Guard: blocking a melee attack gives the attacker %ss of Darkness");
+
+		option(t, "echoShieldDarknessSeconds", "Shield Darkness", "Seconds of Darkness the echo shield gives melee attackers.");
+		option(t, "echoSetBonus", "Enable Set Bonus", "Whether wearing the full Echo set grants Silence.");
+		option(t, "echoDetectionReduction", "Detection Reduction", "How much closer hostile mobs must be to notice the wearer.");
+	}
+
 	private static void infernium(TranslationBuilder t) {
 		t.add("set_bonus.gearexpansion.infernium", "Infernium");
 		t.add("set_bonus.gearexpansion.infernium.lava", "Heat Core: walk and swim in lava for %ss before the heat gauge fills");
@@ -287,6 +337,9 @@ final class LanguageGenerator extends FabricLanguageProvider {
 		advancement(t, "titanium", "Unbreakable", "Smelt a titanium ingot");
 		advancement(t, "cobalt", "Feeling Blue", "Smelt a cobalt ingot");
 		advancement(t, "tungsten", "Heavy Metal", "Smelt a tungsten ingot");
+		advancement(t, "obsidian", "Unbreakable Walls", "Alloy obsidian and iron into Reinforced Obsidian");
+		advancement(t, "prismarine", "Scales of the Deep", "Craft a Prismarine Scale");
+		advancement(t, "echo", "Sound of Silence", "Alloy echo shards and sculk into echo");
 		advancement(t, "infernium_template", "Hot Off the Press", "Find an Infernium Upgrade template in the Nether");
 		advancement(t, "infernium", "Forged in Fire", "Upgrade titanium gear to infernium");
 	}

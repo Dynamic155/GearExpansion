@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "S": "minecraft:shield",
+    "X": "gearexpansion:reinforced_obsidian"
+  },
+  "pattern": [
+    " X ",
+    "XSX",
+    " X "
+  ],
+  "result": {
+    "id": "gearexpansion:obsidian_shield"
+  }
+}

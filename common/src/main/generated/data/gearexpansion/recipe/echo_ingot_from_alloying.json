@@ -1,0 +1,22 @@
+{
+  "type": "gearexpansion:alloying",
+  "cookingtime": 300,
+  "experience": 1.5,
+  "ingredients": [
+    {
+      "ingredient": "minecraft:echo_shard"
+    },
+    {
+      "count": 4,
+      "ingredient": "minecraft:sculk"
+    },
+    {
+      "count": 2,
+      "ingredient": "#c:ingots/iron"
+    }
+  ],
+  "result": {
+    "count": 2,
+    "id": "gearexpansion:echo_ingot"
+  }
+}

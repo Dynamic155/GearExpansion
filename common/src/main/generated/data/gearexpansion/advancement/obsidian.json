@@ -1,0 +1,32 @@
+{
+  "parent": "gearexpansion:alloy_forge",
+  "criteria": {
+    "has_reinforced_obsidian": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gearexpansion:reinforced_obsidian"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.gearexpansion.obsidian.description"
+    },
+    "icon": {
+      "id": "gearexpansion:reinforced_obsidian"
+    },
+    "title": {
+      "translate": "advancements.gearexpansion.obsidian.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_reinforced_obsidian"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

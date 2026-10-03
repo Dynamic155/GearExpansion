@@ -16,6 +16,7 @@
     "#c:storage_blocks/raw_cobalt",
     "#c:storage_blocks/tungsten",
     "#c:storage_blocks/raw_tungsten",
+    "#c:storage_blocks/echo",
     "#c:storage_blocks/infernium",
     "#c:storage_blocks/raw_infernium"
   ]

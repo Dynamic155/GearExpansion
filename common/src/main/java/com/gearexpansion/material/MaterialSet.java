@@ -34,6 +34,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.SmithingTemplateItem;
 import net.minecraft.world.item.ToolMaterial;
 import net.minecraft.world.item.component.BlocksAttacks;
+import net.minecraft.world.item.component.DamageResistant;
 import net.minecraft.world.item.component.ItemAttributeModifiers;
 import net.minecraft.world.item.component.UseEffects;
 import net.minecraft.world.item.equipment.ArmorMaterial;
@@ -97,6 +98,8 @@ public final class MaterialSet {
 	public final boolean piglinSafe;
 	/** Items don't burn in fire or lava, like netherite. */
 	public final boolean fireResistant;
+	/** Dropped items aren't destroyed by explosions, like netherite in lava. */
+	public final boolean blastResistant;
 	/** The 3D armor and shield have a glowing layer ({@code <texture>_glowmask.png}). */
 	public final boolean glowing;
 	/** Gear is made by upgrading another material's gear at a smithing table, like netherite. */
@@ -156,10 +159,12 @@ public final class MaterialSet {
 		this.blastFurnaceOnly = b.blastFurnaceOnly;
 		this.piglinSafe = b.piglinSafe;
 		this.fireResistant = b.fireResistant;
+		this.blastResistant = b.blastResistant;
 		this.glowing = b.glowing;
 		this.upgradedFrom = b.upgradedFrom;
 		this.hasOre = oreKind != OreKind.NONE;
-		UnaryOperator<Item.Properties> fireproof = p -> fireResistant ? p.fireResistant() : p;
+		UnaryOperator<Item.Properties> fireproof = p -> fireResistant ? p.fireResistant()
+			: blastResistant ? p.delayedComponent(DataComponents.DAMAGE_RESISTANT, context -> new DamageResistant(context.getOrThrow(DamageTypeTags.IS_EXPLOSION))) : p;
 
 		// Ores and raw material.
 		if (oreKind == OreKind.OVERWORLD) {
@@ -220,7 +225,11 @@ public final class MaterialSet {
 				.delayedComponent(DataComponents.BLOCKS_ATTACKS, context -> new BlocksAttacks(
 					b.shieldRaiseSeconds,
 					shieldStats.disableCooldownScale(),
-					List.of(new BlocksAttacks.DamageReduction(90.0F, Optional.empty(), 0.0F, 1.0F)),
+					b.shieldBlocksAllExplosions
+						// Explosions are blocked from every direction, not just the front.
+						? List.of(new BlocksAttacks.DamageReduction(90.0F, Optional.empty(), 0.0F, 1.0F),
+							new BlocksAttacks.DamageReduction(360.0F, Optional.of(context.getOrThrow(DamageTypeTags.IS_EXPLOSION)), 0.0F, 1.0F))
+						: List.of(new BlocksAttacks.DamageReduction(90.0F, Optional.empty(), 0.0F, 1.0F)),
 					new BlocksAttacks.ItemDamageFunction(3.0F, 1.0F, 1.0F),
 					Optional.of(context.getOrThrow(DamageTypeTags.BYPASSES_SHIELD)),
 					Optional.of(SoundEvents.SHIELD_BLOCK),
@@ -387,6 +396,8 @@ public final class MaterialSet {
 		private boolean galvanized;
 		private boolean piglinSafe;
 		private boolean fireResistant;
+		private boolean blastResistant;
+		private boolean shieldBlocksAllExplosions;
 		private boolean glowing;
 		private @Nullable Supplier<Item> baseItem;
 		private @Nullable String craftedMaterial;
@@ -528,6 +539,18 @@ public final class MaterialSet {
 		/** Items don't burn in fire or lava. */
 		public Builder fireResistant() {
 			this.fireResistant = true;
+			return this;
+		}
+
+		/** Dropped items survive explosions. */
+		public Builder blastResistant() {
+			this.blastResistant = true;
+			return this;
+		}
+
+		/** The shield blocks explosions from every direction while raised, not just from the front. */
+		public Builder shieldBlocksAllExplosions() {
+			this.shieldBlocksAllExplosions = true;
 			return this;
 		}
 

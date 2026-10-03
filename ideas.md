@@ -90,6 +90,14 @@ Titanium stats as built:
 - Ore: veins of 5, 4 per chunk, Y -64 to -16, half of any ore touching air is skipped, needs a diamond pickaxe
 - Armor is kept out of vanilla's armor tags for now so it can't be trimmed (trims don't show on the 3D models). Revisit with the trims decision.
 
+1.2 Depths & Seas, all three built together:
+
+| Material | Status |
+|---|---|
+| Obsidian | Done: Reinforced Obsidian (Alloy Forge: 2 obsidian + 1 iron), slow durable tools, Dense armor (-3% speed per piece), Blast Wall shield (blocks explosions from every side), explosion-proof dropped items, Blastproof set bonus (explosions within 8 blocks break no blocks, 60% less explosion damage). Changed from the original plan to stop overlapping Tungsten. |
+| Prismarine | Done: Prismarine Scales (3 shards + 2 crystals + 1 copper, makes 2), Tidal weapons (+3 vs aquatic mobs), Gills armor (Respiration, swim speed, underwater mining per piece), Spined shield, Tidebound set bonus (Conduit Power in water or rain). Not done from the plan: the Tidal Core Elder Guardian drop and the trident synergy. |
+| Echo | Done: Alloy Forge (1 echo shard + 4 sculk + 2 iron, makes 2), Muffled tools, Soft Step boots, Echo Guard shield (Darkness), Silence set bonus (no vibrations while sneaking, mobs notice from half as far), glowing 3D armor |
+
 ---
 
 ## 2. Design pillars
